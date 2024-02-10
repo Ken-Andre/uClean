@@ -16,5 +16,9 @@ class SettingsAddmanualtrippBloc
   _onInitialize(
     SettingsAddmanualtrippInitialEvent event,
     Emitter<SettingsAddmanualtrippState> emit,
-  ) async {}
+  ) async {
+    emit(state.copyWith(
+        startLocationController: TextEditingController(),
+        stopLocationController: TextEditingController()));
+  }
 }

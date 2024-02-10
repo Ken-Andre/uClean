@@ -37,21 +37,7 @@ class SplashScreen extends StatelessWidget {
         height: 374.v,
         width: 392.h,
         child: Stack(alignment: Alignment.centerRight, children: [
-          Opacity(
-              opacity: 0.6,
-              child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                      height: 271.adaptSize,
-                      width: 271.adaptSize,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment(0.5, 0.5),
-                              end: Alignment(0.5, 1),
-                              colors: [
-                            appTheme.deepOrange20090,
-                            appTheme.deepOrange10090
-                          ]))))),
+          CustomImageView(height: 271.v, alignment: Alignment.topLeft),
           Opacity(
               opacity: 0.6,
               child: CustomImageView(
@@ -59,21 +45,11 @@ class SplashScreen extends StatelessWidget {
                   height: 271.v,
                   width: 234.h,
                   alignment: Alignment.centerRight)),
-          Opacity(
-              opacity: 0.3,
-              child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Container(
-                      height: 271.adaptSize,
-                      width: 271.adaptSize,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment(0.5, 0.5),
-                              end: Alignment(0.5, 1),
-                              colors: [
-                            appTheme.yellowA20075,
-                            appTheme.limeA40075
-                          ]))))),
+          CustomImageView(
+              height: 271.v,
+              width: 27.h,
+              alignment: Alignment.bottomLeft,
+              margin: EdgeInsets.only()),
           CustomImageView(
               imagePath: ImageConstant.imgLogo,
               height: 104.v,

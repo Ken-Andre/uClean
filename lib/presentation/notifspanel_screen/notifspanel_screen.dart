@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:uclean/core/app_export.dart';
 import 'package:uclean/widgets/app_bar/appbar_leading_image.dart';
 import 'package:uclean/widgets/app_bar/appbar_title.dart';
-import 'package:uclean/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:uclean/widgets/app_bar/custom_app_bar.dart';
 import 'package:uclean/widgets/custom_elevated_button.dart';
 
@@ -111,12 +110,7 @@ class NotifspanelScreen extends StatelessWidget {
               onTapArrowLeft(context);
             }),
         centerTitle: true,
-        title: AppbarTitle(text: "lbl_notifications".tr),
-        actions: [
-          AppbarTrailingImage(
-              imagePath: ImageConstant.imgMaterialSymbol,
-              margin: EdgeInsets.fromLTRB(28.h, 16.v, 28.h, 15.v))
-        ]);
+        title: AppbarTitle(text: "lbl_notifications".tr));
   }
 
   /// Navigates to the previous screen.

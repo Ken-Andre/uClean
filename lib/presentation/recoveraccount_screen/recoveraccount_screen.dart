@@ -129,7 +129,11 @@ class RecoveraccountScreen extends StatelessWidget {
                                                       CustomElevatedButton(
                                                           width: 185.h,
                                                           text:
-                                                              "lbl_continue".tr)
+                                                              "lbl_continue".tr,
+                                                          onPressed: () {
+                                                            onClickContinuetoRecover2(
+                                                                context);
+                                                          })
                                                     ])))),
                                     CustomImageView(
                                         imagePath:
@@ -144,6 +148,13 @@ class RecoveraccountScreen extends StatelessWidget {
 
   /// Navigates to the recoveraccounttwoScreen when the action is triggered.
   onTapFrameThirty(BuildContext context) {
+    NavigatorService.pushNamed(
+      AppRoutes.recoveraccounttwoScreen,
+    );
+  }
+
+  /// Navigates to the recoveraccounttwoScreen when the action is triggered.
+  onClickContinuetoRecover2(BuildContext context) {
     NavigatorService.pushNamed(
       AppRoutes.recoveraccounttwoScreen,
     );

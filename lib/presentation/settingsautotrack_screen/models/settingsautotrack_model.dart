@@ -2,13 +2,13 @@
 
 import 'package:equatable/equatable.dart';
 
-/// This class defines the variables used in the [settings_auto_track_screen],
+/// This class defines the variables used in the [settingsautotrack_screen],
 /// and is typically used to hold data that is passed between different parts of the application.
-class SettingsAutoTrackModel extends Equatable {
-  SettingsAutoTrackModel() {}
+class SettingsautotrackModel extends Equatable {
+  SettingsautotrackModel() {}
 
-  SettingsAutoTrackModel copyWith() {
-    return SettingsAutoTrackModel();
+  SettingsautotrackModel copyWith() {
+    return SettingsautotrackModel();
   }
 
   @override

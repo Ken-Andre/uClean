@@ -792,10 +792,10 @@ class HomePage extends StatelessWidget {
     }
   }
 
-  /// Navigates to the settingsAutoTrackScreen when the action is triggered.
+  /// Navigates to the settingsautotrackScreen when the action is triggered.
   onTapImgSettings(BuildContext context) {
     NavigatorService.pushNamed(
-      AppRoutes.settingsAutoTrackScreen,
+      AppRoutes.settingsautotrackScreen,
     );
   }
 }

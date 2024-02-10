@@ -83,9 +83,9 @@ class AppNavigationScreen extends StatelessWidget {
                             ),
                             _buildScreenTitle(
                               context,
-                              screenTitle: "Settings Auto-Track".tr,
+                              screenTitle: "SettingsAutoTrack".tr,
                               onTapScreenTitle: () => onTapScreenTitle(
-                                  AppRoutes.settingsAutoTrackScreen),
+                                  AppRoutes.settingsautotrackScreen),
                             ),
                             _buildScreenTitle(
                               context,

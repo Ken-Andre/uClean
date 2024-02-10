@@ -49,7 +49,7 @@ final Map<String, String> enUs = {
   "msg_check_configuration": "Check Configuration",
   "msg_reporting_periods": "Reporting Periods",
 
-  // Settings Auto-Track Screen
+  // SettingsAutoTrack Screen
   "lbl_auto_tracking": "Auto-Tracking",
   "lbl_schedule": "Schedule",
   "lbl_tracking_times": "Tracking Times",

@@ -63,13 +63,13 @@ class SettingsPage extends StatelessWidget {
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 9.h),
                           child: _buildNotificationsRow(context,
-                              userImage: ImageConstant.imgLock,
+                              n: ImageConstant.imgLock,
                               notifications: "lbl_your_account".tr)),
                       SizedBox(height: 2.v),
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 9.h),
                           child: _buildNotificationsRow(context,
-                              userImage: ImageConstant.imgGroup,
+                              n: ImageConstant.imgGroup,
                               notifications: "lbl_notifications".tr,
                               onTapNotificationsRow: () {
                             onTapNotificationsRow(context);
@@ -78,7 +78,7 @@ class SettingsPage extends StatelessWidget {
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 9.h),
                           child: _buildNotificationsRow(context,
-                              userImage: ImageConstant.imgSave,
+                              n: ImageConstant.imgSave,
                               notifications: "lbl_teams".tr)),
                       SizedBox(height: 11.v),
                       Align(
@@ -175,6 +175,7 @@ class SettingsPage extends StatelessWidget {
                       hintText: "msg_reporting_periods".tr,
                       hintStyle: theme.textTheme.bodyMedium!,
                       textInputAction: TextInputAction.done,
+                      alignment: Alignment.centerLeft,
                       prefix: Container(
                           margin: EdgeInsets.fromLTRB(9.h, 8.v, 22.h, 8.v),
                           child: CustomImageView(
@@ -196,13 +197,16 @@ class SettingsPage extends StatelessWidget {
             width: 185.h,
             text: "lbl_log_out".tr,
             buttonStyle: CustomButtonStyles.fillYellow,
-            buttonTextStyle: CustomTextStyles.bodyLargeOrange700));
+            buttonTextStyle: CustomTextStyles.bodyLargeOrange700,
+            onPressed: () {
+              navigateToSplash(context);
+            }));
   }
 
   /// Common widget
   Widget _buildNotificationsRow(
     BuildContext context, {
-    required String userImage,
+    required String n,
     required String notifications,
     Function? onTapNotificationsRow,
   }) {
@@ -216,9 +220,7 @@ class SettingsPage extends StatelessWidget {
                 .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
             child: Row(mainAxisSize: MainAxisSize.max, children: [
               CustomImageView(
-                  imagePath: userImage,
-                  height: 24.adaptSize,
-                  width: 24.adaptSize),
+                  imagePath: n, height: 24.adaptSize, width: 24.adaptSize),
               Padding(
                   padding: EdgeInsets.only(left: 22.h),
                   child: Text(notifications,
@@ -257,6 +259,13 @@ class SettingsPage extends StatelessWidget {
   onTapNotificationsRow(BuildContext context) {
     NavigatorService.pushNamed(
       AppRoutes.notifspanelScreen,
+    );
+  }
+
+  /// Navigates to the splashScreen when the action is triggered.
+  navigateToSplash(BuildContext context) {
+    NavigatorService.pushNamed(
+      AppRoutes.splashScreen,
     );
   }
 }

@@ -1,5 +1,5 @@
-import 'bloc/settings_auto_track_bloc.dart';
-import 'models/settings_auto_track_model.dart';
+import 'bloc/settingsautotrack_bloc.dart';
+import 'models/settingsautotrack_model.dart';
 import 'package:flutter/material.dart';
 import 'package:uclean/core/app_export.dart';
 import 'package:uclean/widgets/app_bar/appbar_leading_image.dart';
@@ -7,15 +7,15 @@ import 'package:uclean/widgets/app_bar/appbar_subtitle.dart';
 import 'package:uclean/widgets/app_bar/custom_app_bar.dart';
 import 'package:uclean/widgets/custom_switch.dart';
 
-class SettingsAutoTrackScreen extends StatelessWidget {
-  const SettingsAutoTrackScreen({Key? key}) : super(key: key);
+class SettingsautotrackScreen extends StatelessWidget {
+  const SettingsautotrackScreen({Key? key}) : super(key: key);
 
   static Widget builder(BuildContext context) {
-    return BlocProvider<SettingsAutoTrackBloc>(
-        create: (context) => SettingsAutoTrackBloc(SettingsAutoTrackState(
-            settingsAutoTrackModelObj: SettingsAutoTrackModel()))
-          ..add(SettingsAutoTrackInitialEvent()),
-        child: SettingsAutoTrackScreen());
+    return BlocProvider<SettingsautotrackBloc>(
+        create: (context) => SettingsautotrackBloc(SettingsautotrackState(
+            settingsautotrackModelObj: SettingsautotrackModel()))
+          ..add(SettingsautotrackInitialEvent()),
+        child: SettingsautotrackScreen());
   }
 
   @override
@@ -67,7 +67,7 @@ class SettingsAutoTrackScreen extends StatelessWidget {
               padding: EdgeInsets.only(top: 4.v),
               child: Text("msg_only_track_within".tr,
                   style: theme.textTheme.bodyMedium)),
-          BlocSelector<SettingsAutoTrackBloc, SettingsAutoTrackState, bool?>(
+          BlocSelector<SettingsautotrackBloc, SettingsautotrackState, bool?>(
               selector: (state) => state.isSelectedSwitch,
               builder: (context, isSelectedSwitch) {
                 return CustomSwitch(
@@ -75,7 +75,7 @@ class SettingsAutoTrackScreen extends StatelessWidget {
                     value: isSelectedSwitch,
                     onChange: (value) {
                       context
-                          .read<SettingsAutoTrackBloc>()
+                          .read<SettingsautotrackBloc>()
                           .add(ChangeSwitchEvent(value: value));
                     });
               })
@@ -84,26 +84,45 @@ class SettingsAutoTrackScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildTabSubsection(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.symmetric(horizontal: 9.h),
-        padding: EdgeInsets.symmetric(horizontal: 43.h, vertical: 2.v),
-        decoration: AppDecoration.fillPrimary
-            .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Padding(
-              padding: EdgeInsets.only(top: 6.v, bottom: 5.v),
-              child:
-                  Text("lbl_schedule".tr, style: theme.textTheme.bodyMedium)),
-          CustomImageView(
-              imagePath: ImageConstant.imgSaveBlack900,
-              height: 33.adaptSize,
-              width: 33.adaptSize)
-        ]));
+    return GestureDetector(
+        onTap: () {
+          requestStoragePermission(context);
+        },
+        child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 9.h),
+            padding: EdgeInsets.symmetric(horizontal: 43.h, vertical: 2.v),
+            decoration: AppDecoration.fillPrimary
+                .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                      padding: EdgeInsets.only(top: 6.v, bottom: 5.v),
+                      child: Text("lbl_schedule".tr,
+                          style: theme.textTheme.bodyMedium)),
+                  CustomImageView(
+                      imagePath: ImageConstant.imgSaveBlack900,
+                      height: 33.adaptSize,
+                      width: 33.adaptSize)
+                ])));
   }
 
   /// Navigates to the previous screen.
   onTapArrowLeft(BuildContext context) {
     NavigatorService.goBack();
+  }
+
+  /// Requests the user's permission to access the device's storage and retrieves
+  /// a list of files, if permission is granted.
+  ///
+  /// Returns a [Future] that completes with a list of [String] objects representing
+  /// the file paths. if permission is granted and files are available, otherwise an empty list.
+  requestStoragePermission(BuildContext context) async {
+    await PermissionManager.askForPermission(Permission.storage);
+    List<String?>? fileList = [];
+    FileManager().filePickerMethod(1000 * 1000, ['pdf', 'doc'],
+        getFiles: (value) {
+      fileList = value;
+    });
   }
 }

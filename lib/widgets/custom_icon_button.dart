@@ -87,4 +87,7 @@ extension IconButtonStyleHelper on CustomIconButton {
           ),
         ],
       );
+  static BoxDecoration get radiusTL3 => BoxDecoration(
+        borderRadius: BorderRadius.circular(3.h),
+      );
 }

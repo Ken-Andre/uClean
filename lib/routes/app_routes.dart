@@ -6,7 +6,7 @@ import 'package:uclean/presentation/profile_screen/profile_screen.dart';
 import 'package:uclean/presentation/recoveraccounttwo_screen/recoveraccounttwo_screen.dart';
 import 'package:uclean/presentation/recoveraccount_screen/recoveraccount_screen.dart';
 import 'package:uclean/presentation/settings_addmanualtripp_screen/settings_addmanualtripp_screen.dart';
-import 'package:uclean/presentation/settings_auto_track_screen/settings_auto_track_screen.dart';
+import 'package:uclean/presentation/settingsautotrack_screen/settingsautotrack_screen.dart';
 import 'package:uclean/presentation/login_screen/login_screen.dart';
 import 'package:uclean/presentation/login_three_screen/login_three_screen.dart';
 import 'package:uclean/presentation/home_container_screen/home_container_screen.dart';
@@ -34,7 +34,7 @@ class AppRoutes {
 
   static const String settingsPage = '/settings_page';
 
-  static const String settingsAutoTrackScreen = '/settings_auto_track_screen';
+  static const String settingsautotrackScreen = '/settingsautotrack_screen';
 
   static const String loginScreen = '/login_screen';
 
@@ -67,7 +67,7 @@ class AppRoutes {
         recoveraccounttwoScreen: RecoveraccounttwoScreen.builder,
         recoveraccountScreen: RecoveraccountScreen.builder,
         settingsAddmanualtrippScreen: SettingsAddmanualtrippScreen.builder,
-        settingsAutoTrackScreen: SettingsAutoTrackScreen.builder,
+        settingsautotrackScreen: SettingsautotrackScreen.builder,
         loginScreen: LoginScreen.builder,
         loginThreeScreen: LoginThreeScreen.builder,
         homeContainerScreen: HomeContainerScreen.builder,

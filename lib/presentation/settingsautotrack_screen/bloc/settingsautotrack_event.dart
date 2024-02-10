@@ -1,22 +1,22 @@
 // ignore_for_file: must_be_immutable
 
-part of 'settings_auto_track_bloc.dart';
+part of 'settingsautotrack_bloc.dart';
 
 /// Abstract class for all events that can be dispatched from the
-///SettingsAutoTrack widget.
+///Settingsautotrack widget.
 ///
 /// Events must be immutable and implement the [Equatable] interface.
 @immutable
-abstract class SettingsAutoTrackEvent extends Equatable {}
+abstract class SettingsautotrackEvent extends Equatable {}
 
-/// Event that is dispatched when the SettingsAutoTrack widget is first created.
-class SettingsAutoTrackInitialEvent extends SettingsAutoTrackEvent {
+/// Event that is dispatched when the Settingsautotrack widget is first created.
+class SettingsautotrackInitialEvent extends SettingsautotrackEvent {
   @override
   List<Object?> get props => [];
 }
 
 ///Event for changing switch
-class ChangeSwitchEvent extends SettingsAutoTrackEvent {
+class ChangeSwitchEvent extends SettingsautotrackEvent {
   ChangeSwitchEvent({required this.value});
 
   bool value;

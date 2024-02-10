@@ -64,7 +64,7 @@ class ImageConstant {
 
   static String imgCog = '$imagePath/img_cog.svg';
 
-  // Settings Auto-Track images
+  // SettingsAutoTrack images
   static String imgSaveBlack900 = '$imagePath/img_save_black_900.svg';
 
   // Login images

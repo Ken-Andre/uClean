@@ -35,8 +35,12 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                 child: Column(children: [
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     Column(children: [
-                      Text("lbl_detailed".tr,
-                          style: CustomTextStyles.bodyMediumRegular),
+                      GestureDetector(
+                          onTap: () {
+                            onclicknavigatetoDetailedTab(context);
+                          },
+                          child: Text("lbl_detailed".tr,
+                              style: CustomTextStyles.bodyMediumRegular)),
                       SizedBox(
                           width: 50.h,
                           child: Divider(color: theme.colorScheme.primary))
@@ -142,21 +146,30 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                                 height: 20.v,
                                 width: 18.h,
                                 margin: EdgeInsets.symmetric(vertical: 2.v)),
-                            Padding(
-                                padding: EdgeInsets.only(left: 9.h, top: 2.v),
-                                child: Text("lbl_wed_january_31".tr,
-                                    style: theme.textTheme.bodyMedium)),
+                            GestureDetector(
+                                onTap: () {
+                                  openDatePickerDialogStart(context);
+                                },
+                                child: Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 9.h, top: 2.v),
+                                    child: Text("lbl_wed_january_31".tr,
+                                        style: theme.textTheme.bodyMedium))),
                             Spacer(),
                             CustomImageView(
                                 imagePath: ImageConstant.imgClock,
                                 height: 20.adaptSize,
                                 width: 20.adaptSize,
                                 margin: EdgeInsets.symmetric(vertical: 2.v)),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 10.h, top: 1.v, right: 2.h),
-                                child: Text("lbl_10_28".tr,
-                                    style: theme.textTheme.bodyMedium))
+                            GestureDetector(
+                                onTap: () {
+                                  openTimePickerDialogStart(context);
+                                },
+                                child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 10.h, top: 1.v, right: 2.h),
+                                    child: Text("lbl_10_28".tr,
+                                        style: theme.textTheme.bodyMedium)))
                           ])))
             ]));
   }
@@ -249,6 +262,37 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
   /// Navigates to the previous screen.
   onTapArrowLeft(BuildContext context) {
     NavigatorService.goBack();
+  }
+
+  /// Navigates to the settingsAddmanualtrippScreen when the action is triggered.
+  onclicknavigatetoDetailedTab(BuildContext context) {
+    NavigatorService.pushNamed(
+      AppRoutes.settingsAddmanualtrippScreen,
+    );
+  }
+
+  /// Displays a date picker dialog to update the selected date
+  ///
+  /// This function returns a `Future` that completes with `void`.
+  Future<void> openDatePickerDialogStart(BuildContext context) async {
+    var initialState =
+        BlocProvider.of<SettingsAddmanualtrippresversBloc>(context).state;
+    DateTime? dateTime = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1970),
+        lastDate: DateTime(
+            DateTime.now().year, DateTime.now().month, DateTime.now().day));
+  }
+
+  /// Displays a time picker dialog to update the selected time
+  ///
+  /// This function returns a `Future` that completes with `void`.
+  Future<void> openTimePickerDialogStart(BuildContext context) async {
+    var initialState =
+        BlocProvider.of<SettingsAddmanualtrippresversBloc>(context).state;
+    TimeOfDay? time =
+        await showTimePicker(context: context, initialTime: TimeOfDay.now());
   }
 
   /// Navigates to the homeContainerScreen when the action is triggered.
