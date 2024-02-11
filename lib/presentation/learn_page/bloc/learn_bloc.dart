@@ -17,9 +17,8 @@ class LearnBloc extends Bloc<LearnEvent, LearnState> {
     Emitter<LearnState> emit,
   ) async {
     emit(state.copyWith(
-        learnModelObj: state.learnModelObj?.copyWith(
-      learnsectionItemList: fillLearnsectionItemList(),
-    )));
+        learnModelObj: state.learnModelObj
+            ?.copyWith(learnsectionItemList: fillLearnsectionItemList())));
   }
 
   List<LearnsectionItemModel> fillLearnsectionItemList() {

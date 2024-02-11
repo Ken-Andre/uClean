@@ -112,7 +112,7 @@ class ReportPage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 19.h),
       padding: EdgeInsets.symmetric(horizontal: 5.h),
-      decoration: AppDecoration.outlineBlack9006.copyWith(
+      decoration: AppDecoration.outlineBlack9004.copyWith(
         borderRadius: BorderRadiusStyle.roundedBorder5,
       ),
       child: Column(
@@ -242,7 +242,7 @@ class ReportPage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 19.h),
       padding: EdgeInsets.symmetric(horizontal: 5.h),
-      decoration: AppDecoration.outlineBlack9006.copyWith(
+      decoration: AppDecoration.outlineBlack9004.copyWith(
         borderRadius: BorderRadiusStyle.roundedBorder5,
       ),
       child: Column(
@@ -406,7 +406,7 @@ class ReportPage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 19.h),
       padding: EdgeInsets.symmetric(horizontal: 5.h),
-      decoration: AppDecoration.outlineBlack9006.copyWith(
+      decoration: AppDecoration.outlineBlack9004.copyWith(
         borderRadius: BorderRadiusStyle.roundedBorder5,
       ),
       child: Column(

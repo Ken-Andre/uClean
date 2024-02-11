@@ -7,11 +7,14 @@ class LearnsectionItemWidget extends StatelessWidget {
   LearnsectionItemWidget(
     this.learnsectionItemModelObj, {
     Key? key,
+    this.navigatetoLearnContent,
   }) : super(
           key: key,
         );
 
   LearnsectionItemModel learnsectionItemModelObj;
+
+  VoidCallback? navigatetoLearnContent;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +25,9 @@ class LearnsectionItemWidget extends StatelessWidget {
           imagePath: learnsectionItemModelObj?.skyImage,
           height: 113.v,
           width: 353.h,
+          onTap: () {
+            navigatetoLearnContent!.call();
+          },
         ),
         SizedBox(height: 5.v),
         Text(

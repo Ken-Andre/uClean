@@ -5,6 +5,7 @@ import 'package:uclean/core/app_export.dart';
 import 'package:uclean/widgets/app_bar/appbar_image.dart';
 import 'package:uclean/widgets/app_bar/appbar_subtitle_one.dart';
 import 'package:uclean/widgets/app_bar/custom_app_bar.dart';
+import 'package:uclean/widgets/custom_icon_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class HomePage extends StatelessWidget {
               body: SizedBox(
                   height: 713.v,
                   width: double.maxFinite,
-                  child: Stack(alignment: Alignment.center, children: [
+                  child: Stack(children: [
                     Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -72,8 +73,7 @@ class HomePage extends StatelessWidget {
                                           margin: EdgeInsets.only(
                                               top: 31.v, bottom: 220.v)))
                                 ]))),
-                    Align(
-                        alignment: Alignment.center,
+                    SingleChildScrollView(
                         child: Container(
                             decoration: AppDecoration.fillPrimary1,
                             child: Column(
@@ -126,16 +126,17 @@ class HomePage extends StatelessWidget {
                                                             borderRadius:
                                                                 BorderRadiusStyle
                                                                     .roundedBorder23),
-                                                    child: CustomImageView(
-                                                        imagePath: ImageConstant
-                                                            .imgVectorOn,
+                                                    child: CustomIconButton(
                                                         height: 124.v,
                                                         width: 129.h,
+                                                        decoration:
+                                                            IconButtonStyleHelper
+                                                                .radiusTL3,
                                                         alignment:
                                                             Alignment.center,
-                                                        onTap: () {
-                                                          chamgeImg(context);
-                                                        })),
+                                                        child: CustomImageView(
+                                                            imagePath: ImageConstant
+                                                                .imgVectorOn))),
                                                 Container(
                                                     height: 27.v,
                                                     width: 84.h,
@@ -190,7 +191,7 @@ class HomePage extends StatelessWidget {
                                           appTheme.black900.withOpacity(0.25)),
                                   SizedBox(height: 22.v),
                                   _buildFrameNinetyThree(context),
-                                  SizedBox(height: 21.v),
+                                  SizedBox(height: 2.v),
                                   _buildUnclassifiedTrips(context)
                                 ])))
                   ]))));
@@ -238,216 +239,67 @@ class HomePage extends StatelessWidget {
                       width: 73.h, child: Divider(color: appTheme.gray500))),
               Text("msg_personnal_swipe".tr,
                   style: CustomTextStyles.bodySmallGray500),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.v),
-                  child: SizedBox(
-                      width: 73.h, child: Divider(color: appTheme.gray500)))
+              SizedBox(
+                  height: 1.v,
+                  width: 73.h,
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: SizedBox(
+                          width: 73.h,
+                          child: Divider(color: appTheme.gray500))))
             ]));
   }
 
   /// Section Widget
   Widget _buildUnclassifiedTrips(BuildContext context) {
-    return SizedBox(
-        height: 224.v,
-        width: 376.h,
-        child: Stack(alignment: Alignment.center, children: [
-          Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                  margin: EdgeInsets.only(right: 30.h),
-                  decoration: AppDecoration.outlineBlack9003,
+    return Align(
+        alignment: Alignment.center,
+        child: SizedBox(
+            height: 224.v,
+            width: 376.h,
+            child: Stack(alignment: Alignment.center, children: [
+              Align(
+                  alignment: Alignment.topLeft,
                   child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 2.h),
-                      decoration: AppDecoration.fillWhiteA.copyWith(
-                          borderRadius: BorderRadiusStyle.roundedBorder15),
-                      child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 7.v),
-                            Padding(
-                                padding: EdgeInsets.only(left: 6.h, right: 9.h),
-                                child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text("lbl_10_2".tr,
-                                          style:
-                                              CustomTextStyles.titleSmallBold),
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 7.h, bottom: 5.v),
-                                          child: Text("lbl_km2".tr,
+                      margin: EdgeInsets.only(right: 30.h),
+                      decoration: AppDecoration.outlineBlack9003,
+                      child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 2.h),
+                          decoration: AppDecoration.fillWhiteA.copyWith(
+                              borderRadius: BorderRadiusStyle.roundedBorder15),
+                          child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 7.v),
+                                Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 6.h, right: 9.h),
+                                    child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text("lbl_10_2".tr,
                                               style: CustomTextStyles
-                                                  .bodySmall11)),
-                                      Spacer(flex: 50),
-                                      CustomImageView(
-                                          imagePath: ImageConstant.imgUser,
-                                          height: 21.v,
-                                          width: 43.h),
-                                      Spacer(flex: 49),
-                                      Text("lbl_16_01_2024".tr,
-                                          style: CustomTextStyles
-                                              .bodyMediumRegular15)
-                                    ])),
-                            SizedBox(height: 31.v),
-                            Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                      padding: EdgeInsets.only(bottom: 9.v),
-                                      child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Align(
-                                                alignment:
-                                                    Alignment.centerRight,
-                                                child: Text("lbl_13_12".tr,
-                                                    style: CustomTextStyles
-                                                        .bodyMediumRegular15)),
-                                            SizedBox(height: 24.v),
-                                            Text("lbl_14_15".tr,
-                                                style: CustomTextStyles
-                                                    .bodyMediumRegular15)
-                                          ])),
-                                  CustomImageView(
-                                      imagePath:
-                                          ImageConstant.imgSettingsBlack900,
-                                      height: 66.v,
-                                      width: 12.h,
-                                      margin: EdgeInsets.only(
-                                          left: 1.h, top: 2.v, bottom: 12.v)),
-                                  Padding(
-                                      padding: EdgeInsets.only(left: 3.h),
-                                      child: _buildThirtySeven(context,
-                                          locationText1:
-                                              "msg_douala_cameroon".tr,
-                                          locationText2:
-                                              "msg_entree_lycee_ndogpassi".tr,
-                                          locationText3:
-                                              "msg_douala_cameroon".tr,
-                                          locationText4:
-                                              "msg_entree_lycee_ndogpassi".tr))
-                                ]),
-                            SizedBox(height: 19.v),
-                            Container(
-                                height: 36.v,
-                                width: 328.h,
-                                margin: EdgeInsets.only(left: 5.h),
-                                child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Container(
-                                              height: 34.v,
-                                              width: 28.h,
-                                              margin:
-                                                  EdgeInsets.only(left: 20.h),
-                                              decoration: BoxDecoration(
-                                                  color: appTheme.whiteA700))),
-                                      Align(
-                                          alignment: Alignment.center,
-                                          child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                CustomImageView(
-                                                    imagePath: ImageConstant
-                                                        .imgLinkedin,
-                                                    height: 17.v,
-                                                    width: 9.h,
-                                                    margin: EdgeInsets.only(
-                                                        top: 10.v,
-                                                        bottom: 8.v)),
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 11.h),
-                                                    child: SizedBox(
-                                                        height: 36.v,
-                                                        child: VerticalDivider(
-                                                            width: 1.h,
-                                                            thickness: 1.v))),
-                                                CustomImageView(
-                                                    imagePath:
-                                                        ImageConstant.imgCar,
-                                                    height: 17.v,
-                                                    width: 15.h,
-                                                    margin: EdgeInsets.only(
-                                                        left: 4.h,
-                                                        top: 10.v,
-                                                        bottom: 8.v)),
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 7.h),
-                                                    child: SizedBox(
-                                                        height: 36.v,
-                                                        child: VerticalDivider(
-                                                            width: 1.h,
-                                                            thickness: 1.v))),
-                                                Spacer(),
-                                                SizedBox(
-                                                    height: 36.v,
-                                                    child: VerticalDivider(
-                                                        width: 1.h,
-                                                        thickness: 1.v)),
-                                                CustomImageView(
-                                                    imagePath: ImageConstant
-                                                        .imgThumbsUp,
-                                                    height: 17.v,
-                                                    width: 11.h,
-                                                    margin: EdgeInsets.only(
-                                                        left: 6.h,
-                                                        top: 10.v,
-                                                        bottom: 8.v))
-                                              ]))
-                                    ]))
-                          ])))),
-          Align(
-              alignment: Alignment.center,
-              child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 15.h),
-                  decoration: AppDecoration.outlineBlack9003,
-                  child: Container(
-                      decoration: AppDecoration.fillWhiteA.copyWith(
-                          borderRadius: BorderRadiusStyle.roundedBorder15),
-                      child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 6.v),
-                            Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.h),
-                                child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text("lbl_0003".tr,
-                                          style:
-                                              CustomTextStyles.titleSmallBold),
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 3.h, top: 2.v, bottom: 4.v),
-                                          child: Text("lbl_km2".tr,
+                                                  .titleSmallBold),
+                                          Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 7.h, bottom: 5.v),
+                                              child: Text("lbl_km2".tr,
+                                                  style: CustomTextStyles
+                                                      .bodySmall11)),
+                                          Spacer(flex: 50),
+                                          CustomImageView(
+                                              imagePath: ImageConstant.imgUser,
+                                              height: 21.v,
+                                              width: 43.h),
+                                          Spacer(flex: 49),
+                                          Text("lbl_16_01_2024".tr,
                                               style: CustomTextStyles
-                                                  .bodySmall11)),
-                                      Spacer(flex: 52),
-                                      CustomImageView(
-                                          imagePath:
-                                              ImageConstant.imgUserGray200,
-                                          height: 21.v,
-                                          width: 43.h,
-                                          margin: EdgeInsets.only(bottom: 2.v)),
-                                      Spacer(flex: 47),
-                                      Text("lbl_16_01_2024".tr,
-                                          style: CustomTextStyles
-                                              .bodyMediumRegular15)
-                                    ])),
-                            SizedBox(height: 31.v),
-                            Padding(
-                                padding: EdgeInsets.only(left: 15.h),
-                                child: Row(
+                                                  .bodyMediumRegular15)
+                                        ])),
+                                SizedBox(height: 31.v),
+                                Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -460,13 +312,13 @@ class HomePage extends StatelessWidget {
                                                 Align(
                                                     alignment:
                                                         Alignment.centerRight,
-                                                    child: Text("lbl_15_12".tr,
+                                                    child: Text("lbl_13_12".tr,
                                                         style: CustomTextStyles
-                                                            .bodyLarge_1)),
-                                                SizedBox(height: 23.v),
-                                                Text("lbl_16_15".tr,
+                                                            .bodyMediumRegular15)),
+                                                SizedBox(height: 24.v),
+                                                Text("lbl_14_15".tr,
                                                     style: CustomTextStyles
-                                                        .bodyLarge_1)
+                                                        .bodyMediumRegular15)
                                               ])),
                                       CustomImageView(
                                           imagePath:
@@ -474,322 +326,125 @@ class HomePage extends StatelessWidget {
                                           height: 66.v,
                                           width: 12.h,
                                           margin: EdgeInsets.only(
-                                              top: 2.v, bottom: 12.v)),
+                                              left: 1.h,
+                                              top: 2.v,
+                                              bottom: 12.v)),
                                       Padding(
                                           padding: EdgeInsets.only(left: 3.h),
-                                          child: _buildThirtySeven(context,
-                                              locationText1:
-                                                  "msg_douala_cameroon".tr,
-                                              locationText2:
-                                                  "msg_entree_lycee_ndogpassi"
-                                                      .tr,
-                                              locationText3:
-                                                  "msg_douala_cameroon".tr,
-                                              locationText4:
-                                                  "msg_entree_lycee_ndogpassi"
-                                                      .tr))
-                                    ])),
-                            SizedBox(height: 20.v),
-                            Container(
-                                padding: EdgeInsets.symmetric(horizontal: 8.h),
-                                decoration: AppDecoration.outlineBlack9004
-                                    .copyWith(
-                                        borderRadius:
-                                            BorderRadiusStyle.customBorderBL8),
-                                child: Row(children: [
-                                  CustomImageView(
-                                      imagePath: ImageConstant.imgLinkedin,
-                                      height: 17.v,
-                                      width: 9.h,
-                                      margin: EdgeInsets.only(
-                                          top: 9.v, bottom: 8.v)),
-                                  Padding(
-                                      padding: EdgeInsets.only(left: 10.h),
-                                      child: SizedBox(
-                                          height: 36.v,
-                                          child: VerticalDivider(
-                                              width: 1.h,
-                                              thickness: 1.v,
-                                              color: appTheme.black900
-                                                  .withOpacity(0.35)))),
-                                  CustomImageView(
-                                      imagePath: ImageConstant.imgCar,
-                                      height: 17.v,
-                                      width: 15.h,
-                                      margin: EdgeInsets.only(
-                                          left: 5.h, top: 9.v, bottom: 8.v)),
-                                  Padding(
-                                      padding: EdgeInsets.only(left: 7.h),
-                                      child: SizedBox(
-                                          height: 36.v,
-                                          child: VerticalDivider(
-                                              width: 1.h,
-                                              thickness: 1.v,
-                                              color: appTheme.black900
-                                                  .withOpacity(0.35)))),
-                                  Spacer(),
-                                  SizedBox(
-                                      height: 36.v,
-                                      child: VerticalDivider(
-                                          width: 1.h,
-                                          thickness: 1.v,
-                                          color: appTheme.black900
-                                              .withOpacity(0.35))),
-                                  CustomImageView(
-                                      imagePath: ImageConstant.imgThumbsUp,
-                                      height: 17.v,
-                                      width: 11.h,
-                                      margin: EdgeInsets.only(
-                                          left: 7.h, top: 9.v, bottom: 8.v))
-                                ]))
-                          ])))),
-          Align(
-              alignment: Alignment.bottomRight,
-              child: SizedBox(
-                  height: 200.v,
-                  width: 347.h,
-                  child: Stack(alignment: Alignment.center, children: [
-                    Align(
-                        alignment: Alignment.center,
-                        child: Container(
-                            height: 200.v,
-                            width: 346.h,
-                            decoration: BoxDecoration())),
-                    Align(
-                        alignment: Alignment.center,
-                        child: SizedBox(
-                            height: 200.v,
-                            width: 347.h,
-                            child: Stack(
-                                alignment: Alignment.bottomCenter,
-                                children: [
-                                  Align(
-                                      alignment: Alignment.center,
-                                      child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 2.h, vertical: 7.v),
-                                          decoration: AppDecoration.fillWhiteA
-                                              .copyWith(
-                                                  borderRadius:
-                                                      BorderRadiusStyle
-                                                          .roundedBorder5),
                                           child: Column(
-                                              mainAxisSize: MainAxisSize.min,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 1.h),
-                                                    child: Row(children: [
-                                                      Text("lbl_6_9".tr,
-                                                          style: CustomTextStyles
-                                                              .titleSmallBold),
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 12.h,
-                                                                  top: 2.v,
-                                                                  bottom: 3.v),
-                                                          child: Text(
-                                                              "lbl_km2".tr,
-                                                              style: CustomTextStyles
-                                                                  .bodySmall11)),
-                                                      Spacer(flex: 56),
-                                                      CustomImageView(
-                                                          imagePath: ImageConstant
-                                                              .imgUserWhiteA700,
-                                                          height: 21.v,
-                                                          width: 35.h),
-                                                      Spacer(flex: 43),
-                                                      Text("lbl_16_01_2024".tr,
-                                                          style: CustomTextStyles
-                                                              .bodyMediumRegular15)
-                                                    ])),
-                                                SizedBox(height: 31.v),
-                                                Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  bottom: 9.v),
-                                                          child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .centerRight,
-                                                                    child: Text(
-                                                                        "lbl_17_12"
-                                                                            .tr,
-                                                                        style: CustomTextStyles
-                                                                            .bodyMediumRegular15)),
-                                                                SizedBox(
-                                                                    height:
-                                                                        24.v),
-                                                                Text(
-                                                                    "lbl_19_15"
-                                                                        .tr,
-                                                                    style: CustomTextStyles
-                                                                        .bodyMediumRegular15)
-                                                              ])),
-                                                      CustomImageView(
-                                                          imagePath: ImageConstant
-                                                              .imgSettingsBlack900,
-                                                          height: 66.v,
-                                                          width: 12.h,
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  left: 2.h,
-                                                                  top: 2.v,
-                                                                  bottom:
-                                                                      12.v)),
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 3.h),
-                                                          child: _buildThirtySeven(
-                                                              context,
-                                                              locationText1:
-                                                                  "msg_douala_cameroon"
-                                                                      .tr,
-                                                              locationText2:
-                                                                  "msg_entree_lycee_ndogpassi"
-                                                                      .tr,
-                                                              locationText3:
-                                                                  "msg_douala_cameroon"
-                                                                      .tr,
-                                                              locationText4:
-                                                                  "msg_entree_lycee_ndogpassi"
-                                                                      .tr))
-                                                    ]),
-                                                SizedBox(height: 48.v)
-                                              ]))),
-                                  Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: Container(
-                                          margin: EdgeInsets.only(top: 164.v),
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 8.h),
-                                          decoration: AppDecoration
-                                              .outlineBlack9005
-                                              .copyWith(
-                                                  borderRadius:
-                                                      BorderRadiusStyle
-                                                          .customBorderBL8),
-                                          child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                CustomImageView(
-                                                    imagePath: ImageConstant
-                                                        .imgLinkedin,
-                                                    height: 17.v,
-                                                    width: 9.h,
-                                                    margin: EdgeInsets.only(
-                                                        top: 9.v, bottom: 8.v)),
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10.h),
-                                                    child: SizedBox(
-                                                        height: 35.v,
+                                                Text("msg_douala_cameroon".tr,
+                                                    style: theme
+                                                        .textTheme.labelLarge),
+                                                SizedBox(height: 1.v),
+                                                Text(
+                                                    "msg_entree_lycee_ndogpassi"
+                                                        .tr,
+                                                    style: CustomTextStyles
+                                                        .bodyMediumInter),
+                                                SizedBox(height: 14.v),
+                                                Text("msg_douala_cameroon".tr,
+                                                    style: theme
+                                                        .textTheme.labelLarge),
+                                                SizedBox(height: 1.v),
+                                                Text(
+                                                    "msg_entree_lycee_ndogpassi"
+                                                        .tr,
+                                                    style: CustomTextStyles
+                                                        .bodyMediumInter)
+                                              ]))
+                                    ]),
+                                SizedBox(height: 19.v),
+                                Container(
+                                    height: 36.v,
+                                    width: 328.h,
+                                    margin: EdgeInsets.only(left: 5.h),
+                                    child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Container(
+                                                  height: 34.v,
+                                                  width: 28.h,
+                                                  margin: EdgeInsets.only(
+                                                      left: 20.h),
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          appTheme.whiteA700))),
+                                          Align(
+                                              alignment: Alignment.center,
+                                              child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    CustomImageView(
+                                                        imagePath: ImageConstant
+                                                            .imgLinkedin,
+                                                        height: 17.v,
+                                                        width: 9.h,
+                                                        margin: EdgeInsets.only(
+                                                            top: 10.v,
+                                                            bottom: 8.v)),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 11.h),
+                                                        child: SizedBox(
+                                                            height: 36.v,
+                                                            child:
+                                                                VerticalDivider(
+                                                                    width: 1.h,
+                                                                    thickness:
+                                                                        1.v))),
+                                                    CustomImageView(
+                                                        imagePath: ImageConstant
+                                                            .imgCar,
+                                                        height: 17.v,
+                                                        width: 15.h,
+                                                        margin: EdgeInsets.only(
+                                                            left: 4.h,
+                                                            top: 10.v,
+                                                            bottom: 8.v)),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 7.h),
+                                                        child: SizedBox(
+                                                            height: 36.v,
+                                                            child:
+                                                                VerticalDivider(
+                                                                    width: 1.h,
+                                                                    thickness:
+                                                                        1.v))),
+                                                    Spacer(),
+                                                    SizedBox(
+                                                        height: 36.v,
                                                         child: VerticalDivider(
                                                             width: 1.h,
-                                                            thickness: 1.v,
-                                                            color: appTheme
-                                                                .black900
-                                                                .withOpacity(
-                                                                    0.35),
-                                                            endIndent: 1.h))),
-                                                CustomImageView(
-                                                    imagePath:
-                                                        ImageConstant.imgCar,
-                                                    height: 17.v,
-                                                    width: 15.h,
-                                                    margin: EdgeInsets.only(
-                                                        left: 5.h,
-                                                        top: 9.v,
-                                                        bottom: 8.v)),
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 7.h),
-                                                    child: SizedBox(
-                                                        height: 35.v,
-                                                        child: VerticalDivider(
-                                                            width: 1.h,
-                                                            thickness: 1.v,
-                                                            color: appTheme
-                                                                .black900
-                                                                .withOpacity(
-                                                                    0.35),
-                                                            endIndent: 1.h))),
-                                                Spacer(),
-                                                SizedBox(
-                                                    height: 35.v,
-                                                    child: VerticalDivider(
-                                                        width: 1.h,
-                                                        thickness: 1.v,
-                                                        color: appTheme.black900
-                                                            .withOpacity(0.35),
-                                                        endIndent: 1.h)),
-                                                CustomImageView(
-                                                    imagePath: ImageConstant
-                                                        .imgThumbsUp,
-                                                    height: 17.v,
-                                                    width: 11.h,
-                                                    margin: EdgeInsets.only(
-                                                        left: 7.h,
-                                                        top: 9.v,
-                                                        bottom: 8.v))
-                                              ])))
-                                ])))
-                  ])))
-        ]));
-  }
-
-  /// Common widget
-  Widget _buildThirtySeven(
-    BuildContext context, {
-    required String locationText1,
-    required String locationText2,
-    required String locationText3,
-    required String locationText4,
-  }) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(locationText1,
-          style:
-              theme.textTheme.labelLarge!.copyWith(color: appTheme.black900)),
-      SizedBox(height: 1.v),
-      Text(locationText2,
-          style: CustomTextStyles.bodyMediumInter
-              .copyWith(color: appTheme.black900)),
-      SizedBox(height: 14.v),
-      Text(locationText3,
-          style:
-              theme.textTheme.labelLarge!.copyWith(color: appTheme.black900)),
-      SizedBox(height: 1.v),
-      Text(locationText4,
-          style: CustomTextStyles.bodyMediumInter
-              .copyWith(color: appTheme.black900))
-    ]);
-  }
-
-  /// Opens a URL in the device's default web browser.
-  ///
-  /// The [context] parameter is the `BuildContext` of the widget that invoked the function.
-  ///
-  /// Throws an exception if the URL could not be launched.
-  chamgeImg(BuildContext context) async {
-    var url = '../VectorOff';
-    if (!await launchUrlString(url)) {
-      throw 'Could not launch ../VectorOff';
-    }
+                                                            thickness: 1.v)),
+                                                    CustomImageView(
+                                                        imagePath: ImageConstant
+                                                            .imgThumbsUp,
+                                                        height: 17.v,
+                                                        width: 11.h,
+                                                        margin: EdgeInsets.only(
+                                                            left: 6.h,
+                                                            top: 10.v,
+                                                            bottom: 8.v))
+                                                  ]))
+                                        ]))
+                              ])))),
+              Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 15.h),
+                      decoration: AppDecoration.outlineBlack9003,
+                      child:
+                          Column(mainAxisSize: MainAxisSize.min, children: [])))
+            ])));
   }
 
   /// Navigates to the settingsautotrackScreen when the action is triggered.

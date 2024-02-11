@@ -78,34 +78,6 @@ class AppDecoration {
       );
   static BoxDecoration get outlineBlack9003 => BoxDecoration();
   static BoxDecoration get outlineBlack9004 => BoxDecoration(
-        color: appTheme.whiteA700,
-        boxShadow: [
-          BoxShadow(
-            color: appTheme.black900.withOpacity(0.25),
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(
-              0,
-              4,
-            ),
-          ),
-        ],
-      );
-  static BoxDecoration get outlineBlack9005 => BoxDecoration(
-        color: appTheme.whiteA700,
-        boxShadow: [
-          BoxShadow(
-            color: appTheme.black900.withOpacity(0.25),
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(
-              0,
-              1,
-            ),
-          ),
-        ],
-      );
-  static BoxDecoration get outlineBlack9006 => BoxDecoration(
         color: appTheme.gray100,
         border: Border.all(
           color: appTheme.black900.withOpacity(0.25),
@@ -128,9 +100,6 @@ class AppDecoration {
 
 class BorderRadiusStyle {
   // Custom borders
-  static BorderRadius get customBorderBL8 => BorderRadius.vertical(
-        bottom: Radius.circular(8.h),
-      );
   static BorderRadius get customBorderTL12 => BorderRadius.vertical(
         top: Radius.circular(12.h),
       );

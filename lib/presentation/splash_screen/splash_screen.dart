@@ -36,7 +36,7 @@ class SplashScreen extends StatelessWidget {
     return SizedBox(
         height: 374.v,
         width: 392.h,
-        child: Stack(alignment: Alignment.centerRight, children: [
+        child: Stack(alignment: Alignment.topRight, children: [
           CustomImageView(height: 271.v, alignment: Alignment.topLeft),
           Opacity(
               opacity: 0.6,
@@ -44,7 +44,7 @@ class SplashScreen extends StatelessWidget {
                   imagePath: ImageConstant.imgBlueGrandient,
                   height: 271.v,
                   width: 234.h,
-                  alignment: Alignment.centerRight)),
+                  alignment: Alignment.topRight)),
           CustomImageView(
               height: 271.v,
               width: 27.h,

@@ -19,5 +19,4 @@ export '../theme/custom_button_style.dart';
 export 'package:uclean/core/utils/permission_manager.dart';
 export 'package:permission_handler/permission_handler.dart';
 export 'package:uclean/core/utils/file_upload_helper.dart';
-export 'package:url_launcher/url_launcher.dart';
 export 'package:uclean/core/utils/date_time_utils.dart';

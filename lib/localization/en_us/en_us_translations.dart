@@ -63,17 +63,11 @@ final Map<String, String> enUs = {
   "lbl_login": "Login", "msg_forgot_my_password": "Forgot my password?",
 
   // Home Screen
-  "lbl_0003": "0003",
   "lbl_10_2": "10.2",
   "lbl_127": "127",
   "lbl_13_12": " 13:12",
   "lbl_14_15": "14:15",
-  "lbl_15_12": " 15:12",
   "lbl_16_01_2024": "16/01/2024",
-  "lbl_16_15": "16:15",
-  "lbl_17_12": " 17:12",
-  "lbl_19_15": "19:15",
-  "lbl_6_9": "6.9",
   "lbl_configure": ">Configure",
   "msg_personnal_swipe": "Personnal<- Swipe ->Professional",
   "msg_set_live_tracking": "Set Live Tracking",
