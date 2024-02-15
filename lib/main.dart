@@ -5,11 +5,12 @@ import 'core/app_export.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 void main() {
+  Get.put(EnvConfig());
+//TODO : define environment property in initConfig method
+  Get.find<EnvConfig>().initConfig();
   WidgetsFlutterBinding.ensureInitialized();
   Future.wait([
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]),
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]),
     PrefUtils().init()
   ]).then((value) {
     runApp(MyApp());
@@ -19,17 +20,12 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Sizer(
-      builder: (context, orientation, deviceType) {
-        return BlocProvider(
-          create: (context) => ThemeBloc(
-            ThemeState(
-              themeType: PrefUtils().getThemeData(),
-            ),
-          ),
-          child: BlocBuilder<ThemeBloc, ThemeState>(
-            builder: (context, state) {
-              return MaterialApp(
+    return Sizer(builder: (context, orientation, deviceType) {
+      return BlocProvider(
+          create: (context) =>
+              ThemeBloc(ThemeState(themeType: PrefUtils().getThemeData())),
+          child: BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
+            return MaterialApp(
                 theme: theme,
                 title: 'uclean',
                 navigatorKey: NavigatorService.navigatorKey,
@@ -38,21 +34,12 @@ class MyApp extends StatelessWidget {
                   AppLocalizationDelegate(),
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate
                 ],
-                supportedLocales: [
-                  Locale(
-                    'en',
-                    '',
-                  ),
-                ],
+                supportedLocales: [Locale('en', '')],
                 initialRoute: AppRoutes.initialRoute,
-                routes: AppRoutes.routes,
-              );
-            },
-          ),
-        );
-      },
-    );
+                routes: AppRoutes.routes);
+          }));
+    });
   }
 }

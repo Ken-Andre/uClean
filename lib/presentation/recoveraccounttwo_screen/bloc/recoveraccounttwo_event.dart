@@ -15,6 +15,18 @@ class RecoveraccounttwoInitialEvent extends RecoveraccounttwoEvent {
   List<Object?> get props => [];
 }
 
+///Event that is dispatched when the user calls the {{baseUrl}}/user/password API.
+class UpdatePasswordEvent extends RecoveraccounttwoEvent {
+  UpdatePasswordEvent({this.onUpdatePasswordEventSuccess});
+
+  Function? onUpdatePasswordEventSuccess;
+
+  @override
+  List<Object?> get props => [
+        onUpdatePasswordEventSuccess,
+      ];
+}
+
 ///Event for changing password visibility
 class ChangePasswordVisibilityEvent extends RecoveraccounttwoEvent {
   ChangePasswordVisibilityEvent({required this.value});

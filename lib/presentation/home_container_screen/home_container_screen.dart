@@ -3,10 +3,10 @@ import 'models/home_container_model.dart';
 import 'package:flutter/material.dart';
 import 'package:uclean/core/app_export.dart';
 import 'package:uclean/presentation/home_page/home_page.dart';
-import 'package:uclean/presentation/learn_page/learn_page.dart';
 import 'package:uclean/presentation/report_page/report_page.dart';
 import 'package:uclean/presentation/settings_page/settings_page.dart';
-import 'package:uclean/widgets/custom_bottom_bar.dart';
+import 'package:uclean/widgets/custom_bottom_app_bar.dart';
+import 'package:uclean/widgets/custom_floating_button.dart';
 
 // ignore_for_file: must_be_immutable
 class HomeContainerScreen extends StatelessWidget {
@@ -36,13 +36,23 @@ class HomeContainerScreen extends StatelessWidget {
                       pageBuilder: (ctx, ani, ani1) =>
                           getCurrentPage(context, routeSetting.name!),
                       transitionDuration: Duration(seconds: 0))),
-              bottomNavigationBar: _buildBottomBar(context)));
+              bottomNavigationBar: _buildBottomNavApp(context),
+              floatingActionButton: CustomFloatingButton(
+                  height: 54,
+                  width: 54,
+                  backgroundColor: appTheme.indigoA700,
+                  child: CustomImageView(
+                      imagePath: ImageConstant.imgCirclePlusPrimary,
+                      height: 27.0.v,
+                      width: 27.0.h)),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked));
     });
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
-    return CustomBottomBar(onChanged: (BottomBarEnum type) {
+  Widget _buildBottomNavApp(BuildContext context) {
+    return CustomBottomAppBar(onChanged: (BottomBarEnum type) {
       Navigator.pushNamed(navigatorKey.currentContext!, getCurrentRoute(type));
     });
   }
@@ -50,15 +60,11 @@ class HomeContainerScreen extends StatelessWidget {
   ///Handling route based on bottom click actions
   String getCurrentRoute(BottomBarEnum type) {
     switch (type) {
-      case BottomBarEnum.Homelightgreen200:
+      case BottomBarEnum.Leftprimary:
         return AppRoutes.homePage;
-      case BottomBarEnum.Vector:
-        return AppRoutes.learnPage;
-      case BottomBarEnum.Circleplus:
-        return "/";
-      case BottomBarEnum.Statsup:
+      case BottomBarEnum.Statsupprimary:
         return AppRoutes.reportPage;
-      case BottomBarEnum.Cogprimary:
+      case BottomBarEnum.Cogprimary1:
         return AppRoutes.settingsPage;
       default:
         return "/";
@@ -73,8 +79,6 @@ class HomeContainerScreen extends StatelessWidget {
     switch (currentRoute) {
       case AppRoutes.homePage:
         return HomePage.builder(context);
-      case AppRoutes.learnPage:
-        return LearnPage.builder(context);
       case AppRoutes.reportPage:
         return ReportPage.builder(context);
       case AppRoutes.settingsPage:

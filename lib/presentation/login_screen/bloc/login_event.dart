@@ -14,3 +14,33 @@ class LoginInitialEvent extends LoginEvent {
   @override
   List<Object?> get props => [];
 }
+
+///Event that is dispatched when the user calls the {{baseUrl}}/user/login API.
+class CreateLoginEvent extends LoginEvent {
+  CreateLoginEvent({
+    this.onCreateLoginEventSuccess,
+    this.onCreateLoginEventError,
+  });
+
+  Function? onCreateLoginEventSuccess;
+
+  Function? onCreateLoginEventError;
+
+  @override
+  List<Object?> get props => [
+        onCreateLoginEventSuccess,
+        onCreateLoginEventError,
+      ];
+}
+
+///Event for changing password visibility
+class ChangePasswordVisibilityEvent extends LoginEvent {
+  ChangePasswordVisibilityEvent({required this.value});
+
+  bool value;
+
+  @override
+  List<Object?> get props => [
+        value,
+      ];
+}

@@ -31,7 +31,7 @@ class CreateaccountthreeScreen extends StatelessWidget {
               width: 430.h,
               child: Column(
                 children: [
-                  SizedBox(height: 110.v),
+                  SizedBox(height: 150.v),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Container(
@@ -82,7 +82,7 @@ class CreateaccountthreeScreen extends StatelessWidget {
                             Opacity(
                               opacity: 0.6,
                               child: CustomImageView(
-                                imagePath: ImageConstant.imgPinkGrandient6,
+                                imagePath: ImageConstant.imgPinkGrandient7,
                                 height: 271.v,
                                 width: 136.h,
                                 alignment: Alignment.topLeft,
@@ -100,8 +100,9 @@ class CreateaccountthreeScreen extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.only(top: 25.v),
                                 child: Text(
-                                  "msg_thanks_for_joining".tr,
-                                  style: CustomTextStyles.titleLargeInter,
+                                  "msg_thanks_for_joining2".tr,
+                                  style:
+                                      CustomTextStyles.titleLargeInterBlack900,
                                 ),
                               ),
                             ),
@@ -124,7 +125,8 @@ class CreateaccountthreeScreen extends StatelessWidget {
                                           width: 18.adaptSize,
                                         ),
                                       ),
-                                      buttonStyle: CustomButtonStyles.fillGray,
+                                      buttonStyle:
+                                          CustomButtonStyles.fillGrayTL10,
                                       buttonTextStyle: CustomTextStyles
                                           .bodyLargeDeeporange300,
                                     ),
@@ -140,7 +142,8 @@ class CreateaccountthreeScreen extends StatelessWidget {
                                           width: 17.adaptSize,
                                         ),
                                       ),
-                                      buttonStyle: CustomButtonStyles.fillGray,
+                                      buttonStyle:
+                                          CustomButtonStyles.fillGrayTL10,
                                       buttonTextStyle:
                                           CustomTextStyles.bodyLargeBlue300,
                                     ),

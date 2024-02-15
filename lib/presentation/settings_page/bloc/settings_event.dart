@@ -14,3 +14,15 @@ class SettingsInitialEvent extends SettingsEvent {
   @override
   List<Object?> get props => [];
 }
+
+///Event that is dispatched when the user calls the https://nodedemo.dhiwise.co/device/api/v1/user/list API.
+class CreateListEvent extends SettingsEvent {
+  CreateListEvent({this.onCreateListEventSuccess});
+
+  Function? onCreateListEventSuccess;
+
+  @override
+  List<Object?> get props => [
+        onCreateListEventSuccess,
+      ];
+}

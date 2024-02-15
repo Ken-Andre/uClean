@@ -2,8 +2,8 @@ import 'bloc/notifspanel_bloc.dart';
 import 'models/notifspanel_model.dart';
 import 'package:flutter/material.dart';
 import 'package:uclean/core/app_export.dart';
-import 'package:uclean/widgets/app_bar/appbar_leading_image.dart';
 import 'package:uclean/widgets/app_bar/appbar_title.dart';
+import 'package:uclean/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:uclean/widgets/app_bar/custom_app_bar.dart';
 import 'package:uclean/widgets/custom_elevated_button.dart';
 
@@ -42,7 +42,7 @@ class NotifspanelScreen extends StatelessWidget {
                     Opacity(
                         opacity: 0.3,
                         child: CustomImageView(
-                            imagePath: ImageConstant.imgYellowGrandient,
+                            imagePath: ImageConstant.imgYellowGrandient271x101,
                             height: 271.v,
                             width: 101.h,
                             alignment: Alignment.bottomLeft,
@@ -50,7 +50,7 @@ class NotifspanelScreen extends StatelessWidget {
                     Opacity(
                         opacity: 0.6,
                         child: CustomImageView(
-                            imagePath: ImageConstant.imgPinkGrandient,
+                            imagePath: ImageConstant.imgPinkGrandient271x136,
                             height: 271.v,
                             width: 136.h,
                             alignment: Alignment.topLeft)),
@@ -79,7 +79,7 @@ class NotifspanelScreen extends StatelessWidget {
                                               overflow: TextOverflow.ellipsis,
                                               textAlign: TextAlign.center,
                                               style: CustomTextStyles
-                                                  .titleLargeInterBlack900))),
+                                                  .titleLargeInterBlack900Medium))),
                                   SizedBox(height: 11.v),
                                   CustomElevatedButton(
                                       text: "lbl_home".tr,
@@ -90,9 +90,9 @@ class NotifspanelScreen extends StatelessWidget {
                                               height: 24.adaptSize,
                                               width: 24.adaptSize)),
                                       buttonStyle:
-                                          CustomButtonStyles.fillErrorContainer,
+                                          CustomButtonStyles.fillLightBlue,
                                       onPressed: () {
-                                        onTapHome(context);
+                                        goHome(context);
                                       })
                                 ])))
                   ]))));
@@ -102,24 +102,19 @@ class NotifspanelScreen extends StatelessWidget {
   /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return CustomAppBar(
-        leadingWidth: 34.h,
-        leading: AppbarLeadingImage(
-            imagePath: ImageConstant.imgArrowLeft,
-            margin: EdgeInsets.only(left: 28.h, top: 23.v, bottom: 21.v),
-            onTap: () {
-              onTapArrowLeft(context);
-            }),
         centerTitle: true,
-        title: AppbarTitle(text: "lbl_notifications".tr));
-  }
-
-  /// Navigates to the previous screen.
-  onTapArrowLeft(BuildContext context) {
-    NavigatorService.goBack();
+        title: AppbarTitle(
+            text: "lbl_notifications".tr,
+            margin: EdgeInsets.only(left: 111.h, top: 42.v)),
+        actions: [
+          AppbarTrailingImage(
+              imagePath: ImageConstant.imgMaterialSymbol,
+              margin: EdgeInsets.fromLTRB(28.h, 16.v, 28.h, 15.v))
+        ]);
   }
 
   /// Navigates to the homeContainerScreen when the action is triggered.
-  onTapHome(BuildContext context) {
+  goHome(BuildContext context) {
     NavigatorService.pushNamed(
       AppRoutes.homeContainerScreen,
     );

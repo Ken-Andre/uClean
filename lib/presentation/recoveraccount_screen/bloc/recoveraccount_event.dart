@@ -15,6 +15,18 @@ class RecoveraccountInitialEvent extends RecoveraccountEvent {
   List<Object?> get props => [];
 }
 
+///Event that is dispatched when the user calls the {{baseUrl}}/user/reset-password/{token} API.
+class UpdateTokenEvent extends RecoveraccountEvent {
+  UpdateTokenEvent({this.onUpdateTokenEventSuccess});
+
+  Function? onUpdateTokenEventSuccess;
+
+  @override
+  List<Object?> get props => [
+        onUpdateTokenEventSuccess,
+      ];
+}
+
 ///event for OTP auto fill
 class ChangeOTPEvent extends RecoveraccountEvent {
   ChangeOTPEvent({required this.code});

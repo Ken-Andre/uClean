@@ -5,33 +5,33 @@ part of 'settings_bloc.dart';
 /// Represents the state of Settings in the application.
 class SettingsState extends Equatable {
   SettingsState({
-    this.checkmarkEditTextController,
-    this.saveEditTextController,
+    this.checkConfigurationController,
+    this.reportingPeriodsController,
     this.settingsModelObj,
   });
 
-  TextEditingController? checkmarkEditTextController;
+  TextEditingController? checkConfigurationController;
 
-  TextEditingController? saveEditTextController;
+  TextEditingController? reportingPeriodsController;
 
   SettingsModel? settingsModelObj;
 
   @override
   List<Object?> get props => [
-        checkmarkEditTextController,
-        saveEditTextController,
+        checkConfigurationController,
+        reportingPeriodsController,
         settingsModelObj,
       ];
   SettingsState copyWith({
-    TextEditingController? checkmarkEditTextController,
-    TextEditingController? saveEditTextController,
+    TextEditingController? checkConfigurationController,
+    TextEditingController? reportingPeriodsController,
     SettingsModel? settingsModelObj,
   }) {
     return SettingsState(
-      checkmarkEditTextController:
-          checkmarkEditTextController ?? this.checkmarkEditTextController,
-      saveEditTextController:
-          saveEditTextController ?? this.saveEditTextController,
+      checkConfigurationController:
+          checkConfigurationController ?? this.checkConfigurationController,
+      reportingPeriodsController:
+          reportingPeriodsController ?? this.reportingPeriodsController,
       settingsModelObj: settingsModelObj ?? this.settingsModelObj,
     );
   }

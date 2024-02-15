@@ -16,25 +16,25 @@ class CustomButtonStyles {
           borderRadius: BorderRadius.circular(10.h),
         ),
       );
-  static ButtonStyle get fillErrorContainer => ElevatedButton.styleFrom(
-        backgroundColor: theme.colorScheme.errorContainer,
+  static ButtonStyle get fillCyanTL5 => ElevatedButton.styleFrom(
+        backgroundColor: appTheme.cyan900,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.h),
+        ),
+      );
+  static ButtonStyle get fillGrayTL10 => ElevatedButton.styleFrom(
+        backgroundColor: appTheme.gray100,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.h),
         ),
       );
-  static ButtonStyle get fillGray => ElevatedButton.styleFrom(
-        backgroundColor: appTheme.gray10001,
+  static ButtonStyle get fillLightBlue => ElevatedButton.styleFrom(
+        backgroundColor: appTheme.lightBlue400,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.h),
         ),
       );
   static ButtonStyle get fillPrimary => ElevatedButton.styleFrom(
-        backgroundColor: theme.colorScheme.primary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.h),
-        ),
-      );
-  static ButtonStyle get fillPrimaryTL5 => ElevatedButton.styleFrom(
         backgroundColor: theme.colorScheme.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.h),
@@ -55,6 +55,14 @@ class CustomButtonStyles {
         ),
         shadowColor: appTheme.black900.withOpacity(0.25),
         elevation: 2,
+      );
+  static ButtonStyle get outlineBlack900 => ElevatedButton.styleFrom(
+        backgroundColor: theme.colorScheme.primary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.h),
+        ),
+        shadowColor: appTheme.black900.withOpacity(0.25),
+        elevation: 1,
       );
   static ButtonStyle get outlineBlack1 => ElevatedButton.styleFrom(
         backgroundColor: theme.colorScheme.onError,

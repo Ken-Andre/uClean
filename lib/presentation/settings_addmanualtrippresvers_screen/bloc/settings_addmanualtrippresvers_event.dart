@@ -15,3 +15,15 @@ class SettingsAddmanualtrippresversInitialEvent
   @override
   List<Object?> get props => [];
 }
+
+///Event that is dispatched when the user calls the {{baseUrl}}/user/cart/cash-order API.
+class CreateCashOrderEvent extends SettingsAddmanualtrippresversEvent {
+  CreateCashOrderEvent({this.onCreateCashOrderEventSuccess});
+
+  Function? onCreateCashOrderEventSuccess;
+
+  @override
+  List<Object?> get props => [
+        onCreateCashOrderEventSuccess,
+      ];
+}

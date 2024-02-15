@@ -46,10 +46,21 @@ class LoginScreen extends StatelessWidget {
                                       width: 118.h,
                                       alignment: Alignment.bottomLeft,
                                       margin: EdgeInsets.only(bottom: 5.v))),
-                              CustomImageView(
-                                  height: 271.v,
-                                  alignment: Alignment.topLeft,
-                                  margin: EdgeInsets.only()),
+                              Opacity(
+                                  opacity: 0.6,
+                                  child: Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Container(
+                                          height: 271.adaptSize,
+                                          width: 271.adaptSize,
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  begin: Alignment(0.5, 0.5),
+                                                  end: Alignment(0.5, 1),
+                                                  colors: [
+                                                appTheme.deepOrange20090,
+                                                appTheme.deepOrange10090
+                                              ]))))),
                               CustomImageView(
                                   imagePath: ImageConstant.imgLogoBlack900,
                                   height: 104.v,
@@ -79,9 +90,9 @@ class LoginScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildLoginForm(BuildContext context) {
     return Align(
-        alignment: Alignment.topCenter,
+        alignment: Alignment.bottomCenter,
         child: Padding(
-            padding: EdgeInsets.only(left: 28.h, top: 199.v, right: 18.h),
+            padding: EdgeInsets.only(left: 28.h, right: 18.h, bottom: 162.v),
             child: Column(mainAxisSize: MainAxisSize.min, children: [
               BlocSelector<LoginBloc, LoginState, TextEditingController?>(
                   selector: (state) => state.emailController,
@@ -89,7 +100,6 @@ class LoginScreen extends StatelessWidget {
                     return CustomTextFormField(
                         controller: emailController,
                         hintText: "lbl_email".tr,
-                        textInputAction: TextInputAction.done,
                         textInputType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value == null ||
@@ -101,11 +111,40 @@ class LoginScreen extends StatelessWidget {
                         contentPadding: EdgeInsets.all(10.h));
                   }),
               SizedBox(height: 12.v),
+              BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
+                return CustomTextFormField(
+                    controller: state.passwordController,
+                    hintText: "lbl_password".tr,
+                    textInputAction: TextInputAction.done,
+                    textInputType: TextInputType.visiblePassword,
+                    suffix: InkWell(
+                        onTap: () {
+                          context.read<LoginBloc>().add(
+                              ChangePasswordVisibilityEvent(
+                                  value: !state.isShowPassword));
+                        },
+                        child: Container(
+                            margin: EdgeInsets.fromLTRB(30.h, 13.v, 10.h, 13.v),
+                            child: CustomImageView(
+                                imagePath: ImageConstant.imgEye,
+                                height: 16.v,
+                                width: 19.h))),
+                    suffixConstraints: BoxConstraints(maxHeight: 44.v),
+                    validator: (value) {
+                      if (value == null ||
+                          (!isValidPassword(value, isRequired: true))) {
+                        return "err_msg_please_enter_valid_password".tr;
+                      }
+                      return null;
+                    },
+                    obscureText: state.isShowPassword);
+              }),
+              SizedBox(height: 12.v),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Text("lbl_no_account".tr, style: theme.textTheme.bodyLarge),
                 GestureDetector(
                     onTap: () {
-                      navigatetoNoAccount(context);
+                      onTapTxtCreateOne(context);
                     },
                     child: Padding(
                         padding: EdgeInsets.only(left: 5.h),
@@ -116,14 +155,68 @@ class LoginScreen extends StatelessWidget {
               CustomElevatedButton(
                   width: 146.h,
                   text: "lbl_next".tr,
-                  buttonStyle: CustomButtonStyles.fillCyanTL101)
+                  buttonStyle: CustomButtonStyles.fillCyanTL101,
+                  onPressed: () {
+                    onTapNext(context);
+                  }),
+              SizedBox(height: 14.v),
+              Align(
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                      onTap: () {
+                        onTapTxtForgotMyPassword(context);
+                      },
+                      child: Padding(
+                          padding: EdgeInsets.only(right: 14.h),
+                          child: Text("msg_forgot_my_password".tr,
+                              style: CustomTextStyles.bodyLargeCyan800))))
             ])));
   }
 
   /// Navigates to the createaccountScreen when the action is triggered.
-  navigatetoNoAccount(BuildContext context) {
+  onTapTxtCreateOne(BuildContext context) {
     NavigatorService.pushNamed(
       AppRoutes.createaccountScreen,
+    );
+  }
+
+  /// Calls the {{baseUrl}}/user/login API and triggers a [CreateLoginEvent] event on the [LoginBloc] bloc.
+  ///
+  /// Validates the form and triggers a [CreateLoginEvent] event on the [LoginBloc] bloc if the form is valid.
+  /// The [BuildContext] parameter represents current [BuildContext]
+  onTapNext(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      context.read<LoginBloc>().add(
+            CreateLoginEvent(
+              onCreateLoginEventSuccess: () {
+                _onPostUserLoginEventSuccess(context);
+              },
+              onCreateLoginEventError: () {
+                _onPostUserLoginEventError(context);
+              },
+            ),
+          );
+    }
+  }
+
+  /// Navigates to the settingsContactusScreen when the action is triggered.
+  void _onPostUserLoginEventSuccess(BuildContext context) {
+    NavigatorService.pushNamed(
+      AppRoutes.settingsContactusScreen,
+    );
+  }
+
+  /// Navigates to the homeContainerScreen when the action is triggered.
+  void _onPostUserLoginEventError(BuildContext context) {
+    NavigatorService.pushNamed(
+      AppRoutes.homeContainerScreen,
+    );
+  }
+
+  /// Navigates to the recoveraccountScreen when the action is triggered.
+  onTapTxtForgotMyPassword(BuildContext context) {
+    NavigatorService.pushNamed(
+      AppRoutes.recoveraccountScreen,
     );
   }
 }

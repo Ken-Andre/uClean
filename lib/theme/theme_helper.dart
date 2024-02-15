@@ -58,6 +58,41 @@ class ThemeHelper {
           padding: EdgeInsets.zero,
         ),
       ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          side: BorderSide(
+            color: appTheme.black900,
+            width: 3.h,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.h),
+          ),
+          visualDensity: const VisualDensity(
+            vertical: -4,
+            horizontal: -4,
+          ),
+          padding: EdgeInsets.zero,
+        ),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateColor.resolveWith((states) {
+          if (states.contains(MaterialState.selected)) {
+            return colorScheme.primary;
+          }
+          return colorScheme.onSurface;
+        }),
+        side: BorderSide(
+          width: 1,
+        ),
+        visualDensity: const VisualDensity(
+          vertical: -4,
+          horizontal: -4,
+        ),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: appTheme.indigoA700,
+      ),
       dividerTheme: DividerThemeData(
         thickness: 1,
         space: 1,
@@ -102,8 +137,8 @@ class TextThemes {
         ),
         labelLarge: TextStyle(
           color: appTheme.black900,
-          fontSize: 13.fSize,
-          fontFamily: 'Inter',
+          fontSize: 12.fSize,
+          fontFamily: 'Poppins',
           fontWeight: FontWeight.w700,
         ),
         labelMedium: TextStyle(
@@ -113,10 +148,10 @@ class TextThemes {
           fontWeight: FontWeight.w700,
         ),
         titleLarge: TextStyle(
-          color: appTheme.black900,
+          color: appTheme.black900.withOpacity(0.85),
           fontSize: 20.fSize,
           fontFamily: 'Poppins',
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w600,
         ),
         titleMedium: TextStyle(
           color: appTheme.black900,
@@ -179,14 +214,23 @@ class PrimaryColors {
   Color get deepOrange300 => Color(0XFFFF7968);
 
   // Gray
-  Color get gray100 => Color(0XFFF3F3F3);
-  Color get gray10001 => Color(0XFFF4F4F4);
-  Color get gray10002 => Color(0XFFF6F7F8);
+  Color get gray100 => Color(0XFFF4F4F4);
+  Color get gray10001 => Color(0XFFF6F7F8);
+  Color get gray10002 => Color(0XFFF5F5F5);
   Color get gray200 => Color(0XFFF0F0F0);
-  Color get gray50 => Color(0XFFF9F9F9);
+  Color get gray50 => Color(0XFFFAFAFA);
   Color get gray500 => Color(0XFFA5A5A5);
   Color get gray5001 => Color(0XFFFCFCFC);
   Color get gray600 => Color(0XFF808080);
+
+  // Grayf
+  Color get gray5003f => Color(0X3F9A9A9A);
+
+  // Indigo
+  Color get indigoA700 => Color(0XFF0042FC);
+
+  // LightBlue
+  Color get lightBlue400 => Color(0XFF26C0EE);
 
   // LightGreen
   Color get lightGreen200 => Color(0XFFD6E4AA);

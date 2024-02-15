@@ -34,7 +34,7 @@ class SettingsautotrackScreen extends StatelessWidget {
                           style: theme.textTheme.titleSmall)),
                   SizedBox(height: 3.v),
                   _buildFrameEightyOne(context),
-                  SizedBox(height: 1.v),
+                  SizedBox(height: 3.v),
                   _buildTabSubsection(context),
                   SizedBox(height: 5.v)
                 ]))));
@@ -59,7 +59,7 @@ class SettingsautotrackScreen extends StatelessWidget {
     return Container(
         margin: EdgeInsets.symmetric(horizontal: 9.h),
         padding: EdgeInsets.symmetric(horizontal: 42.h, vertical: 6.v),
-        decoration: AppDecoration.fillPrimary
+        decoration: AppDecoration.outlineBlack9001
             .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -86,12 +86,12 @@ class SettingsautotrackScreen extends StatelessWidget {
   Widget _buildTabSubsection(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          requestStoragePermission(context);
+          onTapTabSubsection(context);
         },
         child: Container(
             margin: EdgeInsets.symmetric(horizontal: 9.h),
             padding: EdgeInsets.symmetric(horizontal: 43.h, vertical: 2.v),
-            decoration: AppDecoration.fillPrimary
+            decoration: AppDecoration.outlineBlack9001
                 .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -112,17 +112,12 @@ class SettingsautotrackScreen extends StatelessWidget {
     NavigatorService.goBack();
   }
 
-  /// Requests the user's permission to access the device's storage and retrieves
-  /// a list of files, if permission is granted.
+  /// Asks the user for permission to access their device's location using the
+  /// [PermissionManager] plugin.
   ///
-  /// Returns a [Future] that completes with a list of [String] objects representing
-  /// the file paths. if permission is granted and files are available, otherwise an empty list.
-  requestStoragePermission(BuildContext context) async {
-    await PermissionManager.askForPermission(Permission.storage);
-    List<String?>? fileList = [];
-    FileManager().filePickerMethod(1000 * 1000, ['pdf', 'doc'],
-        getFiles: (value) {
-      fileList = value;
-    });
+  /// Throws an error if the permission is permanently denied or the user has
+  /// selected "don't ask again".
+  onTapTabSubsection(BuildContext context) async {
+    await PermissionManager.askForPermission(Permission.location);
   }
 }

@@ -16,7 +16,12 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     Emitter<SplashState> emit,
   ) async {
     Future.delayed(const Duration(milliseconds: 3000), () {
-      NavigatorService.popAndPushNamed(
+      NavigatorService.pushNamed(
+        AppRoutes.loginScreen,
+      );
+    });
+    Future.delayed(const Duration(milliseconds: 3000), () {
+      NavigatorService.pushNamed(
         AppRoutes.loginScreen,
       );
     });

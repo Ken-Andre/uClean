@@ -48,7 +48,7 @@ class RecoveraccountScreen extends StatelessWidget {
                                         opacity: 0.3,
                                         child: CustomImageView(
                                             imagePath: ImageConstant
-                                                .imgYellowGrandient2,
+                                                .imgYellowGrandient3,
                                             height: 271.v,
                                             width: 101.h,
                                             alignment: Alignment.bottomLeft)),
@@ -56,107 +56,100 @@ class RecoveraccountScreen extends StatelessWidget {
                                         opacity: 0.6,
                                         child: CustomImageView(
                                             imagePath:
-                                                ImageConstant.imgPinkGrandient2,
+                                                ImageConstant.imgPinkGrandient3,
                                             height: 271.v,
                                             width: 136.h,
                                             alignment: Alignment.topLeft)),
                                     Align(
                                         alignment: Alignment.bottomCenter,
-                                        child: GestureDetector(
-                                            onTap: () {
-                                              onTapFrameThirty(context);
-                                            },
-                                            child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 49.h,
-                                                    right: 49.h,
-                                                    bottom: 20.v),
-                                                child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Text(
-                                                          "lbl_recover_account"
+                                        child: Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 49.h,
+                                                right: 49.h,
+                                                bottom: 20.v),
+                                            child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Text("lbl_recover_account".tr,
+                                                      style: theme.textTheme
+                                                          .headlineSmall),
+                                                  SizedBox(height: 18.v),
+                                                  SizedBox(
+                                                      width: 330.h,
+                                                      child: Text(
+                                                          "msg_write_the_code_that"
                                                               .tr,
+                                                          maxLines: 2,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
                                                           style: theme.textTheme
-                                                              .headlineSmall),
-                                                      SizedBox(height: 18.v),
-                                                      SizedBox(
-                                                          width: 330.h,
-                                                          child: Text(
-                                                              "msg_write_the_code_that"
-                                                                  .tr,
-                                                              maxLines: 2,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              style: theme
-                                                                  .textTheme
-                                                                  .bodyLarge)),
-                                                      SizedBox(height: 28.v),
-                                                      Text(
-                                                          "msg_dex_live_com".tr,
-                                                          style: theme.textTheme
-                                                              .titleMedium),
-                                                      SizedBox(height: 27.v),
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 59.h,
-                                                                  right: 54.h),
-                                                          child: BlocSelector<
-                                                                  RecoveraccountBloc,
-                                                                  RecoveraccountState,
-                                                                  TextEditingController?>(
-                                                              selector: (state) =>
-                                                                  state
-                                                                      .otpController,
-                                                              builder: (context,
-                                                                  otpController) {
-                                                                return CustomPinCodeTextField(
-                                                                    context:
-                                                                        context,
-                                                                    controller:
-                                                                        otpController,
-                                                                    onChanged:
-                                                                        (value) {
-                                                                      otpController
-                                                                              ?.text =
-                                                                          value;
-                                                                    });
-                                                              })),
-                                                      SizedBox(height: 29.v),
-                                                      CustomElevatedButton(
-                                                          width: 185.h,
-                                                          text:
-                                                              "lbl_continue".tr,
-                                                          onPressed: () {
-                                                            onClickContinuetoRecover2(
-                                                                context);
-                                                          })
-                                                    ])))),
+                                                              .bodyLarge)),
+                                                  SizedBox(height: 28.v),
+                                                  Text(""),
+                                                  SizedBox(height: 27.v),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: 59.h,
+                                                          right: 54.h),
+                                                      child: BlocSelector<
+                                                              RecoveraccountBloc,
+                                                              RecoveraccountState,
+                                                              TextEditingController?>(
+                                                          selector: (state) =>
+                                                              state
+                                                                  .otpController,
+                                                          builder: (context,
+                                                              otpController) {
+                                                            return CustomPinCodeTextField(
+                                                                context:
+                                                                    context,
+                                                                controller:
+                                                                    otpController,
+                                                                onChanged:
+                                                                    (value) {
+                                                                  otpController
+                                                                          ?.text =
+                                                                      value;
+                                                                });
+                                                          })),
+                                                  SizedBox(height: 29.v),
+                                                  CustomElevatedButton(
+                                                      width: 185.h,
+                                                      text: "lbl_continue".tr,
+                                                      onPressed: () {
+                                                        recoverAccounttoken(
+                                                            context);
+                                                      })
+                                                ]))),
                                     CustomImageView(
                                         imagePath:
                                             ImageConstant.imgGroupCyan800,
                                         height: 186.adaptSize,
                                         width: 186.adaptSize,
                                         alignment: Alignment.topCenter,
-                                        margin: EdgeInsets.only(top: 16.v))
+                                        margin: EdgeInsets.only(bottom: 1.v))
                                   ]))))
                 ]))));
   }
 
-  /// Navigates to the recoveraccounttwoScreen when the action is triggered.
-  onTapFrameThirty(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.recoveraccounttwoScreen,
+  /// Calls the {{baseUrl}}/user/reset-password/{token} API and triggers a [UpdateTokenEvent] event on the [RecoveraccountBloc] bloc.
+  ///
+  /// The [BuildContext] parameter represents current [BuildContext]
+  recoverAccounttoken(BuildContext context) {
+    context.read<RecoveraccountBloc>().add(
+      UpdateTokenEvent(
+        onUpdateTokenEventSuccess: () {
+          _onPutResetPasswordTokenEventSuccess(context);
+        },
+      ),
     );
   }
 
   /// Navigates to the recoveraccounttwoScreen when the action is triggered.
-  onClickContinuetoRecover2(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.recoveraccounttwoScreen,
-    );
+  void _onPutResetPasswordTokenEventSuccess(BuildContext context) {
+    NavigatorService.pushNamed(AppRoutes.recoveraccounttwoScreen, arguments: {
+      NavigationArgs.email:
+          context.read<RecoveraccountBloc>().putPutResetPasswordTokenResp.email
+    });
   }
 }

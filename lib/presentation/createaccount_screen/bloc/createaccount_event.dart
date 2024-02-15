@@ -15,6 +15,24 @@ class CreateaccountInitialEvent extends CreateaccountEvent {
   List<Object?> get props => [];
 }
 
+///Event that is dispatched when the user calls the {{baseUrl}}/user/register API.
+class CreateRegisterEvent extends CreateaccountEvent {
+  CreateRegisterEvent({
+    this.onCreateRegisterEventSuccess,
+    this.onCreateRegisterEventError,
+  });
+
+  Function? onCreateRegisterEventSuccess;
+
+  Function? onCreateRegisterEventError;
+
+  @override
+  List<Object?> get props => [
+        onCreateRegisterEventSuccess,
+        onCreateRegisterEventError,
+      ];
+}
+
 ///Event for changing password visibility
 class ChangePasswordVisibilityEvent extends CreateaccountEvent {
   ChangePasswordVisibilityEvent({required this.value});
@@ -30,6 +48,18 @@ class ChangePasswordVisibilityEvent extends CreateaccountEvent {
 ///Event for changing password visibility
 class ChangePasswordVisibilityEvent1 extends CreateaccountEvent {
   ChangePasswordVisibilityEvent1({required this.value});
+
+  bool value;
+
+  @override
+  List<Object?> get props => [
+        value,
+      ];
+}
+
+///Event for changing checkbox
+class ChangeCheckBoxEvent extends CreateaccountEvent {
+  ChangeCheckBoxEvent({required this.value});
 
   bool value;
 

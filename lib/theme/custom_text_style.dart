@@ -7,8 +7,18 @@ import '../core/app_export.dart';
 
 class CustomTextStyles {
   // Body text style
+  static get bodyLarge18 => theme.textTheme.bodyLarge!.copyWith(
+        fontSize: 18.fSize,
+      );
   static get bodyLargeBlack900 => theme.textTheme.bodyLarge!.copyWith(
         color: appTheme.black900.withOpacity(0.56),
+      );
+  static get bodyLargeBlack90018 => theme.textTheme.bodyLarge!.copyWith(
+        color: appTheme.black900,
+        fontSize: 18.fSize,
+      );
+  static get bodyLargeBlack900_1 => theme.textTheme.bodyLarge!.copyWith(
+        color: appTheme.black900,
       );
   static get bodyLargeBlue300 => theme.textTheme.bodyLarge!.copyWith(
         color: appTheme.blue300,
@@ -21,6 +31,10 @@ class CustomTextStyles {
       );
   static get bodyLargeDeeporange300 => theme.textTheme.bodyLarge!.copyWith(
         color: appTheme.deepOrange300,
+      );
+  static get bodyLargeGray10002 => theme.textTheme.bodyLarge!.copyWith(
+        color: appTheme.gray10002,
+        fontSize: 18.fSize,
       );
   static get bodyLargeInterBlack900 =>
       theme.textTheme.bodyLarge!.inter.copyWith(
@@ -78,29 +92,51 @@ class CustomTextStyles {
         fontSize: 10.fSize,
       );
   static get bodySmallInter_1 => theme.textTheme.bodySmall!.inter;
-  // Headline style
-  static get headlineSmallPoppins => theme.textTheme.headlineSmall!.poppins;
+  // Headline text style
+  static get headlineSmallPoppins =>
+      theme.textTheme.headlineSmall!.poppins.copyWith(
+        fontWeight: FontWeight.w500,
+      );
   static get headlineSmallPoppinsBold =>
       theme.textTheme.headlineSmall!.poppins.copyWith(
         fontWeight: FontWeight.w700,
       );
+  static get headlineSmallPoppins_1 => theme.textTheme.headlineSmall!.poppins;
   // Label text style
+  static get labelLargeInter => theme.textTheme.labelLarge!.inter.copyWith(
+        fontSize: 13.fSize,
+      );
   static get labelLargePoppins => theme.textTheme.labelLarge!.poppins.copyWith(
         fontSize: 12.fSize,
       );
   // Title text style
   static get titleLargeBlack900 => theme.textTheme.titleLarge!.copyWith(
         color: appTheme.black900.withOpacity(0.84),
-        fontWeight: FontWeight.w600,
+      );
+  static get titleLargeBlack900Regular => theme.textTheme.titleLarge!.copyWith(
+        color: appTheme.black900.withOpacity(0.45),
+        fontWeight: FontWeight.w400,
+      );
+  static get titleLargeBlack900Regular_1 =>
+      theme.textTheme.titleLarge!.copyWith(
+        color: appTheme.black900,
+        fontWeight: FontWeight.w400,
       );
   static get titleLargeBlack900SemiBold => theme.textTheme.titleLarge!.copyWith(
         color: appTheme.black900.withOpacity(0.85),
         fontWeight: FontWeight.w600,
       );
+  static get titleLargeBlack900_1 => theme.textTheme.titleLarge!.copyWith(
+        color: appTheme.black900.withOpacity(0.45),
+      );
   static get titleLargeInter => theme.textTheme.titleLarge!.inter.copyWith(
         fontWeight: FontWeight.w600,
       );
   static get titleLargeInterBlack900 =>
+      theme.textTheme.titleLarge!.inter.copyWith(
+        color: appTheme.black900,
+      );
+  static get titleLargeInterBlack900Medium =>
       theme.textTheme.titleLarge!.inter.copyWith(
         color: appTheme.black900.withOpacity(0.67),
         fontSize: 22.fSize,
@@ -120,15 +156,15 @@ class CustomTextStyles {
 }
 
 extension on TextStyle {
-  TextStyle get poppins {
-    return copyWith(
-      fontFamily: 'Poppins',
-    );
-  }
-
   TextStyle get inter {
     return copyWith(
       fontFamily: 'Inter',
+    );
+  }
+
+  TextStyle get poppins {
+    return copyWith(
+      fontFamily: 'Poppins',
     );
   }
 }

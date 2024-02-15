@@ -27,7 +27,7 @@ class AppDecoration {
 
   // Outline decorations
   static BoxDecoration get outlineBlack => BoxDecoration(
-        color: appTheme.gray10002,
+        color: appTheme.gray10001,
         boxShadow: [
           BoxShadow(
             color: appTheme.black900.withOpacity(0.25),
@@ -41,28 +41,6 @@ class AppDecoration {
         ],
       );
   static BoxDecoration get outlineBlack900 => BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: appTheme.black900.withOpacity(0.25),
-            width: 1.h,
-          ),
-        ),
-      );
-  static BoxDecoration get outlineBlack9001 => BoxDecoration(
-        color: appTheme.gray50,
-        boxShadow: [
-          BoxShadow(
-            color: appTheme.black900.withOpacity(0.25),
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(
-              0,
-              0,
-            ),
-          ),
-        ],
-      );
-  static BoxDecoration get outlineBlack9002 => BoxDecoration(
         color: theme.colorScheme.primary,
         boxShadow: [
           BoxShadow(
@@ -71,19 +49,13 @@ class AppDecoration {
             blurRadius: 2.h,
             offset: Offset(
               0,
-              4,
+              1,
             ),
           ),
         ],
       );
-  static BoxDecoration get outlineBlack9003 => BoxDecoration();
-  static BoxDecoration get outlineBlack9004 => BoxDecoration(
-        color: appTheme.gray100,
-        border: Border.all(
-          color: appTheme.black900.withOpacity(0.25),
-          width: 1.h,
-          strokeAlign: strokeAlignCenter,
-        ),
+  static BoxDecoration get outlineBlack9001 => BoxDecoration(
+        color: theme.colorScheme.primary,
         boxShadow: [
           BoxShadow(
             color: appTheme.black900.withOpacity(0.25),
@@ -91,23 +63,51 @@ class AppDecoration {
             blurRadius: 2.h,
             offset: Offset(
               0,
-              3,
+              2,
             ),
           ),
         ],
+      );
+  static BoxDecoration get outlineBlack9002 => BoxDecoration(
+        color: appTheme.whiteA700,
+        boxShadow: [
+          BoxShadow(
+            color: appTheme.black900.withOpacity(0.25),
+            spreadRadius: 2.h,
+            blurRadius: 2.h,
+            offset: Offset(
+              0,
+              1,
+            ),
+          ),
+        ],
+      );
+  static BoxDecoration get outlineGray5003f => BoxDecoration(
+        border: Border.all(
+          color: appTheme.gray5003f,
+          width: 1.h,
+        ),
+      );
+  static BoxDecoration get outlineGrayF => BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: appTheme.gray5003f,
+            width: 1.h,
+          ),
+        ),
       );
 }
 
 class BorderRadiusStyle {
   // Custom borders
+  static BorderRadius get customBorderBL8 => BorderRadius.vertical(
+        bottom: Radius.circular(8.h),
+      );
   static BorderRadius get customBorderTL12 => BorderRadius.vertical(
         top: Radius.circular(12.h),
       );
 
   // Rounded borders
-  static BorderRadius get roundedBorder15 => BorderRadius.circular(
-        15.h,
-      );
   static BorderRadius get roundedBorder23 => BorderRadius.circular(
         23.h,
       );

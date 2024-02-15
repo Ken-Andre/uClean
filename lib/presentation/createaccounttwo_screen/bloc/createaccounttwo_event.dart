@@ -15,6 +15,24 @@ class CreateaccounttwoInitialEvent extends CreateaccounttwoEvent {
   List<Object?> get props => [];
 }
 
+///Event that is dispatched when the user calls the {{baseUrl}}/user/forgot-password-token API.
+class CreateForgotPasswordTokenEvent extends CreateaccounttwoEvent {
+  CreateForgotPasswordTokenEvent({
+    this.onCreateForgotPasswordTokenEventSuccess,
+    this.onCreateForgotPasswordTokenEventError,
+  });
+
+  Function? onCreateForgotPasswordTokenEventSuccess;
+
+  Function? onCreateForgotPasswordTokenEventError;
+
+  @override
+  List<Object?> get props => [
+        onCreateForgotPasswordTokenEventSuccess,
+        onCreateForgotPasswordTokenEventError,
+      ];
+}
+
 ///event for OTP auto fill
 class ChangeOTPEvent extends CreateaccounttwoEvent {
   ChangeOTPEvent({required this.code});

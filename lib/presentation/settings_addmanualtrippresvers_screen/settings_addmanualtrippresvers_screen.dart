@@ -35,12 +35,8 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                 child: Column(children: [
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     Column(children: [
-                      GestureDetector(
-                          onTap: () {
-                            onclicknavigatetoDetailedTab(context);
-                          },
-                          child: Text("lbl_detailed".tr,
-                              style: CustomTextStyles.bodyMediumRegular)),
+                      Text("lbl_detailed".tr,
+                          style: CustomTextStyles.bodyMediumRegular),
                       SizedBox(
                           width: 50.h,
                           child: Divider(color: theme.colorScheme.primary))
@@ -113,10 +109,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
         leadingWidth: 29.h,
         leading: AppbarLeadingImage(
             imagePath: ImageConstant.imgArrowLeft,
-            margin: EdgeInsets.only(left: 23.h, top: 20.v, bottom: 24.v),
-            onTap: () {
-              onTapArrowLeft(context);
-            }),
+            margin: EdgeInsets.only(left: 23.h, top: 20.v, bottom: 24.v)),
         centerTitle: true,
         title: AppbarSubtitle(text: "msg_add_a_manual_trip".tr));
   }
@@ -141,35 +134,40 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CustomImageView(
-                                imagePath: ImageConstant.imgCalendar,
-                                height: 20.v,
-                                width: 18.h,
-                                margin: EdgeInsets.symmetric(vertical: 2.v)),
                             GestureDetector(
                                 onTap: () {
-                                  openDatePickerDialogStart(context);
+                                  openDatePickerDialog(context);
                                 },
-                                child: Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 9.h, top: 2.v),
-                                    child: Text("lbl_wed_january_31".tr,
-                                        style: theme.textTheme.bodyMedium))),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CustomImageView(
+                                          imagePath: ImageConstant.imgCalendar,
+                                          height: 20.v,
+                                          width: 18.h,
+                                          margin: EdgeInsets.only(bottom: 3.v)),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 9.h, top: 1.v),
+                                          child: Text("lbl_wed_january_31".tr,
+                                              style:
+                                                  theme.textTheme.bodyMedium))
+                                    ])),
                             Spacer(),
-                            CustomImageView(
-                                imagePath: ImageConstant.imgClock,
-                                height: 20.adaptSize,
-                                width: 20.adaptSize,
-                                margin: EdgeInsets.symmetric(vertical: 2.v)),
-                            GestureDetector(
-                                onTap: () {
-                                  openTimePickerDialogStart(context);
-                                },
-                                child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 10.h, top: 1.v, right: 2.h),
-                                    child: Text("lbl_10_28".tr,
-                                        style: theme.textTheme.bodyMedium)))
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomImageView(
+                                      imagePath: ImageConstant.imgClock,
+                                      height: 20.adaptSize,
+                                      width: 20.adaptSize,
+                                      margin:
+                                          EdgeInsets.symmetric(vertical: 1.v)),
+                                  Padding(
+                                      padding: EdgeInsets.only(left: 10.h),
+                                      child: Text("lbl_10_28".tr,
+                                          style: theme.textTheme.bodyMedium))
+                                ])
                           ])))
             ]));
   }
@@ -204,12 +202,13 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                       width: 30.adaptSize,
                       decoration: AppDecoration.outlineBlack.copyWith(
                           borderRadius: BorderRadiusStyle.roundedBorder5),
-                      child: CustomImageView(
-                          imagePath: ImageConstant.imgMotorcycle,
+                      child: CustomIconButton(
                           height: 30.adaptSize,
                           width: 30.adaptSize,
-                          radius: BorderRadius.circular(3.h),
-                          alignment: Alignment.center)),
+                          decoration: IconButtonStyleHelper.outlineBlackTL3,
+                          alignment: Alignment.center,
+                          child: CustomImageView(
+                              imagePath: ImageConstant.imgMotorcycle))),
                   CustomIconButton(
                       height: 30.v,
                       width: 28.h,
@@ -221,7 +220,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
   Widget _buildFrameNinetyFive(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(left: 20.h, right: 20.h, bottom: 8.v),
-        decoration: AppDecoration.outlineBlack900,
+        decoration: AppDecoration.outlineGrayF,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Padding(
@@ -254,27 +253,15 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
               buttonStyle: CustomButtonStyles.outlineBlack,
               buttonTextStyle: CustomTextStyles.bodyMediumPrimary,
               onPressed: () {
-                onTapAddDrive(context);
+                addNewTrip(context);
               })
         ]));
-  }
-
-  /// Navigates to the previous screen.
-  onTapArrowLeft(BuildContext context) {
-    NavigatorService.goBack();
-  }
-
-  /// Navigates to the settingsAddmanualtrippScreen when the action is triggered.
-  onclicknavigatetoDetailedTab(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.settingsAddmanualtrippScreen,
-    );
   }
 
   /// Displays a date picker dialog to update the selected date
   ///
   /// This function returns a `Future` that completes with `void`.
-  Future<void> openDatePickerDialogStart(BuildContext context) async {
+  Future<void> openDatePickerDialog(BuildContext context) async {
     var initialState =
         BlocProvider.of<SettingsAddmanualtrippresversBloc>(context).state;
     DateTime? dateTime = await showDatePicker(
@@ -283,22 +270,5 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
         firstDate: DateTime(1970),
         lastDate: DateTime(
             DateTime.now().year, DateTime.now().month, DateTime.now().day));
-  }
-
-  /// Displays a time picker dialog to update the selected time
-  ///
-  /// This function returns a `Future` that completes with `void`.
-  Future<void> openTimePickerDialogStart(BuildContext context) async {
-    var initialState =
-        BlocProvider.of<SettingsAddmanualtrippresversBloc>(context).state;
-    TimeOfDay? time =
-        await showTimePicker(context: context, initialTime: TimeOfDay.now());
-  }
-
-  /// Navigates to the homeContainerScreen when the action is triggered.
-  onTapAddDrive(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.homeContainerScreen,
-    );
   }
 }

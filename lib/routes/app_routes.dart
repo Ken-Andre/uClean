@@ -7,8 +7,8 @@ import 'package:uclean/presentation/recoveraccounttwo_screen/recoveraccounttwo_s
 import 'package:uclean/presentation/recoveraccount_screen/recoveraccount_screen.dart';
 import 'package:uclean/presentation/settings_addmanualtripp_screen/settings_addmanualtripp_screen.dart';
 import 'package:uclean/presentation/settingsautotrack_screen/settingsautotrack_screen.dart';
+import 'package:uclean/presentation/settings_contactus_screen/settings_contactus_screen.dart';
 import 'package:uclean/presentation/login_screen/login_screen.dart';
-import 'package:uclean/presentation/login_three_screen/login_three_screen.dart';
 import 'package:uclean/presentation/home_container_screen/home_container_screen.dart';
 import 'package:uclean/presentation/createaccount_screen/createaccount_screen.dart';
 import 'package:uclean/presentation/createaccounttwo_screen/createaccounttwo_screen.dart';
@@ -36,15 +36,13 @@ class AppRoutes {
 
   static const String settingsautotrackScreen = '/settingsautotrack_screen';
 
+  static const String settingsContactusScreen = '/settings_contactus_screen';
+
   static const String loginScreen = '/login_screen';
-
-  static const String loginThreeScreen = '/login_three_screen';
-
-  static const String homePage = '/home_page';
 
   static const String homeContainerScreen = '/home_container_screen';
 
-  static const String learnPage = '/learn_page';
+  static const String homePage = '/home_page';
 
   static const String createaccountScreen = '/createaccount_screen';
 
@@ -68,8 +66,8 @@ class AppRoutes {
         recoveraccountScreen: RecoveraccountScreen.builder,
         settingsAddmanualtrippScreen: SettingsAddmanualtrippScreen.builder,
         settingsautotrackScreen: SettingsautotrackScreen.builder,
+        settingsContactusScreen: SettingsContactusScreen.builder,
         loginScreen: LoginScreen.builder,
-        loginThreeScreen: LoginThreeScreen.builder,
         homeContainerScreen: HomeContainerScreen.builder,
         createaccountScreen: CreateaccountScreen.builder,
         createaccounttwoScreen: CreateaccounttwoScreen.builder,

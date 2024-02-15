@@ -21,13 +21,8 @@ class SplashScreen extends StatelessWidget {
           child: Scaffold(
               body: Container(
                   width: double.maxFinite,
-                  margin: EdgeInsets.only(top: 200.v),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(height: 5.v),
-                        _buildSplashGradient(context)
-                      ]))));
+                  margin: EdgeInsets.only(top: 2.v),
+                  child: _buildSplashGradient(context))));
     });
   }
 
@@ -35,27 +30,19 @@ class SplashScreen extends StatelessWidget {
   Widget _buildSplashGradient(BuildContext context) {
     return SizedBox(
         height: 374.v,
-        width: 392.h,
-        child: Stack(alignment: Alignment.topRight, children: [
-          CustomImageView(height: 271.v, alignment: Alignment.topLeft),
-          Opacity(
-              opacity: 0.6,
-              child: CustomImageView(
-                  imagePath: ImageConstant.imgBlueGrandient,
-                  height: 271.v,
-                  width: 234.h,
-                  alignment: Alignment.topRight)),
-          CustomImageView(
-              height: 271.v,
-              width: 27.h,
-              alignment: Alignment.bottomLeft,
-              margin: EdgeInsets.only()),
+        width: double.maxFinite,
+        child: Stack(alignment: Alignment.centerRight, children: [
+          Align(alignment: Alignment.topLeft, child: SizedBox(height: 271.v)),
+          Align(
+              alignment: Alignment.centerRight, child: SizedBox(height: 271.v)),
+          Align(
+              alignment: Alignment.bottomLeft, child: SizedBox(height: 271.v)),
           CustomImageView(
               imagePath: ImageConstant.imgLogo,
               height: 104.v,
               width: 259.h,
-              alignment: Alignment.centerRight,
-              margin: EdgeInsets.only(right: 54.h))
+              alignment: Alignment.centerLeft,
+              margin: EdgeInsets.only(left: 61.h))
         ]));
   }
 }

@@ -13,6 +13,7 @@ class CreateaccountState extends Equatable {
     this.confirmPasswordEditTextController,
     this.isShowPassword = true,
     this.isShowPassword1 = true,
+    this.acceptAllTermsAndConditions = false,
     this.createaccountModelObj,
   });
 
@@ -34,6 +35,8 @@ class CreateaccountState extends Equatable {
 
   bool isShowPassword1;
 
+  bool acceptAllTermsAndConditions;
+
   @override
   List<Object?> get props => [
         nameEditTextController,
@@ -44,6 +47,7 @@ class CreateaccountState extends Equatable {
         confirmPasswordEditTextController,
         isShowPassword,
         isShowPassword1,
+        acceptAllTermsAndConditions,
         createaccountModelObj,
       ];
   CreateaccountState copyWith({
@@ -55,6 +59,7 @@ class CreateaccountState extends Equatable {
     TextEditingController? confirmPasswordEditTextController,
     bool? isShowPassword,
     bool? isShowPassword1,
+    bool? acceptAllTermsAndConditions,
     CreateaccountModel? createaccountModelObj,
   }) {
     return CreateaccountState(
@@ -72,6 +77,8 @@ class CreateaccountState extends Equatable {
           this.confirmPasswordEditTextController,
       isShowPassword: isShowPassword ?? this.isShowPassword,
       isShowPassword1: isShowPassword1 ?? this.isShowPassword1,
+      acceptAllTermsAndConditions:
+          acceptAllTermsAndConditions ?? this.acceptAllTermsAndConditions,
       createaccountModelObj:
           createaccountModelObj ?? this.createaccountModelObj,
     );

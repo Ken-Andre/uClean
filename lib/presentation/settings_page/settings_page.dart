@@ -37,7 +37,7 @@ class SettingsPage extends StatelessWidget {
                               child: Text("lbl_tracking".tr,
                                   style: theme.textTheme.titleSmall))),
                       SizedBox(height: 3.v),
-                      _buildCheckmarkEditText(context),
+                      _buildCheckConfiguration(context),
                       SizedBox(height: 11.v),
                       Align(
                           alignment: Alignment.centerLeft,
@@ -50,8 +50,8 @@ class SettingsPage extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 9.h),
                           child: _buildHelpCenterRow(context,
                               helpCenterText: "lbl_worplaces".tr)),
-                      SizedBox(height: 2.v),
-                      _buildSaveEditText(context),
+                      SizedBox(height: 3.v),
+                      _buildReportingPeriods(context),
                       SizedBox(height: 10.v),
                       Align(
                           alignment: Alignment.centerLeft,
@@ -63,22 +63,25 @@ class SettingsPage extends StatelessWidget {
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 9.h),
                           child: _buildNotificationsRow(context,
-                              n: ImageConstant.imgLock,
-                              notifications: "lbl_your_account".tr)),
-                      SizedBox(height: 2.v),
+                              userImage: ImageConstant.imgLock,
+                              notifications: "lbl_your_account".tr,
+                              onTapNotificationsRow: () {
+                            viewprofileaccount(context);
+                          })),
+                      SizedBox(height: 3.v),
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 9.h),
                           child: _buildNotificationsRow(context,
-                              n: ImageConstant.imgGroup,
+                              userImage: ImageConstant.imgGroup,
                               notifications: "lbl_notifications".tr,
                               onTapNotificationsRow: () {
                             onTapNotificationsRow(context);
                           })),
-                      SizedBox(height: 2.v),
+                      SizedBox(height: 3.v),
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 9.h),
                           child: _buildNotificationsRow(context,
-                              n: ImageConstant.imgSave,
+                              userImage: ImageConstant.imgSave,
                               notifications: "lbl_teams".tr)),
                       SizedBox(height: 11.v),
                       Align(
@@ -91,19 +94,25 @@ class SettingsPage extends StatelessWidget {
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.h),
                           child: _buildHelpCenterRow(context,
-                              helpCenterText: "lbl_help_center".tr)),
+                              helpCenterText: "lbl_help_center".tr,
+                              navigatetohelpcenter: () {
+                            navigatetohelpcenter(context);
+                          })),
                       SizedBox(height: 11.v),
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
                               padding: EdgeInsets.only(left: 20.h),
-                              child: Text("lbl_support".tr,
+                              child: Text("lbl_our_app".tr,
                                   style: theme.textTheme.titleSmall))),
                       SizedBox(height: 3.v),
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.h),
                           child: _buildHelpCenterRow(context,
-                              helpCenterText: "lbl_help_center".tr)),
+                              helpCenterText: "lbl_rank_our_app".tr,
+                              navigatetohelpcenter: () {
+                            onTapHelpCenterRow(context);
+                          })),
                       SizedBox(height: 10.v),
                       _buildLogoutButton(context),
                       SizedBox(height: 11.v),
@@ -124,7 +133,7 @@ class SettingsPage extends StatelessWidget {
                                     child: Text("lbl_uclean_2024".tr,
                                         style: theme.textTheme.bodyLarge))
                               ])),
-                      SizedBox(height: 5.v)
+                      SizedBox(height: 22.v)
                     ])))));
   }
 
@@ -138,54 +147,84 @@ class SettingsPage extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildCheckmarkEditText(BuildContext context) {
+  Widget _buildCheckConfiguration(BuildContext context) {
     return Padding(
         padding: EdgeInsets.only(left: 9.h, right: 7.h),
         child:
             BlocSelector<SettingsBloc, SettingsState, TextEditingController?>(
-                selector: (state) => state.checkmarkEditTextController,
-                builder: (context, checkmarkEditTextController) {
+                selector: (state) => state.checkConfigurationController,
+                builder: (context, checkConfigurationController) {
                   return CustomTextFormField(
-                      controller: checkmarkEditTextController,
+                      controller: checkConfigurationController,
                       hintText: "msg_check_configuration".tr,
                       hintStyle: theme.textTheme.bodyMedium!,
+                      alignment: Alignment.centerLeft,
                       prefix: Container(
-                          margin: EdgeInsets.fromLTRB(14.h, 7.v, 18.h, 7.v),
+                          margin: EdgeInsets.fromLTRB(14.h, 9.v, 18.h, 7.v),
                           child: CustomImageView(
                               imagePath: ImageConstant.imgCheckmark,
                               height: 24.adaptSize,
                               width: 24.adaptSize)),
                       prefixConstraints: BoxConstraints(maxHeight: 40.v),
-                      contentPadding:
-                          EdgeInsets.only(top: 9.v, right: 30.h, bottom: 9.v),
-                      borderDecoration: TextFormFieldStyleHelper.fillPrimary);
+                      contentPadding: EdgeInsets.only(top: 11.v, bottom: 7.v),
+                      borderDecoration: TextFormFieldStyleHelper.outlineBlack);
                 }));
   }
 
   /// Section Widget
-  Widget _buildSaveEditText(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 9.h),
+  Widget _buildReportingPeriods(BuildContext context) {
+    return Container(
+        width: 375.h,
+        margin: EdgeInsets.symmetric(horizontal: 9.h),
         child:
             BlocSelector<SettingsBloc, SettingsState, TextEditingController?>(
-                selector: (state) => state.saveEditTextController,
-                builder: (context, saveEditTextController) {
-                  return CustomTextFormField(
-                      controller: saveEditTextController,
-                      hintText: "msg_reporting_periods".tr,
-                      hintStyle: theme.textTheme.bodyMedium!,
+                selector: (state) => state.reportingPeriodsController,
+                builder: (context, reportingPeriodsController) {
+                  return TextFormField(
+                      focusNode: FocusNode(),
+                      autofocus: true,
+                      controller: reportingPeriodsController,
+                      style: theme.textTheme.bodyMedium!,
                       textInputAction: TextInputAction.done,
-                      alignment: Alignment.centerLeft,
-                      prefix: Container(
+                      decoration: InputDecoration(
+                          hintText: "msg_reporting_periods".tr,
+                          hintStyle: theme.textTheme.bodyMedium!,
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.h),
+                              borderSide: BorderSide.none),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.h),
+                              borderSide: BorderSide.none),
+                          disabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.h),
+                              borderSide: BorderSide.none),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.h),
+                              borderSide: BorderSide.none),
+                          prefixIcon: Container(
+                              margin: EdgeInsets.fromLTRB(9.h, 8.v, 22.h, 8.v),
+                              child: CustomImageView(
+                                  imagePath: ImageConstant.imgSave,
+                                  height: 24.adaptSize,
+                                  width: 24.adaptSize)),
+                          prefixIconConstraints:
+                              BoxConstraints(maxHeight: 40.v),
+                          filled: true,
+                          fillColor: theme.colorScheme.primary,
+                          isDense: true,
+                          contentPadding:
+                              EdgeInsets.only(top: 10.v, bottom: 8.v)),
+                      child: CustomImageView(
+                          imagePath: ImageConstant.imgSave,
+                          height: 24.adaptSize,
+                          width: 24.adaptSize,
                           margin: EdgeInsets.fromLTRB(9.h, 8.v, 22.h, 8.v),
-                          child: CustomImageView(
-                              imagePath: ImageConstant.imgSave,
-                              height: 24.adaptSize,
-                              width: 24.adaptSize)),
-                      prefixConstraints: BoxConstraints(maxHeight: 40.v),
-                      contentPadding:
-                          EdgeInsets.only(top: 9.v, right: 30.h, bottom: 9.v),
-                      borderDecoration: TextFormFieldStyleHelper.fillPrimary);
+                          child: Text("msg_reporting_periods".tr,
+                              style: TextStyle(
+                                  color: appTheme.black900,
+                                  fontSize: 14.352943420410156.fSize,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w300))));
                 }));
   }
 
@@ -199,14 +238,14 @@ class SettingsPage extends StatelessWidget {
             buttonStyle: CustomButtonStyles.fillYellow,
             buttonTextStyle: CustomTextStyles.bodyLargeOrange700,
             onPressed: () {
-              navigateToSplash(context);
+              logoutuser(context);
             }));
   }
 
   /// Common widget
   Widget _buildNotificationsRow(
     BuildContext context, {
-    required String n,
+    required String userImage,
     required String notifications,
     Function? onTapNotificationsRow,
   }) {
@@ -216,11 +255,13 @@ class SettingsPage extends StatelessWidget {
         },
         child: Container(
             padding: EdgeInsets.symmetric(horizontal: 11.h, vertical: 8.v),
-            decoration: AppDecoration.fillPrimary
+            decoration: AppDecoration.outlineBlack900
                 .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
             child: Row(mainAxisSize: MainAxisSize.max, children: [
               CustomImageView(
-                  imagePath: n, height: 24.adaptSize, width: 24.adaptSize),
+                  imagePath: userImage,
+                  height: 24.adaptSize,
+                  width: 24.adaptSize),
               Padding(
                   padding: EdgeInsets.only(left: 22.h),
                   child: Text(notifications,
@@ -233,26 +274,39 @@ class SettingsPage extends StatelessWidget {
   Widget _buildHelpCenterRow(
     BuildContext context, {
     required String helpCenterText,
+    Function? navigatetohelpcenter,
   }) {
-    return Container(
-        padding: EdgeInsets.symmetric(horizontal: 7.h, vertical: 2.v),
-        decoration: AppDecoration.fillPrimary
-            .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
-        child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              CustomImageView(
-                  imagePath: ImageConstant.imgRssFeed,
-                  height: 33.adaptSize,
-                  width: 33.adaptSize,
-                  margin: EdgeInsets.only(bottom: 2.v)),
-              Padding(
-                  padding: EdgeInsets.only(left: 15.h, top: 9.v, bottom: 4.v),
-                  child: Text(helpCenterText,
-                      style: theme.textTheme.bodyMedium!
-                          .copyWith(color: appTheme.black900)))
-            ]));
+    return GestureDetector(
+        onTap: () {
+          navigatetohelpcenter!.call();
+        },
+        child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 7.h, vertical: 2.v),
+            decoration: AppDecoration.outlineBlack900
+                .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  CustomImageView(
+                      imagePath: ImageConstant.imgRssFeed,
+                      height: 33.adaptSize,
+                      width: 33.adaptSize,
+                      margin: EdgeInsets.only(bottom: 2.v)),
+                  Padding(
+                      padding:
+                          EdgeInsets.only(left: 15.h, top: 9.v, bottom: 4.v),
+                      child: Text(helpCenterText,
+                          style: theme.textTheme.bodyMedium!
+                              .copyWith(color: appTheme.black900)))
+                ])));
+  }
+
+  /// Navigates to the profileScreen when the action is triggered.
+  viewprofileaccount(BuildContext context) {
+    NavigatorService.pushNamed(
+      AppRoutes.profileScreen,
+    );
   }
 
   /// Navigates to the notifspanelScreen when the action is triggered.
@@ -262,8 +316,40 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
+  /// Navigates to the settingsContactusScreen when the action is triggered.
+  navigatetohelpcenter(BuildContext context) {
+    NavigatorService.pushNamed(
+      AppRoutes.settingsContactusScreen,
+    );
+  }
+
+  /// Opens a URL in the device's default web browser.
+  ///
+  /// The [context] parameter is the `BuildContext` of the widget that invoked the function.
+  ///
+  /// Throws an exception if the URL could not be launched.
+  onTapHelpCenterRow(BuildContext context) async {
+    var url = 'https://www.apple.com/fr/app-store/';
+    if (!await launchUrlString(url)) {
+      throw 'Could not launch https://www.apple.com/fr/app-store/';
+    }
+  }
+
+  /// Calls the https://nodedemo.dhiwise.co/device/api/v1/user/list API and triggers a [CreateListEvent] event on the [SettingsBloc] bloc.
+  ///
+  /// The [BuildContext] parameter represents current [BuildContext]
+  logoutuser(BuildContext context) {
+    context.read<SettingsBloc>().add(
+      CreateListEvent(
+        onCreateListEventSuccess: () {
+          _onListUserEventSuccess(context);
+        },
+      ),
+    );
+  }
+
   /// Navigates to the splashScreen when the action is triggered.
-  navigateToSplash(BuildContext context) {
+  void _onListUserEventSuccess(BuildContext context) {
     NavigatorService.pushNamed(
       AppRoutes.splashScreen,
     );
