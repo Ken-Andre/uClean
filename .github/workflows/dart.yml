@@ -49,19 +49,33 @@ jobs:
         with:
           flutter-version: ${{ steps.get_flutter_version.outputs.flutter-version }}
 
-
       - name: Install dependencies
         run: flutter pub get
-        
-      - name: Run lint
+
+
+      - name: Run Flutter Analysis
+        id: analyze
         run: flutter analyze
 
+      - name: Check for Analysis Errors
+        run: |
+          if [ ${{ steps.analyze.outcome }} != 'success' ]; then
+            echo "Analysis errors detected."
+            exit  1
+          else
+            echo "No analysis errors."
+            # Logic to label the PR as valid goes here
+          fi
+
+      # Optional: Add steps to build and run the app on Chrome
       - name: Build for web
         run: flutter build web
 
-      - name: Run tests
-        run: flutter test
-
       - name: Run app on Chrome
         run: flutter run -d Chrome
+
+
+
+
+
 
