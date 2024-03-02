@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uclean/main.dart';
+import 'package:ucleankim/main.dart';
 
 class ServerException implements Exception {}
 

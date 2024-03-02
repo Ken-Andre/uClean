@@ -1,13 +1,14 @@
-import 'bloc/settings_addmanualtrippresvers_bloc.dart';
+import 'package:ucleankim/widgets/app_bar/custom_app_bar.dart';
+import 'package:ucleankim/widgets/app_bar/appbar_leading_image.dart';
+import 'package:ucleankim/widgets/app_bar/appbar_subtitle.dart';
+import 'package:ucleankim/widgets/custom_text_form_field.dart';
+import 'widgets/settingsaddmanualtrippresvers_item_widget.dart';
+import 'models/settingsaddmanualtrippresvers_item_model.dart';
 import 'models/settings_addmanualtrippresvers_model.dart';
+import 'package:ucleankim/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
-import 'package:uclean/core/app_export.dart';
-import 'package:uclean/widgets/app_bar/appbar_leading_image.dart';
-import 'package:uclean/widgets/app_bar/appbar_subtitle.dart';
-import 'package:uclean/widgets/app_bar/custom_app_bar.dart';
-import 'package:uclean/widgets/custom_elevated_button.dart';
-import 'package:uclean/widgets/custom_icon_button.dart';
-import 'package:uclean/widgets/custom_text_form_field.dart';
+import 'package:ucleankim/core/app_export.dart';
+import 'bloc/settings_addmanualtrippresvers_bloc.dart';
 
 class SettingsAddmanualtrippresversScreen extends StatelessWidget {
   const SettingsAddmanualtrippresversScreen({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: appTheme.red50,
+            backgroundColor: appTheme.gray10001,
             resizeToAvoidBottomInset: false,
             appBar: _buildAppBar(context),
             body: Container(
@@ -37,24 +38,24 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                     Column(children: [
                       GestureDetector(
                           onTap: () {
-                            onclicknavigatetoDetailedTab(context);
+                            onTapTxtDetailed(context);
                           },
                           child: Text("lbl_detailed".tr,
-                              style: CustomTextStyles.bodyMediumRegular)),
+                              style: CustomTextStyles.bodyMediumBlack900)),
                       SizedBox(
                           width: 50.h,
-                          child: Divider(color: theme.colorScheme.primary))
+                          child: Divider(color: appTheme.whiteA70001))
                     ]),
                     Padding(
                         padding: EdgeInsets.only(left: 7.h),
                         child: Column(children: [
                           Text("lbl_resume".tr,
-                              style: CustomTextStyles.bodyMediumRegular),
+                              style: CustomTextStyles.bodyMediumBlack900),
                           SizedBox(
                               width: 50.h,
                               child: Divider(
-                                  color:
-                                      theme.colorScheme.onSecondaryContainer))
+                                  color: theme.colorScheme.onSecondaryContainer
+                                      .withOpacity(1)))
                         ]))
                   ]),
                   SizedBox(height: 2.v),
@@ -76,24 +77,18 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                               SettingsAddmanualtrippresversBloc,
                               SettingsAddmanualtrippresversState,
                               TextEditingController?>(
-                          selector: (state) => state.kmvalueController,
-                          builder: (context, kmvalueController) {
+                          selector: (state) => state.kmController,
+                          builder: (context, kmController) {
                             return CustomTextFormField(
-                                controller: kmvalueController,
+                                controller: kmController,
                                 hintText: "lbl_km".tr,
-                                hintStyle: CustomTextStyles.bodyMediumBlack900,
+                                hintStyle:
+                                    CustomTextStyles.bodyMediumBlack900Light_1,
                                 textInputAction: TextInputAction.done,
-                                suffix: Container(
-                                    margin: EdgeInsets.fromLTRB(
-                                        8.h, 10.v, 30.h, 10.v),
-                                    child: CustomImageView(
-                                        imagePath: ImageConstant.imgMusic,
-                                        height: 24.adaptSize,
-                                        width: 24.adaptSize)),
-                                suffixConstraints:
-                                    BoxConstraints(maxHeight: 44.v),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 30.h, vertical: 11.v),
                                 borderDecoration:
-                                    TextFormFieldStyleHelper.fillPrimary);
+                                    TextFormFieldStyleHelper.fillWhiteA);
                           })),
                   SizedBox(height: 4.v),
                   Align(
@@ -101,8 +96,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                       child: Text("lbl_trip_mode".tr,
                           style: theme.textTheme.titleSmall)),
                   SizedBox(height: 10.v),
-                  _buildFrameEightyTwo1(context),
-                  SizedBox(height: 5.v)
+                  _buildSettingsAddManualTripPResVers(context)
                 ])),
             bottomNavigationBar: _buildFrameNinetyFive(context)));
   }
@@ -126,7 +120,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
     return Container(
         margin: EdgeInsets.symmetric(horizontal: 9.h),
         padding: EdgeInsets.symmetric(vertical: 5.v),
-        decoration: AppDecoration.fillPrimary
+        decoration: AppDecoration.fillWhiteA
             .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -136,7 +130,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                   child: Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 19.h, vertical: 6.v),
-                      decoration: AppDecoration.fillPrimary.copyWith(
+                      decoration: AppDecoration.fillWhiteA.copyWith(
                           borderRadius: BorderRadiusStyle.roundedBorder5),
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -148,13 +142,14 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                                 margin: EdgeInsets.symmetric(vertical: 2.v)),
                             GestureDetector(
                                 onTap: () {
-                                  openDatePickerDialogStart(context);
+                                  onTapTxtWedJanuaryThirtyOne(context);
                                 },
                                 child: Padding(
                                     padding:
                                         EdgeInsets.only(left: 9.h, top: 2.v),
                                     child: Text("lbl_wed_january_31".tr,
-                                        style: theme.textTheme.bodyMedium))),
+                                        style: CustomTextStyles
+                                            .bodyMediumBlack900Light_2))),
                             Spacer(),
                             CustomImageView(
                                 imagePath: ImageConstant.imgClock,
@@ -163,65 +158,58 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                                 margin: EdgeInsets.symmetric(vertical: 2.v)),
                             GestureDetector(
                                 onTap: () {
-                                  openTimePickerDialogStart(context);
+                                  onTapTxtTime(context);
                                 },
                                 child: Padding(
                                     padding: EdgeInsets.only(
                                         left: 10.h, top: 1.v, right: 2.h),
                                     child: Text("lbl_10_28".tr,
-                                        style: theme.textTheme.bodyMedium)))
+                                        style: CustomTextStyles
+                                            .bodyMediumBlack900Light_2)))
                           ])))
             ]));
   }
 
   /// Section Widget
-  Widget _buildFrameEightyTwo1(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.symmetric(horizontal: 9.h),
-        padding: EdgeInsets.symmetric(vertical: 5.v),
-        decoration: AppDecoration.fillPrimary
-            .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
+  Widget _buildSettingsAddManualTripPResVers(BuildContext context) {
+    return Expanded(
         child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 94.h, vertical: 5.v),
-            decoration:
-                BoxDecoration(borderRadius: BorderRadiusStyle.roundedBorder5),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomIconButton(
-                      height: 30.adaptSize,
-                      width: 30.adaptSize,
-                      child: CustomImageView(
-                          imagePath: ImageConstant.imgCarBlack900)),
-                  CustomIconButton(
-                      height: 30.adaptSize,
-                      width: 30.adaptSize,
-                      decoration: IconButtonStyleHelper.outlineBlackTL3,
-                      child:
-                          CustomImageView(imagePath: ImageConstant.imgSubway)),
-                  Container(
-                      height: 30.adaptSize,
-                      width: 30.adaptSize,
-                      decoration: AppDecoration.outlineBlack.copyWith(
-                          borderRadius: BorderRadiusStyle.roundedBorder5),
-                      child: CustomImageView(
-                          imagePath: ImageConstant.imgMotorcycle,
-                          height: 30.adaptSize,
-                          width: 30.adaptSize,
-                          radius: BorderRadius.circular(3.h),
-                          alignment: Alignment.center)),
-                  CustomIconButton(
-                      height: 30.v,
-                      width: 28.h,
-                      child: CustomImageView(imagePath: ImageConstant.imgWalk))
-                ])));
+            margin: EdgeInsets.symmetric(horizontal: 9.h),
+            padding: EdgeInsets.symmetric(vertical: 5.v),
+            decoration: AppDecoration.fillWhiteA
+                .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
+            child: BlocSelector<
+                    SettingsAddmanualtrippresversBloc,
+                    SettingsAddmanualtrippresversState,
+                    SettingsAddmanualtrippresversModel?>(
+                selector: (state) =>
+                    state.settingsAddmanualtrippresversModelObj,
+                builder: (context, settingsAddmanualtrippresversModelObj) {
+                  return ListView.separated(
+                      physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      separatorBuilder: (context, index) {
+                        return SizedBox(height: 1.v);
+                      },
+                      itemCount: settingsAddmanualtrippresversModelObj
+                              ?.settingsaddmanualtrippresversItemList.length ??
+                          0,
+                      itemBuilder: (context, index) {
+                        SettingsaddmanualtrippresversItemModel model =
+                            settingsAddmanualtrippresversModelObj
+                                        ?.settingsaddmanualtrippresversItemList[
+                                    index] ??
+                                SettingsaddmanualtrippresversItemModel();
+                        return SettingsaddmanualtrippresversItemWidget(model);
+                      });
+                })));
   }
 
   /// Section Widget
   Widget _buildFrameNinetyFive(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(left: 20.h, right: 20.h, bottom: 8.v),
-        decoration: AppDecoration.outlineBlack900,
+        decoration: AppDecoration.outlineGrayF,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Padding(
@@ -234,7 +222,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.only(top: 2.v),
                         child: Text("lbl_kilometers".tr,
-                            style: theme.textTheme.bodyMedium))
+                            style: CustomTextStyles.bodyMediumBlack900Light_2))
                   ])),
           Column(
               mainAxisSize: MainAxisSize.min,
@@ -243,8 +231,8 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                 Text("lbl_professional".tr, style: theme.textTheme.titleSmall),
                 Padding(
                     padding: EdgeInsets.only(top: 3.v),
-                    child:
-                        Text("lbl_trip".tr, style: theme.textTheme.bodyMedium))
+                    child: Text("lbl_trip".tr,
+                        style: CustomTextStyles.bodyMediumBlack900Light_2))
               ]),
           CustomElevatedButton(
               height: 26.v,
@@ -252,7 +240,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
               text: "lbl_add_drive".tr,
               margin: EdgeInsets.only(top: 10.v, bottom: 11.v),
               buttonStyle: CustomButtonStyles.outlineBlack,
-              buttonTextStyle: CustomTextStyles.bodyMediumPrimary,
+              buttonTextStyle: CustomTextStyles.bodyMediumWhiteA70001,
               onPressed: () {
                 onTapAddDrive(context);
               })
@@ -265,7 +253,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
   }
 
   /// Navigates to the settingsAddmanualtrippScreen when the action is triggered.
-  onclicknavigatetoDetailedTab(BuildContext context) {
+  onTapTxtDetailed(BuildContext context) {
     NavigatorService.pushNamed(
       AppRoutes.settingsAddmanualtrippScreen,
     );
@@ -274,7 +262,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
   /// Displays a date picker dialog to update the selected date
   ///
   /// This function returns a `Future` that completes with `void`.
-  Future<void> openDatePickerDialogStart(BuildContext context) async {
+  Future<void> onTapTxtWedJanuaryThirtyOne(BuildContext context) async {
     var initialState =
         BlocProvider.of<SettingsAddmanualtrippresversBloc>(context).state;
     DateTime? dateTime = await showDatePicker(
@@ -288,17 +276,17 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
   /// Displays a time picker dialog to update the selected time
   ///
   /// This function returns a `Future` that completes with `void`.
-  Future<void> openTimePickerDialogStart(BuildContext context) async {
+  Future<void> onTapTxtTime(BuildContext context) async {
     var initialState =
         BlocProvider.of<SettingsAddmanualtrippresversBloc>(context).state;
     TimeOfDay? time =
         await showTimePicker(context: context, initialTime: TimeOfDay.now());
   }
 
-  /// Navigates to the homeContainerScreen when the action is triggered.
+  /// Navigates to the homeScreen when the action is triggered.
   onTapAddDrive(BuildContext context) {
     NavigatorService.pushNamed(
-      AppRoutes.homeContainerScreen,
+      AppRoutes.homeScreen,
     );
   }
 }

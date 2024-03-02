@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
-import 'package:uclean/presentation/settings_addmanualtripp_screen/models/settings_addmanualtripp_model.dart';
+import '../models/settingsaddmanualtripp_item_model.dart';
+import 'package:ucleankim/presentation/settings_addmanualtripp_screen/models/settings_addmanualtripp_model.dart';
 part 'settings_addmanualtripp_event.dart';
 part 'settings_addmanualtripp_state.dart';
 
@@ -13,12 +14,20 @@ class SettingsAddmanualtrippBloc
     on<SettingsAddmanualtrippInitialEvent>(_onInitialize);
   }
 
+  List<SettingsaddmanualtrippItemModel> fillSettingsaddmanualtrippItemList() {
+    return List.generate(1, (index) => SettingsaddmanualtrippItemModel());
+  }
+
   _onInitialize(
     SettingsAddmanualtrippInitialEvent event,
     Emitter<SettingsAddmanualtrippState> emit,
   ) async {
+    emit(
+        state.copyWith(wedJanuaryThirtyOneController: TextEditingController()));
     emit(state.copyWith(
-        startLocationController: TextEditingController(),
-        stopLocationController: TextEditingController()));
+        settingsAddmanualtrippModelObj: state.settingsAddmanualtrippModelObj
+            ?.copyWith(
+                settingsaddmanualtrippItemList:
+                    fillSettingsaddmanualtrippItemList())));
   }
 }

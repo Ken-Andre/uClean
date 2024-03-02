@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
-import '../models/learnsection_item_model.dart';
-import 'package:uclean/presentation/learn_page/models/learn_model.dart';
+import '../models/learncontainer_item_model.dart';
+import 'package:ucleankim/presentation/learn_page/models/learn_model.dart';
 part 'learn_event.dart';
 part 'learn_state.dart';
 
@@ -18,23 +18,23 @@ class LearnBloc extends Bloc<LearnEvent, LearnState> {
   ) async {
     emit(state.copyWith(
         learnModelObj: state.learnModelObj
-            ?.copyWith(learnsectionItemList: fillLearnsectionItemList())));
+            ?.copyWith(learncontainerItemList: fillLearncontainerItemList())));
   }
 
-  List<LearnsectionItemModel> fillLearnsectionItemList() {
+  List<LearncontainerItemModel> fillLearncontainerItemList() {
     return [
-      LearnsectionItemModel(
-          skyImage: ImageConstant.imgAnArtisticAnd,
-          skyText: "The beauty of the sky"),
-      LearnsectionItemModel(
-          skyImage: ImageConstant.imgThePhotoHighl,
-          skyText: "Learn about CO2 footprint impact"),
-      LearnsectionItemModel(
-          skyImage: ImageConstant.imgThePhotoHighl113x353,
-          skyText: "Understanding the Environmental Impact of Travel"),
-      LearnsectionItemModel(
-          skyImage: ImageConstant.imgThePhotoHighl1,
-          skyText: "Reducing Your Carbon Footprint in Daily Travel")
+      LearncontainerItemModel(
+          image: ImageConstant.imgAnArtisticAnd,
+          theBeautyOfThe: "The beauty of the sky"),
+      LearncontainerItemModel(
+          image: ImageConstant.imgThePhotoHighl,
+          theBeautyOfThe: "Learn about CO2 footprint impact"),
+      LearncontainerItemModel(
+          image: ImageConstant.imgThePhotoHighl113x353,
+          theBeautyOfThe: "Understanding the Environmental Impact of Travel"),
+      LearncontainerItemModel(
+          image: ImageConstant.imgThePhotoHighl1,
+          theBeautyOfThe: "Reducing Your Carbon Footprint in Daily Travel")
     ];
   }
 }

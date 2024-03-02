@@ -2,21 +2,22 @@
 
 import 'package:equatable/equatable.dart';
 import '../../../core/app_export.dart';
-import 'learnsection_item_model.dart';
+import 'learncontainer_item_model.dart';
 
 /// This class defines the variables used in the [learn_page],
 /// and is typically used to hold data that is passed between different parts of the application.
 class LearnModel extends Equatable {
-  LearnModel({this.learnsectionItemList = const []}) {}
+  LearnModel({this.learncontainerItemList = const []}) {}
 
-  List<LearnsectionItemModel> learnsectionItemList;
+  List<LearncontainerItemModel> learncontainerItemList;
 
-  LearnModel copyWith({List<LearnsectionItemModel>? learnsectionItemList}) {
+  LearnModel copyWith({List<LearncontainerItemModel>? learncontainerItemList}) {
     return LearnModel(
-      learnsectionItemList: learnsectionItemList ?? this.learnsectionItemList,
+      learncontainerItemList:
+          learncontainerItemList ?? this.learncontainerItemList,
     );
   }
 
   @override
-  List<Object?> get props => [learnsectionItemList];
+  List<Object?> get props => [learncontainerItemList];
 }

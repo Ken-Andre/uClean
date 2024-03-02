@@ -12,6 +12,7 @@ class SplashState extends Equatable {
   List<Object?> get props => [
         splashModelObj,
       ];
+
   SplashState copyWith({SplashModel? splashModelObj}) {
     return SplashState(
       splashModelObj: splashModelObj ?? this.splashModelObj,

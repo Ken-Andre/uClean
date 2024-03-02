@@ -7,7 +7,10 @@ part of 'settings_addmanualtrippresvers_bloc.dart';
 ///
 /// Events must be immutable and implement the [Equatable] interface.
 @immutable
-abstract class SettingsAddmanualtrippresversEvent extends Equatable {}
+abstract class SettingsAddmanualtrippresversEvent extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
 /// Event that is dispatched when the SettingsAddmanualtrippresvers widget is first created.
 class SettingsAddmanualtrippresversInitialEvent

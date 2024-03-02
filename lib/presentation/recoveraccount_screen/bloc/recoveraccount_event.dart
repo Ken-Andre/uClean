@@ -7,7 +7,10 @@ part of 'recoveraccount_bloc.dart';
 ///
 /// Events must be immutable and implement the [Equatable] interface.
 @immutable
-abstract class RecoveraccountEvent extends Equatable {}
+abstract class RecoveraccountEvent extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
 /// Event that is dispatched when the Recoveraccount widget is first created.
 class RecoveraccountInitialEvent extends RecoveraccountEvent {

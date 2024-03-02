@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
-import 'package:uclean/presentation/recoveraccounttwo_screen/models/recoveraccounttwo_model.dart';
+import 'package:ucleankim/presentation/recoveraccounttwo_screen/models/recoveraccounttwo_model.dart';
 part 'recoveraccounttwo_event.dart';
 part 'recoveraccounttwo_state.dart';
 
@@ -19,18 +19,14 @@ class RecoveraccounttwoBloc
     ChangePasswordVisibilityEvent event,
     Emitter<RecoveraccounttwoState> emit,
   ) {
-    emit(state.copyWith(
-      isShowPassword: event.value,
-    ));
+    emit(state.copyWith(isShowPassword: event.value));
   }
 
   _changePasswordVisibility1(
     ChangePasswordVisibilityEvent1 event,
     Emitter<RecoveraccounttwoState> emit,
   ) {
-    emit(state.copyWith(
-      isShowPassword1: event.value,
-    ));
+    emit(state.copyWith(isShowPassword1: event.value));
   }
 
   _onInitialize(
@@ -38,10 +34,9 @@ class RecoveraccounttwoBloc
     Emitter<RecoveraccounttwoState> emit,
   ) async {
     emit(state.copyWith(
-      passwordController: TextEditingController(),
-      confirmpasswordController: TextEditingController(),
-      isShowPassword: true,
-      isShowPassword1: true,
-    ));
+        passwordController: TextEditingController(),
+        confirmpasswordController: TextEditingController(),
+        isShowPassword: true,
+        isShowPassword1: true));
   }
 }

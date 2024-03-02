@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uclean/core/app_export.dart';
+import 'package:ucleankim/core/app_export.dart';
 
 // ignore: must_be_immutable
 class AppbarLeadingImage extends StatelessWidget {

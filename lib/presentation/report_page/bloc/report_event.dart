@@ -7,7 +7,10 @@ part of 'report_bloc.dart';
 ///
 /// Events must be immutable and implement the [Equatable] interface.
 @immutable
-abstract class ReportEvent extends Equatable {}
+abstract class ReportEvent extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
 /// Event that is dispatched when the Report widget is first created.
 class ReportInitialEvent extends ReportEvent {

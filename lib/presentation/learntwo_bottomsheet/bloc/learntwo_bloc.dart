@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
-import 'package:uclean/presentation/learntwo_bottomsheet/models/learntwo_model.dart';
+import 'package:ucleankim/presentation/learntwo_bottomsheet/models/learntwo_model.dart';
 part 'learntwo_event.dart';
 part 'learntwo_state.dart';
 

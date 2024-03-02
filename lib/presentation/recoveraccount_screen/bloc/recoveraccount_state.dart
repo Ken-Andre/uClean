@@ -18,6 +18,7 @@ class RecoveraccountState extends Equatable {
         otpController,
         recoveraccountModelObj,
       ];
+
   RecoveraccountState copyWith({
     TextEditingController? otpController,
     RecoveraccountModel? recoveraccountModelObj,

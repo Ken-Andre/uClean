@@ -4,29 +4,26 @@ part of 'createaccount_bloc.dart';
 
 /// Represents the state of Createaccount in the application.
 class CreateaccountState extends Equatable {
+  final String? authToken;
+
   CreateaccountState({
-    this.nameEditTextController,
-    this.surnameEditTextController,
-    this.surnameEditText2Controller,
-    this.mailValueEditTextController,
-    this.passwordEditTextController,
-    this.confirmPasswordEditTextController,
+    this.userNameController,
+    this.mailInputController,
+    this.passwordController,
+    this.confirmpasswordController,
     this.isShowPassword = true,
     this.isShowPassword1 = true,
     this.createaccountModelObj,
+    this.authToken,
   });
 
-  TextEditingController? nameEditTextController;
+  TextEditingController? userNameController;
 
-  TextEditingController? surnameEditTextController;
+  TextEditingController? mailInputController;
 
-  TextEditingController? surnameEditText2Controller;
+  TextEditingController? passwordController;
 
-  TextEditingController? mailValueEditTextController;
-
-  TextEditingController? passwordEditTextController;
-
-  TextEditingController? confirmPasswordEditTextController;
+  TextEditingController? confirmpasswordController;
 
   CreateaccountModel? createaccountModelObj;
 
@@ -36,40 +33,32 @@ class CreateaccountState extends Equatable {
 
   @override
   List<Object?> get props => [
-        nameEditTextController,
-        surnameEditTextController,
-        surnameEditText2Controller,
-        mailValueEditTextController,
-        passwordEditTextController,
-        confirmPasswordEditTextController,
+        userNameController,
+        mailInputController,
+        passwordController,
+        confirmpasswordController,
         isShowPassword,
         isShowPassword1,
         createaccountModelObj,
+        authToken,
       ];
+
   CreateaccountState copyWith({
-    TextEditingController? nameEditTextController,
-    TextEditingController? surnameEditTextController,
-    TextEditingController? surnameEditText2Controller,
-    TextEditingController? mailValueEditTextController,
-    TextEditingController? passwordEditTextController,
-    TextEditingController? confirmPasswordEditTextController,
+    TextEditingController? userNameController,
+    TextEditingController? mailInputController,
+    TextEditingController? passwordController,
+    TextEditingController? confirmpasswordController,
     bool? isShowPassword,
     bool? isShowPassword1,
     CreateaccountModel? createaccountModelObj,
+    String? authToken,
   }) {
     return CreateaccountState(
-      nameEditTextController:
-          nameEditTextController ?? this.nameEditTextController,
-      surnameEditTextController:
-          surnameEditTextController ?? this.surnameEditTextController,
-      surnameEditText2Controller:
-          surnameEditText2Controller ?? this.surnameEditText2Controller,
-      mailValueEditTextController:
-          mailValueEditTextController ?? this.mailValueEditTextController,
-      passwordEditTextController:
-          passwordEditTextController ?? this.passwordEditTextController,
-      confirmPasswordEditTextController: confirmPasswordEditTextController ??
-          this.confirmPasswordEditTextController,
+      userNameController: userNameController ?? this.userNameController,
+      mailInputController: mailInputController ?? this.mailInputController,
+      passwordController: passwordController ?? this.passwordController,
+      confirmpasswordController:
+          confirmpasswordController ?? this.confirmpasswordController,
       isShowPassword: isShowPassword ?? this.isShowPassword,
       isShowPassword1: isShowPassword1 ?? this.isShowPassword1,
       createaccountModelObj:

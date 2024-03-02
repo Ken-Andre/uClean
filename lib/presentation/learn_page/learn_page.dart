@@ -1,10 +1,10 @@
-import '../learn_page/widgets/learnsection_item_widget.dart';
-import 'bloc/learn_bloc.dart';
+import 'widgets/learncontainer_item_widget.dart';
+import 'models/learncontainer_item_model.dart';
 import 'models/learn_model.dart';
-import 'models/learnsection_item_model.dart';
 import 'package:flutter/material.dart';
-import 'package:uclean/core/app_export.dart';
-import 'package:uclean/presentation/learntwo_bottomsheet/learntwo_bottomsheet.dart';
+import 'package:ucleankim/core/app_export.dart';
+import 'bloc/learn_bloc.dart';
+import 'package:ucleankim/presentation/learntwo_bottomsheet/learntwo_bottomsheet.dart';
 
 class LearnPage extends StatelessWidget {
   const LearnPage({Key? key}) : super(key: key);
@@ -22,48 +22,48 @@ class LearnPage extends StatelessWidget {
         child: Scaffold(
             body: Container(
                 width: double.maxFinite,
-                decoration: AppDecoration.fillPrimary,
-                child: SingleChildScrollView(
-                    child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 3.v),
-                        child: Column(children: [
-                          SizedBox(height: 53.v),
-                          Divider(),
-                          SizedBox(height: 7.v),
-                          Align(
-                              alignment: Alignment.centerLeft,
-                              child: Padding(
-                                  padding: EdgeInsets.only(left: 20.h),
-                                  child: Text("lbl_articles".tr,
-                                      style: theme.textTheme.titleLarge))),
-                          SizedBox(height: 6.v),
-                          Divider(),
-                          SizedBox(height: 13.v),
-                          _buildLearnSection(context)
-                        ]))))));
+                decoration: AppDecoration.fillWhiteA,
+                child: Column(children: [
+                  SizedBox(height: 65.v),
+                  _buildTopNavApp(context),
+                  SizedBox(height: 14.v),
+                  _buildLearnContainer(context)
+                ]))));
   }
 
   /// Section Widget
-  Widget _buildLearnSection(BuildContext context) {
+  Widget _buildTopNavApp(BuildContext context) {
+    return Container(
+        width: double.maxFinite,
+        padding: EdgeInsets.symmetric(horizontal: 20.h),
+        decoration: AppDecoration.outlineWhiteA,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          SizedBox(height: 6.v),
+          Text("lbl_articles".tr, style: theme.textTheme.titleLarge)
+        ]));
+  }
+
+  /// Section Widget
+  Widget _buildLearnContainer(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(left: 25.h, right: 15.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.h),
         child: BlocSelector<LearnBloc, LearnState, LearnModel?>(
             selector: (state) => state.learnModelObj,
             builder: (context, learnModelObj) {
               return ListView.separated(
-                  physics: BouncingScrollPhysics(),
+                  physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   separatorBuilder: (context, index) {
                     return SizedBox(height: 6.v);
                   },
-                  itemCount: learnModelObj?.learnsectionItemList.length ?? 0,
+                  itemCount: learnModelObj?.learncontainerItemList.length ?? 0,
                   itemBuilder: (context, index) {
-                    LearnsectionItemModel model =
-                        learnModelObj?.learnsectionItemList[index] ??
-                            LearnsectionItemModel();
-                    return LearnsectionItemWidget(model,
-                        navigatetoLearnContent: () {
-                      navigatetoLearnContent(context);
+                    LearncontainerItemModel model =
+                        learnModelObj?.learncontainerItemList[index] ??
+                            LearncontainerItemModel();
+                    return LearncontainerItemWidget(model,
+                        onTapTheBeautyOfThe: () {
+                      onTapTheBeautyOfThe(context);
                     });
                   });
             }));
@@ -75,10 +75,11 @@ class LearnPage extends StatelessWidget {
   /// The bottom sheet is built using the [LearntwoBottomsheet]
   /// class and the [builder] method of the bottom sheet is passed the
   /// [BuildContext] object.
-  navigatetoLearnContent(BuildContext context) {
+  onTapTheBeautyOfThe(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (_) => LearntwoBottomsheet.builder(context),
+        context: NavigatorService.navigatorKey.currentContext!,
+        builder: (_) => LearntwoBottomsheet.builder(
+            NavigatorService.navigatorKey.currentContext!),
         isScrollControlled: true);
   }
 }

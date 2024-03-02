@@ -1,4 +1,5 @@
-import 'dart:ui';
+// import 'dart:ui';
+import 'dart:ui_web';
 import 'package:flutter/material.dart';
 import '../../core/app_export.dart';
 
@@ -44,7 +45,7 @@ class ThemeHelper {
       visualDensity: VisualDensity.standard,
       colorScheme: colorScheme,
       textTheme: TextThemes.textTheme(colorScheme),
-      scaffoldBackgroundColor: colorScheme.primary,
+      scaffoldBackgroundColor: appTheme.whiteA70001,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: appTheme.cyan800,
@@ -58,10 +59,28 @@ class ThemeHelper {
           padding: EdgeInsets.zero,
         ),
       ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          side: BorderSide(
+            color: appTheme.gray400,
+            width: 1.h,
+          ),
+          shape: RoundedRectangleBorder(),
+          visualDensity: const VisualDensity(
+            vertical: -4,
+            horizontal: -4,
+          ),
+          padding: EdgeInsets.zero,
+        ),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: appTheme.blueA400,
+      ),
       dividerTheme: DividerThemeData(
         thickness: 1,
         space: 1,
-        color: appTheme.black900,
+        color: appTheme.blueGray100,
       ),
     );
   }
@@ -79,55 +98,49 @@ class TextThemes {
         bodyLarge: TextStyle(
           color: appTheme.black900,
           fontSize: 16.fSize,
-          fontFamily: 'Poppins',
+          fontFamily: FontsConstant.Poppins,
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: TextStyle(
-          color: appTheme.black900,
+          color: Color(0XFF000000),
           fontSize: 14.fSize,
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.w300,
+          fontFamily: FontsConstant.Poppins,
+          fontWeight: FontWeight.w400,
         ),
         bodySmall: TextStyle(
           color: appTheme.black900,
           fontSize: 12.fSize,
-          fontFamily: 'Poppins',
+          fontFamily: FontsConstant.Poppins,
           fontWeight: FontWeight.w400,
         ),
         headlineSmall: TextStyle(
           color: appTheme.black900,
           fontSize: 24.fSize,
-          fontFamily: 'Inter',
+          fontFamily: FontsConstant.Inter,
           fontWeight: FontWeight.w600,
         ),
         labelLarge: TextStyle(
           color: appTheme.black900,
           fontSize: 13.fSize,
-          fontFamily: 'Inter',
-          fontWeight: FontWeight.w700,
-        ),
-        labelMedium: TextStyle(
-          color: appTheme.black900,
-          fontSize: 10.fSize,
-          fontFamily: 'Inter',
+          fontFamily: FontsConstant.Inter,
           fontWeight: FontWeight.w700,
         ),
         titleLarge: TextStyle(
           color: appTheme.black900,
           fontSize: 20.fSize,
-          fontFamily: 'Poppins',
+          fontFamily: FontsConstant.Poppins,
           fontWeight: FontWeight.w400,
         ),
         titleMedium: TextStyle(
           color: appTheme.black900,
           fontSize: 16.fSize,
-          fontFamily: 'Inter',
+          fontFamily: FontsConstant.Montserrat,
           fontWeight: FontWeight.w500,
         ),
         titleSmall: TextStyle(
           color: appTheme.black900,
           fontSize: 14.fSize,
-          fontFamily: 'Poppins',
+          fontFamily: FontsConstant.Poppins,
           fontWeight: FontWeight.w500,
         ),
       );
@@ -137,19 +150,19 @@ class TextThemes {
 class ColorSchemes {
   static final primaryColorScheme = ColorScheme.light(
     // Primary colors
-    primary: Color(0XFFFFFFFF),
-    primaryContainer: Color(0XFF3C50E0),
+    primary: Color(0XFFF4F4F4),
+    primaryContainer: Color(0XAB606060),
     secondaryContainer: Color(0XFF200E32),
 
     // Error colors
-    errorContainer: Color(0XFF00D1FF),
-    onError: Color(0XB2FFFFFF),
+    errorContainer: Color(0XFFFF860B),
+    onError: Color(0X97FFE5CB),
     onErrorContainer: Color(0XA2212121),
 
     // On colors(text colors)
-    onPrimary: Color(0XFF333333),
+    onPrimary: Color(0XFF162E38),
     onPrimaryContainer: Color(0XFF0C0C0C),
-    onSecondaryContainer: Color(0XFF00A4FD),
+    onSecondaryContainer: Color(0XA200A4FD),
   );
 }
 
@@ -160,6 +173,7 @@ class PrimaryColors {
 
   // Blue
   Color get blue300 => Color(0XFF63ACD4);
+  Color get blueA400 => Color(0XFF3472FF);
 
   // BlueGray
   Color get blueGray100 => Color(0XFFD9D9D9);
@@ -169,30 +183,33 @@ class PrimaryColors {
 
   // Cyan
   Color get cyan5090 => Color(0X90CCFDFF);
-  Color get cyan600 => Color(0XFF019BC9);
   Color get cyan800 => Color(0XFF1D858A);
-  Color get cyan900 => Color(0XFF00466B);
+  Color get cyan900 => Color(0XFF003366);
 
   // DeepOrange
   Color get deepOrange10090 => Color(0X90FFD8BB);
+  Color get deepOrange200 => Color(0XFFFFBB89);
   Color get deepOrange20090 => Color(0X90FFBA89);
   Color get deepOrange300 => Color(0XFFFF7968);
 
   // Gray
-  Color get gray100 => Color(0XFFF3F3F3);
-  Color get gray10001 => Color(0XFFF4F4F4);
-  Color get gray10002 => Color(0XFFF6F7F8);
-  Color get gray200 => Color(0XFFF0F0F0);
-  Color get gray50 => Color(0XFFF9F9F9);
-  Color get gray500 => Color(0XFFA5A5A5);
-  Color get gray5001 => Color(0XFFFCFCFC);
+  Color get gray100 => Color(0XFFF6F7F8);
+  Color get gray10001 => Color(0XFFF7F7F7);
+  Color get gray10002 => Color(0XFFF5F5F5);
+  Color get gray400 => Color(0XFFB8B8B8);
+  Color get gray40001 => Color(0XFFBCBCBC);
+  Color get gray500 => Color(0XFFAAAAAA);
+  Color get gray50001 => Color(0XFFA5A5A5);
+  Color get gray5059 => Color(0X59F9F9F9);
   Color get gray600 => Color(0XFF808080);
+  Color get gray900 => Color(0XFF1C1B1F);
+  Color get gray900A2 => Color(0XA2212121);
+
+  // Grayf
+  Color get gray5003f => Color(0X3F9A9A9A);
 
   // LightGreen
   Color get lightGreen200 => Color(0XFFD6E4AA);
-
-  // Lime
-  Color get limeA40075 => Color(0X75CBFF00);
 
   // Orange
   Color get orange200 => Color(0XFFFFBE7E);
@@ -201,18 +218,17 @@ class PrimaryColors {
 
   // Red
   Color get red300 => Color(0XFFCD7A91);
-  Color get red50 => Color(0XFFFAF0F0);
 
   // Teal
   Color get tealA40090 => Color(0X9038FF93);
 
   // White
   Color get whiteA700 => Color(0XFFFEFEFE);
+  Color get whiteA70001 => Color(0XFFFFFFFF);
 
   // Yellow
   Color get yellow10097 => Color(0X97FFE5CB);
   Color get yellow400 => Color(0XFFFBE468);
-  Color get yellowA20075 => Color(0X75EAFF00);
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();

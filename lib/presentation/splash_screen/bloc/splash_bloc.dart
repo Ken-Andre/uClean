@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
-import 'package:uclean/presentation/splash_screen/models/splash_model.dart';
+import 'package:ucleankim/presentation/splash_screen/models/splash_model.dart';
 part 'splash_event.dart';
 part 'splash_state.dart';
 
@@ -17,7 +17,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   ) async {
     Future.delayed(const Duration(milliseconds: 3000), () {
       NavigatorService.popAndPushNamed(
-        AppRoutes.loginScreen,
+        AppRoutes.onboardingScreen,
       );
     });
   }

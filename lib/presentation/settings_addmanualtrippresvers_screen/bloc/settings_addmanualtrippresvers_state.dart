@@ -5,25 +5,26 @@ part of 'settings_addmanualtrippresvers_bloc.dart';
 /// Represents the state of SettingsAddmanualtrippresvers in the application.
 class SettingsAddmanualtrippresversState extends Equatable {
   SettingsAddmanualtrippresversState({
-    this.kmvalueController,
+    this.kmController,
     this.settingsAddmanualtrippresversModelObj,
   });
 
-  TextEditingController? kmvalueController;
+  TextEditingController? kmController;
 
   SettingsAddmanualtrippresversModel? settingsAddmanualtrippresversModelObj;
 
   @override
   List<Object?> get props => [
-        kmvalueController,
+        kmController,
         settingsAddmanualtrippresversModelObj,
       ];
+
   SettingsAddmanualtrippresversState copyWith({
-    TextEditingController? kmvalueController,
+    TextEditingController? kmController,
     SettingsAddmanualtrippresversModel? settingsAddmanualtrippresversModelObj,
   }) {
     return SettingsAddmanualtrippresversState(
-      kmvalueController: kmvalueController ?? this.kmvalueController,
+      kmController: kmController ?? this.kmController,
       settingsAddmanualtrippresversModelObj:
           settingsAddmanualtrippresversModelObj ??
               this.settingsAddmanualtrippresversModelObj,
