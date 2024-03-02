@@ -81,11 +81,11 @@ jobs:
       #     fi
 
       # Optional: Add steps to build and run the app on Chrome
-      - name: Build for web
-        run: flutter build web
+      # - name: Build for web
+      #   run: flutter build web
 
-      - name: Run app on Chrome
-        run: flutter run -d Chrome
+      # - name: Run app on Chrome
+      #   run: flutter run -d Chrome
 
 
 
