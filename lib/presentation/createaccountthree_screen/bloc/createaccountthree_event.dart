@@ -7,7 +7,10 @@ part of 'createaccountthree_bloc.dart';
 ///
 /// Events must be immutable and implement the [Equatable] interface.
 @immutable
-abstract class CreateaccountthreeEvent extends Equatable {}
+abstract class CreateaccountthreeEvent extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
 /// Event that is dispatched when the Createaccountthree widget is first created.
 class CreateaccountthreeInitialEvent extends CreateaccountthreeEvent {

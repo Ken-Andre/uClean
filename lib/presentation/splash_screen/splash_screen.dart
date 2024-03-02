@@ -1,7 +1,7 @@
-import 'bloc/splash_bloc.dart';
 import 'models/splash_model.dart';
 import 'package:flutter/material.dart';
-import 'package:uclean/core/app_export.dart';
+import 'package:ucleankim/core/app_export.dart';
+import 'bloc/splash_bloc.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -19,43 +19,44 @@ class SplashScreen extends StatelessWidget {
     return BlocBuilder<SplashBloc, SplashState>(builder: (context, state) {
       return SafeArea(
           child: Scaffold(
-              body: Container(
-                  width: double.maxFinite,
-                  margin: EdgeInsets.only(top: 200.v),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(height: 5.v),
-                        _buildSplashGradient(context)
-                      ]))));
+              body: SizedBox(
+                  width: double.maxFinite, child: _buildGradient(context))));
     });
   }
 
   /// Section Widget
-  Widget _buildSplashGradient(BuildContext context) {
+  Widget _buildGradient(BuildContext context) {
     return SizedBox(
         height: 374.v,
-        width: 392.h,
-        child: Stack(alignment: Alignment.topRight, children: [
-          CustomImageView(height: 271.v, alignment: Alignment.topLeft),
+        width: double.maxFinite,
+        child: Stack(alignment: Alignment.centerRight, children: [
+          Opacity(
+              opacity: 0.6,
+              child: CustomImageView(
+                  imagePath: ImageConstant.imgPinkGrandient,
+                  height: 271.v,
+                  width: 253.h,
+                  alignment: Alignment.topLeft)),
           Opacity(
               opacity: 0.6,
               child: CustomImageView(
                   imagePath: ImageConstant.imgBlueGrandient,
                   height: 271.v,
-                  width: 234.h,
-                  alignment: Alignment.topRight)),
-          CustomImageView(
-              height: 271.v,
-              width: 27.h,
-              alignment: Alignment.bottomLeft,
-              margin: EdgeInsets.only()),
+                  width: 253.h,
+                  alignment: Alignment.centerRight)),
+          Opacity(
+              opacity: 0.3,
+              child: CustomImageView(
+                  imagePath: ImageConstant.imgYellowGrandient,
+                  height: 271.v,
+                  width: 253.h,
+                  alignment: Alignment.bottomLeft)),
           CustomImageView(
               imagePath: ImageConstant.imgLogo,
               height: 104.v,
               width: 259.h,
-              alignment: Alignment.centerRight,
-              margin: EdgeInsets.only(right: 54.h))
+              alignment: Alignment.centerLeft,
+              margin: EdgeInsets.only(left: 61.h))
         ]));
   }
 }

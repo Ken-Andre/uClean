@@ -12,6 +12,7 @@ class NotifspanelState extends Equatable {
   List<Object?> get props => [
         notifspanelModelObj,
       ];
+
   NotifspanelState copyWith({NotifspanelModel? notifspanelModelObj}) {
     return NotifspanelState(
       notifspanelModelObj: notifspanelModelObj ?? this.notifspanelModelObj,

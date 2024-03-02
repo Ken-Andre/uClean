@@ -50,7 +50,7 @@ class CustomIconButton extends StatelessWidget {
             padding: padding ?? EdgeInsets.zero,
             decoration: decoration ??
                 BoxDecoration(
-                  color: appTheme.gray10002,
+                  color: appTheme.gray10001,
                   borderRadius: BorderRadius.circular(3.h),
                   boxShadow: [
                     BoxShadow(
@@ -86,8 +86,5 @@ extension IconButtonStyleHelper on CustomIconButton {
             ),
           ),
         ],
-      );
-  static BoxDecoration get radiusTL3 => BoxDecoration(
-        borderRadius: BorderRadius.circular(3.h),
       );
 }

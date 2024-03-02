@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             builder: (context, state) {
               return MaterialApp(
                 theme: theme,
-                title: 'uclean',
+                title: 'ucleankim',
                 navigatorKey: NavigatorService.navigatorKey,
                 debugShowCheckedModeBanner: false,
                 localizationsDelegates: [

@@ -7,7 +7,10 @@ part of 'settings_addmanualtripp_bloc.dart';
 ///
 /// Events must be immutable and implement the [Equatable] interface.
 @immutable
-abstract class SettingsAddmanualtrippEvent extends Equatable {}
+abstract class SettingsAddmanualtrippEvent extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
 /// Event that is dispatched when the SettingsAddmanualtripp widget is first created.
 class SettingsAddmanualtrippInitialEvent extends SettingsAddmanualtrippEvent {

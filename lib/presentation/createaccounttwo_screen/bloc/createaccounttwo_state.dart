@@ -18,6 +18,7 @@ class CreateaccounttwoState extends Equatable {
         otpController,
         createaccounttwoModelObj,
       ];
+
   CreateaccounttwoState copyWith({
     TextEditingController? otpController,
     CreateaccounttwoModel? createaccounttwoModelObj,

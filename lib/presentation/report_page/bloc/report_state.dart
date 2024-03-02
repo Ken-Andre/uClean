@@ -12,6 +12,7 @@ class ReportState extends Equatable {
   List<Object?> get props => [
         reportModelObj,
       ];
+
   ReportState copyWith({ReportModel? reportModelObj}) {
     return ReportState(
       reportModelObj: reportModelObj ?? this.reportModelObj,

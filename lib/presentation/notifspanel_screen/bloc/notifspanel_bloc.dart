@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
-import 'package:uclean/presentation/notifspanel_screen/models/notifspanel_model.dart';
+import 'package:ucleankim/presentation/notifspanel_screen/models/notifspanel_model.dart';
 part 'notifspanel_event.dart';
 part 'notifspanel_state.dart';
 

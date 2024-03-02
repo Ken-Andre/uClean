@@ -30,6 +30,7 @@ class RecoveraccounttwoState extends Equatable {
         isShowPassword1,
         recoveraccounttwoModelObj,
       ];
+
   RecoveraccounttwoState copyWith({
     TextEditingController? passwordController,
     TextEditingController? confirmpasswordController,

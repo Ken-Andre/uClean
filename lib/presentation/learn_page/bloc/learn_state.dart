@@ -12,6 +12,7 @@ class LearnState extends Equatable {
   List<Object?> get props => [
         learnModelObj,
       ];
+
   LearnState copyWith({LearnModel? learnModelObj}) {
     return LearnState(
       learnModelObj: learnModelObj ?? this.learnModelObj,

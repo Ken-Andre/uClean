@@ -12,6 +12,7 @@ class AppNavigationState extends Equatable {
   List<Object?> get props => [
         appNavigationModelObj,
       ];
+
   AppNavigationState copyWith({AppNavigationModel? appNavigationModelObj}) {
     return AppNavigationState(
       appNavigationModelObj:

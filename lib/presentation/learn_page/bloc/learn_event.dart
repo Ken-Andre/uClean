@@ -7,7 +7,10 @@ part of 'learn_bloc.dart';
 ///
 /// Events must be immutable and implement the [Equatable] interface.
 @immutable
-abstract class LearnEvent extends Equatable {}
+abstract class LearnEvent extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
 /// Event that is dispatched when the Learn widget is first created.
 class LearnInitialEvent extends LearnEvent {

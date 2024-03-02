@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
-import 'package:uclean/presentation/settings_addmanualtrippresvers_screen/models/settings_addmanualtrippresvers_model.dart';
+import '../models/settingsaddmanualtrippresvers_item_model.dart';
+import 'package:ucleankim/presentation/settings_addmanualtrippresvers_screen/models/settings_addmanualtrippresvers_model.dart';
 part 'settings_addmanualtrippresvers_event.dart';
 part 'settings_addmanualtrippresvers_state.dart';
 
@@ -14,10 +15,21 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
     on<SettingsAddmanualtrippresversInitialEvent>(_onInitialize);
   }
 
+  List<SettingsaddmanualtrippresversItemModel>
+      fillSettingsaddmanualtrippresversItemList() {
+    return List.generate(
+        1, (index) => SettingsaddmanualtrippresversItemModel());
+  }
+
   _onInitialize(
     SettingsAddmanualtrippresversInitialEvent event,
     Emitter<SettingsAddmanualtrippresversState> emit,
   ) async {
-    emit(state.copyWith(kmvalueController: TextEditingController()));
+    emit(state.copyWith(kmController: TextEditingController()));
+    emit(state.copyWith(
+        settingsAddmanualtrippresversModelObj:
+            state.settingsAddmanualtrippresversModelObj?.copyWith(
+                settingsaddmanualtrippresversItemList:
+                    fillSettingsaddmanualtrippresversItemList())));
   }
 }

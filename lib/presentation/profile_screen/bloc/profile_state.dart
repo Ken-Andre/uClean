@@ -12,6 +12,7 @@ class ProfileState extends Equatable {
   List<Object?> get props => [
         profileModelObj,
       ];
+
   ProfileState copyWith({ProfileModel? profileModelObj}) {
     return ProfileState(
       profileModelObj: profileModelObj ?? this.profileModelObj,

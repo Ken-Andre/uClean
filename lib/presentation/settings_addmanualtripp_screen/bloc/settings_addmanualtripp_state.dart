@@ -5,33 +5,27 @@ part of 'settings_addmanualtripp_bloc.dart';
 /// Represents the state of SettingsAddmanualtripp in the application.
 class SettingsAddmanualtrippState extends Equatable {
   SettingsAddmanualtrippState({
-    this.startLocationController,
-    this.stopLocationController,
+    this.wedJanuaryThirtyOneController,
     this.settingsAddmanualtrippModelObj,
   });
 
-  TextEditingController? startLocationController;
-
-  TextEditingController? stopLocationController;
+  TextEditingController? wedJanuaryThirtyOneController;
 
   SettingsAddmanualtrippModel? settingsAddmanualtrippModelObj;
 
   @override
   List<Object?> get props => [
-        startLocationController,
-        stopLocationController,
+        wedJanuaryThirtyOneController,
         settingsAddmanualtrippModelObj,
       ];
+
   SettingsAddmanualtrippState copyWith({
-    TextEditingController? startLocationController,
-    TextEditingController? stopLocationController,
+    TextEditingController? wedJanuaryThirtyOneController,
     SettingsAddmanualtrippModel? settingsAddmanualtrippModelObj,
   }) {
     return SettingsAddmanualtrippState(
-      startLocationController:
-          startLocationController ?? this.startLocationController,
-      stopLocationController:
-          stopLocationController ?? this.stopLocationController,
+      wedJanuaryThirtyOneController:
+          wedJanuaryThirtyOneController ?? this.wedJanuaryThirtyOneController,
       settingsAddmanualtrippModelObj:
           settingsAddmanualtrippModelObj ?? this.settingsAddmanualtrippModelObj,
     );

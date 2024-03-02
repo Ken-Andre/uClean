@@ -1,7 +1,7 @@
-import 'bloc/app_navigation_bloc.dart';
 import 'models/app_navigation_model.dart';
 import 'package:flutter/material.dart';
-import 'package:uclean/core/app_export.dart';
+import 'package:ucleankim/core/app_export.dart';
+import 'bloc/app_navigation_bloc.dart';
 
 class AppNavigationScreen extends StatelessWidget {
   const AppNavigationScreen({Key? key})
@@ -83,9 +83,15 @@ class AppNavigationScreen extends StatelessWidget {
                             ),
                             _buildScreenTitle(
                               context,
-                              screenTitle: "SettingsAutoTrack".tr,
+                              screenTitle: "Settings Auto-Track".tr,
                               onTapScreenTitle: () => onTapScreenTitle(
-                                  AppRoutes.settingsautotrackScreen),
+                                  AppRoutes.settingsAutoTrackScreen),
+                            ),
+                            _buildScreenTitle(
+                              context,
+                              screenTitle: "Settings ContactUs".tr,
+                              onTapScreenTitle: () => onTapScreenTitle(
+                                  AppRoutes.settingsContactusScreen),
                             ),
                             _buildScreenTitle(
                               context,
@@ -95,15 +101,15 @@ class AppNavigationScreen extends StatelessWidget {
                             ),
                             _buildScreenTitle(
                               context,
-                              screenTitle: "Login Three".tr,
+                              screenTitle: "Home".tr,
                               onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.loginThreeScreen),
+                                  onTapScreenTitle(AppRoutes.homeScreen),
                             ),
                             _buildScreenTitle(
                               context,
-                              screenTitle: "Home - Container".tr,
+                              screenTitle: "Learn - Container".tr,
                               onTapScreenTitle: () => onTapScreenTitle(
-                                  AppRoutes.homeContainerScreen),
+                                  AppRoutes.learnContainerScreen),
                             ),
                             _buildScreenTitle(
                               context,
@@ -122,6 +128,12 @@ class AppNavigationScreen extends StatelessWidget {
                               screenTitle: "CreateAccountThree".tr,
                               onTapScreenTitle: () => onTapScreenTitle(
                                   AppRoutes.createaccountthreeScreen),
+                            ),
+                            _buildScreenTitle(
+                              context,
+                              screenTitle: "Onboarding".tr,
+                              onTapScreenTitle: () =>
+                                  onTapScreenTitle(AppRoutes.onboardingScreen),
                             ),
                           ],
                         ),
@@ -156,7 +168,7 @@ class AppNavigationScreen extends StatelessWidget {
                 style: TextStyle(
                   color: Color(0XFF000000),
                   fontSize: 20.fSize,
-                  fontFamily: 'Roboto',
+                  fontFamily: FontsConstant.Roboto,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -174,7 +186,7 @@ class AppNavigationScreen extends StatelessWidget {
                 style: TextStyle(
                   color: Color(0XFF888888),
                   fontSize: 16.fSize,
-                  fontFamily: 'Roboto',
+                  fontFamily: FontsConstant.Roboto,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -218,7 +230,7 @@ class AppNavigationScreen extends StatelessWidget {
                   style: TextStyle(
                     color: Color(0XFF000000),
                     fontSize: 20.fSize,
-                    fontFamily: 'Roboto',
+                    fontFamily: FontsConstant.Roboto,
                     fontWeight: FontWeight.w400,
                   ),
                 ),

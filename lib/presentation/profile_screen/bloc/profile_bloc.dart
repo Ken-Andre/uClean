@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
-import 'package:uclean/presentation/profile_screen/models/profile_model.dart';
+import 'package:ucleankim/presentation/profile_screen/models/profile_model.dart';
 part 'profile_event.dart';
 part 'profile_state.dart';
 

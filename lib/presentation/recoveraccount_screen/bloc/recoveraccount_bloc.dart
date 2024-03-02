@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
-import 'package:uclean/presentation/recoveraccount_screen/models/recoveraccount_model.dart';
+import 'package:ucleankim/presentation/recoveraccount_screen/models/recoveraccount_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 part 'recoveraccount_event.dart';
 part 'recoveraccount_state.dart';
