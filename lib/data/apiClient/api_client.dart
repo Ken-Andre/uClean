@@ -24,7 +24,7 @@ class ApiClient {
       Dio(BaseOptions(connectTimeout: const Duration(seconds: 60), headers: {
     "Accept": "application/json",
     // "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTNmOTI0NTNjODViYzEyNjU4ZjNiZSIsInVzZXJuYW1lIjoiSnVkZ2VfQ3JvbmluIiwiaWF0IjoxNjcxNjk3MTcxfQ.hbZLKSsS6Mdj1ndhAf4rm_5we4iWYvKY1VPSo51sQRM",
-    "Authorization": token?"Bearer ${token}":"",
+    // "Authorization": token?"Bearer ${token}":"",
         "Content-Type": "multipart/form-data"
   }))
         ..interceptors.add(NetworkInterceptor());

@@ -1,3 +1,7 @@
+import 'package:ucleankim/presentation/learnfive_bottomsheet/learnfive_bottomsheet.dart';
+import 'package:ucleankim/presentation/learnfour_bottomsheet/learnfour_bottomsheet.dart';
+import 'package:ucleankim/presentation/learnthree_bottomsheet/learnthree_bottomsheet.dart';
+
 import 'widgets/learncontainer_item_widget.dart';
 import 'models/learncontainer_item_model.dart';
 import 'models/learn_model.dart';
@@ -63,7 +67,7 @@ class LearnPage extends StatelessWidget {
                             LearncontainerItemModel();
                     return LearncontainerItemWidget(model,
                         onTapTheBeautyOfThe: () {
-                      onTapTheBeautyOfThe(context);
+                      onTapTheBeautyOfThe(context, index);
                     });
                   });
             }));
@@ -75,11 +79,38 @@ class LearnPage extends StatelessWidget {
   /// The bottom sheet is built using the [LearntwoBottomsheet]
   /// class and the [builder] method of the bottom sheet is passed the
   /// [BuildContext] object.
-  onTapTheBeautyOfThe(BuildContext context) {
-    showModalBottomSheet(
-        context: NavigatorService.navigatorKey.currentContext!,
-        builder: (_) => LearntwoBottomsheet.builder(
-            NavigatorService.navigatorKey.currentContext!),
-        isScrollControlled: true);
+  onTapTheBeautyOfThe(BuildContext context, int index) {
+    switch (index) {
+      case 0:
+        return showModalBottomSheet(
+            context: context,
+            builder: (_) => LearntwoBottomsheet.builder(context),
+            isScrollControlled: true);
+      case 1:
+        return showModalBottomSheet(
+            context: context,
+            builder: (_) => LearnthreeBottomsheet.builder(context),
+            isScrollControlled: true);
+      case 2:
+        return showModalBottomSheet(
+            context: context,
+            builder: (_) => LearnfourBottomsheet.builder(context),
+            isScrollControlled: true);
+      case 3:
+        return showModalBottomSheet(
+            context: context,
+            builder: (_) => LearnfiveBottomsheet.builder(context),
+            isScrollControlled: true);
+      default:
+        return showModalBottomSheet(
+            context: context,
+            builder: (_) => LearntwoBottomsheet.builder(context),
+            isScrollControlled: true);
+    }
+
+    //showModalBottomSheet(
+    //    context: context,
+    //    builder: (_) => LearntwoBottomsheet.builder(context),
+    //    isScrollControlled: true);
   }
 }
