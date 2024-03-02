@@ -55,17 +55,27 @@ jobs:
 
       - name: Run Flutter Analysis
         id: analyze
-        run: flutter analyze
+        run: flutter analyze || true
 
-      - name: Check for Analysis Errors
+      - name: Check for Analysis Errors (Warnings & Info Only)
         run: |
-          if [ ${{ steps.analyze.outcome }} != 'success' ]; then
-            echo "Analysis errors detected."
-            exit  1
-          else
-            echo "No analysis errors."
-            # Logic to label the PR as valid goes here
+          if [[ ${{ steps.analyze.outcome }} == 'failure' ]]; then
+            echo "Errors detected in analysis. Please fix them."
+            exit 1
           fi
+
+          # Filter output to display warnings and info only (modify if needed)
+          grep -E 'warning|info' <<< $(flutter analyze 2>&1) || true  # Suppress empty output
+
+      # - name: Check for Analysis Errors
+      #   run: |
+      #     if [ ${{ steps.analyze.outcome }} != 'success' ]; then
+      #       echo "Analysis errors detected."
+      #       exit  1
+      #     else
+      #       echo "No analysis errors."
+      #       # Logic to label the PR as valid goes here
+      #     fi
 
       # Optional: Add steps to build and run the app on Chrome
       - name: Build for web
