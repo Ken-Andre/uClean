@@ -35,4 +35,16 @@ class PrefUtils {
       return 'primary';
     }
   }
+
+  Future<void> setAuthToken(String value) {
+    return _sharedPreferences!.setString('auth_token', value);
+  }
+
+  String getAuthToken() {
+    try {
+      return _sharedPreferences!.getString('auth_token')!;
+    } catch (e) {
+      return '';
+    }
+  }
 }

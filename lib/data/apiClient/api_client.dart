@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:ucleankim/core/app_export.dart';
 import 'package:ucleankim/core/utils/progress_dialog_utils.dart';
 import 'package:ucleankim/data/models/authLoginPost/post_auth_login_post_resp.dart';
@@ -68,6 +68,7 @@ class ApiClient {
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
         if (response.data != null) {
+          print("User logged \n The token: ${response.data}");
           return PostAuthLoginPostResp.fromJson(response.data);
         } else {
           throw Exception('La reponse du serveur est null');
@@ -109,13 +110,14 @@ class ApiClient {
 
       if (_isSuccessCall(response)) {
         if (response.data != null) {
-          var prefs = await SharedPreferences.getInstance();
-          token = PostSignupPostResp.fromJson(response.data).authToken!;
-          await prefs.setString('auth_token', token!);
-          print(token);
+          // var prefs = await SharedPreferences.getInstance();
+          // token = PostSignupPostResp.fromJson(response.data).authToken!;
+
+          // await PrefUtils().setAuthToken(token);
+          print("Token from Signup Screen: ${response.data} || "+token);
           return PostSignupPostResp.fromJson(response.data);
         } else {
-          throw Exception('La reponse du serveur est null');
+          throw Exception('Server didn\'t respond.');
         }
       } else {
         throw response.data != null
