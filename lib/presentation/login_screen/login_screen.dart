@@ -176,6 +176,7 @@ class LoginScreen extends StatelessWidget {
 
   /// Navigates to the learnContainerScreen when the action is triggered.
   void _onAuthLoginPostEventSuccess(BuildContext context) {
+    // await PrefUtils().setAuthToken(token);
     NavigatorService.pushNamed(
       AppRoutes.learnContainerScreen,
     );

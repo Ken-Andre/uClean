@@ -1,3 +1,5 @@
+import 'package:ucleankim/core/app_export.dart';
+
 class PostAuthLoginPostResp {
   String? authToken;
 
@@ -5,6 +7,8 @@ class PostAuthLoginPostResp {
 
   PostAuthLoginPostResp.fromJson(Map<String, dynamic> json) {
     authToken = json['authToken'];
+    PrefUtils().setAuthToken(authToken!);
+    print('Login Token: ${authToken} \n and from Shared prefs \t ${PrefUtils().getAuthToken()}');
   }
 
   get data => null;

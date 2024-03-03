@@ -40,6 +40,7 @@ class PrefUtils {
     return _sharedPreferences!.setString('auth_token', value);
   }
 
+
   String getAuthToken() {
     try {
       return _sharedPreferences!.getString('auth_token')!;
