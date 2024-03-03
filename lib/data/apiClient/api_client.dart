@@ -48,7 +48,9 @@ class ApiClient {
   }
 
   /// Performs API call for https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/auth/login
-  ///
+  /// {
+  ///     "authToken": "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwiemlwIjoiREVGIn0.KOq5BLVIGMpag8OawlRdkUFnIVeVdehaEMnc5BQa81N-dyc1D4ZutUdLo20UCAZr0psSGlLSuRKaIdJYadzte8g97j-L4Q_X.CjfWuS9S6o2etMUmOIQTjA.Xbde97c4w9klawhv9osb8OFlrzbWZuH4uayZSOnPQZAXIS9CYGtWqJbm3IR1--d7I5UsWkfWHuUX0LhsCFApodyBsAhXCWgPLHJxe7ApHM0sb1K3Qz4-Y36avYElhabhfCNhuJL42uo1veKS4DqSylDUPLvjD51y8j-yPwIHU8g.yOj0PJgpq1Z7-S7YxWOS6H89GVSubFvtQv5iLP7vhzo"
+  /// }
   /// Sends a POST request to the server's 'https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/auth/login' endpoint
   /// with the provided headers and request data
   /// Returns a [PostAuthLoginPostResp] object representing the response.
