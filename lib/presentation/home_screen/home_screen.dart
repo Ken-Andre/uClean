@@ -5,7 +5,7 @@ import 'package:ucleankim/widgets/app_bar/custom_app_bar.dart';
 import 'package:ucleankim/widgets/app_bar/appbar_image.dart';
 import 'package:ucleankim/widgets/app_bar/appbar_subtitle_one.dart';
 import 'package:ucleankim/widgets/custom_bottom_app_bar.dart';
-import 'package:ucleankim/widgets/custom_floating_button.dart';
+// import 'package:ucleankim/widgets/custom_floating_button.dart';
 import 'models/home_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ucleankim/core/app_export.dart';
@@ -105,17 +105,7 @@ class HomeScreen extends StatelessWidget {
                       _buildUntripOne1(context)
                     ])))
                   ])),
-              bottomNavigationBar: _buildBottomBar(context),
-              floatingActionButton: CustomFloatingButton(
-                  height: 54,
-                  width: 54,
-                  backgroundColor: appTheme.blueA400,
-                  child: CustomImageView(
-                      imagePath: ImageConstant.imgCirclePlus,
-                      height: 27.0.v,
-                      width: 27.0.h)),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked));
+             ));
     });
   }
 
@@ -292,12 +282,7 @@ class HomeScreen extends StatelessWidget {
         ]));
   }
 
-  /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
-    return CustomBottomAppBar(onChanged: (BottomBarEnum type) {
-      Navigator.pushNamed(navigatorKey.currentContext!, getCurrentRoute(type));
-    });
-  }
+
 
   /// Common widget
   Widget _buildTopContainerUnTrip(
@@ -349,19 +334,7 @@ class HomeScreen extends StatelessWidget {
         ]));
   }
 
-  ///Handling route based on bottom click actions
-  String getCurrentRoute(BottomBarEnum type) {
-    switch (type) {
-      case BottomBarEnum.Leftlightgreen200:
-        return AppRoutes.learnPage;
-      case BottomBarEnum.Statsup:
-        return AppRoutes.reportPage;
-      case BottomBarEnum.Cogprimary:
-        return AppRoutes.settingspagePage;
-      default:
-        return "/";
-    }
-  }
+
 
   ///Handling page based on route
   Widget getCurrentPage(

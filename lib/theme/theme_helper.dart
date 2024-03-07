@@ -185,6 +185,7 @@ class PrimaryColors {
   Color get cyan5090 => Color(0X90CCFDFF);
   Color get cyan800 => Color(0XFF1D858A);
   Color get cyan900 => Color(0XFF003366);
+  Color get cyan200Cc => Color(0XCC8EDBDA);
 
   // DeepOrange
   Color get deepOrange10090 => Color(0X90FFD8BB);
@@ -202,6 +203,7 @@ class PrimaryColors {
   Color get gray50001 => Color(0XFFA5A5A5);
   Color get gray5059 => Color(0X59F9F9F9);
   Color get gray600 => Color(0XFF808080);
+  Color get gray60001 => Color(0XFF71757A);
   Color get gray900 => Color(0XFF1C1B1F);
   Color get gray900A2 => Color(0XA2212121);
 

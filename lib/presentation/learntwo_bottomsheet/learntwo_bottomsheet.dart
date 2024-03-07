@@ -31,57 +31,65 @@ class LearntwoBottomsheet extends StatelessWidget {
       decoration: AppDecoration.fillWhiteA.copyWith(
         borderRadius: BorderRadiusStyle.customBorderTL12,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "msg_the_beauty_of_the".tr,
-            style: CustomTextStyles.titleLargeSemiBold,
-          ),
-          SizedBox(height: 9.v),
-          SizedBox(
-            width: 350.h,
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: "msg_in_our_journey_towards2".tr,
-                    style: theme.textTheme.bodyMedium,
-                  ),
-                  TextSpan(
-                    text: "lbl_walkin".tr,
-                    style: theme.textTheme.bodyMedium!.copyWith(
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                  TextSpan(
-                    text: "msg_g_a_step_closer".tr,
-                    style: theme.textTheme.bodyMedium,
-                  ),
-                  TextSpan(
-                    text: "lbl_cyclin".tr,
-                    style: theme.textTheme.bodyMedium!.copyWith(
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                  TextSpan(
-                    text: "msg_g_pedal_through".tr,
-                    style: theme.textTheme.bodyMedium,
-                  ),
-                  TextSpan(
-                    text: "msg_public_transport".tr,
-                    style: theme.textTheme.bodyMedium!.copyWith(
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ],
+      child:
+      Padding(
+        padding: const EdgeInsets.only(bottom:18),
+        child: 
+        SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "msg_the_beauty_of_the".tr,
+                style: CustomTextStyles.titleLargeSemiBold,
               ),
-              textAlign: TextAlign.left,
-            ),
+              SizedBox(height: 9.v),
+              SizedBox(
+                width: 350.h,
+                child: 
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "msg_in_our_journey_towards2".tr,
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                      TextSpan(
+                        text: "lbl_walkin".tr,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      TextSpan(
+                        text: "msg_g_a_step_closer".tr,
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                      TextSpan(
+                        text: "lbl_cyclin".tr,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      TextSpan(
+                        text: "msg_g_pedal_through".tr,
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                      TextSpan(
+                        text: "msg_public_transport".tr,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ],
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              SizedBox(height: 9.v),
+            ],
           ),
-          SizedBox(height: 9.v),
-        ],
+        ),
       ),
     );
   }

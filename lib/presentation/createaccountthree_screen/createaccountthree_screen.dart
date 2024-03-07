@@ -14,7 +14,8 @@ class CreateaccountthreeScreen extends StatelessWidget {
     return BlocProvider<CreateaccountthreeBloc>(
         create: (context) => CreateaccountthreeBloc(CreateaccountthreeState(
             createaccountthreeModelObj: CreateaccountthreeModel(),
-            token: arg[NavigationArgs.token]))
+            // token: arg[NavigationArgs.token]
+        ))
           ..add(CreateaccountthreeInitialEvent()),
         child: CreateaccountthreeScreen());
   }
@@ -188,7 +189,8 @@ class CreateaccountthreeScreen extends StatelessWidget {
   /// Navigates to the learnContainerScreen when the action is triggered.
   onTapContinue(BuildContext context) {
     NavigatorService.pushNamed(
-      AppRoutes.learnContainerScreen,
+      // AppRoutes.learnContainerScreen,
+      AppRoutes.homeContainerScreen,
     );
   }
 

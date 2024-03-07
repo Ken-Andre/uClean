@@ -85,9 +85,9 @@ class CreateaccountBloc extends Bloc<CreateaccountEvent, CreateaccountState> {
     PostSignupPostResp resp,
     Emitter<CreateaccountState> emit,
   ) {
-    emit(state.copyWith(
-      authToken: resp.authToken,
-    ));
+    // emit(state.copyWith(
+    //   authToken: resp.authToken,
+    // ));
   }
   void _onSignupPostError() {
     //implement error method body...

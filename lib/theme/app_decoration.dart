@@ -3,6 +3,10 @@ import 'package:ucleankim/core/app_export.dart';
 
 class AppDecoration {
   // Fill decorations
+  static BoxDecoration get fillCyanCc => BoxDecoration(
+    color: appTheme.cyan200Cc,
+  );
+
   static BoxDecoration get fillGray => BoxDecoration(
         color: appTheme.gray10001,
       );
@@ -166,6 +170,11 @@ class AppDecoration {
 }
 
 class BorderRadiusStyle {
+  // Circle borders
+  static BorderRadius get circleBorder20 => BorderRadius.circular(
+    20.h,
+  );
+
   // Custom borders
   static BorderRadius get customBorderTL12 => BorderRadius.vertical(
         top: Radius.circular(12.h),

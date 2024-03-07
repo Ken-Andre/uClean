@@ -199,4 +199,32 @@ class ImageConstant {
       '$imagePath/img_left_light_green_200.svg';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
+
+  // DialogLocation images
+  static String imgColor = '$imagePath/img_color.png';
+
+  static String imgContrastBlack900 = '$imagePath/img_contrast_black_900.svg';
+
+  static String imgLockBlueGray900 = '$imagePath/img_lock_blue_gray_900.svg';
+
+  static String imgPlay = '$imagePath/img_play.svg';
+
+  static String imgVectorBlueGray900 =
+      '$imagePath/img_vector_blue_gray_900.svg';
+
+  static String imgContrastGray60001 =
+      '$imagePath/img_contrast_gray_600_01.svg';
+
+  static String learn = '$imagePath/img_learn.svg';
+
+  static String imgTelevision = '$imagePath/img_television.svg';
+
+  static String imgVector = '$imagePath/img_vector.svg';
+
+  static String imgThumbsUpBlack900 = '$imagePath/img_thumbs_up_black_900.svg';
+
+  static String imgUserBlueGray900 = '$imagePath/img_user_blue_gray_900.svg';
+
+  static String imgLockGray60001 = '$imagePath/img_lock_gray_600_01.svg';
+
 }

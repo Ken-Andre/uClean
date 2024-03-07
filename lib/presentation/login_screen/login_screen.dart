@@ -178,7 +178,8 @@ class LoginScreen extends StatelessWidget {
   void _onAuthLoginPostEventSuccess(BuildContext context) {
     // await PrefUtils().setAuthToken(token);
     NavigatorService.pushNamed(
-      AppRoutes.learnContainerScreen,
+      // AppRoutes.learnContainerScreen,
+      AppRoutes.homeContainerScreen,
     );
   }
 

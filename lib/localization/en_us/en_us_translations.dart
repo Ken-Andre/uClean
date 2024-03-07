@@ -79,6 +79,12 @@ final Map<String, String> enUs = {
   "lbl_create_one": "Create one", "lbl_no_account": "No account?",
   "msg_forgot_my_password": "Forgot my password?",
 
+  //Bottom Bar
+  // "lbl_home":"Home",
+  "lbl_learn":"Learn",
+  "lbl_stats":"Stats",
+  // "lbl_settings":"Settings",
+
   // Home Screen
   "lbl_127": "127",
   "lbl_16_01_2024": "16/01/2024",

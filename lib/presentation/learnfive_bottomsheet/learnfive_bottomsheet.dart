@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 import 'models/learnfive_model.dart';
@@ -104,12 +105,13 @@ class LearnfiveBottomsheet extends StatelessWidget {
     required String reducingYourCarbon,
     required String description,
   }) {
-    return Container(
+    return
+      Container(
       padding: EdgeInsets.symmetric(
         horizontal: 20.h,
         vertical: 26.v,
       ),
-      decoration: AppDecoration.fillPrimary.copyWith(
+      decoration: AppDecoration.fillWhiteA.copyWith(
         borderRadius: BorderRadiusStyle.customBorderTL12,
       ),
       child: Column(
@@ -117,60 +119,58 @@ class LearnfiveBottomsheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SingleChildScrollView(
-            child:
-              Column(
-                children: [
-                  Container(
-                    width: 331.h,
-                    margin: EdgeInsets.only(
-                      left: 1.h,
-                      right: 20.h,
-                    ),
-                    child: Text(
-                      reducingYourCarbon,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: CustomTextStyles.titleLargeSemiBold.copyWith(
-                        color: appTheme.black900,
-                      ),
+            child: Column(
+              children: [
+                Container(
+                  width: 331.h,
+                  margin: EdgeInsets.only(
+                    left: 1.h,
+                    right: 20.h,
+                  ),
+                  child: Text(
+                    reducingYourCarbon,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: CustomTextStyles.titleLargeSemiBold.copyWith(
+                      color: appTheme.black900,
                     ),
                   ),
-                  SizedBox(height: 16.v),
-                  Container(
-                    width: 352.h,
-                    margin: EdgeInsets.only(left: 1.h),
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "msg_welcome_to_the_understanding2".tr,
-                            style: theme.textTheme.bodyMedium,
-                          ),
-                          TextSpan(
-                            text: "msg_the_journey_begins".tr,
-                            style: CustomTextStyles.titleSmallff000000,
-                          ),
-                          TextSpan(
-                            text: "msg_embark_on_a_journey".tr,
-                            style: theme.textTheme.bodyMedium,
-                          ),
-                          TextSpan(
-                            text: "msg_unveiling_the_footprint_every".tr,
-                            style: CustomTextStyles.titleSmallff000000,
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 16.v),
+                Container(
+                  width: 352.h,
+                  margin: EdgeInsets.only(left: 1.h),
+                  child: 
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "msg_welcome_to_the_understanding2".tr,
+                          style: theme.textTheme.bodyMedium,
+                        ),
+                        TextSpan(
+                          text: "msg_the_journey_begins".tr,
+                          style: CustomTextStyles.titleSmallff000000,
+                        ),
+                        TextSpan(
+                          text: "msg_embark_on_a_journey".tr,
+                          style: theme.textTheme.bodyMedium,
+                        ),
+                        TextSpan(
+                          text: "msg_unveiling_the_footprint_every".tr,
+                          style: CustomTextStyles.titleSmallff000000,
+                        ),
+                      ],
                     ),
+                    textAlign: TextAlign.left,
                   ),
-                  SizedBox(height: 9.v),
-                ],
-              ),
-
-
+                ),
+                SizedBox(height: 9.v),
+              ],
+            ),
           ),
         ],
       ),
-    );
+          );
   }
 }

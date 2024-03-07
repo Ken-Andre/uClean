@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucleankim/presentation/home_container_screen/home_container_screen.dart';
 import '../presentation/splash_screen/splash_screen.dart';
 import '../presentation/settings_addmanualtrippresvers_screen/settings_addmanualtrippresvers_screen.dart';
 import '../presentation/notifspanel_screen/notifspanel_screen.dart';
@@ -10,7 +11,7 @@ import '../presentation/settings_auto_track_screen/settings_auto_track_screen.da
 import '../presentation/settings_contactus_screen/settings_contactus_screen.dart';
 import '../presentation/login_screen/login_screen.dart';
 import '../presentation/home_screen/home_screen.dart';
-import '../presentation/learn_container_screen/learn_container_screen.dart';
+// import '../presentation/learn_container_screen/learn_container_screen.dart';
 import '../presentation/createaccount_screen/createaccount_screen.dart';
 import '../presentation/createaccounttwo_screen/createaccounttwo_screen.dart';
 import '../presentation/createaccountthree_screen/createaccountthree_screen.dart';
@@ -44,7 +45,11 @@ class AppRoutes {
 
   static const String homeScreen = '/home_screen';
 
-  static const String learnContainerScreen = '/learn_container_screen';
+  // static const String learnContainerScreen = '/learn_container_screen';
+
+  static const String homeContainerScreen = '/home_container_screen';
+
+  static const String homePage = '/home_page';
 
   static const String learnPage = '/learn_page';
 
@@ -75,7 +80,8 @@ class AppRoutes {
         settingsContactusScreen: SettingsContactusScreen.builder,
         loginScreen: LoginScreen.builder,
         homeScreen: HomeScreen.builder,
-        learnContainerScreen: LearnContainerScreen.builder,
+        // learnContainerScreen: LearnContainerScreen.builder,
+        homeContainerScreen: HomeContainerScreen.builder,
         createaccountScreen: CreateaccountScreen.builder,
         createaccounttwoScreen: CreateaccounttwoScreen.builder,
         createaccountthreeScreen: CreateaccountthreeScreen.builder,

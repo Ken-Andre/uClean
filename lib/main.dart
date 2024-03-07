@@ -46,7 +46,8 @@ class MyApp extends StatelessWidget {
                     '',
                   ),
                 ],
-                initialRoute: AppRoutes.initialRoute,
+                //initialRoute: AppRoutes.initialRoute,
+                initialRoute: AppRoutes.appNavigationScreen,
                 routes: AppRoutes.routes,
               );
             },
@@ -56,3 +57,11 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+///TODO CustomBar to modify;--Done
+//TODO Responsive Learn Container;
+//TODO Responsive BottomSheet;
+//TODO Resolve the BottomSheet 5 for closing ; --SemiDone
+//TODO Trip
+//TODO Get Trips; Post Logout and sync with SharedPrefs; Login And Signup in SharedPrefs;
+//TODO HomePage(done) and SettingsPage from ucleankim test_kyan; WidgetContainer too.
