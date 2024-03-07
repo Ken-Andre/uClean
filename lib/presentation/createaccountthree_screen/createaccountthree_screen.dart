@@ -9,8 +9,8 @@ class CreateaccountthreeScreen extends StatelessWidget {
   const CreateaccountthreeScreen({Key? key}) : super(key: key);
 
   static Widget builder(BuildContext context) {
-    var arg =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    // var arg =
+    //     ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     return BlocProvider<CreateaccountthreeBloc>(
         create: (context) => CreateaccountthreeBloc(CreateaccountthreeState(
             createaccountthreeModelObj: CreateaccountthreeModel(),
