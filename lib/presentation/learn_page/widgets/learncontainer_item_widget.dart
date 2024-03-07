@@ -27,7 +27,7 @@ class LearncontainerItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomImageView(
-            imagePath: learncontainerItemModelObj?.image,
+            imagePath: learncontainerItemModelObj.image,
             height: 113.v,
             width: 353.h,
           ),
