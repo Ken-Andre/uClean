@@ -18,3 +18,33 @@ class SettingsAddmanualtrippresversInitialEvent
   @override
   List<Object?> get props => [];
 }
+
+///Event that is dispatched when the user calls the https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/trips API.
+class CreateTripsEvent extends SettingsAddmanualtrippresversEvent {
+  CreateTripsEvent({
+    this.onCreateTripsEventSuccess,
+    this.onCreateTripsEventError,
+  });
+
+  Function? onCreateTripsEventSuccess;
+
+  Function? onCreateTripsEventError;
+
+  @override
+  List<Object?> get props => [
+    onCreateTripsEventSuccess,
+    onCreateTripsEventError,
+  ];
+}
+
+///event for dropdown selection
+class ChangeDropDownEvent extends SettingsAddmanualtrippresversEvent {
+  ChangeDropDownEvent({required this.value});
+
+  SelectionPopupModel value;
+
+  @override
+  List<Object?> get props => [
+    value,
+  ];
+}

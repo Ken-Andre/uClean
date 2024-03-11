@@ -20,4 +20,5 @@ export '../theme/custom_button_style.dart';
 export 'package:ucleankim/routes/navigation_args.dart';
 export 'package:ucleankim/core/environment/env_config.dart';
 export 'package:url_launcher/url_launcher_string.dart';
+export 'package:ucleankim/core/utils/permission_manager.dart';
 export 'package:ucleankim/core/utils/date_time_utils.dart';

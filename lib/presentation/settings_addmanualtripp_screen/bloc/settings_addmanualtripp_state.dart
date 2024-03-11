@@ -5,29 +5,57 @@ part of 'settings_addmanualtripp_bloc.dart';
 /// Represents the state of SettingsAddmanualtripp in the application.
 class SettingsAddmanualtrippState extends Equatable {
   SettingsAddmanualtrippState({
-    this.wedJanuaryThirtyOneController,
+    this.wedJanuary3Controller,
+    this.oneThousandTwentyEightController,
+    this.startLocationController,
+    this.stopLocationController,
+    this.selectedDropDownValue,
     this.settingsAddmanualtrippModelObj,
   });
 
-  TextEditingController? wedJanuaryThirtyOneController;
+  TextEditingController? wedJanuary3Controller;
+
+  TextEditingController? oneThousandTwentyEightController;
+
+  TextEditingController? startLocationController;
+
+  TextEditingController? stopLocationController;
+
+  SelectionPopupModel? selectedDropDownValue;
 
   SettingsAddmanualtrippModel? settingsAddmanualtrippModelObj;
 
   @override
   List<Object?> get props => [
-        wedJanuaryThirtyOneController,
-        settingsAddmanualtrippModelObj,
-      ];
+    wedJanuary3Controller,
+    oneThousandTwentyEightController,
+    startLocationController,
+    stopLocationController,
+    selectedDropDownValue,
+    settingsAddmanualtrippModelObj,
+  ];
 
   SettingsAddmanualtrippState copyWith({
-    TextEditingController? wedJanuaryThirtyOneController,
+    TextEditingController? wedJanuary3Controller,
+    TextEditingController? oneThousandTwentyEightController,
+    TextEditingController? startLocationController,
+    TextEditingController? stopLocationController,
+    SelectionPopupModel? selectedDropDownValue,
     SettingsAddmanualtrippModel? settingsAddmanualtrippModelObj,
   }) {
     return SettingsAddmanualtrippState(
-      wedJanuaryThirtyOneController:
-          wedJanuaryThirtyOneController ?? this.wedJanuaryThirtyOneController,
+      wedJanuary3Controller:
+      wedJanuary3Controller ?? this.wedJanuary3Controller,
+      oneThousandTwentyEightController: oneThousandTwentyEightController ??
+          this.oneThousandTwentyEightController,
+      startLocationController:
+      startLocationController ?? this.startLocationController,
+      stopLocationController:
+      stopLocationController ?? this.stopLocationController,
+      selectedDropDownValue:
+      selectedDropDownValue ?? this.selectedDropDownValue,
       settingsAddmanualtrippModelObj:
-          settingsAddmanualtrippModelObj ?? this.settingsAddmanualtrippModelObj,
+      settingsAddmanualtrippModelObj ?? this.settingsAddmanualtrippModelObj,
     );
   }
 }

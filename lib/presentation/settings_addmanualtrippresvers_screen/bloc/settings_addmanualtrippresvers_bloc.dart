@@ -1,8 +1,15 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:ucleankim/presentation/settings_addmanualtrippresvers_screen/models/settings_addmanualtrippresvers_model.dart';
+import 'package:ucleankim/data/models/createTrip/post_create_trip_req.dart';
+import 'package:ucleankim/data/models/createTrip/post_create_trip_resp.dart';
 import '/core/app_export.dart';
 import '../models/settingsaddmanualtrippresvers_item_model.dart';
-import 'package:ucleankim/presentation/settings_addmanualtrippresvers_screen/models/settings_addmanualtrippresvers_model.dart';
+import 'package:ucleankim/data/repository/repository.dart';
+import 'package:ucleankim/core/constants/trips.dart';
+
 part 'settings_addmanualtrippresvers_event.dart';
 part 'settings_addmanualtrippresvers_state.dart';
 
@@ -13,6 +20,8 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
       SettingsAddmanualtrippresversState initialState)
       : super(initialState) {
     on<SettingsAddmanualtrippresversInitialEvent>(_onInitialize);
+    on<ChangeDropDownEvent>(_changeDropDown);
+    on<CreateTripsEvent>(_callCreateTrip);
   }
 
   List<SettingsaddmanualtrippresversItemModel>
@@ -21,15 +30,82 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
         1, (index) => SettingsaddmanualtrippresversItemModel());
   }
 
+  final _repository = Repository();
+
+  var postCreateTripResp = PostCreateTripResp();
+
+  _changeDropDown(
+      ChangeDropDownEvent event,
+      Emitter<SettingsAddmanualtrippresversState> emit,
+      ) {
+    emit(state.copyWith(selectedDropDownValue: event.value));
+  }
+
+  List<SelectionPopupModel> fillDropdownItemList() {
+    return [
+      SelectionPopupModel(id: 1, title: "Car",value: "car", isSelected: true),
+      SelectionPopupModel(id: 2, title: "Bicycle", value: "bicycle"),
+      SelectionPopupModel(id: 3, title: "Subway", value: "subway"),
+    ];
+  }
+
   _onInitialize(
     SettingsAddmanualtrippresversInitialEvent event,
     Emitter<SettingsAddmanualtrippresversState> emit,
   ) async {
-    emit(state.copyWith(kmController: TextEditingController()));
+    emit(state.copyWith(
+        wedJanuary31Controller: TextEditingController(),
+        oneThousandTwentyEightController: TextEditingController(),
+        kmController: TextEditingController()));
     emit(state.copyWith(
         settingsAddmanualtrippresversModelObj:
             state.settingsAddmanualtrippresversModelObj?.copyWith(
                 settingsaddmanualtrippresversItemList:
-                    fillSettingsaddmanualtrippresversItemList())));
+                fillSettingsaddmanualtrippresversItemList(),
+                dropdownItemList: fillDropdownItemList()
+            )));
+  }
+  /// Calls [https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/trips] with the provided event and emits the state.
+  ///
+  /// The [CreateTripsEvent] parameter is used for handling event data
+  /// The [emit] parameter is used for emitting the state
+  ///
+  /// Throws an error if an error occurs during the API call process.
+  FutureOr<void> _callCreateTrip(
+      CreateTripsEvent event,
+      Emitter<SettingsAddmanualtrippresversState> emit,
+      ) async {
+    var postCreateTripReq = PostCreateTripReq(
+      distance: int.tryParse(state.kmController?.text ?? ''),
+      date: state.wedJanuary31Controller?.text ?? '',
+      meansoftransport: state.selectedDropDownValue?.value  ?? Trips.meansoftransport1,
+      tripkind: Trips.defaulttripkind,
+      hour: state.oneThousandTwentyEightController?.text ?? '',
+    );
+    var cTripAuth = PrefUtils().getAuthToken();
+    print('here is the cTripAuth $cTripAuth');
+    await _repository.createTrip(
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer ${cTripAuth}',
+      },
+      requestData: postCreateTripReq.toJson(),
+    ).then((value) async {
+      postCreateTripResp = value;
+      _onCreateTripSuccess(value, emit);
+      event.onCreateTripsEventSuccess?.call();
+    }).onError((error, stackTrace) {
+      //implement error call
+      _onCreateTripError();
+      event.onCreateTripsEventError?.call();
+    });
+  }
+
+  void _onCreateTripSuccess(
+      PostCreateTripResp resp,
+      Emitter<SettingsAddmanualtrippresversState> emit,
+      ) {}
+  void _onCreateTripError() {
+    //implement error method body...
   }
 }

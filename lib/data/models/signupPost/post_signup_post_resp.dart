@@ -5,7 +5,7 @@ class PostSignupPostResp {
 
   PostSignupPostResp.fromJson(Map<String, dynamic> json) {
     authToken = json['authToken'];
-    print('Signup Token: ${data['authToken']}');
+    print('Signup Token: ${authToken}');
 
   }
 

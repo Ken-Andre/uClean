@@ -10,7 +10,7 @@ import '../presentation/settings_addmanualtripp_screen/settings_addmanualtripp_s
 import '../presentation/settings_auto_track_screen/settings_auto_track_screen.dart';
 import '../presentation/settings_contactus_screen/settings_contactus_screen.dart';
 import '../presentation/login_screen/login_screen.dart';
-import '../presentation/home_screen/home_screen.dart';
+//import '../presentation/home_screen/home_screen.dart';
 // import '../presentation/learn_container_screen/learn_container_screen.dart';
 import '../presentation/createaccount_screen/createaccount_screen.dart';
 import '../presentation/createaccounttwo_screen/createaccounttwo_screen.dart';
@@ -43,7 +43,7 @@ class AppRoutes {
 
   static const String loginScreen = '/login_screen';
 
-  static const String homeScreen = '/home_screen';
+  //static const String homeScreen = '/home_screen';
 
   // static const String learnContainerScreen = '/learn_container_screen';
 
@@ -79,7 +79,7 @@ class AppRoutes {
         settingsAutoTrackScreen: SettingsAutoTrackScreen.builder,
         settingsContactusScreen: SettingsContactusScreen.builder,
         loginScreen: LoginScreen.builder,
-        homeScreen: HomeScreen.builder,
+        //homeScreen: HomeScreen.builder,
         // learnContainerScreen: LearnContainerScreen.builder,
         homeContainerScreen: HomeContainerScreen.builder,
         createaccountScreen: CreateaccountScreen.builder,

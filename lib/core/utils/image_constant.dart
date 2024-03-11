@@ -164,6 +164,9 @@ class ImageConstant {
   static String imgContrastWhiteA70001 =
       '$imagePath/img_contrast_white_a700_01.svg';
 
+  static String img_contrast_secondarycontainer =
+      '$imagePath/img_contrast_secondarycontainer.svg';
+
   static String imgCarBlack900 = '$imagePath/img_car_black_900.svg';
 
   static String imgSubwayButton = '$imagePath/img_subway_button.svg';

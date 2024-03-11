@@ -17,3 +17,21 @@ class SettingspageInitialEvent extends SettingspageEvent {
   @override
   List<Object?> get props => [];
 }
+
+///Event that is dispatched when the user calls the https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/auth/logout API.
+class CreateLogoutEvent extends SettingspageEvent {
+  CreateLogoutEvent({
+    this.onCreateLogoutEventSuccess,
+    this.onCreateLogoutEventError,
+  });
+
+  Function? onCreateLogoutEventSuccess;
+
+  Function? onCreateLogoutEventError;
+
+  @override
+  List<Object?> get props => [
+    onCreateLogoutEventSuccess,
+    onCreateLogoutEventError,
+  ];
+}

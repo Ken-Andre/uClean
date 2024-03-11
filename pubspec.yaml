@@ -23,6 +23,7 @@ dependencies:
   dio: ^5.4.0
   fluttertoast: ^8.2.4
   mockito: ^5.4.4
+  permission_handler: ^11.1.0
 dev_dependencies: 
   flutter_test: 
     sdk: flutter

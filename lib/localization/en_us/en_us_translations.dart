@@ -229,6 +229,7 @@ final Map<String, String> enUs = {
   "msg_confirm_password": "Confirm Password",
   "msg_the_beauty_of_the": "The beauty of the sky",
 
+
 // Network Error String
   "msg_network_err": "Network Error",
   "msg_something_went_wrong": "Something Went Wrong!",
@@ -239,4 +240,9 @@ final Map<String, String> enUs = {
   "err_msg_please_enter_valid_email": "Please enter valid email",
   "err_msg_please_enter_valid_text": "Please enter valid text",
   "err_msg_enter_your_school_address_": "Enter your school address.",
+  "err_msg_enter_valid_date_in_dd_mm_yyyy": "Enter Valid Date in DD/MM/YYYY",
+  "err_msg_enter_a_good_hour_hh_mm": "Enter a good hour HH:MM",
+  "err_msg_please_enter_valid_number": "Please enter valid number",
+  "err_msg_enter_lat_and_long_of_the_point_like_this_lat_long":
+  "Enter lat and long of the point like this lat,long",
 };

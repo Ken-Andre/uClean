@@ -300,6 +300,7 @@ class CreateaccountScreen extends StatelessWidget {
   void _onSignupPostEventError(BuildContext context) {
     Fluttertoast.showToast(
       msg: "Maybe not connected, or something gone wrong!",
+      timeInSecForIosWeb: 5,
     );
   }
 }

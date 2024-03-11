@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:ucleankim/core/app_export.dart';
 import 'package:ucleankim/core/utils/progress_dialog_utils.dart';
 import 'package:ucleankim/data/models/authLoginPost/post_auth_login_post_resp.dart';
+import 'package:ucleankim/data/models/createTrip/post_create_trip_resp.dart';
+import 'package:ucleankim/data/models/logoutPost/post_logout_post_resp.dart';
 import 'package:ucleankim/data/models/signupPost/post_signup_post_resp.dart';
 
 import 'network_interceptor.dart';
@@ -73,7 +75,7 @@ class ApiClient {
           print("User logged \n The token: ${response.data}");
           return PostAuthLoginPostResp.fromJson(response.data);
         } else {
-          throw Exception('La reponse du serveur est null');
+          throw Exception('La reponse du serveur est nulle');
         }
       } else {
         throw response.data != null
@@ -116,7 +118,7 @@ class ApiClient {
           // token = PostSignupPostResp.fromJson(response.data).authToken!;
 
           // await PrefUtils().setAuthToken(token);
-          print("Token from Signup Screen: ${response.data} || "+token);
+          print("Token from Signup Screen: ${response.data}");
           return PostSignupPostResp.fromJson(response.data);
         } else {
           throw Exception('Server didn\'t respond.');
@@ -124,6 +126,79 @@ class ApiClient {
       } else {
         throw response.data != null
             ? PostSignupPostResp.fromJson(response.data)
+            : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  /// Performs API call for https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/auth/logout
+  ///
+  /// Sends a POST request to the server's 'https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/auth/logout' endpoint
+  /// with the provided headers and request data
+  /// Returns a [PostLogoutPostResp] object representing the response.
+  /// Throws an error if the request fails or an exception occurs.
+  Future<PostLogoutPostResp> logoutPost({
+    Map<String, String> headers = const {},
+    Map requestData = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      var response = await _dio.post(
+        '$url/api:v0yDfnCj/auth/logout',
+        data: requestData,
+        options: Options(headers: headers),
+      );
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        PrefUtils().setAuthToken('');
+        return PostLogoutPostResp.fromJson(response.data);
+      } else {
+        throw response.data != null
+            ? PostLogoutPostResp.fromJson(response.data)
+            : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  /// Performs API call for https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/trips
+  ///
+  /// Sends a POST request to the server's 'https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/trips' endpoint
+  /// with the provided headers and request data
+  /// Returns a [PostCreateTripResp] object representing the response.
+  /// Throws an error if the request fails or an exception occurs.
+  Future<PostCreateTripResp> createTrip({
+    Map<String, String> headers = const {},
+    Map requestData = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      var response = await _dio.post(
+        '$url/api:v0yDfnCj/trips',
+        data: requestData,
+        options: Options(headers: headers),
+      );
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        return PostCreateTripResp.fromJson(response.data);
+      } else {
+        throw response.data != null
+            ? PostCreateTripResp.fromJson(response.data)
             : 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {
