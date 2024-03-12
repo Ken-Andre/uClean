@@ -9,6 +9,8 @@ class ReportItemModel {
     this.time,
     this.distance,
     this.id,
+    this.pointa,
+    this.pointb,
   }) {
     tripKind = tripKind ?? "Professionnal";
     fromElthamStation = fromElthamStation ?? ImageConstant.imgMeansoftransport;
@@ -16,6 +18,8 @@ class ReportItemModel {
     time = time ?? "12:15 PM - 1:19 PM";
     distance = distance ?? "2KM";
     id = id ?? "";
+    pointa = pointa ?? "ETHAN Station";
+    pointb = pointb ?? "Moses Station";
   }
 
   String? tripKind;
@@ -29,4 +33,8 @@ class ReportItemModel {
   String? distance;
 
   String? id;
+
+  String? pointa;
+
+  String? pointb;
 }

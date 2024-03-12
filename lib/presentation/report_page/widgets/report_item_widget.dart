@@ -48,7 +48,7 @@ class ReportItemWidget extends StatelessWidget {
           Row(
             children: [
               CustomImageView(
-                imagePath: reportItemModelObj?.fromElthamStation,
+                imagePath: reportItemModelObj.fromElthamStation,
                 height: 24.adaptSize,
                 width: 24.adaptSize,
               ),
@@ -68,7 +68,7 @@ class ReportItemWidget extends StatelessWidget {
                         text: " ",
                       ),
                       TextSpan(
-                        text: "lbl_eltham_station".tr,
+                        text: reportItemModelObj.pointa??"lbl_eltham_station".tr,
                         style: CustomTextStyles.titleMediumRobotoff000000,
                       ),
                     ],
@@ -104,7 +104,7 @@ class ReportItemWidget extends StatelessWidget {
                           text: " ",
                         ),
                         TextSpan(
-                          text: "msg_melbourne_central".tr,
+                          text: reportItemModelObj.pointb??"msg_melbourne_central".tr,
                           style: CustomTextStyles.titleMediumRobotoff000000,
                         ),
                       ],

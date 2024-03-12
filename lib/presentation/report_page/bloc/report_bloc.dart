@@ -169,15 +169,16 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
         reportItemModel.distance = (element.distance ?? 0).toString();
         reportItemModel.time = element.date ?? '';
         reportItemModel.tripKind = element.tripkind ?? 'N/A';
-
+        reportItemModel.pointa = element.pointa ?? 'Ethanol Station';
+        reportItemModel.pointb = element.pointb ?? 'New Jersey';
         // Check for null or unexpected values in meansoftransElement
         if (meansoftransElement != null) {
-          reportItemModel.fromElthamStation = getAccurateTransImg(meansoftransElement) ?? ImageConstant.imgMeansoftransport1;
-          reportItemModel.image = getAccurateTransImg(meansoftransElement) ?? ImageConstant.imgMeansoftransport;
+          reportItemModel.fromElthamStation = getAccurateTransImg(meansoftransElement);
+          reportItemModel.image = getAccurateTransImg(meansoftransElement);
         } else {
           // Handle null or unexpected values gracefully
-          reportItemModel.fromElthamStation = ImageConstant.imgMeansoftransport1;
-          reportItemModel.image = ImageConstant.imgMeansoftransport;
+          reportItemModel.fromElthamStation = ImageConstant.imgMeansoftransport;
+          reportItemModel.image = ImageConstant.imgMeansoftransportDeepOrange200;
         }
 
         reportItemModelList.add(reportItemModel);

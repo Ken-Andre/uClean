@@ -106,8 +106,8 @@ final Map<String, String> enUs = {
   "msg_understanding_the": "Understanding the Environmental Impact of Travel",
 
   // LearnTwo Screen
-  "lbl_cyclin": " Cyclin",
-  "lbl_walkin": " Walkin",
+  "lbl_cyclin": " Cycling",
+  "lbl_walkin": " Walking",
   "msg_g_a_step_closer":
       "g - A Step Closer to Nature: Step into a greener lifestyle by choosing to walk. Discover the joy of reducing your carbon footprint and embracing the beauty of the sky with every eco-conscious step.\n2.",
   "msg_g_pedal_through":
@@ -168,7 +168,7 @@ final Map<String, String> enUs = {
   "lbl_create_account": "Create Account",
   "lbl_mail": "Mail",
   "lbl_terms": "Terms",
-  "lbl_username": "username",
+  "lbl_username": "Username",
   "msg_by_signing_up_you3": "By Signing Up You accept all our",
   "msg_it_is_the_first": "It is the first step to enjoy the experience.",
   "msg_terms_and_conditions": "Terms and Conditions",
