@@ -1,7 +1,7 @@
 final Map<String, String> enUs = {
   // Settings AddManualTripPResVers Screen
-  "lbl_date_and_hour": "Date and hour", "lbl_km": "_____ Km",
-  "msg_number_of_kilometers": "Number of kilometers",
+  "lbl_date_and_hour": "Date and hour", "lbl_km": "_____ m",
+  "msg_number_of_kilometers": "Distance (in meters)",
 
   // NotifsPanel Screen
   "lbl_home": "Home",
@@ -224,7 +224,7 @@ final Map<String, String> enUs = {
   "lbl_resume": "Resume",
   "lbl_trip": "Trip",
   "lbl_trip_mode": "Trip Mode",
-  "lbl_wed_january_31": "Wed, January 31",
+  "lbl_wed_january_31": "12/31/2021",
   "msg_add_a_manual_trip": "Add A Manual Trip",
   "msg_confirm_password": "Confirm Password",
   "msg_the_beauty_of_the": "The beauty of the sky",

@@ -50,31 +50,31 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
           fromElthamStation: ImageConstant.imgMeansoftransport,
           image: ImageConstant.imgMeansoftransportDeepOrange200,
           time: "12:15 PM - 1:19 PM",
-          distance: "2KM"),
+          distance: "2K"),
       ReportItemModel(
           tripKind: "Personnal",
           fromElthamStation: ImageConstant.imgMeansoftransport1,
           image: ImageConstant.imgMeansoftransport2,
           time: "12:15 PM - 1:19 PM",
-          distance: "9KM"),
+          distance: "9K"),
       ReportItemModel(
           tripKind: "Professionnal",
           fromElthamStation: ImageConstant.imgMeansoftransport,
           image: ImageConstant.imgMeansoftransportDeepOrange200,
           time: "12:15 PM - 1:19 PM",
-          distance: "3KM"),
+          distance: "3K"),
       ReportItemModel(
           tripKind: "Professionnal",
           fromElthamStation: ImageConstant.imgMeansoftransport,
           image: ImageConstant.imgMeansoftransportDeepOrange200,
           time: "12:15 PM - 1:19 PM",
-          distance: "3KM"),
+          distance: "1.2K"),
       ReportItemModel(
           tripKind: "Professionnal",
           fromElthamStation: ImageConstant.imgMeansoftransport,
           image: ImageConstant.imgMeansoftransportDeepOrange200,
           time: "12:15 PM - 1:19 PM",
-          distance: "3KM")
+          distance: "3.6K")
     ];
   }
 
@@ -109,7 +109,7 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
   String getAccurateTransImg(String? transportkind) {
     switch (transportkind) {
       case 'car':
-        return ImageConstant.imgCar;
+        return ImageConstant.imgMeansoftransport1;
       case 'subway':
         return ImageConstant.imgSubwayButton;
     // case BottomBarEnum.Television:
@@ -166,7 +166,7 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
         var reportItemModel = ReportItemModel();
         var meansoftransElement = element.meansoftransport;
 
-        reportItemModel.distance = (element.distance ?? 0).toString();
+        reportItemModel.distance = (element.distance?.toStringAsFixed(2) ?? 0).toString();
         reportItemModel.time = element.date ?? '';
         reportItemModel.tripKind = element.tripkind ?? 'N/A';
         reportItemModel.pointa = element.pointa ?? 'Ethanol Station';

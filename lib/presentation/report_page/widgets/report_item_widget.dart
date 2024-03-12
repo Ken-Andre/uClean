@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import '../models/report_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ucleankim/core/app_export.dart';
@@ -123,9 +125,19 @@ class ReportItemWidget extends StatelessWidget {
                 reportItemModelObj.time!,
                 style: CustomTextStyles.titleMediumRoboto,
               ),
-              Text(
-                reportItemModelObj.distance!,
-                style: CustomTextStyles.bodyLargeRobotoPrimaryContainer_1,
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: reportItemModelObj.distance!,
+                      style: CustomTextStyles.bodyLargeRobotoPrimaryContainer_1,
+                    ),
+                    TextSpan(
+                      text: 'm',
+                      style: CustomTextStyles.bodyLargeRobotoPrimaryContainer_1,
+                    ),
+                  ],
+                )
               ),
             ],
           ),

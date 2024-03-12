@@ -43,9 +43,11 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
 
   List<SelectionPopupModel> fillDropdownItemList() {
     return [
-      SelectionPopupModel(id: 1, title: "Car",value: "car", isSelected: true),
-      SelectionPopupModel(id: 2, title: "Bicycle", value: "bicycle"),
-      SelectionPopupModel(id: 3, title: "Subway", value: "subway"),
+      SelectionPopupModel(id: 1, title: "Car", value: "car", isSelected: true),
+      SelectionPopupModel(id: 2, title: "Motorcycle", value: "bicycle"),
+      SelectionPopupModel(id: 3, title: "Bus", value: "subway"),
+      SelectionPopupModel(id: 4, title: "Plane", value: "subway"),
+      SelectionPopupModel(id: 5, title: "Taxi", value: "subway"),
     ];
   }
 
@@ -60,8 +62,7 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
     emit(state.copyWith(
         settingsAddmanualtrippresversModelObj:
             state.settingsAddmanualtrippresversModelObj?.copyWith(
-                settingsaddmanualtrippresversItemList:
-                fillSettingsaddmanualtrippresversItemList(),
+                // settingsaddmanualtrippresversItemList: fillSettingsaddmanualtrippresversItemList(),
                 dropdownItemList: fillDropdownItemList()
             )));
   }
@@ -96,7 +97,7 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
       event.onCreateTripsEventSuccess?.call();
     }).onError((error, stackTrace) {
       //implement error call
-      _onCreateTripError();
+      _onCreateTripError(error, emit);
       event.onCreateTripsEventError?.call();
     });
   }
@@ -105,7 +106,11 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
       PostCreateTripResp resp,
       Emitter<SettingsAddmanualtrippresversState> emit,
       ) {}
-  void _onCreateTripError() {
+  void _onCreateTripError(
+      Object? error,
+      Emitter<SettingsAddmanualtrippresversState> emit,
+      ) {
+    print(error);
     //implement error method body...
   }
 }

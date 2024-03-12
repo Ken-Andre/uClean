@@ -24,6 +24,7 @@ dependencies:
   fluttertoast: ^8.2.4
   mockito: ^5.4.4
   permission_handler: ^11.1.0
+  geocoding_platform_interface: ^3.2.0
 dev_dependencies: 
   flutter_test: 
     sdk: flutter

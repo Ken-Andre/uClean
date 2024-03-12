@@ -16,7 +16,7 @@ class ReportItemModel {
     fromElthamStation = fromElthamStation ?? ImageConstant.imgMeansoftransport;
     image = image ?? ImageConstant.imgMeansoftransportDeepOrange200;
     time = time ?? "12:15 PM - 1:19 PM";
-    distance = distance ?? "2KM";
+    distance = distance ?? "2";
     id = id ?? "";
     pointa = pointa ?? "ETHAN Station";
     pointb = pointb ?? "Moses Station";

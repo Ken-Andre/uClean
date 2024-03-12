@@ -65,3 +65,4 @@ class MyApp extends StatelessWidget {
 //TODO Trip
 //TODO Get Trips; Post Logout and sync with SharedPrefs; Login And Signup in SharedPrefs;
 //TODO HomePage(done) and SettingsPage from ucleankim test_kyan; WidgetContainer too.
+//TODO [Map_Dialog_Location]https://www.dhiwise.com/post/elevate-your-app-with-flutter-osm-plugin
