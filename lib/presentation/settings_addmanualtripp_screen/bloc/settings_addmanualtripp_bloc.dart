@@ -34,9 +34,11 @@ class SettingsAddmanualtrippBloc
 
   List<SelectionPopupModel> fillDropdownItemList() {
     return [
-      SelectionPopupModel(id: 1, title: "Car",value: "car", isSelected: true),
-      SelectionPopupModel(id: 2, title: "Bicycle", value: "bicycle"),
-      SelectionPopupModel(id: 3, title: "Subway", value: "subway"),
+      SelectionPopupModel(id: 1, title: "Car", value: "car", isSelected: true),
+      SelectionPopupModel(id: 2, title: "Motorcycle", value: "bicycle"),
+      SelectionPopupModel(id: 3, title: "Bus", value: "subway"),
+      SelectionPopupModel(id: 4, title: "Plane", value: "subway"),
+      SelectionPopupModel(id: 5, title: "Taxi", value: "subway"),
     ];
   }
 
