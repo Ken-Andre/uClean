@@ -9,7 +9,7 @@ bool Date(
   }
 
   if (inputString != null && inputString.isNotEmpty) {
-    const pattern = r'^((0[1-9]|1[0-2])/0[1-9]|[12][0-9]|3[01])/((19|20)\d\d)$';
+    const pattern = r'^((0[1-9]|[12][0-9]|3[01])/0[1-9]|1[0-2])/((19|20)\d\d)$';
 
     final regExp = RegExp(pattern);
 

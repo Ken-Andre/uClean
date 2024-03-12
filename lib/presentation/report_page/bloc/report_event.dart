@@ -17,3 +17,21 @@ class ReportInitialEvent extends ReportEvent {
   @override
   List<Object?> get props => [];
 }
+
+///Event that is dispatched when the user calls the https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/trips API.
+class FetchTripsEvent extends ReportEvent {
+  FetchTripsEvent({
+    this.onFetchTripsEventSuccess,
+    this.onFetchTripsEventError,
+  });
+
+  Function? onFetchTripsEventSuccess;
+
+  Function? onFetchTripsEventError;
+
+  @override
+  List<Object?> get props => [
+    onFetchTripsEventSuccess,
+    onFetchTripsEventError,
+  ];
+}

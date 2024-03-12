@@ -1,6 +1,5 @@
-import 'package:grouped_list/grouped_list.dart';
-import 'models/linedelimiterreport_item_model.dart';
-import '../report_page/widgets/linedelimiterreport_item_widget.dart';
+import 'widgets/report_item_widget.dart';
+import 'models/report_item_model.dart';
 import 'models/report_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ucleankim/core/app_export.dart';
@@ -12,8 +11,8 @@ class ReportPage extends StatelessWidget {
   static Widget builder(BuildContext context) {
     return BlocProvider<ReportBloc>(
         create: (context) =>
-            ReportBloc(ReportState(reportModelObj: ReportModel()))
-              ..add(ReportInitialEvent()),
+        ReportBloc(ReportState(reportModelObj: ReportModel()))
+          ..add(ReportInitialEvent()),
         child: ReportPage());
   }
 
@@ -21,20 +20,19 @@ class ReportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: appTheme.gray10001,
             body: Container(
                 width: double.maxFinite,
                 decoration: AppDecoration.fillGray,
                 child: Column(children: [
                   SizedBox(height: 54.v),
-                  _buildTopNavApp(context),
-                  SizedBox(height: 13.v),
-                  _buildLineDelimiterReport(context)
+                  _buildSeven(context),
+                  SizedBox(height: 15.v),
+                  _buildReport(context)
                 ]))));
   }
 
   /// Section Widget
-  Widget _buildTopNavApp(BuildContext context) {
+  Widget _buildSeven(BuildContext context) {
     return Container(
         width: double.maxFinite,
         padding: EdgeInsets.symmetric(horizontal: 14.h, vertical: 8.v),
@@ -44,53 +42,31 @@ class ReportPage extends StatelessWidget {
           Padding(
               padding: EdgeInsets.only(left: 26.h),
               child:
-                  Text("lbl_january_2024".tr, style: theme.textTheme.bodySmall))
+              Text("lbl_january_2024".tr, style: theme.textTheme.bodySmall))
         ]));
   }
 
   /// Section Widget
-  Widget _buildLineDelimiterReport(BuildContext context) {
+  Widget _buildReport(BuildContext context) {
     return Expanded(
         child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 3.h),
+            padding: EdgeInsets.symmetric(horizontal: 25.h),
             child: BlocSelector<ReportBloc, ReportState, ReportModel?>(
                 selector: (state) => state.reportModelObj,
                 builder: (context, reportModelObj) {
-                  return GroupedListView<LinedelimiterreportItemModel, String>(
+                  return ListView.separated(
+                      physics: BouncingScrollPhysics(),
                       shrinkWrap: true,
-                      stickyHeaderBackgroundColor: Colors.transparent,
-                      elements:
-                          reportModelObj?.linedelimiterreportItemList ?? [],
-                      groupBy: (element) => element.groupBy!,
-                      sort: false,
-                      groupSeparatorBuilder: (String value) {
-                        return Padding(
-                            padding: EdgeInsets.only(top: 9.v, bottom: 4.v),
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 6.v, bottom: 7.v),
-                                      child: SizedBox(
-                                          width: 143.h, child: Divider())),
-                                  Text(value,
-                                      style: CustomTextStyles
-                                          .bodySmallInterGray500
-                                          .copyWith(color: appTheme.gray500)),
-                                  Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 6.v, bottom: 7.v),
-                                      child: SizedBox(
-                                          width: 135.h, child: Divider()))
-                                ]));
+                      separatorBuilder: (context, index) {
+                        return SizedBox(height: 12.v);
                       },
-                      itemBuilder: (context, model) {
-                        return LinedelimiterreportItemWidget(model);
-                      },
-                      separator: SizedBox(height: 12.v));
+                      itemCount: reportModelObj?.reportItemList.length ?? 0,
+                      itemBuilder: (context, index) {
+                        ReportItemModel model =
+                            reportModelObj?.reportItemList[index] ??
+                                ReportItemModel();
+                        return ReportItemWidget(model);
+                      });
                 })));
   }
 }
