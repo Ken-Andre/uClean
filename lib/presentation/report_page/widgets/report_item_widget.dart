@@ -84,7 +84,7 @@ class ReportItemWidget extends StatelessWidget {
             child: Row(
               children: [
                 CustomImageView(
-                  imagePath: reportItemModelObj?.image,
+                  imagePath: reportItemModelObj.image,
                   height: 24.adaptSize,
                   width: 24.adaptSize,
                 ),
