@@ -43,11 +43,13 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
 
   List<SelectionPopupModel> fillDropdownItemList() {
     return [
-      SelectionPopupModel(id: 1, title: "Car", value: "car", isSelected: true),
-      SelectionPopupModel(id: 2, title: "Motorcycle", value: "bicycle"),
-      SelectionPopupModel(id: 3, title: "Bus", value: "subway"),
-      SelectionPopupModel(id: 4, title: "Plane", value: "subway"),
-      SelectionPopupModel(id: 5, title: "Taxi", value: "subway"),
+      SelectionPopupModel(id: 1, title: "title_personnal_car".tr, value: "car", isSelected: true),
+      SelectionPopupModel(id: 2, title: "title_personnal_bike".tr, value: "bicycle"),
+      SelectionPopupModel(id: 3, title: "title_bus".tr, value: "subway"),
+      SelectionPopupModel(id: 4, title: "title_plane".tr, value: "subway"),
+      SelectionPopupModel(id: 5, title: "title_common_car".tr, value: "car"),
+      SelectionPopupModel(id: 6, title: "title_common_bike".tr, value: "bicycle"),
+      SelectionPopupModel(id: 7, title: "title_common_bike".tr, value: "walk"),
     ];
   }
 

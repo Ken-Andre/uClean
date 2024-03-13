@@ -54,7 +54,7 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
       ReportItemModel(
           tripKind: "Personnal",
           fromElthamStation: ImageConstant.imgMeansoftransport1,
-          image: ImageConstant.imgMeansoftransport2,
+          image: ImageConstant.imgMeansoftransportDeepOrange1,
           time: "12:15 PM - 1:19 PM",
           distance: "9K"),
       ReportItemModel(
@@ -106,22 +106,85 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
   }
 
   ///Handling route based on bottom click actions
-  String getAccurateTransImg(String? transportkind) {
+  String getAccurateTransImg(String? transportkind, int Option) {
     switch (transportkind) {
       case 'car':
-        return ImageConstant.imgMeansoftransport1;
-      case 'subway':
-        return ImageConstant.imgSubwayButton;
-    // case BottomBarEnum.Television:
-    //   return "/";
+        switch (Option) {
+          case 1:
+            return ImageConstant.imgMeansoftransport1;
+          case 2:
+            return ImageConstant.imgMeansoftransportDeepOrange1;
+        }
+        return '';
+
+      case 'taxi':
+        switch (Option) {
+          case 1:
+            return ImageConstant.imgMeansoftransport1;
+          case 2:
+            return ImageConstant.imgMeansoftransportDeepOrange2;
+        }
+        return '';
+
       case 'bicycle':
-        return ImageConstant.imgMotorcycle;
+        switch (Option) {
+          case 1:
+            return ImageConstant.imgMeansoftransport3;
+          case 2:
+            return ImageConstant.imgMeansoftransportDeepOrange3;
+        }
+        return '';
+
+      case 'taxiBiker':
+        switch (Option) {
+          case 1:
+            return ImageConstant.imgMeansoftransport3;
+          case 2:
+            return ImageConstant.imgMeansoftransportDeepOrange6;
+        }
+        return '';
+
+      case 'bus':
+        switch (Option) {
+          case 1:
+            return ImageConstant.imgMeansoftransport5;
+          case 2:
+            return ImageConstant.imgMeansoftransportDeepOrange5;
+        }
+        return '';
+
+      case 'plane':
+        switch (Option) {
+          case 1:
+            return ImageConstant.imgMeansoftransport4;
+          case 2:
+            return ImageConstant.imgMeansoftransportDeepOrange4;
+        }
+        return '';
+
       case 'walk':
-        return ImageConstant.imgWalk;
+        switch (Option) {
+          case 1:
+            return ImageConstant.imgMeansoftransport7;
+          case 2:
+            return ImageConstant.imgMeansoftransportDeepOrange7;
+        }
+        return '';
+
+      case 'subway':
+        switch (Option) {
+          case 1:
+            return ImageConstant.imgMeansoftransport;
+          case 2:
+            return ImageConstant.imgMeansoftransportDeepOrange200;
+        }
+        return '';
+
       default:
         return ImageConstant.imgMeansoftransport1;
     }
   }
+
   // void _onGetTripsFromX8kiLetlTwmtSuccess(
   //     List<GetGetTripsFromX8kiLetlTwmtResp> resp,
   //     Emitter<ReportState> emit,
@@ -173,8 +236,8 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
         reportItemModel.pointb = element.pointb ?? 'New Jersey';
         // Check for null or unexpected values in meansoftransElement
         if (meansoftransElement != null) {
-          reportItemModel.fromElthamStation = getAccurateTransImg(meansoftransElement);
-          reportItemModel.image = getAccurateTransImg(meansoftransElement);
+          reportItemModel.fromElthamStation = getAccurateTransImg(meansoftransElement,1);
+          reportItemModel.image = getAccurateTransImg(meansoftransElement,2);
         } else {
           // Handle null or unexpected values gracefully
           reportItemModel.fromElthamStation = ImageConstant.imgMeansoftransport;

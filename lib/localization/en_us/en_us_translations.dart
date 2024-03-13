@@ -3,6 +3,15 @@ final Map<String, String> enUs = {
   "lbl_date_and_hour": "Date and hour", "lbl_km": "_____ m",
   "msg_number_of_kilometers": "Distance (in meters)",
 
+  //Dropdown List
+  "title_personnal_car": "Personnal Car",
+  "title_personnal_bike": "Bike Ride",
+  "title_common_bike": "BikeRide (Taxi)",
+  "title_common_car": "Taxi",
+  "title_bus": "Bus",
+  "title_plane": "Plane",
+  "title_walk": "Walk",
+
   // NotifsPanel Screen
   "lbl_home": "Home",
   "msg_you_haven_t_any": "You haven't  any notifications yet",
