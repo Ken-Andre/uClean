@@ -4,6 +4,7 @@ import 'package:ucleankim/core/app_export.dart';
 import 'package:ucleankim/core/utils/progress_dialog_utils.dart';
 import 'package:ucleankim/data/models/authLoginPost/post_auth_login_post_resp.dart';
 import 'package:ucleankim/data/models/createTrip/post_create_trip_resp.dart';
+import 'package:ucleankim/data/models/getAuthMe/get_get_auth_me_resp.dart';
 import 'package:ucleankim/data/models/getTripsFromX8kiLetlTwmt/get_get_trips_from_x8ki_letl_twmt_resp.dart';
 import 'package:ucleankim/data/models/logoutPost/post_logout_post_resp.dart';
 import 'package:ucleankim/data/models/signupPost/post_signup_post_resp.dart';
@@ -238,6 +239,39 @@ class ApiClient {
             ? (response.data as List)
             .map((e) => GetGetTripsFromX8kiLetlTwmtResp.fromJson(e))
             .toList()
+            : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  /// Performs API call for https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/auth/me
+  ///
+  /// Sends a GET request to the server's 'https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/auth/me' endpoint
+  /// with the provided headers and request data
+  /// Returns a [GetGetAuthMeResp] object representing the response.
+  /// Throws an error if the request fails or an exception occurs.
+  Future<GetGetAuthMeResp> getAuthMe(
+      {Map<String, String> headers = const {}}) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      Response response = await _dio.get(
+        '$url/api:v0yDfnCj/auth/me',
+        options: Options(headers: headers),
+      );
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        return GetGetAuthMeResp.fromJson(response.data);
+      } else {
+        throw response.data != null
+            ? GetGetAuthMeResp.fromJson(response.data)
             : 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {

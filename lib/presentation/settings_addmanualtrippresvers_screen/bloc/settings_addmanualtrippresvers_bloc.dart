@@ -49,7 +49,7 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
       SelectionPopupModel(id: 4, title: "title_plane".tr, value: "subway"),
       SelectionPopupModel(id: 5, title: "title_common_car".tr, value: "car"),
       SelectionPopupModel(id: 6, title: "title_common_bike".tr, value: "bicycle"),
-      SelectionPopupModel(id: 7, title: "title_common_bike".tr, value: "walk"),
+      SelectionPopupModel(id: 7, title: "title_walk".tr, value: "walk"),
     ];
   }
 

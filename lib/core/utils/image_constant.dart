@@ -159,7 +159,7 @@ class ImageConstant {
 
   static String imgMeansoftransport5 = '$imagePath/busIcon.svg';
 
-  static String imgMeansoftransport7 = '$imagePath/Vector.svg';
+  static String imgMeansoftransport7 = '$imagePath/Vector.svg'; //walk
 
   static String imgMeansoftransportDeepOrange1 = '$imagePath/img_meansoftransport1_1.svg';
 

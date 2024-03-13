@@ -1,5 +1,6 @@
 import 'package:ucleankim/data/models/authLoginPost/post_auth_login_post_resp.dart';
 import 'package:ucleankim/data/models/createTrip/post_create_trip_resp.dart';
+import 'package:ucleankim/data/models/getAuthMe/get_get_auth_me_resp.dart';
 import 'package:ucleankim/data/models/getTripsFromX8kiLetlTwmt/get_get_trips_from_x8ki_letl_twmt_resp.dart';
 import 'package:ucleankim/data/models/logoutPost/post_logout_post_resp.dart';
 import 'package:ucleankim/data/models/signupPost/post_signup_post_resp.dart';
@@ -56,6 +57,13 @@ class Repository {
   Future<List<GetGetTripsFromX8kiLetlTwmtResp>> getTripsFromX8kiLetlTwmt(
       {Map<String, String> headers = const {}}) async {
     return await _apiClient.getTripsFromX8kiLetlTwmt(
+      headers: headers,
+    );
+  }
+
+  Future<GetGetAuthMeResp> getAuthMe(
+      {Map<String, String> headers = const {}}) async {
+    return await _apiClient.getAuthMe(
       headers: headers,
     );
   }

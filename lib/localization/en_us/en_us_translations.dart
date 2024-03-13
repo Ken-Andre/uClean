@@ -12,6 +12,7 @@ final Map<String, String> enUs = {
   "title_plane": "Plane",
   "title_walk": "Walk",
 
+
   // NotifsPanel Screen
   "lbl_home": "Home",
   "msg_you_haven_t_any": "You haven't  any notifications yet",
@@ -26,6 +27,8 @@ final Map<String, String> enUs = {
   "lbl_profile": "Profile",
   "lbl_save": "Save",
   "msg_felicia_reid_example_com": "felicia.reid@example.com",
+  "title_modify_profile": "Profile",
+  "msg_feature_not_impl": "Sorry, but this feature is not yet implemented.",
 
   // RecoverAccountTwo Screen
   "lbl_change_password": "Change Password",
