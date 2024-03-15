@@ -72,7 +72,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(
       state.copyWith(
         homeModelObj: state.homeModelObj?.copyWith(
-          welcomeIsabelle: 'Welcome ' + welcomeWord! ?? 'Welcome',
+          welcomeIsabelle: 'Welcome ' + welcomeWord! ,
           gamingPoints: (resp.id ?? 0).toString(),
         ),
       ),
