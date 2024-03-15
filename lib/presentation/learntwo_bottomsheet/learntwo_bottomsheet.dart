@@ -31,11 +31,9 @@ class LearntwoBottomsheet extends StatelessWidget {
       decoration: AppDecoration.fillWhiteA.copyWith(
         borderRadius: BorderRadiusStyle.customBorderTL12,
       ),
-      child:
-      Padding(
-        padding: const EdgeInsets.only(bottom:18),
-        child: 
-        SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 18),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,8 +45,7 @@ class LearntwoBottomsheet extends StatelessWidget {
               SizedBox(height: 9.v),
               SizedBox(
                 width: 350.h,
-                child: 
-                RichText(
+                child: RichText(
                   text: TextSpan(
                     children: [
                       TextSpan(

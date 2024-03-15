@@ -7,11 +7,11 @@ import 'package:ucleankim/core/app_export.dart';
 // ignore: must_be_immutable
 class ReportItemWidget extends StatelessWidget {
   ReportItemWidget(
-      this.reportItemModelObj, {
-        Key? key,
-      }) : super(
-    key: key,
-  );
+    this.reportItemModelObj, {
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   ReportItemModel reportItemModelObj;
 
@@ -70,7 +70,8 @@ class ReportItemWidget extends StatelessWidget {
                         text: " ",
                       ),
                       TextSpan(
-                        text: reportItemModelObj.pointa??"lbl_eltham_station".tr,
+                        text: reportItemModelObj.pointa ??
+                            "lbl_eltham_station".tr,
                         style: CustomTextStyles.titleMediumRobotoff000000,
                       ),
                     ],
@@ -106,7 +107,8 @@ class ReportItemWidget extends StatelessWidget {
                           text: " ",
                         ),
                         TextSpan(
-                          text: reportItemModelObj.pointb??"msg_melbourne_central".tr,
+                          text: reportItemModelObj.pointb ??
+                              "msg_melbourne_central".tr,
                           style: CustomTextStyles.titleMediumRobotoff000000,
                         ),
                       ],
@@ -126,19 +128,18 @@ class ReportItemWidget extends StatelessWidget {
                 style: CustomTextStyles.titleMediumRoboto,
               ),
               RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: reportItemModelObj.distance!,
-                      style: CustomTextStyles.bodyLargeRobotoPrimaryContainer_1,
-                    ),
-                    TextSpan(
-                      text: 'm',
-                      style: CustomTextStyles.bodyLargeRobotoPrimaryContainer_1,
-                    ),
-                  ],
-                )
-              ),
+                  text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: reportItemModelObj.distance!,
+                    style: CustomTextStyles.bodyLargeRobotoPrimaryContainer_1,
+                  ),
+                  TextSpan(
+                    text: 'm',
+                    style: CustomTextStyles.bodyLargeRobotoPrimaryContainer_1,
+                  ),
+                ],
+              )),
             ],
           ),
         ],

@@ -35,20 +35,26 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
   var postCreateTripResp = PostCreateTripResp();
 
   _changeDropDown(
-      ChangeDropDownEvent event,
-      Emitter<SettingsAddmanualtrippresversState> emit,
-      ) {
+    ChangeDropDownEvent event,
+    Emitter<SettingsAddmanualtrippresversState> emit,
+  ) {
     emit(state.copyWith(selectedDropDownValue: event.value));
   }
 
   List<SelectionPopupModel> fillDropdownItemList() {
     return [
-      SelectionPopupModel(id: 1, title: "title_personnal_car".tr, value: "car", isSelected: true),
-      SelectionPopupModel(id: 2, title: "title_personnal_bike".tr, value: "bicycle"),
+      SelectionPopupModel(
+          id: 1,
+          title: "title_personnal_car".tr,
+          value: "car",
+          isSelected: true),
+      SelectionPopupModel(
+          id: 2, title: "title_personnal_bike".tr, value: "bicycle"),
       SelectionPopupModel(id: 3, title: "title_bus".tr, value: "subway"),
       SelectionPopupModel(id: 4, title: "title_plane".tr, value: "subway"),
       SelectionPopupModel(id: 5, title: "title_common_car".tr, value: "car"),
-      SelectionPopupModel(id: 6, title: "title_common_bike".tr, value: "bicycle"),
+      SelectionPopupModel(
+          id: 6, title: "title_common_bike".tr, value: "bicycle"),
       SelectionPopupModel(id: 7, title: "title_walk".tr, value: "walk"),
     ];
   }
@@ -65,9 +71,9 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
         settingsAddmanualtrippresversModelObj:
             state.settingsAddmanualtrippresversModelObj?.copyWith(
                 // settingsaddmanualtrippresversItemList: fillSettingsaddmanualtrippresversItemList(),
-                dropdownItemList: fillDropdownItemList()
-            )));
+                dropdownItemList: fillDropdownItemList())));
   }
+
   /// Calls [https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/trips] with the provided event and emits the state.
   ///
   /// The [CreateTripsEvent] parameter is used for handling event data
@@ -75,13 +81,14 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
   ///
   /// Throws an error if an error occurs during the API call process.
   FutureOr<void> _callCreateTrip(
-      CreateTripsEvent event,
-      Emitter<SettingsAddmanualtrippresversState> emit,
-      ) async {
+    CreateTripsEvent event,
+    Emitter<SettingsAddmanualtrippresversState> emit,
+  ) async {
     var postCreateTripReq = PostCreateTripReq(
       distance: int.tryParse(state.kmController?.text ?? ''),
       date: state.wedJanuary31Controller?.text ?? '',
-      meansoftransport: state.selectedDropDownValue?.value  ?? Trips.meansoftransport1,
+      meansoftransport:
+          state.selectedDropDownValue?.value ?? Trips.meansoftransport1,
       tripkind: Trips.defaulttripkind,
       hour: state.oneThousandTwentyEightController?.text ?? '',
     );
@@ -105,13 +112,13 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
   }
 
   void _onCreateTripSuccess(
-      PostCreateTripResp resp,
-      Emitter<SettingsAddmanualtrippresversState> emit,
-      ) {}
+    PostCreateTripResp resp,
+    Emitter<SettingsAddmanualtrippresversState> emit,
+  ) {}
   void _onCreateTripError(
-      Object? error,
-      Emitter<SettingsAddmanualtrippresversState> emit,
-      ) {
+    Object? error,
+    Emitter<SettingsAddmanualtrippresversState> emit,
+  ) {
     print(error);
     //implement error method body...
   }

@@ -13,10 +13,10 @@ class CreateaccountthreeScreen extends StatelessWidget {
     //     ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     return BlocProvider<CreateaccountthreeBloc>(
         create: (context) => CreateaccountthreeBloc(CreateaccountthreeState(
-            createaccountthreeModelObj: CreateaccountthreeModel(),
-            // token: arg[NavigationArgs.token]
-        ))
-          ..add(CreateaccountthreeInitialEvent()),
+              createaccountthreeModelObj: CreateaccountthreeModel(),
+              // token: arg[NavigationArgs.token]
+            ))
+              ..add(CreateaccountthreeInitialEvent()),
         child: CreateaccountthreeScreen());
   }
 

@@ -14,8 +14,8 @@ class ProfileScreen extends StatelessWidget {
   static Widget builder(BuildContext context) {
     return BlocProvider<ProfileBloc>(
         create: (context) =>
-        ProfileBloc(ProfileState(profileModelObj: ProfileModel()))
-          ..add(ProfileInitialEvent()),
+            ProfileBloc(ProfileState(profileModelObj: ProfileModel()))
+              ..add(ProfileInitialEvent()),
         child: ProfileScreen());
   }
 
@@ -58,14 +58,14 @@ class ProfileScreen extends StatelessWidget {
                       child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 44.h),
                           child:
-                          Column(mainAxisSize: MainAxisSize.min, children: [
+                              Column(mainAxisSize: MainAxisSize.min, children: [
                             Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text("lbl_names".tr,
                                             style: CustomTextStyles
@@ -74,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                                         Opacity(
                                             opacity: 0.8,
                                             child: BlocSelector<ProfileBloc,
-                                                ProfileState, String?>(
+                                                    ProfileState, String?>(
                                                 selector: (state) => state
                                                     .profileModelObj!
                                                     .isabelleKarol,
@@ -99,11 +99,11 @@ class ProfileScreen extends StatelessWidget {
                             SizedBox(height: 39.v),
                             Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text("lbl_phone_number".tr,
                                             style: CustomTextStyles
@@ -112,7 +112,7 @@ class ProfileScreen extends StatelessWidget {
                                         Opacity(
                                             opacity: 0.8,
                                             child: BlocSelector<ProfileBloc,
-                                                ProfileState, String?>(
+                                                    ProfileState, String?>(
                                                 selector: (state) => state
                                                     .profileModelObj!
                                                     .sixHundredFortyMillionSevenHun,
@@ -138,24 +138,24 @@ class ProfileScreen extends StatelessWidget {
                                   Expanded(
                                       child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Text("lbl_email".tr,
-                                                style: CustomTextStyles
-                                                    .bodyLargePoppinsBlack900_3),
-                                            SizedBox(height: 12.v),
-                                            Opacity(
-                                                opacity: 0.8,
-                                                child: BlocSelector<ProfileBloc,
+                                        Text("lbl_email".tr,
+                                            style: CustomTextStyles
+                                                .bodyLargePoppinsBlack900_3),
+                                        SizedBox(height: 12.v),
+                                        Opacity(
+                                            opacity: 0.8,
+                                            child: BlocSelector<ProfileBloc,
                                                     ProfileState, String?>(
-                                                    selector: (state) => state
-                                                        .profileModelObj!.email,
-                                                    builder: (context, email) {
-                                                      return Text(email ?? "",
-                                                          style: CustomTextStyles
-                                                              .bodyLargeInterBlack90018);
-                                                    }))
-                                          ])),
+                                                selector: (state) => state
+                                                    .profileModelObj!.email,
+                                                builder: (context, email) {
+                                                  return Text(email ?? "",
+                                                      style: CustomTextStyles
+                                                          .bodyLargeInterBlack90018);
+                                                }))
+                                      ])),
                                   Padding(
                                       padding: EdgeInsets.only(
                                           left: 53.h, top: 34.v, bottom: 3.v),
@@ -172,7 +172,7 @@ class ProfileScreen extends StatelessWidget {
                             SizedBox(height: 7.v),
                             Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Opacity(
                                       opacity: 0.8,
@@ -197,7 +197,7 @@ class ProfileScreen extends StatelessWidget {
                                 child: CustomElevatedButton(
                                     text: "lbl_save".tr,
                                     margin:
-                                    EdgeInsets.symmetric(horizontal: 11.h),
+                                        EdgeInsets.symmetric(horizontal: 11.h),
                                     buttonStyle: CustomButtonStyles
                                         .fillOnSecondaryContainerTL10,
                                     buttonTextStyle: CustomTextStyles
@@ -230,16 +230,24 @@ class ProfileScreen extends StatelessWidget {
     showDialog(
         context: context,
         builder: (_) => AlertDialog(
-          title: Text("title_modify_profile".tr),
-          content: Text("msg_feature_not_impl".tr),
-          actions: [
-            ElevatedButton(onPressed: () {closetheDialog(context);}, child: const Text('Ok')),
-          ],
-          // content: DialoglocationDialog.builder(context),
-          backgroundColor: Colors.transparent,
-          contentPadding: EdgeInsets.zero,
-          insetPadding: const EdgeInsets.only(left: 0),
-        ));
+              title: Text("title_modify_profile".tr),
+              content: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("msg_feature_not_impl".tr),
+              ),
+              backgroundColor: appTheme.whiteA70001,
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      closetheDialog(context);
+                    },
+                    child: const Text('Ok')),
+              ],
+              // content: DialoglocationDialog.builder(context),
+              // backgroundColor: Colors.transparent,
+              contentPadding: EdgeInsets.zero,
+              insetPadding: const EdgeInsets.only(left: 0),
+            ));
   }
 
   /// Navigates to the recoveraccountScreen when the action is triggered.
@@ -250,6 +258,6 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
- closetheDialog(BuildContext context) {
+closetheDialog(BuildContext context) {
   NavigatorService.goBack();
 }

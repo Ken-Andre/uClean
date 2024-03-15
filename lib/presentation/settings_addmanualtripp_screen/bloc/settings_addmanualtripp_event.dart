@@ -31,9 +31,9 @@ class CreateTripsMapsEvent extends SettingsAddmanualtrippEvent {
 
   @override
   List<Object?> get props => [
-    onCreateTripsMapsEventSuccess,
-    onCreateTripsMapsEventError,
-  ];
+        onCreateTripsMapsEventSuccess,
+        onCreateTripsMapsEventError,
+      ];
 }
 
 ///event for dropdown selection
@@ -44,6 +44,6 @@ class ChangeDropDownEvent extends SettingsAddmanualtrippEvent {
 
   @override
   List<Object?> get props => [
-    value,
-  ];
+        value,
+      ];
 }

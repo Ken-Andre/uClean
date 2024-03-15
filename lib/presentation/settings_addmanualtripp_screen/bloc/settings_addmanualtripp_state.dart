@@ -27,13 +27,13 @@ class SettingsAddmanualtrippState extends Equatable {
 
   @override
   List<Object?> get props => [
-    wedJanuary3Controller,
-    oneThousandTwentyEightController,
-    startLocationController,
-    stopLocationController,
-    selectedDropDownValue,
-    settingsAddmanualtrippModelObj,
-  ];
+        wedJanuary3Controller,
+        oneThousandTwentyEightController,
+        startLocationController,
+        stopLocationController,
+        selectedDropDownValue,
+        settingsAddmanualtrippModelObj,
+      ];
 
   SettingsAddmanualtrippState copyWith({
     TextEditingController? wedJanuary3Controller,
@@ -45,17 +45,17 @@ class SettingsAddmanualtrippState extends Equatable {
   }) {
     return SettingsAddmanualtrippState(
       wedJanuary3Controller:
-      wedJanuary3Controller ?? this.wedJanuary3Controller,
+          wedJanuary3Controller ?? this.wedJanuary3Controller,
       oneThousandTwentyEightController: oneThousandTwentyEightController ??
           this.oneThousandTwentyEightController,
       startLocationController:
-      startLocationController ?? this.startLocationController,
+          startLocationController ?? this.startLocationController,
       stopLocationController:
-      stopLocationController ?? this.stopLocationController,
+          stopLocationController ?? this.stopLocationController,
       selectedDropDownValue:
-      selectedDropDownValue ?? this.selectedDropDownValue,
+          selectedDropDownValue ?? this.selectedDropDownValue,
       settingsAddmanualtrippModelObj:
-      settingsAddmanualtrippModelObj ?? this.settingsAddmanualtrippModelObj,
+          settingsAddmanualtrippModelObj ?? this.settingsAddmanualtrippModelObj,
     );
   }
 }

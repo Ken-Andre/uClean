@@ -31,7 +31,7 @@ class CreateLogoutEvent extends SettingspageEvent {
 
   @override
   List<Object?> get props => [
-    onCreateLogoutEventSuccess,
-    onCreateLogoutEventError,
-  ];
+        onCreateLogoutEventSuccess,
+        onCreateLogoutEventError,
+      ];
 }

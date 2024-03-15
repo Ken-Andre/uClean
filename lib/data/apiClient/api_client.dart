@@ -12,7 +12,7 @@ import 'package:ucleankim/data/models/signupPost/post_signup_post_resp.dart';
 import 'network_interceptor.dart';
 
 class ApiClient {
-  static var token ;
+  static var token;
 
   factory ApiClient() {
     return _apiClient;
@@ -29,7 +29,7 @@ class ApiClient {
     "Accept": "application/json",
     // "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTNmOTI0NTNjODViYzEyNjU4ZjNiZSIsInVzZXJuYW1lIjoiSnVkZ2VfQ3JvbmluIiwiaWF0IjoxNjcxNjk3MTcxfQ.hbZLKSsS6Mdj1ndhAf4rm_5we4iWYvKY1VPSo51sQRM",
     // "Authorization": token?"Bearer ${token}":"",
-        "Content-Type": "multipart/form-data"
+    "Content-Type": "multipart/form-data"
   }))
         ..interceptors.add(NetworkInterceptor());
 
@@ -237,8 +237,8 @@ class ApiClient {
       } else {
         throw response.data != null
             ? (response.data as List)
-            .map((e) => GetGetTripsFromX8kiLetlTwmtResp.fromJson(e))
-            .toList()
+                .map((e) => GetGetTripsFromX8kiLetlTwmtResp.fromJson(e))
+                .toList()
             : 'Something Went Wrong!';
       }
     } catch (error, stackTrace) {

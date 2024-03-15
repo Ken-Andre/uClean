@@ -109,7 +109,7 @@ class CreateaccountScreen extends StatelessWidget {
               controller: userNameController,
               hintText: "lbl_username".tr,
               validator: (value) {
-                if (!isText(value) || value!.length<3) {
+                if (!isText(value) || value!.length < 3) {
                   return "err_msg_please_enter_valid_text".tr;
                 }
                 return null;
@@ -192,7 +192,8 @@ class CreateaccountScreen extends StatelessWidget {
                       width: 19.h))),
           suffixConstraints: BoxConstraints(maxHeight: 44.v),
           validator: (value) {
-            if (value == null || state.passwordController?.text !=value) { //!isValidPassword(value)
+            if (value == null || state.passwordController?.text != value) {
+              //!isValidPassword(value)
               return "err_msg_please_password_not_match".tr;
             }
             return null;

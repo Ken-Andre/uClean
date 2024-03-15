@@ -26,27 +26,33 @@ class SettingsAddmanualtrippBloc
   var postCreateTripResp = PostCreateTripResp();
 
   _changeDropDown(
-      ChangeDropDownEvent event,
-      Emitter<SettingsAddmanualtrippState> emit,
-      ) {
+    ChangeDropDownEvent event,
+    Emitter<SettingsAddmanualtrippState> emit,
+  ) {
     emit(state.copyWith(selectedDropDownValue: event.value));
   }
 
   List<SelectionPopupModel> fillDropdownItemList() {
     return [
-      SelectionPopupModel(id: 1, title: "title_personnal_car".tr, value: "car", isSelected: true),
-      SelectionPopupModel(id: 2, title: "title_personnal_bike".tr, value: "bicycle"),
+      SelectionPopupModel(
+          id: 1,
+          title: "title_personnal_car".tr,
+          value: "car",
+          isSelected: true),
+      SelectionPopupModel(
+          id: 2, title: "title_personnal_bike".tr, value: "bicycle"),
       SelectionPopupModel(id: 3, title: "title_bus".tr, value: "subway"),
       SelectionPopupModel(id: 4, title: "title_plane".tr, value: "subway"),
       SelectionPopupModel(id: 5, title: "title_common_car".tr, value: "subway"),
-      SelectionPopupModel(id: 6, title: "title_common_bike".tr, value: "bicycle"),
+      SelectionPopupModel(
+          id: 6, title: "title_common_bike".tr, value: "bicycle"),
     ];
   }
 
   _onInitialize(
-      SettingsAddmanualtrippInitialEvent event,
-      Emitter<SettingsAddmanualtrippState> emit,
-      ) async {
+    SettingsAddmanualtrippInitialEvent event,
+    Emitter<SettingsAddmanualtrippState> emit,
+  ) async {
     emit(state.copyWith(
         wedJanuary3Controller: TextEditingController(),
         oneThousandTwentyEightController: TextEditingController(),
@@ -64,14 +70,15 @@ class SettingsAddmanualtrippBloc
   ///
   /// Throws an error if an error occurs during the API call process.
   FutureOr<void> _callCreateTrip(
-      CreateTripsMapsEvent event,
-      Emitter<SettingsAddmanualtrippState> emit,
-      ) async {
+    CreateTripsMapsEvent event,
+    Emitter<SettingsAddmanualtrippState> emit,
+  ) async {
     var postCreateTripReq = PostCreateTripReq(
       distance: CreatedBy.initial,
       date: state.wedJanuary3Controller?.text ?? '',
       hour: state.oneThousandTwentyEightController?.text ?? '',
-      meansoftransport: state.selectedDropDownValue?.value  ?? Trips.meansoftransport3,
+      meansoftransport:
+          state.selectedDropDownValue?.value ?? Trips.meansoftransport3,
       pointa: state.startLocationController?.text ?? '',
       pointb: state.stopLocationController?.text ?? '',
       tripkind: Trips.defaulttripkind,
@@ -96,9 +103,9 @@ class SettingsAddmanualtrippBloc
   }
 
   void _onCreateTripSuccess(
-      PostCreateTripResp resp,
-      Emitter<SettingsAddmanualtrippState> emit,
-      ) {}
+    PostCreateTripResp resp,
+    Emitter<SettingsAddmanualtrippState> emit,
+  ) {}
   void _onCreateTripError() {
     //implement error method body...
   }

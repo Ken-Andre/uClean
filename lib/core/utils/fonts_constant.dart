@@ -1,5 +1,5 @@
 // TODO Implement this library.
-class FontsConstant{
+class FontsConstant {
   static String fontPath = 'fonts';
 
   static String Poppins = '$fontPath/Poppins';

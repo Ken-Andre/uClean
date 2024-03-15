@@ -27,14 +27,12 @@ class LearnPage extends StatelessWidget {
             body: Container(
                 width: double.maxFinite,
                 decoration: AppDecoration.fillWhiteA,
-                child: 
-                Column(children: [
+                child: Column(children: [
                   SizedBox(height: 65.v),
                   _buildTopNavApp(context),
                   SizedBox(height: 14.v),
                   _buildLearnContainer(context)
-                ])
-            )));
+                ]))));
   }
 
   /// Section Widget
@@ -51,9 +49,8 @@ class LearnPage extends StatelessWidget {
 
   /// Section Widget
   Widget _buildLearnContainer(BuildContext context) {
-    return 
-      Expanded(
-        child: Padding(
+    return Expanded(
+      child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.h),
           child: BlocSelector<LearnBloc, LearnState, LearnModel?>(
               selector: (state) => state.learnModelObj,
@@ -64,7 +61,8 @@ class LearnPage extends StatelessWidget {
                     separatorBuilder: (context, index) {
                       return SizedBox(height: 6.v);
                     },
-                    itemCount: learnModelObj?.learncontainerItemList.length ?? 0,
+                    itemCount:
+                        learnModelObj?.learncontainerItemList.length ?? 0,
                     itemBuilder: (context, index) {
                       LearncontainerItemModel model =
                           learnModelObj?.learncontainerItemList[index] ??
@@ -75,7 +73,7 @@ class LearnPage extends StatelessWidget {
                       });
                     });
               })),
-      );
+    );
   }
 
   /// Displays a bottom sheet widget using the [showModalBottomSheet] method
@@ -88,35 +86,34 @@ class LearnPage extends StatelessWidget {
     switch (index) {
       case 0:
         return showModalBottomSheet(
-            constraints: BoxConstraints(maxHeight: SizeUtils.height*0.65),
+            constraints: BoxConstraints(maxHeight: SizeUtils.height * 0.65),
             context: context,
             builder: (_) => LearntwoBottomsheet.builder(context),
             isScrollControlled: true);
       case 1:
         return showModalBottomSheet(
-            constraints: BoxConstraints(maxHeight: SizeUtils.height*0.65),
+            constraints: BoxConstraints(maxHeight: SizeUtils.height * 0.65),
             context: context,
             builder: (_) => LearnthreeBottomsheet.builder(context),
             isScrollControlled: true);
       case 2:
         return showModalBottomSheet(
-            constraints: BoxConstraints(maxHeight: SizeUtils.height*0.65),
+            constraints: BoxConstraints(maxHeight: SizeUtils.height * 0.65),
             context: context,
             builder: (_) => LearnfourBottomsheet.builder(context),
             isScrollControlled: true);
       case 3:
         return showModalBottomSheet(
-            constraints: BoxConstraints(maxHeight: SizeUtils.height*0.65),
+            constraints: BoxConstraints(maxHeight: SizeUtils.height * 0.65),
             context: context,
             builder: (_) => LearnfiveBottomsheet.builder(context),
             isScrollControlled: true);
       default:
         return showModalBottomSheet(
-            constraints: BoxConstraints(maxHeight: 350.h),
-            context: context,
-            builder: (_) => LearntwoBottomsheet.builder(context),
-            isScrollControlled: true,
-
+          constraints: BoxConstraints(maxHeight: 350.h),
+          context: context,
+          builder: (_) => LearntwoBottomsheet.builder(context),
+          isScrollControlled: true,
         );
     }
 

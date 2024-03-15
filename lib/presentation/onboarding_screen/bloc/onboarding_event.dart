@@ -17,3 +17,13 @@ class OnboardingInitialEvent extends OnboardingEvent {
   @override
   List<Object?> get props => [];
 }
+
+/// Event that is dispatched when the Onboarding widget is first created.
+class UpdatePageViewEvent extends OnboardingEvent {
+  UpdatePageViewEvent({required this.page});
+
+  int page;
+
+  @override
+  List<Object?> get props => [page];
+}

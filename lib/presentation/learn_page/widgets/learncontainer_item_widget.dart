@@ -22,8 +22,7 @@ class LearncontainerItemWidget extends StatelessWidget {
       onTap: () {
         onTapTheBeautyOfThe!.call();
       },
-      child:
-      Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomImageView(

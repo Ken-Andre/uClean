@@ -8,7 +8,8 @@ class PostAuthLoginPostResp {
   PostAuthLoginPostResp.fromJson(Map<String, dynamic> json) {
     authToken = json['authToken'];
     PrefUtils().setAuthToken(authToken!);
-    print('Login Token: ${authToken} \n and from Shared prefs \t ${PrefUtils().getAuthToken()}');
+    print(
+        'Login Token: ${authToken} \n and from Shared prefs \t ${PrefUtils().getAuthToken()}');
   }
 
   get data => null;

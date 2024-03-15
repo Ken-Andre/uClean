@@ -20,8 +20,8 @@ class SettingsAddmanualtrippresversModel extends Equatable {
   SettingsAddmanualtrippresversModel copyWith({
     List<SelectionPopupModel>? dropdownItemList,
     List<SettingsaddmanualtrippresversItemModel>?
-          settingsaddmanualtrippresversItemList,
-      }) {
+        settingsaddmanualtrippresversItemList,
+  }) {
     return SettingsAddmanualtrippresversModel(
       settingsaddmanualtrippresversItemList:
           settingsaddmanualtrippresversItemList ??
@@ -32,7 +32,7 @@ class SettingsAddmanualtrippresversModel extends Equatable {
 
   @override
   List<Object?> get props => [
-    settingsaddmanualtrippresversItemList,
-    dropdownItemList,
-  ];
+        settingsaddmanualtrippresversItemList,
+        dropdownItemList,
+      ];
 }

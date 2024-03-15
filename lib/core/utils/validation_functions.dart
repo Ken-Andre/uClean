@@ -84,9 +84,9 @@ bool aggregateCoordonates(
 }
 
 bool UcacIcamandIcam(
-    String? inputString, {
-      bool isRequired = false,
-    }) {
+  String? inputString, {
+  bool isRequired = false,
+}) {
   bool isInputStringValid = false;
 
   if (!isRequired && (inputString == null ? true : inputString.isEmpty)) {

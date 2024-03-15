@@ -28,7 +28,7 @@ class SettingsAddmanualtrippModel extends Equatable {
 
   @override
   List<Object?> get props => [
-    settingsaddmanualtrippItemList,
-    dropdownItemList,
-  ];
+        settingsaddmanualtrippItemList,
+        dropdownItemList,
+      ];
 }

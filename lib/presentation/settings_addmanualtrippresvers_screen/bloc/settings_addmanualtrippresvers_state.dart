@@ -24,11 +24,11 @@ class SettingsAddmanualtrippresversState extends Equatable {
 
   @override
   List<Object?> get props => [
-    wedJanuary31Controller,
-    oneThousandTwentyEightController,
-    kmController,
-    selectedDropDownValue,
-    settingsAddmanualtrippresversModelObj,
+        wedJanuary31Controller,
+        oneThousandTwentyEightController,
+        kmController,
+        selectedDropDownValue,
+        settingsAddmanualtrippresversModelObj,
       ];
 
   SettingsAddmanualtrippresversState copyWith({
@@ -40,15 +40,15 @@ class SettingsAddmanualtrippresversState extends Equatable {
   }) {
     return SettingsAddmanualtrippresversState(
       wedJanuary31Controller:
-      wedJanuary31Controller ?? this.wedJanuary31Controller,
+          wedJanuary31Controller ?? this.wedJanuary31Controller,
       oneThousandTwentyEightController: oneThousandTwentyEightController ??
           this.oneThousandTwentyEightController,
       kmController: kmController ?? this.kmController,
       selectedDropDownValue:
-      selectedDropDownValue ?? this.selectedDropDownValue,
+          selectedDropDownValue ?? this.selectedDropDownValue,
       settingsAddmanualtrippresversModelObj:
-      settingsAddmanualtrippresversModelObj ??
-          this.settingsAddmanualtrippresversModelObj,
+          settingsAddmanualtrippresversModelObj ??
+              this.settingsAddmanualtrippresversModelObj,
     );
   }
 }

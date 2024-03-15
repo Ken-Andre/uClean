@@ -25,9 +25,9 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
   ///
   /// The [BuildContext] parameter represents current [BuildContext]
   _onInitialize(
-      ReportInitialEvent event,
-      Emitter<ReportState> emit,
-      ) async {
+    ReportInitialEvent event,
+    Emitter<ReportState> emit,
+  ) async {
     emit(state.copyWith(
         reportModelObj: state.reportModelObj
             ?.copyWith(reportItemList: fillReportItemList())));
@@ -85,9 +85,9 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
   ///
   /// Throws an error if an error occurs during the API call process.
   FutureOr<void> _callGetTripsFromX8kiLetlTwmt(
-      FetchTripsEvent event,
-      Emitter<ReportState> emit,
-      ) async {
+    FetchTripsEvent event,
+    Emitter<ReportState> emit,
+  ) async {
     await _repository.getTripsFromX8kiLetlTwmt(
       headers: {
         'Content-type': 'application/json',
@@ -219,9 +219,9 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
   //   );
   // }
   void _onGetTripsFromX8kiLetlTwmtSuccess(
-      List<GetGetTripsFromX8kiLetlTwmtResp> resp,
-      Emitter<ReportState> emit,
-      ) {
+    List<GetGetTripsFromX8kiLetlTwmtResp> resp,
+    Emitter<ReportState> emit,
+  ) {
     var reportItemModelList = <ReportItemModel>[];
     if (resp.isNotEmpty) {
       print('Yes, the response was not empty');
@@ -229,19 +229,22 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
         var reportItemModel = ReportItemModel();
         var meansoftransElement = element.meansoftransport;
 
-        reportItemModel.distance = (element.distance?.toStringAsFixed(2) ?? 0).toString();
+        reportItemModel.distance =
+            (element.distance?.toStringAsFixed(2) ?? 0).toString();
         reportItemModel.time = element.date ?? '';
         reportItemModel.tripKind = element.tripkind ?? 'N/A';
         reportItemModel.pointa = element.pointa ?? 'Ethanol Station';
         reportItemModel.pointb = element.pointb ?? 'New Jersey';
         // Check for null or unexpected values in meansoftransElement
         if (meansoftransElement != null) {
-          reportItemModel.fromElthamStation = getAccurateTransImg(meansoftransElement,1);
-          reportItemModel.image = getAccurateTransImg(meansoftransElement,2);
+          reportItemModel.fromElthamStation =
+              getAccurateTransImg(meansoftransElement, 1);
+          reportItemModel.image = getAccurateTransImg(meansoftransElement, 2);
         } else {
           // Handle null or unexpected values gracefully
           reportItemModel.fromElthamStation = ImageConstant.imgMeansoftransport;
-          reportItemModel.image = ImageConstant.imgMeansoftransportDeepOrange200;
+          reportItemModel.image =
+              ImageConstant.imgMeansoftransportDeepOrange200;
         }
 
         reportItemModelList.add(reportItemModel);
@@ -261,7 +264,6 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
       ),
     );
   }
-
 
   void _onGetTripsFromX8kiLetlTwmtError() {
     //implement error method body...

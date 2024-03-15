@@ -21,9 +21,9 @@ class SettingspageBloc extends Bloc<SettingspageEvent, SettingspageState> {
   var postLogoutPostResp = PostLogoutPostResp();
 
   _onInitialize(
-      SettingspageInitialEvent event,
-      Emitter<SettingspageState> emit,
-      ) async {}
+    SettingspageInitialEvent event,
+    Emitter<SettingspageState> emit,
+  ) async {}
 
   /// Calls [https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/auth/logout] with the provided event and emits the state.
   ///
@@ -32,9 +32,9 @@ class SettingspageBloc extends Bloc<SettingspageEvent, SettingspageState> {
   ///
   /// Throws an error if an error occurs during the API call process.
   FutureOr<void> _callLogoutPost(
-      CreateLogoutEvent event,
-      Emitter<SettingspageState> emit,
-      ) async {
+    CreateLogoutEvent event,
+    Emitter<SettingspageState> emit,
+  ) async {
     var postLogoutPostReq = PostLogoutPostReq();
     var logToken = PrefUtils().getAuthToken();
     print('here is the logToken $logToken');
@@ -56,9 +56,9 @@ class SettingspageBloc extends Bloc<SettingspageEvent, SettingspageState> {
   }
 
   void _onLogoutPostSuccess(
-      PostLogoutPostResp resp,
-      Emitter<SettingspageState> emit,
-      ) {}
+    PostLogoutPostResp resp,
+    Emitter<SettingspageState> emit,
+  ) {}
   void _onLogoutPostError() {
     //implement error method body...
   }

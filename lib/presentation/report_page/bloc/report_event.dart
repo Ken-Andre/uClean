@@ -31,7 +31,7 @@ class FetchTripsEvent extends ReportEvent {
 
   @override
   List<Object?> get props => [
-    onFetchTripsEventSuccess,
-    onFetchTripsEventError,
-  ];
+        onFetchTripsEventSuccess,
+        onFetchTripsEventError,
+      ];
 }

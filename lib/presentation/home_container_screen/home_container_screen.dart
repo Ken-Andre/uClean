@@ -39,8 +39,8 @@ class HomeContainerScreen extends StatelessWidget {
                       transitionDuration: Duration(seconds: 0))),
               bottomNavigationBar: _buildBottomBar(context),
               floatingActionButton: CustomFloatingButton(
-                  height: 54,
-                  width: 54,
+                  height: 50,
+                  width: 50,
                   backgroundColor: appTheme.blueA400,
                   onTap: () {
                     navigatetoAddScreen(context);
@@ -50,8 +50,7 @@ class HomeContainerScreen extends StatelessWidget {
                       height: 27.0.v,
                       width: 27.0.h)),
               floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked
-          ));
+                  FloatingActionButtonLocation.centerDocked));
     });
   }
 
@@ -98,6 +97,7 @@ class HomeContainerScreen extends StatelessWidget {
         return DefaultWidget();
     }
   }
+
   /// Navigates to the settingsAddmanualtrippresversScreen when the action is triggered.
   navigatetoAddScreen(BuildContext context) {
     NavigatorService.pushNamed(
@@ -105,4 +105,3 @@ class HomeContainerScreen extends StatelessWidget {
     );
   }
 }
-

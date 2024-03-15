@@ -25,7 +25,7 @@ class ProfileModel extends Equatable {
     return ProfileModel(
       isabelleKarol: isabelleKarol ?? this.isabelleKarol,
       sixHundredFortyMillionSevenHun:
-      sixHundredFortyMillionSevenHun ?? this.sixHundredFortyMillionSevenHun,
+          sixHundredFortyMillionSevenHun ?? this.sixHundredFortyMillionSevenHun,
       email: email ?? this.email,
     );
   }

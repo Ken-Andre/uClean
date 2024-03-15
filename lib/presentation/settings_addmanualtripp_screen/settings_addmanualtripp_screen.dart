@@ -95,13 +95,13 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
                               SizedBox(height: 10.v),
                               Padding(
                                   padding:
-                                  EdgeInsets.symmetric(horizontal: 10.h),
+                                      EdgeInsets.symmetric(horizontal: 10.h),
                                   child: BlocSelector<
-                                      SettingsAddmanualtrippBloc,
-                                      SettingsAddmanualtrippState,
-                                      SettingsAddmanualtrippModel?>(
+                                          SettingsAddmanualtrippBloc,
+                                          SettingsAddmanualtrippState,
+                                          SettingsAddmanualtrippModel?>(
                                       selector: (state) =>
-                                      state.settingsAddmanualtrippModelObj,
+                                          state.settingsAddmanualtrippModelObj,
                                       builder: (context,
                                           settingsAddmanualtrippModelObj) {
                                         return CustomDropDown(
@@ -109,17 +109,17 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
                                             hintStyle: CustomTextStyles
                                                 .bodyMediumLight,
                                             items:
-                                            settingsAddmanualtrippModelObj
-                                                ?.dropdownItemList ??
-                                                [],
+                                                settingsAddmanualtrippModelObj
+                                                        ?.dropdownItemList ??
+                                                    [],
                                             // contentPadding: EdgeInsets.only(
                                             //     top: 9.v, bottom: 11.v),
                                             onChanged: (value) {
                                               context
                                                   .read<
-                                                  SettingsAddmanualtrippBloc>()
+                                                      SettingsAddmanualtrippBloc>()
                                                   .add(ChangeDropDownEvent(
-                                                  value: value));
+                                                      value: value));
                                             });
                                       }))
                             ]))))),
@@ -142,7 +142,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.h),
         child: BlocSelector<SettingsAddmanualtrippBloc,
-            SettingsAddmanualtrippState, TextEditingController?>(
+                SettingsAddmanualtrippState, TextEditingController?>(
             selector: (state) => state.wedJanuary3Controller,
             builder: (context, wedJanuary3Controller) {
               return CustomTextFormField(
@@ -173,7 +173,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.h),
         child: BlocSelector<SettingsAddmanualtrippBloc,
-            SettingsAddmanualtrippState, TextEditingController?>(
+                SettingsAddmanualtrippState, TextEditingController?>(
             selector: (state) => state.oneThousandTwentyEightController,
             builder: (context, oneThousandTwentyEightController) {
               return CustomTextFormField(
@@ -204,7 +204,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.h),
         child: BlocSelector<SettingsAddmanualtrippBloc,
-            SettingsAddmanualtrippState, TextEditingController?>(
+                SettingsAddmanualtrippState, TextEditingController?>(
             selector: (state) => state.startLocationController,
             builder: (context, startLocationController) {
               return CustomTextFormField(
@@ -215,7 +215,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
                       margin: EdgeInsets.fromLTRB(102.h, 10.v, 9.h, 10.v),
                       child: CustomImageView(
                           imagePath:
-                          ImageConstant.img_contrast_secondarycontainer,
+                              ImageConstant.img_contrast_secondarycontainer,
                           height: 24.adaptSize,
                           width: 24.adaptSize)),
                   prefixConstraints: BoxConstraints(maxHeight: 44.v),
@@ -238,7 +238,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.h),
         child: BlocSelector<SettingsAddmanualtrippBloc,
-            SettingsAddmanualtrippState, TextEditingController?>(
+                SettingsAddmanualtrippState, TextEditingController?>(
             selector: (state) => state.stopLocationController,
             builder: (context, stopLocationController) {
               return CustomTextFormField(
@@ -250,7 +250,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
                       margin: EdgeInsets.fromLTRB(102.h, 10.v, 9.h, 10.v),
                       child: CustomImageView(
                           imagePath:
-                          ImageConstant.img_contrast_secondarycontainer,
+                              ImageConstant.img_contrast_secondarycontainer,
                           height: 24.adaptSize,
                           width: 24.adaptSize)),
                   prefixConstraints: BoxConstraints(maxHeight: 44.v),
@@ -288,7 +288,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
         margin: EdgeInsets.only(left: 20.h, right: 20.h, bottom: 8.v),
         decoration: AppDecoration.fillGray,
         child:
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Padding(
               padding: EdgeInsets.only(bottom: 1.v),
               child: Column(
@@ -309,7 +309,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
                 Padding(
                     padding: EdgeInsets.only(top: 3.v),
                     child:
-                    Text("lbl_trip".tr, style: theme.textTheme.bodyMedium))
+                        Text("lbl_trip".tr, style: theme.textTheme.bodyMedium))
               ]),
           _buildAddDrive(context)
         ]));
@@ -329,15 +329,15 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
   callAddDetTrip(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       context.read<SettingsAddmanualtrippBloc>().add(
-        CreateTripsMapsEvent(
-          onCreateTripsMapsEventSuccess: () {
-            _onCreateTripEventSuccess(context);
-          },
-          onCreateTripsMapsEventError: () {
-            _onCreateTripEventError(context);
-          },
-        ),
-      );
+            CreateTripsMapsEvent(
+              onCreateTripsMapsEventSuccess: () {
+                _onCreateTripEventSuccess(context);
+              },
+              onCreateTripsMapsEventError: () {
+                _onCreateTripEventError(context);
+              },
+            ),
+          );
     }
   }
 

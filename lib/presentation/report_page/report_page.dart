@@ -11,8 +11,8 @@ class ReportPage extends StatelessWidget {
   static Widget builder(BuildContext context) {
     return BlocProvider<ReportBloc>(
         create: (context) =>
-        ReportBloc(ReportState(reportModelObj: ReportModel()))
-          ..add(ReportInitialEvent()),
+            ReportBloc(ReportState(reportModelObj: ReportModel()))
+              ..add(ReportInitialEvent()),
         child: ReportPage());
   }
 
@@ -42,7 +42,7 @@ class ReportPage extends StatelessWidget {
           Padding(
               padding: EdgeInsets.only(left: 26.h),
               child:
-              Text("lbl_january_2024".tr, style: theme.textTheme.bodySmall))
+                  Text("lbl_january_2024".tr, style: theme.textTheme.bodySmall))
         ]));
   }
 

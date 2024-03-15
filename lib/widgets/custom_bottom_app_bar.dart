@@ -148,7 +148,7 @@ class CustomBottomAppBarState extends State<CustomBottomAppBar> {
             element.isSelected = false;
           }
           selectedIndex = index;
-          bottomMenuList[index].isSelected =true;
+          bottomMenuList[index].isSelected = true;
           widget.onChanged?.call(bottomMenuList[index].type);
           setState(() {});
         },
@@ -156,6 +156,7 @@ class CustomBottomAppBarState extends State<CustomBottomAppBar> {
     );
   }
 }
+
 enum BottomBarEnum {
   Userbluegray900,
   Contrastgray60001,

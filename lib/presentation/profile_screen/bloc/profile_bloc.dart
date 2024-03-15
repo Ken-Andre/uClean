@@ -24,10 +24,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ///
   /// The [BuildContext] parameter represents current [BuildContext]
   _onInitialize(
-      ProfileInitialEvent event,
-      Emitter<ProfileState> emit,
-      ) async {
-      print('We are on _onInitialize');
+    ProfileInitialEvent event,
+    Emitter<ProfileState> emit,
+  ) async {
+    print('We are on _onInitialize');
     add(
       FetchMeEvent(
         onFetchMeEventError: () {
@@ -44,9 +44,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ///
   /// Throws an error if an error occurs during the API call process.
   FutureOr<void> _callGetAuthMe(
-      FetchMeEvent event,
-      Emitter<ProfileState> emit,
-      ) async {
+    FetchMeEvent event,
+    Emitter<ProfileState> emit,
+  ) async {
     var cTripAuth = PrefUtils().getAuthToken();
     print('here is the cTripAuth $cTripAuth');
     await _repository.getAuthMe(
@@ -61,23 +61,24 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       print('We got the values');
     }).onError((error, stackTrace) {
       //implement error call
-            print('API call failed: $error');
+      print('API call failed: $error');
       _onGetAuthMeError();
       event.onFetchMeEventError?.call();
     });
   }
 
   void _onGetAuthMeSuccess(
-      GetGetAuthMeResp resp,
-      Emitter<ProfileState> emit,
-      ) {
-      print('Yes, the response was not empty');
-       print('Here in the emiting function getGetAuthMe value: \n $resp');
-       print('${resp.createdAt} and ${resp.name} and ${resp.email}');
+    GetGetAuthMeResp resp,
+    Emitter<ProfileState> emit,
+  ) {
+    print('Yes, the response was not empty');
+    print('Here in the emiting function getGetAuthMe value: \n $resp');
+    print('${resp.createdAt} and ${resp.name} and ${resp.email}');
     emit(
       state.copyWith(
         profileModelObj: state.profileModelObj?.copyWith(
-          sixHundredFortyMillionSevenHun: (resp.createdAt ?? 0).toString(), // Assuming createdAt is a number
+          sixHundredFortyMillionSevenHun: (resp.createdAt ?? 0)
+              .toString(), // Assuming createdAt is a number
           isabelleKarol: resp.name ?? '',
           email: resp.email ?? '',
         ),

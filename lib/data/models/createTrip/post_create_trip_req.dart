@@ -9,15 +9,16 @@ class PostCreateTripReq {
   String? pointb;
   String? tripkind;
 
-  PostCreateTripReq({this.pointa,
-    this.pointb,
-    this.distance,
-    this.date,
-    this.hour,
-    this.meansoftransport,
-    this.Pointa,
-    this.Pointb,
-    this.tripkind});
+  PostCreateTripReq(
+      {this.pointa,
+      this.pointb,
+      this.distance,
+      this.date,
+      this.hour,
+      this.meansoftransport,
+      this.Pointa,
+      this.Pointb,
+      this.tripkind});
 
   PostCreateTripReq.fromJson(Map<String, dynamic> json) {
     Pointa = json['Pointa'] != null ? Pointa.fromJson(json['Pointa']) : null;
@@ -62,73 +63,73 @@ class PostCreateTripReq {
     }
     return data;
   }
-
 }
-  class Pointa {
+
+class Pointa {
   String? type;
   Data? data;
 
   Pointa({this.type, this.data});
 
   Pointa.fromJson(Map<String, dynamic> json) {
-  type = json['type'];
-  data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    type = json['type'];
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-  final data = <String, dynamic>{};
-  if (type != null) {
-  data['type'] = type;
+    final data = <String, dynamic>{};
+    if (type != null) {
+      data['type'] = type;
+    }
+    if (this.data != null) {
+      data['data'] = this.data?.toJson();
+    }
+    return data;
   }
-  if (this.data != null) {
-  data['data'] = this.data?.toJson();
-  }
-  return data;
-  }
-  }
+}
 
-  class Data {
+class Data {
   int? lat;
   int? lng;
 
   Data({this.lat, this.lng});
 
   Data.fromJson(Map<String, dynamic> json) {
-  lat = json['lat'];
-  lng = json['lng'];
+    lat = json['lat'];
+    lng = json['lng'];
   }
 
   Map<String, dynamic> toJson() {
-  final data = <String, dynamic>{};
-  if (lat != null) {
-  data['lat'] = lat;
+    final data = <String, dynamic>{};
+    if (lat != null) {
+      data['lat'] = lat;
+    }
+    if (lng != null) {
+      data['lng'] = lng;
+    }
+    return data;
   }
-  if (lng != null) {
-  data['lng'] = lng;
-  }
-  return data;
-  }
-  }
+}
 
-  class Pointb {
+class Pointb {
   String? type;
   Data? data;
 
   Pointb({this.type, this.data});
 
   Pointb.fromJson(Map<String, dynamic> json) {
-  type = json['type'];
-  data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    type = json['type'];
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-  final data = <String, dynamic>{};
-  if (type != null) {
-  data['type'] = type;
+    final data = <String, dynamic>{};
+    if (type != null) {
+      data['type'] = type;
+    }
+    if (this.data != null) {
+      data['data'] = this.data?.toJson();
+    }
+    return data;
   }
-  if (this.data != null) {
-  data['data'] = this.data?.toJson();
-  }
-  return data;
-  }
-  }
+}

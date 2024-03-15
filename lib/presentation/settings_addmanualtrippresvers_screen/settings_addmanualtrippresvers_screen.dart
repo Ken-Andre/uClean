@@ -22,7 +22,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
         create: (context) => SettingsAddmanualtrippresversBloc(
             SettingsAddmanualtrippresversState(
                 settingsAddmanualtrippresversModelObj:
-                SettingsAddmanualtrippresversModel()))
+                    SettingsAddmanualtrippresversModel()))
           ..add(SettingsAddmanualtrippresversInitialEvent()),
         child: SettingsAddmanualtrippresversScreen());
   }
@@ -64,7 +64,8 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                                             ])),
                                         SizedBox(
                                             width: 50.h,
-                                            child: Divider(color: appTheme.whiteA70001))
+                                            child: Divider(
+                                                color: appTheme.whiteA70001))
                                       ],
                                     ),
                                     Padding(
@@ -104,34 +105,34 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                                       style: theme.textTheme.titleSmall)),
                               SizedBox(height: 10.v),
                               Padding(
-                                      padding:
+                                  padding:
                                       EdgeInsets.symmetric(horizontal: 9.h),
-                                      child: BlocSelector<
+                                  child: BlocSelector<
                                           SettingsAddmanualtrippresversBloc,
                                           SettingsAddmanualtrippresversState,
                                           SettingsAddmanualtrippresversModel?>(
-                                          selector: (state) => state
-                                              .settingsAddmanualtrippresversModelObj,
-                                          builder: (context,
-                                              settingsAddmanualtrippresversModelObj) {
-                                            return CustomDropDown(
-                                                hintText: "lbl_car".tr,
-                                                hintStyle: CustomTextStyles
-                                                    .bodyMediumLight,
-                                                items:
+                                      selector: (state) => state
+                                          .settingsAddmanualtrippresversModelObj,
+                                      builder: (context,
+                                          settingsAddmanualtrippresversModelObj) {
+                                        return CustomDropDown(
+                                            hintText: "lbl_car".tr,
+                                            hintStyle: CustomTextStyles
+                                                .bodyMediumLight,
+                                            items:
                                                 settingsAddmanualtrippresversModelObj
-                                                    ?.dropdownItemList ??
+                                                        ?.dropdownItemList ??
                                                     [],
-                                                // contentPadding: EdgeInsets.only(
-                                                //     top: 9.v, bottom: 11.v),
-                                                onChanged: (value) {
-                                                  context
-                                                      .read<
+                                            // contentPadding: EdgeInsets.only(
+                                            //     top: 9.v, bottom: 11.v),
+                                            onChanged: (value) {
+                                              context
+                                                  .read<
                                                       SettingsAddmanualtrippresversBloc>()
-                                                      .add(ChangeDropDownEvent(
+                                                  .add(ChangeDropDownEvent(
                                                       value: value));
-                                                });
-                                          }))
+                                            });
+                                      }))
                             ]))))),
             bottomNavigationBar: _buildFrameNinetyFive(context)));
   }
@@ -155,7 +156,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.only(left: 10.h, right: 9.h),
         child: BlocSelector<SettingsAddmanualtrippresversBloc,
-            SettingsAddmanualtrippresversState, TextEditingController?>(
+                SettingsAddmanualtrippresversState, TextEditingController?>(
             selector: (state) => state.wedJanuary31Controller,
             builder: (context, wedJanuary31Controller) {
               return CustomTextFormField(
@@ -186,7 +187,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.only(left: 10.h, right: 9.h),
         child: BlocSelector<SettingsAddmanualtrippresversBloc,
-            SettingsAddmanualtrippresversState, TextEditingController?>(
+                SettingsAddmanualtrippresversState, TextEditingController?>(
             selector: (state) => state.oneThousandTwentyEightController,
             builder: (context, oneThousandTwentyEightController) {
               return CustomTextFormField(
@@ -217,22 +218,21 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.only(left: 10.h, right: 9.h),
         child: BlocSelector<SettingsAddmanualtrippresversBloc,
-            SettingsAddmanualtrippresversState, TextEditingController?>(
+                SettingsAddmanualtrippresversState, TextEditingController?>(
             selector: (state) => state.kmController,
             builder: (context, kmController) {
               return CustomTextFormField(
-                  controller: kmController,
-                  hintText: "lbl_km".tr,
-                  hintStyle: CustomTextStyles.bodyMediumBlack900_1,
-                  textInputAction: TextInputAction.done,
-                  validator: (value) {
-                    if (value == null ||
-                        (!isNumeric(value, isRequired: true))) {
-                      return "err_msg_please_enter_valid_number".tr;
-                    }
-                    return null;
-                  },
-                  // borderDecoration: TextFormFieldStyleHelper.fillPrimaryTL5
+                controller: kmController,
+                hintText: "lbl_km".tr,
+                hintStyle: CustomTextStyles.bodyMediumBlack900_1,
+                textInputAction: TextInputAction.done,
+                validator: (value) {
+                  if (value == null || (!isNumeric(value, isRequired: true))) {
+                    return "err_msg_please_enter_valid_number".tr;
+                  }
+                  return null;
+                },
+                // borderDecoration: TextFormFieldStyleHelper.fillPrimaryTL5
               );
             }));
   }
@@ -257,7 +257,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
         margin: EdgeInsets.only(left: 20.h, right: 20.h, bottom: 8.v),
         decoration: AppDecoration.outlineGrayF,
         child:
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Padding(
               padding: EdgeInsets.only(bottom: 1.v),
               child: Column(
@@ -278,7 +278,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                 Padding(
                     padding: EdgeInsets.only(top: 3.v),
                     child:
-                    Text("lbl_trip".tr, style: theme.textTheme.bodyMedium))
+                        Text("lbl_trip".tr, style: theme.textTheme.bodyMedium))
               ]),
           _buildAddDrive(context)
         ]));
@@ -303,15 +303,15 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
   callAddResTrips(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       context.read<SettingsAddmanualtrippresversBloc>().add(
-        CreateTripsEvent(
-          onCreateTripsEventSuccess: () {
-            _onCreateTripEventSuccess(context);
-          },
-          onCreateTripsEventError: () {
-            _onCreateTripEventError(context);
-          },
-        ),
-      );
+            CreateTripsEvent(
+              onCreateTripsEventSuccess: () {
+                _onCreateTripEventSuccess(context);
+              },
+              onCreateTripsEventError: () {
+                _onCreateTripEventError(context);
+              },
+            ),
+          );
     }
   }
 

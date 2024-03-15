@@ -26,6 +26,6 @@ class FetchMeEvent extends ProfileEvent {
 
   @override
   List<Object?> get props => [
-    onFetchMeEventError,
-  ];
+        onFetchMeEventError,
+      ];
 }

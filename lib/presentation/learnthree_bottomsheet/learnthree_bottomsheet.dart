@@ -31,8 +31,7 @@ class LearnthreeBottomsheet extends StatelessWidget {
       decoration: AppDecoration.fillWhiteA.copyWith(
         borderRadius: BorderRadiusStyle.customBorderTL12,
       ),
-      child: 
-      SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,

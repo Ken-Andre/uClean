@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                             width: double.maxFinite,
                             padding: EdgeInsets.symmetric(vertical: 150.v),
                             child:
-                            Stack(alignment: Alignment.topLeft, children: [
+                                Stack(alignment: Alignment.topLeft, children: [
                               Opacity(
                                   opacity: 0.3,
                                   child: CustomImageView(
@@ -55,8 +55,8 @@ class LoginScreen extends StatelessWidget {
                                   width: 259.h,
                                   alignment: Alignment.topRight,
                                   margin:
-                                  EdgeInsets.only(top: 96.v, right: 54.h)),
-                               _buildFrameTen(context),
+                                      EdgeInsets.only(top: 96.v, right: 54.h)),
+                              _buildFrameTen(context),
                               CustomImageView(
                                   height: 271.v, alignment: Alignment.topRight)
                             ])))))));
@@ -185,7 +185,10 @@ class LoginScreen extends StatelessWidget {
 
   /// Navigates to the recoveraccounttwoScreen when the action is triggered.
   void _onAuthLoginPostEventError(BuildContext context) {
-    Fluttertoast.showToast(msg: "Something went wrong, try again... \n ",timeInSecForIosWeb: 3,gravity: ToastGravity.TOP);
+    Fluttertoast.showToast(
+        msg: "Something went wrong, try again... \n ",
+        timeInSecForIosWeb: 3,
+        gravity: ToastGravity.TOP);
     NavigatorService.pushNamed(
       AppRoutes.recoveraccounttwoScreen,
     );

@@ -12,7 +12,6 @@ final Map<String, String> enUs = {
   "title_plane": "Plane",
   "title_walk": "Walk",
 
-
   // NotifsPanel Screen
   "lbl_home": "Home",
   "msg_you_haven_t_any": "You haven't  any notifications yet",
@@ -93,8 +92,8 @@ final Map<String, String> enUs = {
 
   //Bottom Bar
   // "lbl_home":"Home",
-  "lbl_learn":"Learn",
-  "lbl_stats":"Stats",
+  "lbl_learn": "Learn",
+  "lbl_stats": "Stats",
   // "lbl_settings":"Settings",
 
   // Home Screen
@@ -220,6 +219,10 @@ final Map<String, String> enUs = {
   "msg_welcome_to_uclean": "Welcome to uClean",
   "msg_your_sustainable":
       "Your Sustainable Travel Companion Aiming to Reduce Your Carbon Footprint and Make Every Journey Count",
+  "msg_track_your_journey": "Track Your Journeys",
+  "msg_log_your_trips": "Log your trips, categorize them, and contribute to your institution's carbon footprint assessment.",
+  "msg_monitor_your_impact": "Monitor Your Impact",
+  "msg_keeps_tabs_on": "Keep tabs on your carbon emissions by recording and organizing your travels effortlessly.",
 
   // Common String
   "lbl_10_28": "10:28",
@@ -230,6 +233,7 @@ final Map<String, String> enUs = {
   "lbl_email": "Email",
   "lbl_kilometers": "Kilometers",
   "lbl_next": "Next",
+  "lbl_start": "Start Tracking",
   "lbl_notifications": "Notifications",
   "lbl_password": "Password",
   "lbl_professional": "Professional",
@@ -240,7 +244,6 @@ final Map<String, String> enUs = {
   "msg_add_a_manual_trip": "Add A Manual Trip",
   "msg_confirm_password": "Confirm Password",
   "msg_the_beauty_of_the": "The beauty of the sky",
-
 
 // Network Error String
   "msg_network_err": "Network Error",
@@ -256,5 +259,5 @@ final Map<String, String> enUs = {
   "err_msg_enter_a_good_hour_hh_mm": "Enter a good hour HH:MM",
   "err_msg_please_enter_valid_number": "Please enter valid number",
   "err_msg_enter_lat_and_long_of_the_point_like_this_lat_long":
-  "Enter lat and long of the point like this lat,long",
+      "Enter lat and long of the point like this lat,long",
 };

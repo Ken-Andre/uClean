@@ -21,86 +21,86 @@ class SettingspagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SettingspageBloc, SettingspageState>(
         builder: (context, state) {
-          return SafeArea(
-              child: Scaffold(
-                  body: Container(
-                      width: double.maxFinite,
-                      decoration: AppDecoration.fillGray,
-                      child: Column(children: [
-                        _buildSettings(context),
-                        SizedBox(height: 8.v),
-                        Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                                padding: EdgeInsets.only(left: 19.h),
-                                child: Text("lbl_tracking".tr,
-                                    style: theme.textTheme.titleSmall))),
-                        SizedBox(height: 2.v),
-                        _buildCheckConfiguration(context),
-                        SizedBox(height: 11.v),
-                        Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                                padding: EdgeInsets.only(left: 19.h),
-                                child: Text("lbl_reporting".tr,
-                                    style: theme.textTheme.titleSmall))),
-                        SizedBox(height: 2.v),
-                        _buildReportingPeriods(context),
-                        SizedBox(height: 10.v),
-                        Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                                padding: EdgeInsets.only(left: 19.h),
-                                child: Text("lbl_account".tr,
-                                    style: theme.textTheme.titleSmall))),
-                        SizedBox(height: 3.v),
-                        _buildYourAccount(context),
-                        SizedBox(height: 4.v),
-                        _buildNotifications(context),
-                        SizedBox(height: 4.v),
-                        _buildTeams(context),
-                        SizedBox(height: 11.v),
-                        Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                                padding: EdgeInsets.only(left: 19.h),
-                                child: Text("lbl_support".tr,
-                                    style: theme.textTheme.titleSmall))),
-                        SizedBox(height: 2.v),
-                        _buildHelpCenter(context),
-                        SizedBox(height: 11.v),
-                        Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                                padding: EdgeInsets.only(left: 19.h),
-                                child: Text("lbl_our_app".tr,
-                                    style: theme.textTheme.titleSmall))),
-                        SizedBox(height: 2.v),
-                        _buildRankOurApp(context),
-                        SizedBox(height: 10.v),
-                        _buildLogOut(context),
-                        SizedBox(height: 11.v),
-                        Opacity(
-                            opacity: 0.7,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomImageView(
-                                      imagePath: ImageConstant.imgInbox,
-                                      height: 16.adaptSize,
-                                      width: 16.adaptSize,
-                                      margin:
+      return SafeArea(
+          child: Scaffold(
+              body: Container(
+                  width: double.maxFinite,
+                  decoration: AppDecoration.fillGray,
+                  child: Column(children: [
+                    _buildSettings(context),
+                    SizedBox(height: 8.v),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                            padding: EdgeInsets.only(left: 19.h),
+                            child: Text("lbl_tracking".tr,
+                                style: theme.textTheme.titleSmall))),
+                    SizedBox(height: 2.v),
+                    _buildCheckConfiguration(context),
+                    SizedBox(height: 11.v),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                            padding: EdgeInsets.only(left: 19.h),
+                            child: Text("lbl_reporting".tr,
+                                style: theme.textTheme.titleSmall))),
+                    SizedBox(height: 2.v),
+                    _buildReportingPeriods(context),
+                    SizedBox(height: 10.v),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                            padding: EdgeInsets.only(left: 19.h),
+                            child: Text("lbl_account".tr,
+                                style: theme.textTheme.titleSmall))),
+                    SizedBox(height: 3.v),
+                    _buildYourAccount(context),
+                    SizedBox(height: 4.v),
+                    _buildNotifications(context),
+                    SizedBox(height: 4.v),
+                    _buildTeams(context),
+                    SizedBox(height: 11.v),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                            padding: EdgeInsets.only(left: 19.h),
+                            child: Text("lbl_support".tr,
+                                style: theme.textTheme.titleSmall))),
+                    SizedBox(height: 2.v),
+                    _buildHelpCenter(context),
+                    SizedBox(height: 11.v),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                            padding: EdgeInsets.only(left: 19.h),
+                            child: Text("lbl_our_app".tr,
+                                style: theme.textTheme.titleSmall))),
+                    SizedBox(height: 2.v),
+                    _buildRankOurApp(context),
+                    SizedBox(height: 10.v),
+                    _buildLogOut(context),
+                    SizedBox(height: 11.v),
+                    Opacity(
+                        opacity: 0.7,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomImageView(
+                                  imagePath: ImageConstant.imgInbox,
+                                  height: 16.adaptSize,
+                                  width: 16.adaptSize,
+                                  margin:
                                       EdgeInsets.only(top: 2.v, bottom: 5.v)),
-                                  Padding(
-                                      padding: EdgeInsets.only(left: 10.h),
-                                      child: Text("lbl_uclean_2024".tr,
-                                          style: CustomTextStyles
-                                              .bodyLargePoppinsBlack900_3))
-                                ])),
-                        SizedBox(height: 5.v)
-                      ]))));
-        });
+                              Padding(
+                                  padding: EdgeInsets.only(left: 10.h),
+                                  child: Text("lbl_uclean_2024".tr,
+                                      style: CustomTextStyles
+                                          .bodyLargePoppinsBlack900_3))
+                            ])),
+                    SizedBox(height: 5.v)
+                  ]))));
+    });
   }
 
   /// Section Widget
@@ -316,15 +316,15 @@ class SettingspagePage extends StatelessWidget {
   /// The [BuildContext] parameter represents current [BuildContext]
   onTapLogOut(BuildContext context) {
     context.read<SettingspageBloc>().add(
-      CreateLogoutEvent(
-        onCreateLogoutEventSuccess: () {
-          _onLogoutPostEventSuccess(context);
-        },
-        onCreateLogoutEventError: () {
-          _onLogoutPostEventError(context);
-        },
-      ),
-    );
+          CreateLogoutEvent(
+            onCreateLogoutEventSuccess: () {
+              _onLogoutPostEventSuccess(context);
+            },
+            onCreateLogoutEventError: () {
+              _onLogoutPostEventError(context);
+            },
+          ),
+        );
   }
 
   /// Navigates to the splashScreen when the action is triggered.

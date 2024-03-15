@@ -10,6 +10,13 @@ class ImageConstant {
   static String imgYellowGrandient = '$imagePath/img_yellow_grandient.png';
 
   static String imgLogo = '$imagePath/img_logo.svg';
+  
+  // Onboarding images
+  static String imgReading = '$imagePath/img_reading.png';
+  
+  static String imgBoy = '$imagePath/img_boy.png';
+  
+  static String imgMan = '$imagePath/img_man.png'; 
 
   // NotifsPanel images
   static String imgMaterialSymbol = '$imagePath/img_material_symbol.svg';
@@ -89,6 +96,8 @@ class ImageConstant {
 
   static String imgVectorOn = '$imagePath/img_vector_on.svg';
 
+  static String imgVectorOff = '$imagePath/img_vector_off.svg';
+
   static String imgCloseCyan900 = '$imagePath/img_close_cyan_900.svg';
 
   static String imgUser = '$imagePath/img_user.svg';
@@ -147,9 +156,11 @@ class ImageConstant {
   static String imgMeansoftransportDeepOrange200 =
       '$imagePath/img_meansoftransport_deep_orange_200.svg';
 
-  static String imgMeansoftransport1 = '$imagePath/img_meansoftransport1.svg'; //car
+  static String imgMeansoftransport1 =
+      '$imagePath/img_meansoftransport1.svg'; //car
 
-  static String imgMeansoftransport2 = '$imagePath/img_meansoftransport1.svg'; //taxi
+  static String imgMeansoftransport2 =
+      '$imagePath/img_meansoftransport1.svg'; //taxi
 
   static String imgMeansoftransport3 = '$imagePath/img_BikeRideIcon.svg'; //bike
 
@@ -161,22 +172,27 @@ class ImageConstant {
 
   static String imgMeansoftransport7 = '$imagePath/Vector.svg'; //walk
 
-  static String imgMeansoftransportDeepOrange1 = '$imagePath/img_meansoftransport1_1.svg';
+  static String imgMeansoftransportDeepOrange1 =
+      '$imagePath/img_meansoftransport1_1.svg';
 
-  static String imgMeansoftransportDeepOrange2 = '$imagePath/img_meansoftransport2.svg';
+  static String imgMeansoftransportDeepOrange2 =
+      '$imagePath/img_meansoftransport2.svg';
 
-  static String imgMeansoftransportDeepOrange3 = '$imagePath/img_BikeRideIcon_1.svg';
+  static String imgMeansoftransportDeepOrange3 =
+      '$imagePath/img_BikeRideIcon_1.svg';
 
-  static String imgMeansoftransportDeepOrange6 = '$imagePath/img_BikeRideIcon2.svg';
+  static String imgMeansoftransportDeepOrange6 =
+      '$imagePath/img_BikeRideIcon2.svg';
 
-  static String imgMeansoftransportDeepOrange4 = '$imagePath/airportplaneIcon_1.svg';
+  static String imgMeansoftransportDeepOrange4 =
+      '$imagePath/airportplaneIcon_1.svg';
 
   static String imgMeansoftransportDeepOrange5 = '$imagePath/busIcon_1.svg';
 
   static String imgMeansoftransportDeepOrange7 = '$imagePath/Vector_1.svg';
 
   static String imgStatsUpLightGreen200 =
-  '$imagePath/img_stats_up_light_green_200.svg';
+      '$imagePath/img_stats_up_light_green_200.svg';
 
   // Common images
   static String imgArrowLeft = '$imagePath/img_arrow_left.svg';
@@ -253,5 +269,4 @@ class ImageConstant {
   static String imgUserBlueGray900 = '$imagePath/img_user_blue_gray_900.svg';
 
   static String imgLockGray60001 = '$imagePath/img_lock_gray_600_01.svg';
-
 }
