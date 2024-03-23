@@ -116,15 +116,16 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                                       builder: (context,
                                           settingsAddmanualtrippresversModelObj) {
                                         return CustomDropDown(
-                                            hintText: "lbl_car".tr,
+                                            hintText: "title_personnal_car".tr,
                                             hintStyle: CustomTextStyles
                                                 .bodyMediumLight,
+                                                
                                             items:
                                                 settingsAddmanualtrippresversModelObj
                                                         ?.dropdownItemList ??
                                                     [],
-                                            // contentPadding: EdgeInsets.only(
-                                            //     top: 9.v, bottom: 11.v),
+                                            contentPadding: EdgeInsets.only(
+                                                 top: 9.v, bottom: 11.v),
                                             onChanged: (value) {
                                               context
                                                   .read<

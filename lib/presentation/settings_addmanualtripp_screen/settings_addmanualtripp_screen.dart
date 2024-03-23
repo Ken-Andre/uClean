@@ -105,7 +105,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
                                       builder: (context,
                                           settingsAddmanualtrippModelObj) {
                                         return CustomDropDown(
-                                            hintText: "lbl_car".tr,
+                                            hintText: "title_personnal_car".tr,
                                             hintStyle: CustomTextStyles
                                                 .bodyMediumLight,
                                             items:
@@ -163,7 +163,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
                     return null;
                   },
                   contentPadding: EdgeInsets.only(top: 11.v, bottom: 9.v),
-                  borderDecoration: TextFormFieldStyleHelper.fillWhiteA,
+                  //borderDecoration: TextFormFieldStyleHelper.fillWhiteA,
                   fillColor: theme.colorScheme.primary);
             }));
   }
@@ -194,7 +194,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
                     return null;
                   },
                   contentPadding: EdgeInsets.only(top: 13.v, bottom: 14.v),
-                  borderDecoration: TextFormFieldStyleHelper.fillWhiteA,
+                  //borderDecoration: TextFormFieldStyleHelper.fillWhiteA,
                   fillColor: theme.colorScheme.primary);
             }));
   }
@@ -228,7 +228,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
                     return null;
                   },
                   contentPadding: EdgeInsets.only(top: 10.v, bottom: 12.v),
-                  borderDecoration: TextFormFieldStyleHelper.fillWhiteA,
+                  //borderDecoration: TextFormFieldStyleHelper.fillWhiteA,
                   fillColor: theme.colorScheme.primary);
             }));
   }
@@ -263,7 +263,7 @@ class SettingsAddmanualtrippScreen extends StatelessWidget {
                     return null;
                   },
                   contentPadding: EdgeInsets.only(top: 12.v, bottom: 10.v),
-                  borderDecoration: TextFormFieldStyleHelper.fillWhiteA,
+                  //borderDecoration: TextFormFieldStyleHelper.fillWhiteA,
                   fillColor: theme.colorScheme.primary);
             }));
   }

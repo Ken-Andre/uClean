@@ -150,7 +150,7 @@ class TextThemes {
 class ColorSchemes {
   static final primaryColorScheme = ColorScheme.light(
     // Primary colors
-    primary: Color(0XFFF4F4F4),
+    primary: Color(0XFFF7F7FF),
     primaryContainer: Color(0XAB606060),
     secondaryContainer: Color(0XFF200E32),
 
