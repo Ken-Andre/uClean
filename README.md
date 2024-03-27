@@ -1,32 +1,66 @@
-
 # ucleankim
+
+**uClean** is an open-source Flutter application designed to help a school to collect trips related to their for carbon footprint evaluation.
+
 ### Table of contents
-- [System requirements](#system-requirements)
-- [Figma design guidelines for better UI accuracy](#figma-design-guideline-for-better-accuracy)
-- [Check the UI of the entire app](#app-navigations)
-- [Application structure](#project-structure)
-- [How to format your code?](#how-you-can-do-code-formatting)
-- [How you can improve code readability?](#how-you-can-improve-the-readability-of-code)
+- [Getting Started](#getting-started)
+- [System requirements](#prerequisites)
+- [Application structure](#application-structure)
 - [Libraries and tools used](#libraries-and-tools-used)
 - [Support](#support)
+### Getting Started
 
-### System requirements
+This section guides you through downloading, installing, and running the ucleankimAdmin application.
 
-Dart SDK Version 2.18.0 or greater.
-Flutter SDK Version 3.3.0 or greater.
+### Prerequisites:
 
-### Figma design guidelines for better UI accuracy
+* **Flutter**: Download and install Flutter from the official website: [https://docs.flutter.dev/get-started/install](https://docs.flutter.dev/get-started/install)
+* **Code Editor**: Choose your preferred code editor like Visual Studio Code (VS Code) or Android Studio.
+* **Version**:Dart SDK Version 3.3.0 or greater. Flutter SDK Version 3.3.0 or greater.
+* **Steps:**
 
-Read our guidelines to increase the accuracy of design-to-code conversion by optimizing Figma designs.
-https://docs.dhiwise.com/docs/Designguidelines/intro
+1. **Clone the Repository:**
+   Open your terminal and navigate to your desired project directory. Then, clone the ucleankimAdmin repository using the following command:
 
-### Check the UI of the entire app
+    ```bash
+    git clone https://github.com/Ken-Andre/uclean.git
+    ```
 
-Check the UI of all the app screens from a single place by setting up the 'initialRoute'  to AppNavigation in the AppRoutes.dart file.
 
-### Application structure
+2. **Install Dependencies:**
+   Navigate to the project directory using the `cd` command in your terminal. Then, run the following command to install the required dependencies:
 
-After successful build, your application structure should look like this:
+    ```bash
+    flutter pub get
+    ```
+
+3. **Run the App:**
+   Connect your device or start an emulator. Finally, run the application using the following command:
+
+    ```bash
+    flutter run
+    ```
+
+**Additional Notes:**
+
+* Ensure your device or emulator is connected and configured properly with Flutter.
+* Refer to the Flutter documentation for detailed setup instructions: [https://docs.flutter.dev/get-started/install](https://docs.flutter.dev/get-started/install)
+* If you encounter any issues during installation or running the app, consult the project's troubleshooting guide (if available) or seek help from the Flutter community forums.
+
+[//]: # (### Features)
+
+[//]: # ()
+[//]: # (* **Task Creation and Management:** Add, edit, and delete tasks with detailed descriptions, priorities, and deadlines.)
+
+[//]: # (* **Progress Tracking:** Mark tasks as completed and track your progress over time.)
+
+[//]: # (* **Categories and Filters:** Organize your tasks by categories and use filters to display the most important tasks.)
+
+[//]: # (* **Reminders and Notifications:** Receive notifications for upcoming tasks and never miss a deadline.)
+
+[//]: # (* **Customizable Themes:** Personalize the application's appearance with different themes.)
+
+### Application Structure
 
 ```
 .
@@ -45,18 +79,7 @@ After successful build, your application structure should look like this:
     └── widgets                     - It contains all custom widget classes
 ```
 
-### How to format your code?
-
-- if your code is not formatted then run following command in your terminal to format code
-  ```
-  dart format .
-  ```
-
-### How you can improve code readability?
-
-Resolve the errors and warnings that are shown in the application.
-
-### Libraries and tools used
+### Libraries and Tools Used
 
 - BLoC - State management
   https://bloclibrary.dev
@@ -65,4 +88,8 @@ Resolve the errors and warnings that are shown in the application.
 
 ### Support
 
-If you have any problems or questions, go to our Discord channel, where we will help you as quickly as possible: https://discord.com/invite/rFMnCG5MZ7
+If you have any problems or questions, go to our Discord channel, where we will help you as quickly as possible: https://discord.gg/ccHnFFCYur
+
+### Contributions
+
+See the [contributions.md](contributions.md). If you want too to contribute, make a pull request and maintainers will see and make a decision.
