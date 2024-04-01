@@ -1,0 +1,2595 @@
+@startuml
+set namespaceSeparator ::
+
+class "ucleankim::core::constants::created_by.dart::CreatedBy" {
+  {static} +int initial
+}
+
+class "ucleankim::core::constants::geopoint.dart::Geopoint" {
+  {static} +String defaulttype
+}
+
+class "ucleankim::core::constants::trips.dart::Trips" {
+  {static} +String meansoftransport1
+  {static} +String meansoftransport2
+  {static} +String meansoftransport3
+  {static} +String defaulttripkind
+}
+
+abstract class "ucleankim::core::environment::base_env_config.dart::BaseEnvConfig" {
+  +String userId
+}
+
+class "ucleankim::core::environment::env_config.dart::EnvConfig" {
+  +BaseEnvConfig config
+  +dynamic initConfig()
+  -dynamic _getConfig()
+}
+
+"ucleankim::core::environment::env_config.dart::EnvConfig" o-- "ucleankim::core::environment::base_env_config.dart::BaseEnvConfig"
+
+class "ucleankim::core::environment::env_config.dart::Environment" {
+  +int index
+  {static} +List<Environment> values
+  {static} +Environment global
+  {static} +Environment kDefault
+}
+
+"ucleankim::core::environment::env_config.dart::Environment" o-- "ucleankim::core::environment::env_config.dart::Environment"
+"dart::core::Enum" <|-- "ucleankim::core::environment::env_config.dart::Environment"
+
+class "ucleankim::core::environment::global_env_config.dart::GlobalEnvConfig" {
+  +String userId
+}
+
+"ucleankim::core::environment::base_env_config.dart::BaseEnvConfig" <|-- "ucleankim::core::environment::global_env_config.dart::GlobalEnvConfig"
+
+class "ucleankim::core::environment::kdefault_env_config.dart::KDefaultEnvConfig" {
+  +String baseUrl
+  +String userId
+}
+
+"ucleankim::core::environment::base_env_config.dart::BaseEnvConfig" <|-- "ucleankim::core::environment::kdefault_env_config.dart::KDefaultEnvConfig"
+
+class "ucleankim::core::errors::exceptions.dart::ServerException" {
+}
+
+"dart::core::Exception" <|-- "ucleankim::core::errors::exceptions.dart::ServerException"
+
+class "ucleankim::core::errors::exceptions.dart::CacheException" {
+}
+
+"dart::core::Exception" <|-- "ucleankim::core::errors::exceptions.dart::CacheException"
+
+class "ucleankim::core::errors::exceptions.dart::NetworkException" {
+}
+
+"dart::core::Exception" <|-- "ucleankim::core::errors::exceptions.dart::NetworkException"
+
+class "ucleankim::core::errors::exceptions.dart::NoInternetException" {
+  -String _message
+  +String toString()
+}
+
+"dart::core::Exception" <|-- "ucleankim::core::errors::exceptions.dart::NoInternetException"
+
+abstract class "ucleankim::core::errors::failures.dart::Failure" {
+}
+
+class "ucleankim::core::errors::failures.dart::ServerFailure" {
+}
+
+"ucleankim::core::errors::failures.dart::Failure" <|-- "ucleankim::core::errors::failures.dart::ServerFailure"
+
+class "ucleankim::core::errors::failures.dart::CacheFailure" {
+}
+
+"ucleankim::core::errors::failures.dart::Failure" <|-- "ucleankim::core::errors::failures.dart::CacheFailure"
+
+class "ucleankim::core::errors::failures.dart::NetworkFailure" {
+}
+
+"ucleankim::core::errors::failures.dart::Failure" <|-- "ucleankim::core::errors::failures.dart::NetworkFailure"
+
+abstract class "ucleankim::core::network::network_info.dart::NetworkInfoI" {
+  +dynamic connectivityResult
+  +Stream<ConnectivityResult> onConnectivityChanged
+  +dynamic isConnected()
+}
+
+"ucleankim::core::network::network_info.dart::NetworkInfoI" o-- "dart::async::Stream<ConnectivityResult>"
+
+class "ucleankim::core::network::network_info.dart::NetworkInfo" {
+  +Connectivity connectivity
+  {static} -NetworkInfo _networkInfo
+  +dynamic connectivityResult
+  +Stream<ConnectivityResult> onConnectivityChanged
+  +dynamic isConnected()
+}
+
+"ucleankim::core::network::network_info.dart::NetworkInfo" o-- "connectivity_plus::connectivity_plus.dart::Connectivity"
+"ucleankim::core::network::network_info.dart::NetworkInfo" o-- "ucleankim::core::network::network_info.dart::NetworkInfo"
+"ucleankim::core::network::network_info.dart::NetworkInfo" o-- "dart::async::Stream<ConnectivityResult>"
+"ucleankim::core::network::network_info.dart::NetworkInfoI" <|-- "ucleankim::core::network::network_info.dart::NetworkInfo"
+
+class "ucleankim::core::utils::fonts_constant.dart::FontsConstant" {
+  {static} +String fontPath
+  {static} +String Poppins
+  {static} +String Inter
+  {static} +String Roboto
+  {static} +String Montserrat
+}
+
+class "ucleankim::core::utils::image_constant.dart::ImageConstant" {
+  {static} +String imagePath
+  {static} +String imgPinkGrandient
+  {static} +String imgBlueGrandient
+  {static} +String imgYellowGrandient
+  {static} +String imgLogo
+  {static} +String imgReading
+  {static} +String imgBoy
+  {static} +String imgMan
+  {static} +String imgMaterialSymbol
+  {static} +String imgBlueGrandient271x97
+  {static} +String imgYellowGrandient271x101
+  {static} +String imgPinkGrandient271x136
+  {static} +String imgGroupOnsecondarycontainer
+  {static} +String imgHome
+  {static} +String imgBlueGrandient1
+  {static} +String imgYellowGrandient1
+  {static} +String imgPinkGrandient1
+  {static} +String imgBlueGrandient2
+  {static} +String imgYellowGrandient271x64
+  {static} +String imgPinkGrandient271x99
+  {static} +String imgBlueGrandient3
+  {static} +String imgYellowGrandient2
+  {static} +String imgPinkGrandient2
+  {static} +String imgCheckmark
+  {static} +String imgSave
+  {static} +String imgLock
+  {static} +String imgGroup
+  {static} +String imgContrast
+  {static} +String imgSignal
+  {static} +String imgInbox
+  {static} +String imgCog
+  {static} +String imgSaveBlack900
+  {static} +String imgSupporticon
+  {static} +String imgYellowGrandient271x118
+  {static} +String imgLogoBlack900
+  {static} +String imgLockBlack900
+  {static} +String imgClose
+  {static} +String imgGroupYellow400
+  {static} +String imgVectorOn
+  {static} +String imgVectorOff
+  {static} +String imgCloseCyan900
+  {static} +String imgUser
+  {static} +String imgSettings
+  {static} +String imgLinkedin
+  {static} +String imgCar
+  {static} +String imgThumbsUp
+  {static} +String imgLeftWhiteA7000128x106
+  {static} +String imgBlueGrandient271x87
+  {static} +String imgYellowGrandient271x83
+  {static} +String imgPinkGrandient271x118
+  {static} +String imgBlueGrandient271x96
+  {static} +String imgYellowGrandient271x92
+  {static} +String imgPinkGrandient271x124
+  {static} +String imgGroupOrange200
+  {static} +String imgBlueGrandient4
+  {static} +String imgYellowGrandient3
+  {static} +String imgPinkGrandient3
+  {static} +String imgWelcome
+  {static} +String imgInfo
+  {static} +String imgLink
+  {static} +String imgTripkindlogo
+  {static} +String imgMeansoftransport
+  {static} +String imgMeansoftransportDeepOrange200
+  {static} +String imgMeansoftransport1
+  {static} +String imgMeansoftransport2
+  {static} +String imgMeansoftransport3
+  {static} +String imgMeansoftransport4
+  {static} +String imgMeansoftransport5
+  {static} +String imgMeansoftransport7
+  {static} +String imgMeansoftransportDeepOrange1
+  {static} +String imgMeansoftransportDeepOrange2
+  {static} +String imgMeansoftransportDeepOrange3
+  {static} +String imgMeansoftransportDeepOrange6
+  {static} +String imgMeansoftransportDeepOrange4
+  {static} +String imgMeansoftransportDeepOrange5
+  {static} +String imgMeansoftransportDeepOrange7
+  {static} +String imgStatsUpLightGreen200
+  {static} +String imgArrowLeft
+  {static} +String imgCalendar
+  {static} +String imgClock
+  {static} +String imgContrastWhiteA70001
+  {static} +String img_contrast_secondarycontainer
+  {static} +String imgCarBlack900
+  {static} +String imgSubwayButton
+  {static} +String imgMotorcycle
+  {static} +String imgWalk
+  {static} +String imgEye
+  {static} +String imgGroupCyan800
+  {static} +String imgRectangle47
+  {static} +String imgCirclePlus
+  {static} +String imgLeftWhiteA70001
+  {static} +String imgStatsUp
+  {static} +String imgCogPrimary
+  {static} +String imgAnArtisticAnd
+  {static} +String imgThePhotoHighl
+  {static} +String imgThePhotoHighl113x353
+  {static} +String imgThePhotoHighl1
+  {static} +String imgLeftLightGreen200
+  {static} +String imageNotFound
+  {static} +String imgColor
+  {static} +String imgContrastBlack900
+  {static} +String imgLockBlueGray900
+  {static} +String imgPlay
+  {static} +String imgVectorBlueGray900
+  {static} +String imgContrastGray60001
+  {static} +String learn
+  {static} +String imgTelevision
+  {static} +String imgVector
+  {static} +String imgThumbsUpBlack900
+  {static} +String imgUserBlueGray900
+  {static} +String imgLockGray60001
+}
+
+class "ucleankim::core::utils::logger.dart::Logger" {
+  {static} -LogMode _logMode
+  {static} +void init()
+  {static} +void log()
+}
+
+"ucleankim::core::utils::logger.dart::Logger" o-- "ucleankim::core::utils::logger.dart::LogMode"
+
+class "ucleankim::core::utils::logger.dart::LogMode" {
+  +int index
+  {static} +List<LogMode> values
+  {static} +LogMode debug
+  {static} +LogMode live
+}
+
+"ucleankim::core::utils::logger.dart::LogMode" o-- "ucleankim::core::utils::logger.dart::LogMode"
+"dart::core::Enum" <|-- "ucleankim::core::utils::logger.dart::LogMode"
+
+class "ucleankim::core::utils::navigator_service.dart::NavigatorService" {
+  {static} +GlobalKey<NavigatorState> navigatorKey
+  {static} +dynamic pushNamed()
+  {static} +void goBack()
+  {static} +dynamic pushNamedAndRemoveUntil()
+  {static} +dynamic popAndPushNamed()
+}
+
+"ucleankim::core::utils::navigator_service.dart::NavigatorService" o-- "flutter::src::widgets::framework.dart::GlobalKey<NavigatorState>"
+
+class "ucleankim::core::utils::permission_manager.dart::PermissionManager" {
+  {static} +dynamic isPermissionGranted()
+  {static} +dynamic askForPermission()
+}
+
+class "ucleankim::core::utils::pref_utils.dart::PrefUtils" {
+  {static} -SharedPreferences? _sharedPreferences
+  +dynamic init()
+  +void clearPreferencesData()
+  +dynamic setThemeData()
+  +String getThemeData()
+  +dynamic setAuthToken()
+  +String getAuthToken()
+}
+
+"ucleankim::core::utils::pref_utils.dart::PrefUtils" o-- "shared_preferences::shared_preferences.dart::SharedPreferences"
+
+class "ucleankim::core::utils::progress_dialog_utils.dart::ProgressDialogUtils" {
+  {static} +bool isProgressVisible
+  {static} +String lottiePath
+  {static} +void showProgressDialog()
+  {static} +void hideProgressDialog()
+}
+
+class "ucleankim::core::utils::size_utils.dart::Sizer" {
+  +Widget Function(BuildContext, Orientation, DeviceType) builder
+  +Widget build()
+}
+
+"ucleankim::core::utils::size_utils.dart::Sizer" o-- "ucleankim::core::utils::size_utils.dart::Widget Function(BuildContext, Orientation, DeviceType)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::core::utils::size_utils.dart::Sizer"
+
+class "ucleankim::core::utils::size_utils.dart::SizeUtils" {
+  {static} +BoxConstraints boxConstraints
+  {static} +Orientation orientation
+  {static} +DeviceType deviceType
+  {static} +double height
+  {static} +double width
+  {static} +void setScreenSize()
+}
+
+"ucleankim::core::utils::size_utils.dart::SizeUtils" o-- "flutter::src::rendering::box.dart::BoxConstraints"
+"ucleankim::core::utils::size_utils.dart::SizeUtils" o-- "flutter::src::widgets::media_query.dart::Orientation"
+"ucleankim::core::utils::size_utils.dart::SizeUtils" o-- "ucleankim::core::utils::size_utils.dart::DeviceType"
+
+class "ucleankim::core::utils::size_utils.dart::DeviceType" {
+  +int index
+  {static} +List<DeviceType> values
+  {static} +DeviceType mobile
+  {static} +DeviceType tablet
+  {static} +DeviceType desktop
+}
+
+"ucleankim::core::utils::size_utils.dart::DeviceType" o-- "ucleankim::core::utils::size_utils.dart::DeviceType"
+"dart::core::Enum" <|-- "ucleankim::core::utils::size_utils.dart::DeviceType"
+
+class "ucleankim::data::apiClient::api_client.dart::ApiClient" {
+  {static} +dynamic token
+  +String url
+  {static} -ApiClient _apiClient
+  -Dio _dio
+  +dynamic isNetworkConnected()
+  -bool _isSuccessCall()
+  +dynamic authLoginPost()
+  +dynamic signupPost()
+  +dynamic logoutPost()
+  +dynamic createTrip()
+  +dynamic getTripsFromX8kiLetlTwmt()
+  +dynamic getAuthMe()
+}
+
+"ucleankim::data::apiClient::api_client.dart::ApiClient" o-- "ucleankim::data::apiClient::api_client.dart::ApiClient"
+"ucleankim::data::apiClient::api_client.dart::ApiClient" o-- "dio::src::dio.dart::Dio"
+
+class "ucleankim::data::apiClient::network_interceptor.dart::NetworkInterceptor" {
+  +void onRequest()
+  +void onError()
+  +void onResponse()
+}
+
+"dio::src::dio_mixin.dart::Interceptor" <|-- "ucleankim::data::apiClient::network_interceptor.dart::NetworkInterceptor"
+
+class "ucleankim::data::models::authLoginPost::post_auth_login_post_req.dart::PostAuthLoginPostReq" {
+  +String? email
+  +String? password
+  +Map<String, dynamic> toJson()
+}
+
+class "ucleankim::data::models::authLoginPost::post_auth_login_post_resp.dart::PostAuthLoginPostResp" {
+  +String? authToken
+  +dynamic data
+  +dynamic message
+  +Map<String, dynamic> toJson()
+}
+
+class "ucleankim::data::models::createTrip::post_create_trip_req.dart::PostCreateTripReq" {
+  +dynamic Pointa
+  +dynamic Pointb
+  +int? distance
+  +String? date
+  +String? hour
+  +String? meansoftransport
+  +String? pointa
+  +String? pointb
+  +String? tripkind
+  +Map<String, dynamic> toJson()
+}
+
+class "ucleankim::data::models::createTrip::post_create_trip_req.dart::Pointa" {
+  +String? type
+  +Data? data
+  +Map<String, dynamic> toJson()
+}
+
+"ucleankim::data::models::createTrip::post_create_trip_req.dart::Pointa" o-- "ucleankim::data::models::createTrip::post_create_trip_req.dart::Data"
+
+class "ucleankim::data::models::createTrip::post_create_trip_req.dart::Data" {
+  +int? lat
+  +int? lng
+  +Map<String, dynamic> toJson()
+}
+
+class "ucleankim::data::models::createTrip::post_create_trip_req.dart::Pointb" {
+  +String? type
+  +Data? data
+  +Map<String, dynamic> toJson()
+}
+
+"ucleankim::data::models::createTrip::post_create_trip_req.dart::Pointb" o-- "ucleankim::data::models::createTrip::post_create_trip_req.dart::Data"
+
+class "ucleankim::data::models::createTrip::post_create_trip_resp.dart::PostCreateTripResp" {
+  +Result1? result1
+  +Map<String, dynamic> toJson()
+}
+
+"ucleankim::data::models::createTrip::post_create_trip_resp.dart::PostCreateTripResp" o-- "ucleankim::data::models::createTrip::post_create_trip_resp.dart::Result1"
+
+class "ucleankim::data::models::createTrip::post_create_trip_resp.dart::Result1" {
+  +int? id
+  +int? createdAt
+  +int? distance
+  +String? date
+  +String? meansoftransport
+  +int? createdBy
+  +String? pointa
+  +String? pointb
+  +String? tripkind
+  +Startaddress? startaddress
+  +Stopaddress? stopaddress
+  +Map<String, dynamic> toJson()
+}
+
+"ucleankim::data::models::createTrip::post_create_trip_resp.dart::Result1" o-- "ucleankim::data::models::createTrip::post_create_trip_resp.dart::Startaddress"
+"ucleankim::data::models::createTrip::post_create_trip_resp.dart::Result1" o-- "ucleankim::data::models::createTrip::post_create_trip_resp.dart::Stopaddress"
+
+class "ucleankim::data::models::createTrip::post_create_trip_resp.dart::Startaddress" {
+  +String? type
+  +Data? data
+  +Map<String, dynamic> toJson()
+}
+
+"ucleankim::data::models::createTrip::post_create_trip_resp.dart::Startaddress" o-- "ucleankim::data::models::createTrip::post_create_trip_resp.dart::Data"
+
+class "ucleankim::data::models::createTrip::post_create_trip_resp.dart::Data" {
+  +double? lng
+  +double? lat
+  +Map<String, dynamic> toJson()
+}
+
+class "ucleankim::data::models::createTrip::post_create_trip_resp.dart::Stopaddress" {
+  +String? type
+  +Data? data
+  +Map<String, dynamic> toJson()
+}
+
+"ucleankim::data::models::createTrip::post_create_trip_resp.dart::Stopaddress" o-- "ucleankim::data::models::createTrip::post_create_trip_resp.dart::Data"
+
+class "ucleankim::data::models::getAuthMe::get_get_auth_me_resp.dart::GetGetAuthMeResp" {
+  +int? id
+  +int? createdAt
+  +String? name
+  +String? email
+  +String toString()
+}
+
+class "ucleankim::data::models::getTripsFromX8kiLetlTwmt::get_get_trips_from_x8ki_letl_twmt_resp.dart::GetGetTripsFromX8kiLetlTwmtResp" {
+  +int? id
+  +double? distance
+  +String? date
+  +String? meansoftransport
+  +String? pointa
+  +String? pointb
+  +String? tripkind
+  +String toString()
+}
+
+class "ucleankim::data::models::logoutPost::post_logout_post_req.dart::PostLogoutPostReq" {
+  +String? voidChar
+  +Map<String, dynamic> toJson()
+}
+
+class "ucleankim::data::models::logoutPost::post_logout_post_resp.dart::PostLogoutPostResp" {
+  +String? result1
+  +int? id
+  +Map<String, dynamic> toJson()
+}
+
+class "ucleankim::data::models::selectionPopupModel::selection_popup_model.dart::SelectionPopupModel" {
+  +int? id
+  +String title
+  +dynamic value
+  +bool isSelected
+}
+
+class "ucleankim::data::models::signupPost::post_signup_post_req.dart::PostSignupPostReq" {
+  +String? name
+  +String? email
+  +String? password
+  +Map<String, dynamic> toJson()
+}
+
+class "ucleankim::data::models::signupPost::post_signup_post_resp.dart::PostSignupPostResp" {
+  +String? authToken
+  +dynamic data
+  +Map<String, dynamic> toJson()
+}
+
+class "ucleankim::data::repository::repository.dart::Repository" {
+  -ApiClient _apiClient
+  +dynamic authLoginPost()
+  +dynamic signupPost()
+  +dynamic logoutPost()
+  +dynamic createTrip()
+  +dynamic getTripsFromX8kiLetlTwmt()
+  +dynamic getAuthMe()
+}
+
+"ucleankim::data::repository::repository.dart::Repository" o-- "ucleankim::data::apiClient::api_client.dart::ApiClient"
+
+class "ucleankim::localization::app_localization.dart::AppLocalization" {
+  +Locale locale
+  {static} -Map<String, Map<String, String>> _localizedValues
+  {static} +AppLocalization of()
+  {static} +List<String> languages()
+  +String getString()
+}
+
+"ucleankim::localization::app_localization.dart::AppLocalization" o-- "dart::ui::Locale"
+
+class "ucleankim::localization::app_localization.dart::AppLocalizationDelegate" {
+  +bool isSupported()
+  +dynamic load()
+  +bool shouldReload()
+}
+
+"flutter::src::widgets::localizations.dart::LocalizationsDelegate" <|-- "ucleankim::localization::app_localization.dart::AppLocalizationDelegate"
+
+class "ucleankim::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::main.dart::MyApp"
+
+class "ucleankim::presentation::app_navigation_screen::app_navigation_screen.dart::AppNavigationScreen" {
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildAppNavigation()
+  -Widget _buildScreenTitle()
+  +void onTapScreenTitle()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::app_navigation_screen::app_navigation_screen.dart::AppNavigationScreen"
+
+class "ucleankim::presentation::app_navigation_screen::bloc::app_navigation_bloc.dart::AppNavigationBloc" {
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::app_navigation_screen::bloc::app_navigation_bloc.dart::AppNavigationBloc"
+
+abstract class "ucleankim::presentation::app_navigation_screen::bloc::app_navigation_bloc.dart::AppNavigationEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::app_navigation_screen::bloc::app_navigation_bloc.dart::AppNavigationEvent"
+
+class "ucleankim::presentation::app_navigation_screen::bloc::app_navigation_bloc.dart::AppNavigationInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::app_navigation_screen::bloc::app_navigation_bloc.dart::AppNavigationEvent" <|-- "ucleankim::presentation::app_navigation_screen::bloc::app_navigation_bloc.dart::AppNavigationInitialEvent"
+
+class "ucleankim::presentation::app_navigation_screen::bloc::app_navigation_bloc.dart::AppNavigationState" {
+  +AppNavigationModel? appNavigationModelObj
+  +List<Object?> props
+  +AppNavigationState copyWith()
+}
+
+"ucleankim::presentation::app_navigation_screen::bloc::app_navigation_bloc.dart::AppNavigationState" o-- "ucleankim::presentation::app_navigation_screen::models::app_navigation_model.dart::AppNavigationModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::app_navigation_screen::bloc::app_navigation_bloc.dart::AppNavigationState"
+
+class "ucleankim::presentation::app_navigation_screen::models::app_navigation_model.dart::AppNavigationModel" {
+  +List<Object?> props
+  +AppNavigationModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::app_navigation_screen::models::app_navigation_model.dart::AppNavigationModel"
+
+class "ucleankim::presentation::createaccountthree_screen::bloc::createaccountthree_bloc.dart::CreateaccountthreeBloc" {
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::createaccountthree_screen::bloc::createaccountthree_bloc.dart::CreateaccountthreeBloc"
+
+abstract class "ucleankim::presentation::createaccountthree_screen::bloc::createaccountthree_bloc.dart::CreateaccountthreeEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::createaccountthree_screen::bloc::createaccountthree_bloc.dart::CreateaccountthreeEvent"
+
+class "ucleankim::presentation::createaccountthree_screen::bloc::createaccountthree_bloc.dart::CreateaccountthreeInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::createaccountthree_screen::bloc::createaccountthree_bloc.dart::CreateaccountthreeEvent" <|-- "ucleankim::presentation::createaccountthree_screen::bloc::createaccountthree_bloc.dart::CreateaccountthreeInitialEvent"
+
+class "ucleankim::presentation::createaccountthree_screen::bloc::createaccountthree_bloc.dart::CreateaccountthreeState" {
+  +CreateaccountthreeModel? createaccountthreeModelObj
+  +List<Object?> props
+  +CreateaccountthreeState copyWith()
+}
+
+"ucleankim::presentation::createaccountthree_screen::bloc::createaccountthree_bloc.dart::CreateaccountthreeState" o-- "ucleankim::presentation::createaccountthree_screen::models::createaccountthree_model.dart::CreateaccountthreeModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::createaccountthree_screen::bloc::createaccountthree_bloc.dart::CreateaccountthreeState"
+
+class "ucleankim::presentation::createaccountthree_screen::createaccountthree_screen.dart::CreateaccountthreeScreen" {
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildWelcome()
+  -Widget _buildFrameFive()
+  +dynamic onTapContinue()
+  +dynamic openInstagram()
+  +dynamic openLinkedin()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::createaccountthree_screen::createaccountthree_screen.dart::CreateaccountthreeScreen"
+
+class "ucleankim::presentation::createaccountthree_screen::models::createaccountthree_model.dart::CreateaccountthreeModel" {
+  +List<Object?> props
+  +CreateaccountthreeModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::createaccountthree_screen::models::createaccountthree_model.dart::CreateaccountthreeModel"
+
+class "ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoBloc" {
+  +void codeUpdated()
+  -dynamic _changeOTP()
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoBloc"
+"sms_autofill::sms_autofill.dart::CodeAutoFill" <|-- "ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoBloc"
+
+abstract class "ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoEvent"
+
+class "ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoEvent" <|-- "ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoInitialEvent"
+
+class "ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::ChangeOTPEvent" {
+  +String code
+  +List<Object?> props
+}
+
+"ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoEvent" <|-- "ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::ChangeOTPEvent"
+
+class "ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoState" {
+  +TextEditingController? otpController
+  +CreateaccounttwoModel? createaccounttwoModelObj
+  +List<Object?> props
+  +CreateaccounttwoState copyWith()
+}
+
+"ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoState" o-- "ucleankim::presentation::createaccounttwo_screen::models::createaccounttwo_model.dart::CreateaccounttwoModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::createaccounttwo_screen::bloc::createaccounttwo_bloc.dart::CreateaccounttwoState"
+
+class "ucleankim::presentation::createaccounttwo_screen::createaccounttwo_screen.dart::CreateaccounttwoScreen" {
+  {static} +Widget builder()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::createaccounttwo_screen::createaccounttwo_screen.dart::CreateaccounttwoScreen"
+
+class "ucleankim::presentation::createaccounttwo_screen::models::createaccounttwo_model.dart::CreateaccounttwoModel" {
+  +List<Object?> props
+  +CreateaccounttwoModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::createaccounttwo_screen::models::createaccounttwo_model.dart::CreateaccounttwoModel"
+
+class "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountBloc" {
+  -Repository _repository
+  +PostSignupPostResp postSignupPostResp
+  -dynamic _changePasswordVisibility()
+  -dynamic _changePasswordVisibility1()
+  -dynamic _onInitialize()
+  -FutureOr<void> _callSignupPost()
+  -void _onSignupPostSuccess()
+  -void _onSignupPostError()
+}
+
+"ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountBloc" o-- "ucleankim::data::repository::repository.dart::Repository"
+"ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountBloc" o-- "ucleankim::data::models::signupPost::post_signup_post_resp.dart::PostSignupPostResp"
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountBloc"
+
+abstract class "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountEvent"
+
+class "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountEvent" <|-- "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountInitialEvent"
+
+class "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateSignupEvent" {
+  +Function? onCreateSignupEventSuccess
+  +Function? onCreateSignupEventError
+  +List<Object?> props
+}
+
+"ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountEvent" <|-- "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateSignupEvent"
+
+class "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::ChangePasswordVisibilityEvent" {
+  +bool value
+  +List<Object?> props
+}
+
+"ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountEvent" <|-- "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::ChangePasswordVisibilityEvent"
+
+class "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::ChangePasswordVisibilityEvent1" {
+  +bool value
+  +List<Object?> props
+}
+
+"ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountEvent" <|-- "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::ChangePasswordVisibilityEvent1"
+
+class "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountState" {
+  +String? authToken
+  +TextEditingController? userNameController
+  +TextEditingController? mailInputController
+  +TextEditingController? passwordController
+  +TextEditingController? confirmpasswordController
+  +CreateaccountModel? createaccountModelObj
+  +bool isShowPassword
+  +bool isShowPassword1
+  +List<Object?> props
+  +CreateaccountState copyWith()
+}
+
+"ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountState" o-- "ucleankim::presentation::createaccount_screen::models::createaccount_model.dart::CreateaccountModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::createaccount_screen::bloc::createaccount_bloc.dart::CreateaccountState"
+
+class "ucleankim::presentation::createaccount_screen::createaccount_screen.dart::CreateaccountScreen" {
+  -GlobalKey<FormState> _formKey
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildUserName()
+  -Widget _buildMailInput()
+  -Widget _buildPassword()
+  -Widget _buildConfirmpassword()
+  -Widget _buildContinue()
+  -Widget _buildFrameSeventeen()
+  +dynamic openTermandConditionsURL()
+  +dynamic callCreateAccountcall()
+  -void _onSignupPostEventSuccess()
+  -void _onSignupPostEventError()
+}
+
+"ucleankim::presentation::createaccount_screen::createaccount_screen.dart::CreateaccountScreen" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::createaccount_screen::createaccount_screen.dart::CreateaccountScreen"
+
+class "ucleankim::presentation::createaccount_screen::models::createaccount_model.dart::CreateaccountModel" {
+  +List<Object?> props
+  +CreateaccountModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::createaccount_screen::models::createaccount_model.dart::CreateaccountModel"
+
+class "ucleankim::presentation::home_container_screen::bloc::home_container_bloc.dart::HomeContainerBloc" {
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::home_container_screen::bloc::home_container_bloc.dart::HomeContainerBloc"
+
+abstract class "ucleankim::presentation::home_container_screen::bloc::home_container_bloc.dart::HomeContainerEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::home_container_screen::bloc::home_container_bloc.dart::HomeContainerEvent"
+
+class "ucleankim::presentation::home_container_screen::bloc::home_container_bloc.dart::HomeContainerInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::home_container_screen::bloc::home_container_bloc.dart::HomeContainerEvent" <|-- "ucleankim::presentation::home_container_screen::bloc::home_container_bloc.dart::HomeContainerInitialEvent"
+
+class "ucleankim::presentation::home_container_screen::bloc::home_container_bloc.dart::HomeContainerState" {
+  +HomeContainerModel? homeContainerModelObj
+  +List<Object?> props
+  +HomeContainerState copyWith()
+}
+
+"ucleankim::presentation::home_container_screen::bloc::home_container_bloc.dart::HomeContainerState" o-- "ucleankim::presentation::home_container_screen::models::home_container_model.dart::HomeContainerModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::home_container_screen::bloc::home_container_bloc.dart::HomeContainerState"
+
+class "ucleankim::presentation::home_container_screen::home_container_screen.dart::HomeContainerScreen" {
+  +GlobalKey<NavigatorState> navigatorKey
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildBottomBar()
+  +String getCurrentRoute()
+  +Widget getCurrentPage()
+  +dynamic navigatetoAddScreen()
+}
+
+"ucleankim::presentation::home_container_screen::home_container_screen.dart::HomeContainerScreen" o-- "flutter::src::widgets::framework.dart::GlobalKey<NavigatorState>"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::home_container_screen::home_container_screen.dart::HomeContainerScreen"
+
+class "ucleankim::presentation::home_container_screen::models::home_container_model.dart::HomeContainerModel" {
+  +List<Object?> props
+  +HomeContainerModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::home_container_screen::models::home_container_model.dart::HomeContainerModel"
+
+class "ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeBloc" {
+  -Repository _repository
+  +GetGetAuthMeResp getGetAuthMeResp
+  -dynamic _onInitialize()
+  -FutureOr<void> _callGetAuthMe()
+  -void _onGetAuthMeSuccess()
+  -void _onGetAuthMeError()
+  -void _onGetAuthMeEventError()
+  -dynamic _updateHomeModel()
+}
+
+"ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeBloc" o-- "ucleankim::data::repository::repository.dart::Repository"
+"ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeBloc" o-- "ucleankim::data::models::getAuthMe::get_get_auth_me_resp.dart::GetGetAuthMeResp"
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeBloc"
+
+abstract class "ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeEvent"
+
+class "ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeEvent" <|-- "ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeInitialEvent"
+
+class "ucleankim::presentation::home_page::bloc::home_bloc.dart::FetchMeEvent" {
+  +Function? onFetchMeEventError
+  +List<Object?> props
+}
+
+"ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeEvent" <|-- "ucleankim::presentation::home_page::bloc::home_bloc.dart::FetchMeEvent"
+
+class "ucleankim::presentation::home_page::bloc::home_bloc.dart::UpdateHomeModelEvent" {
+  +HomeModel updatedHomeModel
+  +List<Object?> props
+}
+
+"ucleankim::presentation::home_page::bloc::home_bloc.dart::UpdateHomeModelEvent" o-- "ucleankim::presentation::home_page::models::home_model.dart::HomeModel"
+"ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeEvent" <|-- "ucleankim::presentation::home_page::bloc::home_bloc.dart::UpdateHomeModelEvent"
+
+class "ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeState" {
+  +HomeModel? homeModelObj
+  +List<Object?> props
+  +HomeState copyWith()
+}
+
+"ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeState" o-- "ucleankim::presentation::home_page::models::home_model.dart::HomeModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::home_page::bloc::home_bloc.dart::HomeState"
+
+class "ucleankim::presentation::home_page::home_page.dart::HomePage" {
+  {static} +Widget builder()
+  +Widget build()
+  -PreferredSizeWidget _buildAppBar()
+  -Widget _buildFrameNinetyThree()
+  -Widget _buildUntripOne()
+  -Widget _buildUntripOne1()
+  -Widget _buildTopContainerUnTrip()
+  -Widget _buildBottomContainer()
+  +dynamic onTapLock()
+  +dynamic onTapImgClose()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::home_page::home_page.dart::HomePage"
+
+class "ucleankim::presentation::home_page::models::home_model.dart::HomeModel" {
+  +String welcomeIsabelle
+  +String gamingPoints
+  +bool isautoTracked
+  +List<Object?> props
+  +HomeModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::home_page::models::home_model.dart::HomeModel"
+
+class "ucleankim::presentation::learnfive_bottomsheet::bloc::learnfive_bloc.dart::LearnfiveBloc" {
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::learnfive_bottomsheet::bloc::learnfive_bloc.dart::LearnfiveBloc"
+
+abstract class "ucleankim::presentation::learnfive_bottomsheet::bloc::learnfive_bloc.dart::LearnfiveEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learnfive_bottomsheet::bloc::learnfive_bloc.dart::LearnfiveEvent"
+
+class "ucleankim::presentation::learnfive_bottomsheet::bloc::learnfive_bloc.dart::LearnfiveInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::learnfive_bottomsheet::bloc::learnfive_bloc.dart::LearnfiveEvent" <|-- "ucleankim::presentation::learnfive_bottomsheet::bloc::learnfive_bloc.dart::LearnfiveInitialEvent"
+
+class "ucleankim::presentation::learnfive_bottomsheet::bloc::learnfive_bloc.dart::LearnfiveState" {
+  +LearnfiveModel? learnfiveModelObj
+  +List<Object?> props
+  +LearnfiveState copyWith()
+}
+
+"ucleankim::presentation::learnfive_bottomsheet::bloc::learnfive_bloc.dart::LearnfiveState" o-- "ucleankim::presentation::learnfive_bottomsheet::models::learnfive_model.dart::LearnfiveModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learnfive_bottomsheet::bloc::learnfive_bloc.dart::LearnfiveState"
+
+class "ucleankim::presentation::learnfive_bottomsheet::learnfive_bottomsheet.dart::LearnfiveBottomsheet" {
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildReducingYourCarbon()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::learnfive_bottomsheet::learnfive_bottomsheet.dart::LearnfiveBottomsheet"
+
+class "ucleankim::presentation::learnfive_bottomsheet::models::learnfive_model.dart::LearnfiveModel" {
+  +List<Object?> props
+  +LearnfiveModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learnfive_bottomsheet::models::learnfive_model.dart::LearnfiveModel"
+
+class "ucleankim::presentation::learnfour_bottomsheet::bloc::learnfour_bloc.dart::LearnfourBloc" {
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::learnfour_bottomsheet::bloc::learnfour_bloc.dart::LearnfourBloc"
+
+abstract class "ucleankim::presentation::learnfour_bottomsheet::bloc::learnfour_bloc.dart::LearnfourEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learnfour_bottomsheet::bloc::learnfour_bloc.dart::LearnfourEvent"
+
+class "ucleankim::presentation::learnfour_bottomsheet::bloc::learnfour_bloc.dart::LearnfourInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::learnfour_bottomsheet::bloc::learnfour_bloc.dart::LearnfourEvent" <|-- "ucleankim::presentation::learnfour_bottomsheet::bloc::learnfour_bloc.dart::LearnfourInitialEvent"
+
+class "ucleankim::presentation::learnfour_bottomsheet::bloc::learnfour_bloc.dart::LearnfourState" {
+  +LearnfourModel? learnfourModelObj
+  +List<Object?> props
+  +LearnfourState copyWith()
+}
+
+"ucleankim::presentation::learnfour_bottomsheet::bloc::learnfour_bloc.dart::LearnfourState" o-- "ucleankim::presentation::learnfour_bottomsheet::models::learnfour_model.dart::LearnfourModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learnfour_bottomsheet::bloc::learnfour_bloc.dart::LearnfourState"
+
+class "ucleankim::presentation::learnfour_bottomsheet::learnfour_bottomsheet.dart::LearnfourBottomsheet" {
+  {static} +Widget builder()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::learnfour_bottomsheet::learnfour_bottomsheet.dart::LearnfourBottomsheet"
+
+class "ucleankim::presentation::learnfour_bottomsheet::models::learnfour_model.dart::LearnfourModel" {
+  +List<Object?> props
+  +LearnfourModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learnfour_bottomsheet::models::learnfour_model.dart::LearnfourModel"
+
+class "ucleankim::presentation::learnthree_bottomsheet::bloc::learnthree_bloc.dart::LearnthreeBloc" {
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::learnthree_bottomsheet::bloc::learnthree_bloc.dart::LearnthreeBloc"
+
+abstract class "ucleankim::presentation::learnthree_bottomsheet::bloc::learnthree_bloc.dart::LearnthreeEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learnthree_bottomsheet::bloc::learnthree_bloc.dart::LearnthreeEvent"
+
+class "ucleankim::presentation::learnthree_bottomsheet::bloc::learnthree_bloc.dart::LearnthreeInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::learnthree_bottomsheet::bloc::learnthree_bloc.dart::LearnthreeEvent" <|-- "ucleankim::presentation::learnthree_bottomsheet::bloc::learnthree_bloc.dart::LearnthreeInitialEvent"
+
+class "ucleankim::presentation::learnthree_bottomsheet::bloc::learnthree_bloc.dart::LearnthreeState" {
+  +LearnthreeModel? learnthreeModelObj
+  +List<Object?> props
+  +LearnthreeState copyWith()
+}
+
+"ucleankim::presentation::learnthree_bottomsheet::bloc::learnthree_bloc.dart::LearnthreeState" o-- "ucleankim::presentation::learnthree_bottomsheet::models::learnthree_model.dart::LearnthreeModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learnthree_bottomsheet::bloc::learnthree_bloc.dart::LearnthreeState"
+
+class "ucleankim::presentation::learnthree_bottomsheet::learnthree_bottomsheet.dart::LearnthreeBottomsheet" {
+  {static} +Widget builder()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::learnthree_bottomsheet::learnthree_bottomsheet.dart::LearnthreeBottomsheet"
+
+class "ucleankim::presentation::learnthree_bottomsheet::models::learnthree_model.dart::LearnthreeModel" {
+  +List<Object?> props
+  +LearnthreeModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learnthree_bottomsheet::models::learnthree_model.dart::LearnthreeModel"
+
+class "ucleankim::presentation::learntwo_bottomsheet::bloc::learntwo_bloc.dart::LearntwoBloc" {
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::learntwo_bottomsheet::bloc::learntwo_bloc.dart::LearntwoBloc"
+
+abstract class "ucleankim::presentation::learntwo_bottomsheet::bloc::learntwo_bloc.dart::LearntwoEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learntwo_bottomsheet::bloc::learntwo_bloc.dart::LearntwoEvent"
+
+class "ucleankim::presentation::learntwo_bottomsheet::bloc::learntwo_bloc.dart::LearntwoInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::learntwo_bottomsheet::bloc::learntwo_bloc.dart::LearntwoEvent" <|-- "ucleankim::presentation::learntwo_bottomsheet::bloc::learntwo_bloc.dart::LearntwoInitialEvent"
+
+class "ucleankim::presentation::learntwo_bottomsheet::bloc::learntwo_bloc.dart::LearntwoState" {
+  +LearntwoModel? learntwoModelObj
+  +List<Object?> props
+  +LearntwoState copyWith()
+}
+
+"ucleankim::presentation::learntwo_bottomsheet::bloc::learntwo_bloc.dart::LearntwoState" o-- "ucleankim::presentation::learntwo_bottomsheet::models::learntwo_model.dart::LearntwoModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learntwo_bottomsheet::bloc::learntwo_bloc.dart::LearntwoState"
+
+class "ucleankim::presentation::learntwo_bottomsheet::learntwo_bottomsheet.dart::LearntwoBottomsheet" {
+  {static} +Widget builder()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::learntwo_bottomsheet::learntwo_bottomsheet.dart::LearntwoBottomsheet"
+
+class "ucleankim::presentation::learntwo_bottomsheet::models::learntwo_model.dart::LearntwoModel" {
+  +List<Object?> props
+  +LearntwoModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learntwo_bottomsheet::models::learntwo_model.dart::LearntwoModel"
+
+class "ucleankim::presentation::learn_page::bloc::learn_bloc.dart::LearnBloc" {
+  -dynamic _onInitialize()
+  +List<LearncontainerItemModel> fillLearncontainerItemList()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::learn_page::bloc::learn_bloc.dart::LearnBloc"
+
+abstract class "ucleankim::presentation::learn_page::bloc::learn_bloc.dart::LearnEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learn_page::bloc::learn_bloc.dart::LearnEvent"
+
+class "ucleankim::presentation::learn_page::bloc::learn_bloc.dart::LearnInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::learn_page::bloc::learn_bloc.dart::LearnEvent" <|-- "ucleankim::presentation::learn_page::bloc::learn_bloc.dart::LearnInitialEvent"
+
+class "ucleankim::presentation::learn_page::bloc::learn_bloc.dart::LearnState" {
+  +LearnModel? learnModelObj
+  +List<Object?> props
+  +LearnState copyWith()
+}
+
+"ucleankim::presentation::learn_page::bloc::learn_bloc.dart::LearnState" o-- "ucleankim::presentation::learn_page::models::learn_model.dart::LearnModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learn_page::bloc::learn_bloc.dart::LearnState"
+
+class "ucleankim::presentation::learn_page::learn_page.dart::LearnPage" {
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildTopNavApp()
+  -Widget _buildLearnContainer()
+  +dynamic onTapTheBeautyOfThe()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::learn_page::learn_page.dart::LearnPage"
+
+class "ucleankim::presentation::learn_page::models::learncontainer_item_model.dart::LearncontainerItemModel" {
+  +String? image
+  +String? theBeautyOfThe
+  +String? id
+}
+
+class "ucleankim::presentation::learn_page::models::learn_model.dart::LearnModel" {
+  +List<LearncontainerItemModel> learncontainerItemList
+  +List<Object?> props
+  +LearnModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::learn_page::models::learn_model.dart::LearnModel"
+
+class "ucleankim::presentation::learn_page::widgets::learncontainer_item_widget.dart::LearncontainerItemWidget" {
+  +LearncontainerItemModel learncontainerItemModelObj
+  +void Function()? onTapTheBeautyOfThe
+  +Widget build()
+}
+
+"ucleankim::presentation::learn_page::widgets::learncontainer_item_widget.dart::LearncontainerItemWidget" o-- "ucleankim::presentation::learn_page::models::learncontainer_item_model.dart::LearncontainerItemModel"
+"ucleankim::presentation::learn_page::widgets::learncontainer_item_widget.dart::LearncontainerItemWidget" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::learn_page::widgets::learncontainer_item_widget.dart::LearncontainerItemWidget"
+
+class "ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginBloc" {
+  -Repository _repository
+  +PostAuthLoginPostResp postAuthLoginPostResp
+  -dynamic _changePasswordVisibility()
+  -dynamic _onInitialize()
+  -FutureOr<void> _callAuthLoginPost()
+  -void _onAuthLoginPostSuccess()
+  -void _onAuthLoginPostError()
+}
+
+"ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginBloc" o-- "ucleankim::data::repository::repository.dart::Repository"
+"ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginBloc" o-- "ucleankim::data::models::authLoginPost::post_auth_login_post_resp.dart::PostAuthLoginPostResp"
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginBloc"
+
+abstract class "ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginEvent"
+
+class "ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginEvent" <|-- "ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginInitialEvent"
+
+class "ucleankim::presentation::login_screen::bloc::login_bloc.dart::CreateLoginEvent" {
+  +Function? onCreateLoginEventSuccess
+  +Function? onCreateLoginEventError
+  +List<Object?> props
+}
+
+"ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginEvent" <|-- "ucleankim::presentation::login_screen::bloc::login_bloc.dart::CreateLoginEvent"
+
+class "ucleankim::presentation::login_screen::bloc::login_bloc.dart::ChangePasswordVisibilityEvent" {
+  +bool value
+  +List<Object?> props
+}
+
+"ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginEvent" <|-- "ucleankim::presentation::login_screen::bloc::login_bloc.dart::ChangePasswordVisibilityEvent"
+
+class "ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginState" {
+  +TextEditingController? emailController
+  +TextEditingController? passwordController
+  +LoginModel? loginModelObj
+  +bool isShowPassword
+  +List<Object?> props
+  +LoginState copyWith()
+}
+
+"ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginState" o-- "ucleankim::presentation::login_screen::models::login_model.dart::LoginModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::login_screen::bloc::login_bloc.dart::LoginState"
+
+class "ucleankim::presentation::login_screen::login_screen.dart::LoginScreen" {
+  -GlobalKey<FormState> _formKey
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildFrameTen()
+  +dynamic onTapTxtCreateOne()
+  +dynamic navigatetoHomeCall()
+  -void _onAuthLoginPostEventSuccess()
+  -void _onAuthLoginPostEventError()
+  +dynamic onTapForgotMyPassword()
+}
+
+"ucleankim::presentation::login_screen::login_screen.dart::LoginScreen" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::login_screen::login_screen.dart::LoginScreen"
+
+class "ucleankim::presentation::login_screen::models::login_model.dart::LoginModel" {
+  +List<Object?> props
+  +LoginModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::login_screen::models::login_model.dart::LoginModel"
+
+class "ucleankim::presentation::notifspanel_screen::bloc::notifspanel_bloc.dart::NotifspanelBloc" {
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::notifspanel_screen::bloc::notifspanel_bloc.dart::NotifspanelBloc"
+
+abstract class "ucleankim::presentation::notifspanel_screen::bloc::notifspanel_bloc.dart::NotifspanelEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::notifspanel_screen::bloc::notifspanel_bloc.dart::NotifspanelEvent"
+
+class "ucleankim::presentation::notifspanel_screen::bloc::notifspanel_bloc.dart::NotifspanelInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::notifspanel_screen::bloc::notifspanel_bloc.dart::NotifspanelEvent" <|-- "ucleankim::presentation::notifspanel_screen::bloc::notifspanel_bloc.dart::NotifspanelInitialEvent"
+
+class "ucleankim::presentation::notifspanel_screen::bloc::notifspanel_bloc.dart::NotifspanelState" {
+  +NotifspanelModel? notifspanelModelObj
+  +List<Object?> props
+  +NotifspanelState copyWith()
+}
+
+"ucleankim::presentation::notifspanel_screen::bloc::notifspanel_bloc.dart::NotifspanelState" o-- "ucleankim::presentation::notifspanel_screen::models::notifspanel_model.dart::NotifspanelModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::notifspanel_screen::bloc::notifspanel_bloc.dart::NotifspanelState"
+
+class "ucleankim::presentation::notifspanel_screen::models::notifspanel_model.dart::NotifspanelModel" {
+  +List<Object?> props
+  +NotifspanelModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::notifspanel_screen::models::notifspanel_model.dart::NotifspanelModel"
+
+class "ucleankim::presentation::notifspanel_screen::notifspanel_screen.dart::NotifspanelScreen" {
+  {static} +Widget builder()
+  +Widget build()
+  -PreferredSizeWidget _buildAppBar()
+  +dynamic onTapArrowLeft()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::notifspanel_screen::notifspanel_screen.dart::NotifspanelScreen"
+
+class "ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingBloc" {
+  -dynamic _onInitialize()
+  -dynamic _updatePageView()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingBloc"
+
+abstract class "ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingEvent"
+
+class "ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingEvent" <|-- "ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingInitialEvent"
+
+class "ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::UpdatePageViewEvent" {
+  +int page
+  +List<Object?> props
+}
+
+"ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingEvent" <|-- "ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::UpdatePageViewEvent"
+
+class "ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingState" {
+  +PageController? pageController
+  +OnboardingModel? onboardingModelObj
+  +int? activePage
+  +List<Object?> props
+  +OnboardingState copyWith()
+}
+
+"ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingState" o-- "flutter::src::widgets::page_view.dart::PageController"
+"ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingState" o-- "ucleankim::presentation::onboarding_screen::models::onboarding_model.dart::OnboardingModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::onboarding_screen::bloc::onboarding_bloc.dart::OnboardingState"
+
+class "ucleankim::presentation::onboarding_screen::models::onboarding_model.dart::OnboardingModel" {
+  +int? page
+  +List<Object?> props
+  +OnboardingModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::onboarding_screen::models::onboarding_model.dart::OnboardingModel"
+
+class "ucleankim::presentation::onboarding_screen::onboarding_screen.dart::OnboardingScreen" {
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _page()
+  +dynamic navigatetoLogin()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::onboarding_screen::onboarding_screen.dart::OnboardingScreen"
+
+class "ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileBloc" {
+  -Repository _repository
+  +GetGetAuthMeResp getGetAuthMeResp
+  -dynamic _onInitialize()
+  -FutureOr<void> _callGetAuthMe()
+  -void _onGetAuthMeSuccess()
+  -void _onGetAuthMeError()
+  -void _onGetAuthMeEventError()
+}
+
+"ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileBloc" o-- "ucleankim::data::repository::repository.dart::Repository"
+"ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileBloc" o-- "ucleankim::data::models::getAuthMe::get_get_auth_me_resp.dart::GetGetAuthMeResp"
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileBloc"
+
+abstract class "ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileEvent"
+
+class "ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileEvent" <|-- "ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileInitialEvent"
+
+class "ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::FetchMeEvent" {
+  +Function? onFetchMeEventError
+  +List<Object?> props
+}
+
+"ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileEvent" <|-- "ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::FetchMeEvent"
+
+class "ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileState" {
+  +ProfileModel? profileModelObj
+  +List<Object?> props
+  +ProfileState copyWith()
+}
+
+"ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileState" o-- "ucleankim::presentation::profile_screen::models::profile_model.dart::ProfileModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::profile_screen::bloc::profile_bloc.dart::ProfileState"
+
+class "ucleankim::presentation::profile_screen::models::profile_model.dart::ProfileModel" {
+  +String isabelleKarol
+  +String sixHundredFortyMillionSevenHun
+  +String email
+  +List<Object?> props
+  +ProfileModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::profile_screen::models::profile_model.dart::ProfileModel"
+
+class "ucleankim::presentation::profile_screen::profile_screen.dart::ProfileScreen" {
+  {static} +Widget builder()
+  +Widget build()
+  -PreferredSizeWidget _buildAppBar()
+  +dynamic onTapArrowLeft()
+  +dynamic onTapTxtEditFour()
+  +dynamic onTapTxtEditOne()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::profile_screen::profile_screen.dart::ProfileScreen"
+
+class "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoBloc" {
+  -dynamic _changePasswordVisibility()
+  -dynamic _changePasswordVisibility1()
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoBloc"
+
+abstract class "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoEvent"
+
+class "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoEvent" <|-- "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoInitialEvent"
+
+class "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::ChangePasswordVisibilityEvent" {
+  +bool value
+  +List<Object?> props
+}
+
+"ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoEvent" <|-- "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::ChangePasswordVisibilityEvent"
+
+class "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::ChangePasswordVisibilityEvent1" {
+  +bool value
+  +List<Object?> props
+}
+
+"ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoEvent" <|-- "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::ChangePasswordVisibilityEvent1"
+
+class "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoState" {
+  +TextEditingController? passwordController
+  +TextEditingController? confirmpasswordController
+  +RecoveraccounttwoModel? recoveraccounttwoModelObj
+  +bool isShowPassword
+  +bool isShowPassword1
+  +List<Object?> props
+  +RecoveraccounttwoState copyWith()
+}
+
+"ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoState" o-- "ucleankim::presentation::recoveraccounttwo_screen::models::recoveraccounttwo_model.dart::RecoveraccounttwoModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::recoveraccounttwo_screen::bloc::recoveraccounttwo_bloc.dart::RecoveraccounttwoState"
+
+class "ucleankim::presentation::recoveraccounttwo_screen::models::recoveraccounttwo_model.dart::RecoveraccounttwoModel" {
+  +List<Object?> props
+  +RecoveraccounttwoModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::recoveraccounttwo_screen::models::recoveraccounttwo_model.dart::RecoveraccounttwoModel"
+
+class "ucleankim::presentation::recoveraccounttwo_screen::recoveraccounttwo_screen.dart::RecoveraccounttwoScreen" {
+  -GlobalKey<FormState> _formKey
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildFrameThirty()
+  +dynamic onTapContinue()
+}
+
+"ucleankim::presentation::recoveraccounttwo_screen::recoveraccounttwo_screen.dart::RecoveraccounttwoScreen" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::recoveraccounttwo_screen::recoveraccounttwo_screen.dart::RecoveraccounttwoScreen"
+
+class "ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountBloc" {
+  +void codeUpdated()
+  -dynamic _changeOTP()
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountBloc"
+"sms_autofill::sms_autofill.dart::CodeAutoFill" <|-- "ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountBloc"
+
+abstract class "ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountEvent"
+
+class "ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountEvent" <|-- "ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountInitialEvent"
+
+class "ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::ChangeOTPEvent" {
+  +String code
+  +List<Object?> props
+}
+
+"ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountEvent" <|-- "ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::ChangeOTPEvent"
+
+class "ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountState" {
+  +TextEditingController? otpController
+  +RecoveraccountModel? recoveraccountModelObj
+  +List<Object?> props
+  +RecoveraccountState copyWith()
+}
+
+"ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountState" o-- "ucleankim::presentation::recoveraccount_screen::models::recoveraccount_model.dart::RecoveraccountModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::recoveraccount_screen::bloc::recoveraccount_bloc.dart::RecoveraccountState"
+
+class "ucleankim::presentation::recoveraccount_screen::models::recoveraccount_model.dart::RecoveraccountModel" {
+  +List<Object?> props
+  +RecoveraccountModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::recoveraccount_screen::models::recoveraccount_model.dart::RecoveraccountModel"
+
+class "ucleankim::presentation::recoveraccount_screen::recoveraccount_screen.dart::RecoveraccountScreen" {
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildFrameThirty()
+  +dynamic onTapContinue()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::recoveraccount_screen::recoveraccount_screen.dart::RecoveraccountScreen"
+
+class "ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportBloc" {
+  -Repository _repository
+  +List<GetGetTripsFromX8kiLetlTwmtResp> getGetTripsFromX8kiLetlTwmtResp
+  -dynamic _onInitialize()
+  +List<ReportItemModel> fillReportItemList()
+  -FutureOr<void> _callGetTripsFromX8kiLetlTwmt()
+  +String getAccurateTransImg()
+  -void _onGetTripsFromX8kiLetlTwmtSuccess()
+  -void _onGetTripsFromX8kiLetlTwmtError()
+  -void _onGetTripsFromX8kiLetlTwmtEventSuccess()
+  -void _onGetTripsFromX8kiLetlTwmtEventError()
+}
+
+"ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportBloc" o-- "ucleankim::data::repository::repository.dart::Repository"
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportBloc"
+
+abstract class "ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportEvent"
+
+class "ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportEvent" <|-- "ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportInitialEvent"
+
+class "ucleankim::presentation::report_page::bloc::report_bloc.dart::FetchTripsEvent" {
+  +Function? onFetchTripsEventSuccess
+  +Function? onFetchTripsEventError
+  +List<Object?> props
+}
+
+"ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportEvent" <|-- "ucleankim::presentation::report_page::bloc::report_bloc.dart::FetchTripsEvent"
+
+class "ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportState" {
+  +ReportModel? reportModelObj
+  +List<Object?> props
+  +ReportState copyWith()
+}
+
+"ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportState" o-- "ucleankim::presentation::report_page::models::report_model.dart::ReportModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::report_page::bloc::report_bloc.dart::ReportState"
+
+class "ucleankim::presentation::report_page::models::report_item_model.dart::ReportItemModel" {
+  +String? tripKind
+  +String? fromElthamStation
+  +String? image
+  +String? time
+  +String? distance
+  +String? id
+  +String? pointa
+  +String? pointb
+}
+
+class "ucleankim::presentation::report_page::models::report_model.dart::ReportModel" {
+  +List<ReportItemModel> reportItemList
+  +List<Object?> props
+  +ReportModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::report_page::models::report_model.dart::ReportModel"
+
+class "ucleankim::presentation::report_page::report_page.dart::ReportPage" {
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildSeven()
+  -Widget _buildReport()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::report_page::report_page.dart::ReportPage"
+
+class "ucleankim::presentation::report_page::widgets::report_item_widget.dart::ReportItemWidget" {
+  +ReportItemModel reportItemModelObj
+  +Widget build()
+}
+
+"ucleankim::presentation::report_page::widgets::report_item_widget.dart::ReportItemWidget" o-- "ucleankim::presentation::report_page::models::report_item_model.dart::ReportItemModel"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::report_page::widgets::report_item_widget.dart::ReportItemWidget"
+
+class "ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageBloc" {
+  -Repository _repository
+  +PostLogoutPostResp postLogoutPostResp
+  -dynamic _onInitialize()
+  -FutureOr<void> _callLogoutPost()
+  -void _onLogoutPostSuccess()
+  -void _onLogoutPostError()
+}
+
+"ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageBloc" o-- "ucleankim::data::repository::repository.dart::Repository"
+"ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageBloc" o-- "ucleankim::data::models::logoutPost::post_logout_post_resp.dart::PostLogoutPostResp"
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageBloc"
+
+abstract class "ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageEvent"
+
+class "ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageEvent" <|-- "ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageInitialEvent"
+
+class "ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::CreateLogoutEvent" {
+  +Function? onCreateLogoutEventSuccess
+  +Function? onCreateLogoutEventError
+  +List<Object?> props
+}
+
+"ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageEvent" <|-- "ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::CreateLogoutEvent"
+
+class "ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageState" {
+  +TextEditingController? checkmarkController
+  +TextEditingController? saveController
+  +TextEditingController? contrastController
+  +TextEditingController? signalController
+  +SettingspageModel? settingspageModelObj
+  +List<Object?> props
+  +SettingspageState copyWith()
+}
+
+"ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageState" o-- "ucleankim::presentation::settingspage_page::models::settingspage_model.dart::SettingspageModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settingspage_page::bloc::settingspage_bloc.dart::SettingspageState"
+
+class "ucleankim::presentation::settingspage_page::models::settingspage_model.dart::SettingspageModel" {
+  +List<Object?> props
+  +SettingspageModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settingspage_page::models::settingspage_model.dart::SettingspageModel"
+
+class "ucleankim::presentation::settingspage_page::settingspage_page.dart::SettingspagePage" {
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildSettings()
+  -Widget _buildCheckConfiguration()
+  -Widget _buildReportingPeriods()
+  -Widget _buildYourAccount()
+  -Widget _buildNotifications()
+  -Widget _buildTeams()
+  -Widget _buildHelpCenter()
+  -Widget _buildRankOurApp()
+  -Widget _buildLogOut()
+  +dynamic onTapCheckConfiguration()
+  +dynamic onTapReportingPeriods()
+  +dynamic onTapYourAccount()
+  +dynamic onTapNotifications()
+  +dynamic onTapHelpCenter()
+  +dynamic onTapRankOurApp()
+  +dynamic onTapLogOut()
+  -void _onLogoutPostEventSuccess()
+  -void _onLogoutPostEventError()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::settingspage_page::settingspage_page.dart::SettingspagePage"
+
+class "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversBloc" {
+  -Repository _repository
+  +PostCreateTripResp postCreateTripResp
+  +List<SettingsaddmanualtrippresversItemModel> fillSettingsaddmanualtrippresversItemList()
+  -dynamic _changeDropDown()
+  +List<SelectionPopupModel> fillDropdownItemList()
+  -dynamic _onInitialize()
+  -FutureOr<void> _callCreateTrip()
+  -void _onCreateTripSuccess()
+  -void _onCreateTripError()
+}
+
+"ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversBloc" o-- "ucleankim::data::repository::repository.dart::Repository"
+"ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversBloc" o-- "ucleankim::data::models::createTrip::post_create_trip_resp.dart::PostCreateTripResp"
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversBloc"
+
+abstract class "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversEvent"
+
+class "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversEvent" <|-- "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversInitialEvent"
+
+class "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::CreateTripsEvent" {
+  +Function? onCreateTripsEventSuccess
+  +Function? onCreateTripsEventError
+  +List<Object?> props
+}
+
+"ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversEvent" <|-- "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::CreateTripsEvent"
+
+class "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::ChangeDropDownEvent" {
+  +SelectionPopupModel value
+  +List<Object?> props
+}
+
+"ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::ChangeDropDownEvent" o-- "ucleankim::data::models::selectionPopupModel::selection_popup_model.dart::SelectionPopupModel"
+"ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversEvent" <|-- "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::ChangeDropDownEvent"
+
+class "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversState" {
+  +TextEditingController? wedJanuary31Controller
+  +TextEditingController? oneThousandTwentyEightController
+  +TextEditingController? kmController
+  +SelectionPopupModel? selectedDropDownValue
+  +SettingsAddmanualtrippresversModel? settingsAddmanualtrippresversModelObj
+  +List<Object?> props
+  +SettingsAddmanualtrippresversState copyWith()
+}
+
+"ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversState" o-- "ucleankim::data::models::selectionPopupModel::selection_popup_model.dart::SelectionPopupModel"
+"ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversState" o-- "ucleankim::presentation::settings_addmanualtrippresvers_screen::models::settings_addmanualtrippresvers_model.dart::SettingsAddmanualtrippresversModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_addmanualtrippresvers_screen::bloc::settings_addmanualtrippresvers_bloc.dart::SettingsAddmanualtrippresversState"
+
+class "ucleankim::presentation::settings_addmanualtrippresvers_screen::models::settingsaddmanualtrippresvers_item_model.dart::SettingsaddmanualtrippresversItemModel" {
+  +String? id
+}
+
+class "ucleankim::presentation::settings_addmanualtrippresvers_screen::models::settings_addmanualtrippresvers_model.dart::SettingsAddmanualtrippresversModel" {
+  +List<SettingsaddmanualtrippresversItemModel> settingsaddmanualtrippresversItemList
+  +List<SelectionPopupModel> dropdownItemList
+  +List<Object?> props
+  +SettingsAddmanualtrippresversModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_addmanualtrippresvers_screen::models::settings_addmanualtrippresvers_model.dart::SettingsAddmanualtrippresversModel"
+
+class "ucleankim::presentation::settings_addmanualtrippresvers_screen::settings_addmanualtrippresvers_screen.dart::SettingsAddmanualtrippresversScreen" {
+  -GlobalKey<FormState> _formKey
+  {static} +Widget builder()
+  +Widget build()
+  -PreferredSizeWidget _buildAppBar()
+  -Widget _buildWedJanuary31()
+  -Widget _buildOneThousandTwentyEight()
+  -Widget _buildKm()
+  -Widget _buildAddDrive()
+  -Widget _buildFrameNinetyFive()
+  +dynamic onBackPressed()
+  +dynamic navigateToDetTrips()
+  +dynamic callAddResTrips()
+  -void _onCreateTripEventSuccess()
+  -void _onCreateTripEventError()
+}
+
+"ucleankim::presentation::settings_addmanualtrippresvers_screen::settings_addmanualtrippresvers_screen.dart::SettingsAddmanualtrippresversScreen" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::settings_addmanualtrippresvers_screen::settings_addmanualtrippresvers_screen.dart::SettingsAddmanualtrippresversScreen"
+
+class "ucleankim::presentation::settings_addmanualtrippresvers_screen::widgets::settingsaddmanualtrippresvers_item_widget.dart::SettingsaddmanualtrippresversItemWidget" {
+  +SettingsaddmanualtrippresversItemModel settingsaddmanualtrippresversItemModelObj
+  +Widget build()
+}
+
+"ucleankim::presentation::settings_addmanualtrippresvers_screen::widgets::settingsaddmanualtrippresvers_item_widget.dart::SettingsaddmanualtrippresversItemWidget" o-- "ucleankim::presentation::settings_addmanualtrippresvers_screen::models::settingsaddmanualtrippresvers_item_model.dart::SettingsaddmanualtrippresversItemModel"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::settings_addmanualtrippresvers_screen::widgets::settingsaddmanualtrippresvers_item_widget.dart::SettingsaddmanualtrippresversItemWidget"
+
+class "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippBloc" {
+  -Repository _repository
+  +PostCreateTripResp postCreateTripResp
+  -dynamic _changeDropDown()
+  +List<SelectionPopupModel> fillDropdownItemList()
+  -dynamic _onInitialize()
+  -FutureOr<void> _callCreateTrip()
+  -void _onCreateTripSuccess()
+  -void _onCreateTripError()
+}
+
+"ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippBloc" o-- "ucleankim::data::repository::repository.dart::Repository"
+"ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippBloc" o-- "ucleankim::data::models::createTrip::post_create_trip_resp.dart::PostCreateTripResp"
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippBloc"
+
+abstract class "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippEvent"
+
+class "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippEvent" <|-- "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippInitialEvent"
+
+class "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::CreateTripsMapsEvent" {
+  +Function? onCreateTripsMapsEventSuccess
+  +Function? onCreateTripsMapsEventError
+  +List<Object?> props
+}
+
+"ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippEvent" <|-- "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::CreateTripsMapsEvent"
+
+class "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::ChangeDropDownEvent" {
+  +SelectionPopupModel value
+  +List<Object?> props
+}
+
+"ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::ChangeDropDownEvent" o-- "ucleankim::data::models::selectionPopupModel::selection_popup_model.dart::SelectionPopupModel"
+"ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippEvent" <|-- "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::ChangeDropDownEvent"
+
+class "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippState" {
+  +TextEditingController? wedJanuary3Controller
+  +TextEditingController? oneThousandTwentyEightController
+  +TextEditingController? startLocationController
+  +TextEditingController? stopLocationController
+  +SelectionPopupModel? selectedDropDownValue
+  +SettingsAddmanualtrippModel? settingsAddmanualtrippModelObj
+  +List<Object?> props
+  +SettingsAddmanualtrippState copyWith()
+}
+
+"ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippState" o-- "ucleankim::data::models::selectionPopupModel::selection_popup_model.dart::SelectionPopupModel"
+"ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippState" o-- "ucleankim::presentation::settings_addmanualtripp_screen::models::settings_addmanualtripp_model.dart::SettingsAddmanualtrippModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_addmanualtripp_screen::bloc::settings_addmanualtripp_bloc.dart::SettingsAddmanualtrippState"
+
+class "ucleankim::presentation::settings_addmanualtripp_screen::models::settingsaddmanualtripp_item_model.dart::SettingsaddmanualtrippItemModel" {
+  +String? id
+}
+
+class "ucleankim::presentation::settings_addmanualtripp_screen::models::settings_addmanualtripp_model.dart::SettingsAddmanualtrippModel" {
+  +List<SettingsaddmanualtrippItemModel> settingsaddmanualtrippItemList
+  +List<SelectionPopupModel> dropdownItemList
+  +List<Object?> props
+  +SettingsAddmanualtrippModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_addmanualtripp_screen::models::settings_addmanualtripp_model.dart::SettingsAddmanualtrippModel"
+
+class "ucleankim::presentation::settings_addmanualtripp_screen::settings_addmanualtripp_screen.dart::SettingsAddmanualtrippScreen" {
+  -GlobalKey<FormState> _formKey
+  {static} +Widget builder()
+  +Widget build()
+  -PreferredSizeWidget _buildAppBar()
+  -Widget _buildWedJanuary3()
+  -Widget _buildOneThousandTwentyEight()
+  -Widget _buildStartLocation()
+  -Widget _buildStopLocation()
+  -Widget _buildAddDrive()
+  -Widget _buildFrameNinetySix()
+  +dynamic navigatetoResTrip()
+  +dynamic callAddDetTrip()
+  -void _onCreateTripEventSuccess()
+  -void _onCreateTripEventError()
+}
+
+"ucleankim::presentation::settings_addmanualtripp_screen::settings_addmanualtripp_screen.dart::SettingsAddmanualtrippScreen" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::settings_addmanualtripp_screen::settings_addmanualtripp_screen.dart::SettingsAddmanualtrippScreen"
+
+class "ucleankim::presentation::settings_addmanualtripp_screen::widgets::settingsaddmanualtripp_item_widget.dart::SettingsaddmanualtrippItemWidget" {
+  +SettingsaddmanualtrippItemModel settingsaddmanualtrippItemModelObj
+  +Widget build()
+}
+
+"ucleankim::presentation::settings_addmanualtripp_screen::widgets::settingsaddmanualtripp_item_widget.dart::SettingsaddmanualtrippItemWidget" o-- "ucleankim::presentation::settings_addmanualtripp_screen::models::settingsaddmanualtripp_item_model.dart::SettingsaddmanualtrippItemModel"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::settings_addmanualtripp_screen::widgets::settingsaddmanualtripp_item_widget.dart::SettingsaddmanualtrippItemWidget"
+
+class "ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::SettingsAutoTrackBloc" {
+  -dynamic _changeSwitch()
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::SettingsAutoTrackBloc"
+
+abstract class "ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::SettingsAutoTrackEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::SettingsAutoTrackEvent"
+
+class "ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::SettingsAutoTrackInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::SettingsAutoTrackEvent" <|-- "ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::SettingsAutoTrackInitialEvent"
+
+class "ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::ChangeSwitchEvent" {
+  +bool value
+  +List<Object?> props
+}
+
+"ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::SettingsAutoTrackEvent" <|-- "ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::ChangeSwitchEvent"
+
+class "ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::SettingsAutoTrackState" {
+  +SettingsAutoTrackModel? settingsAutoTrackModelObj
+  +bool isSelectedSwitch
+  +List<Object?> props
+  +SettingsAutoTrackState copyWith()
+}
+
+"ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::SettingsAutoTrackState" o-- "ucleankim::presentation::settings_auto_track_screen::models::settings_auto_track_model.dart::SettingsAutoTrackModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_auto_track_screen::bloc::settings_auto_track_bloc.dart::SettingsAutoTrackState"
+
+class "ucleankim::presentation::settings_auto_track_screen::models::settings_auto_track_model.dart::SettingsAutoTrackModel" {
+  +List<Object?> props
+  +SettingsAutoTrackModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_auto_track_screen::models::settings_auto_track_model.dart::SettingsAutoTrackModel"
+
+class "ucleankim::presentation::settings_auto_track_screen::settings_auto_track_screen.dart::SettingsAutoTrackScreen" {
+  {static} +Widget builder()
+  +Widget build()
+  -PreferredSizeWidget _buildAppBar()
+  -Widget _buildFrameEightyOne()
+  -Widget _buildFrameEightyTwo()
+  -Widget _buildFrameEightyOne1()
+  -Widget _buildRow()
+  +dynamic onTapArrowLeft()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::settings_auto_track_screen::settings_auto_track_screen.dart::SettingsAutoTrackScreen"
+
+class "ucleankim::presentation::settings_contactus_screen::bloc::settings_contactus_bloc.dart::SettingsContactusBloc" {
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::settings_contactus_screen::bloc::settings_contactus_bloc.dart::SettingsContactusBloc"
+
+abstract class "ucleankim::presentation::settings_contactus_screen::bloc::settings_contactus_bloc.dart::SettingsContactusEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_contactus_screen::bloc::settings_contactus_bloc.dart::SettingsContactusEvent"
+
+class "ucleankim::presentation::settings_contactus_screen::bloc::settings_contactus_bloc.dart::SettingsContactusInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::settings_contactus_screen::bloc::settings_contactus_bloc.dart::SettingsContactusEvent" <|-- "ucleankim::presentation::settings_contactus_screen::bloc::settings_contactus_bloc.dart::SettingsContactusInitialEvent"
+
+class "ucleankim::presentation::settings_contactus_screen::bloc::settings_contactus_bloc.dart::SettingsContactusState" {
+  +SettingsContactusModel? settingsContactusModelObj
+  +List<Object?> props
+  +SettingsContactusState copyWith()
+}
+
+"ucleankim::presentation::settings_contactus_screen::bloc::settings_contactus_bloc.dart::SettingsContactusState" o-- "ucleankim::presentation::settings_contactus_screen::models::settings_contactus_model.dart::SettingsContactusModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_contactus_screen::bloc::settings_contactus_bloc.dart::SettingsContactusState"
+
+class "ucleankim::presentation::settings_contactus_screen::models::settings_contactus_model.dart::SettingsContactusModel" {
+  +List<Object?> props
+  +SettingsContactusModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::settings_contactus_screen::models::settings_contactus_model.dart::SettingsContactusModel"
+
+class "ucleankim::presentation::settings_contactus_screen::settings_contactus_screen.dart::SettingsContactusScreen" {
+  {static} +Widget builder()
+  +Widget build()
+  -PreferredSizeWidget _buildAppBar()
+  +dynamic onTapArrowLeft()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::settings_contactus_screen::settings_contactus_screen.dart::SettingsContactusScreen"
+
+class "ucleankim::presentation::splash_screen::bloc::splash_bloc.dart::SplashBloc" {
+  -dynamic _onInitialize()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::presentation::splash_screen::bloc::splash_bloc.dart::SplashBloc"
+
+abstract class "ucleankim::presentation::splash_screen::bloc::splash_bloc.dart::SplashEvent" {
+  +List<Object?> props
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::splash_screen::bloc::splash_bloc.dart::SplashEvent"
+
+class "ucleankim::presentation::splash_screen::bloc::splash_bloc.dart::SplashInitialEvent" {
+  +List<Object?> props
+}
+
+"ucleankim::presentation::splash_screen::bloc::splash_bloc.dart::SplashEvent" <|-- "ucleankim::presentation::splash_screen::bloc::splash_bloc.dart::SplashInitialEvent"
+
+class "ucleankim::presentation::splash_screen::bloc::splash_bloc.dart::SplashState" {
+  +SplashModel? splashModelObj
+  +List<Object?> props
+  +SplashState copyWith()
+}
+
+"ucleankim::presentation::splash_screen::bloc::splash_bloc.dart::SplashState" o-- "ucleankim::presentation::splash_screen::models::splash_model.dart::SplashModel"
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::splash_screen::bloc::splash_bloc.dart::SplashState"
+
+class "ucleankim::presentation::splash_screen::models::splash_model.dart::SplashModel" {
+  +List<Object?> props
+  +SplashModel copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::presentation::splash_screen::models::splash_model.dart::SplashModel"
+
+class "ucleankim::presentation::splash_screen::splash_screen.dart::SplashScreen" {
+  {static} +Widget builder()
+  +Widget build()
+  -Widget _buildGradient()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::presentation::splash_screen::splash_screen.dart::SplashScreen"
+
+class "ucleankim::routes::app_routes.dart::AppRoutes" {
+  {static} +String splashScreen
+  {static} +String settingsAddmanualtrippresversScreen
+  {static} +String notifspanelScreen
+  {static} +String profileScreen
+  {static} +String recoveraccounttwoScreen
+  {static} +String recoveraccountScreen
+  {static} +String settingsAddmanualtrippScreen
+  {static} +String settingspagePage
+  {static} +String settingsAutoTrackScreen
+  {static} +String settingsContactusScreen
+  {static} +String loginScreen
+  {static} +String homeContainerScreen
+  {static} +String homePage
+  {static} +String learnPage
+  {static} +String createaccountScreen
+  {static} +String createaccounttwoScreen
+  {static} +String createaccountthreeScreen
+  {static} +String reportPage
+  {static} +String onboardingScreen
+  {static} +String appNavigationScreen
+  {static} +String initialRoute
+  {static} +Map<String, Widget Function(BuildContext)> routes
+}
+
+class "ucleankim::routes::navigation_args.dart::NavigationArgs" {
+  {static} +String token
+}
+
+class "ucleankim::theme::app_decoration.dart::AppDecoration" {
+  {static} +BoxDecoration fillCyanCc
+  {static} +BoxDecoration fillGray
+  {static} +BoxDecoration fillGray5059
+  {static} +BoxDecoration fillLightGreen
+  {static} +BoxDecoration fillPrimary
+  {static} +BoxDecoration fillWhiteA
+  {static} +BoxDecoration outlineBlack
+  {static} +BoxDecoration outlineBlack900
+  {static} +BoxDecoration outlineBlack9001
+  {static} +BoxDecoration outlineBlack9002
+  {static} +BoxDecoration outlineBlack9003
+  {static} +BoxDecoration outlineBlack9004
+  {static} +BoxDecoration outlineBlueGray
+  {static} +BoxDecoration outlineGray
+  {static} +BoxDecoration outlineGray400
+  {static} +BoxDecoration outlineGray4001
+  {static} +BoxDecoration outlineGray5003f
+  {static} +BoxDecoration outlineGrayF
+  {static} +BoxDecoration outlineWhiteA
+}
+
+"ucleankim::theme::app_decoration.dart::AppDecoration" o-- "flutter::src::painting::box_decoration.dart::BoxDecoration"
+
+class "ucleankim::theme::app_decoration.dart::BorderRadiusStyle" {
+  {static} +BorderRadius circleBorder20
+  {static} +BorderRadius customBorderTL12
+  {static} +BorderRadius roundedBorder23
+  {static} +BorderRadius roundedBorder5
+  {static} +BorderRadius roundedBorder9
+}
+
+"ucleankim::theme::app_decoration.dart::BorderRadiusStyle" o-- "flutter::src::painting::border_radius.dart::BorderRadius"
+
+class "ucleankim::theme::bloc::theme_bloc.dart::ThemeBloc" {
+  -dynamic _changeTheme()
+}
+
+"bloc::src::bloc.dart::Bloc" <|-- "ucleankim::theme::bloc::theme_bloc.dart::ThemeBloc"
+
+abstract class "ucleankim::theme::bloc::theme_bloc.dart::ThemeEvent" {
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::theme::bloc::theme_bloc.dart::ThemeEvent"
+
+class "ucleankim::theme::bloc::theme_bloc.dart::ThemeChangeEvent" {
+  +String themeType
+  +List<Object?> props
+}
+
+"ucleankim::theme::bloc::theme_bloc.dart::ThemeEvent" <|-- "ucleankim::theme::bloc::theme_bloc.dart::ThemeChangeEvent"
+
+class "ucleankim::theme::bloc::theme_bloc.dart::ThemeState" {
+  +String themeType
+  +List<Object?> props
+  +ThemeState copyWith()
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "ucleankim::theme::bloc::theme_bloc.dart::ThemeState"
+
+class "ucleankim::theme::custom_button_style.dart::CustomButtonStyles" {
+  {static} +ButtonStyle fillCyanTL5
+  {static} +ButtonStyle fillOnError
+  {static} +ButtonStyle fillOnSecondaryContainer
+  {static} +ButtonStyle fillOnSecondaryContainerTL10
+  {static} +ButtonStyle fillPrimaryTL10
+  {static} +ButtonStyle fillWhiteA
+  {static} +ButtonStyle outlineBlack
+  {static} +ButtonStyle outlineBlackTL5
+  {static} +ButtonStyle outlineBlack1
+  {static} +ButtonStyle none
+}
+
+"ucleankim::theme::custom_button_style.dart::CustomButtonStyles" o-- "flutter::src::material::button_style.dart::ButtonStyle"
+
+class "ucleankim::theme::custom_text_style.dart::CustomTextStyles" {
+  {static} +dynamic bodyLarge18
+  {static} +dynamic bodyLargeBlack900
+  {static} +dynamic bodyLargeBlack900_1
+  {static} +dynamic bodyLargeBlack900_2
+  {static} +dynamic bodyLargeBlue300
+  {static} +dynamic bodyLargeCyan800
+  {static} +dynamic bodyLargeDeeporange300
+  {static} +dynamic bodyLargeGray10001
+  {static} +dynamic bodyLargeGray10002
+  {static} +dynamic bodyLargeInterBlack900
+  {static} +dynamic bodyLargeInterBlack90018
+  {static} +dynamic bodyLargeInterErrorContainer
+  {static} +dynamic bodyLargeInterGray900a2
+  {static} +dynamic bodyLargeInterOnErrorContainer
+  {static} +dynamic bodyLargeInterOrange600
+  {static} +dynamic bodyLargeOrange700
+  {static} +dynamic bodyLargePoppinsBlack900
+  {static} +dynamic bodyLargePoppinsBlack90018
+  {static} +dynamic bodyLargePoppinsBlack900_1
+  {static} +dynamic bodyLargePoppinsBlack900_2
+  {static} +dynamic bodyLargePoppinsBlack900_3
+  {static} +dynamic bodyLargePoppinsBlue300
+  {static} +dynamic bodyLargePoppinsCyan800
+  {static} +dynamic bodyLargePoppinsDeeporange300
+  {static} +dynamic bodyLargePoppinsGray10002
+  {static} +dynamic bodyLargePoppinsOrange700
+  {static} +dynamic bodyLargePoppinsPrimary
+  {static} +dynamic bodyLargePoppinsPrimary_1
+  {static} +dynamic bodyLargePoppinsff000000
+  {static} +dynamic bodyLargePrimary
+  {static} +dynamic bodyLargePrimaryContainer
+  {static} +dynamic bodyLargePrimaryContainer_1
+  {static} +dynamic bodyLargePrimary_1
+  {static} +dynamic bodyLargeRobotoPrimaryContainer
+  {static} +dynamic bodyLargeRobotoPrimaryContainer_1
+  {static} +dynamic bodyLargeRobotoff606060
+  {static} +dynamic bodyLargeWhiteA70001
+  {static} +dynamic bodyLargeWhiteA70001_1
+  {static} +dynamic bodyLargeff000000
+  {static} +dynamic bodyMedium15
+  {static} +dynamic bodyMediumBlack900
+  {static} +dynamic bodyMediumBlack90015
+  {static} +dynamic bodyMediumBlack900Light
+  {static} +dynamic bodyMediumBlack900Light_1
+  {static} +dynamic bodyMediumBlack900Light_2
+  {static} +dynamic bodyMediumBlack900_1
+  {static} +dynamic bodyMediumBlack900_2
+  {static} +dynamic bodyMediumInter
+  {static} +dynamic bodyMediumInterBlack900
+  {static} +dynamic bodyMediumLight
+  {static} +dynamic bodyMediumPrimary
+  {static} +dynamic bodyMediumRobotoPrimaryContainer
+  {static} +dynamic bodyMediumWhiteA70001
+  {static} +dynamic bodyMediumff000000
+  {static} +dynamic bodySmall11
+  {static} +dynamic bodySmall12
+  {static} +dynamic bodySmallGray50001
+  {static} +dynamic bodySmallInterGray500
+  {static} +dynamic headlineSmallPoppins
+  {static} +dynamic headlineSmallPoppinsBold
+  {static} +dynamic headlineSmallPoppins_1
+  {static} +dynamic titleLargeBlack900
+  {static} +dynamic titleLargeBlack900Regular
+  {static} +dynamic titleLargeBlack900SemiBold
+  {static} +dynamic titleLargeBlack900_1
+  {static} +dynamic titleLargeInter
+  {static} +dynamic titleLargeInterBlack900
+  {static} +dynamic titleLargeRegular
+  {static} +dynamic titleLargeRegular_1
+  {static} +dynamic titleLargeSemiBold
+  {static} +dynamic titleMediumInter
+  {static} +dynamic titleMediumInter_1
+  {static} +dynamic titleMediumRoboto
+  {static} +dynamic titleMediumRobotoff000000
+  {static} +dynamic titleMediumRobotoff606060
+  {static} +dynamic titleSmallBold
+  {static} +dynamic titleSmallSemiBold
+  {static} +dynamic titleSmallff000000
+}
+
+class "ucleankim::theme::theme_helper.dart::ThemeHelper" {
+  -String _appTheme
+  -Map<String, PrimaryColors> _supportedCustomColor
+  -Map<String, ColorScheme> _supportedColorScheme
+  -PrimaryColors _getThemeColors()
+  -ThemeData _getThemeData()
+  +PrimaryColors themeColor()
+  +ThemeData themeData()
+}
+
+class "ucleankim::theme::theme_helper.dart::TextThemes" {
+  {static} +TextTheme textTheme()
+}
+
+class "ucleankim::theme::theme_helper.dart::ColorSchemes" {
+  {static} +ColorScheme primaryColorScheme
+}
+
+"ucleankim::theme::theme_helper.dart::ColorSchemes" o-- "flutter::src::material::color_scheme.dart::ColorScheme"
+
+class "ucleankim::theme::theme_helper.dart::PrimaryColors" {
+  +Color black900
+  +Color blue300
+  +Color blueA400
+  +Color blueGray100
+  +Color blueGray200
+  +Color blueGray20001
+  +Color blueGray900
+  +Color cyan5090
+  +Color cyan800
+  +Color cyan900
+  +Color cyan200Cc
+  +Color deepOrange10090
+  +Color deepOrange200
+  +Color deepOrange20090
+  +Color deepOrange300
+  +Color gray100
+  +Color gray10001
+  +Color gray10002
+  +Color gray400
+  +Color gray40001
+  +Color gray500
+  +Color gray50001
+  +Color gray5059
+  +Color gray600
+  +Color gray60001
+  +Color gray900
+  +Color gray900A2
+  +Color gray5003f
+  +Color lightGreen200
+  +Color orange200
+  +Color orange600
+  +Color orange700
+  +Color red300
+  +Color tealA40090
+  +Color whiteA700
+  +Color whiteA70001
+  +Color yellow10097
+  +Color yellow400
+}
+
+"ucleankim::theme::theme_helper.dart::PrimaryColors" o-- "dart::ui::Color"
+
+class "ucleankim::widgets::app_bar::appbar_image.dart::AppbarImage" {
+  +String? imagePath
+  +EdgeInsetsGeometry? margin
+  +Function? onTap
+  +Widget build()
+}
+
+"ucleankim::widgets::app_bar::appbar_image.dart::AppbarImage" o-- "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::app_bar::appbar_image.dart::AppbarImage"
+
+class "ucleankim::widgets::app_bar::appbar_leading_image.dart::AppbarLeadingImage" {
+  +String? imagePath
+  +EdgeInsetsGeometry? margin
+  +Function? onTap
+  +Widget build()
+}
+
+"ucleankim::widgets::app_bar::appbar_leading_image.dart::AppbarLeadingImage" o-- "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::app_bar::appbar_leading_image.dart::AppbarLeadingImage"
+
+class "ucleankim::widgets::app_bar::appbar_subtitle.dart::AppbarSubtitle" {
+  +String text
+  +EdgeInsetsGeometry? margin
+  +Function? onTap
+  +Widget build()
+}
+
+"ucleankim::widgets::app_bar::appbar_subtitle.dart::AppbarSubtitle" o-- "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::app_bar::appbar_subtitle.dart::AppbarSubtitle"
+
+class "ucleankim::widgets::app_bar::appbar_subtitle_one.dart::AppbarSubtitleOne" {
+  +String text
+  +EdgeInsetsGeometry? margin
+  +Function? onTap
+  +Widget build()
+}
+
+"ucleankim::widgets::app_bar::appbar_subtitle_one.dart::AppbarSubtitleOne" o-- "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::app_bar::appbar_subtitle_one.dart::AppbarSubtitleOne"
+
+class "ucleankim::widgets::app_bar::appbar_title.dart::AppbarTitle" {
+  +String text
+  +EdgeInsetsGeometry? margin
+  +Function? onTap
+  +Widget build()
+}
+
+"ucleankim::widgets::app_bar::appbar_title.dart::AppbarTitle" o-- "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::app_bar::appbar_title.dart::AppbarTitle"
+
+class "ucleankim::widgets::app_bar::appbar_trailing_image.dart::AppbarTrailingImage" {
+  +String? imagePath
+  +EdgeInsetsGeometry? margin
+  +Function? onTap
+  +Widget build()
+}
+
+"ucleankim::widgets::app_bar::appbar_trailing_image.dart::AppbarTrailingImage" o-- "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::app_bar::appbar_trailing_image.dart::AppbarTrailingImage"
+
+class "ucleankim::widgets::app_bar::custom_app_bar.dart::CustomAppBar" {
+  +double? height
+  +Style? styleType
+  +double? leadingWidth
+  +Widget? leading
+  +Widget? title
+  +bool? centerTitle
+  +List<Widget>? actions
+  +Size preferredSize
+  +Widget build()
+  -dynamic _getStyle()
+}
+
+"ucleankim::widgets::app_bar::custom_app_bar.dart::CustomAppBar" o-- "ucleankim::widgets::app_bar::custom_app_bar.dart::Style"
+"ucleankim::widgets::app_bar::custom_app_bar.dart::CustomAppBar" o-- "flutter::src::widgets::framework.dart::Widget"
+"ucleankim::widgets::app_bar::custom_app_bar.dart::CustomAppBar" o-- "dart::ui::Size"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::app_bar::custom_app_bar.dart::CustomAppBar"
+"flutter::src::widgets::preferred_size.dart::PreferredSizeWidget" <|-- "ucleankim::widgets::app_bar::custom_app_bar.dart::CustomAppBar"
+
+class "ucleankim::widgets::app_bar::custom_app_bar.dart::Style" {
+  +int index
+  {static} +List<Style> values
+  {static} +Style bgOutline
+}
+
+"ucleankim::widgets::app_bar::custom_app_bar.dart::Style" o-- "ucleankim::widgets::app_bar::custom_app_bar.dart::Style"
+"dart::core::Enum" <|-- "ucleankim::widgets::app_bar::custom_app_bar.dart::Style"
+
+class "ucleankim::widgets::base_button.dart::BaseButton" {
+  +String text
+  +void Function()? onPressed
+  +ButtonStyle? buttonStyle
+  +TextStyle? buttonTextStyle
+  +bool? isDisabled
+  +double? height
+  +double? width
+  +EdgeInsets? margin
+  +Alignment? alignment
+  +Widget build()
+}
+
+"ucleankim::widgets::base_button.dart::BaseButton" o-- "dart::ui::void Function()"
+"ucleankim::widgets::base_button.dart::BaseButton" o-- "flutter::src::material::button_style.dart::ButtonStyle"
+"ucleankim::widgets::base_button.dart::BaseButton" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"ucleankim::widgets::base_button.dart::BaseButton" o-- "flutter::src::painting::edge_insets.dart::EdgeInsets"
+"ucleankim::widgets::base_button.dart::BaseButton" o-- "flutter::src::painting::alignment.dart::Alignment"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::base_button.dart::BaseButton"
+
+class "ucleankim::widgets::custom_bottom_app_bar.dart::CustomBottomAppBar" {
+  +dynamic Function(BottomBarEnum)? onChanged
+  +CustomBottomAppBarState createState()
+}
+
+"ucleankim::widgets::custom_bottom_app_bar.dart::CustomBottomAppBar" o-- "null::dynamic Function(BottomBarEnum)"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "ucleankim::widgets::custom_bottom_app_bar.dart::CustomBottomAppBar"
+
+class "ucleankim::widgets::custom_bottom_app_bar.dart::CustomBottomAppBarState" {
+  +int selectedIndex
+  +List<BottomMenuModel> bottomMenuList
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "ucleankim::widgets::custom_bottom_app_bar.dart::CustomBottomAppBarState"
+
+class "ucleankim::widgets::custom_bottom_app_bar.dart::BottomMenuModel" {
+  +String icon
+  +String activeIcon
+  +BottomBarEnum type
+  +bool isSelected
+}
+
+"ucleankim::widgets::custom_bottom_app_bar.dart::BottomMenuModel" o-- "ucleankim::widgets::custom_bottom_app_bar.dart::BottomBarEnum"
+
+class "ucleankim::widgets::custom_bottom_app_bar.dart::DefaultWidget" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::custom_bottom_app_bar.dart::DefaultWidget"
+
+class "ucleankim::widgets::custom_bottom_app_bar.dart::BottomBarEnum" {
+  +int index
+  {static} +List<BottomBarEnum> values
+  {static} +BottomBarEnum Userbluegray900
+  {static} +BottomBarEnum Contrastgray60001
+  {static} +BottomBarEnum Vector
+  {static} +BottomBarEnum Lockgray60001
+}
+
+"ucleankim::widgets::custom_bottom_app_bar.dart::BottomBarEnum" o-- "ucleankim::widgets::custom_bottom_app_bar.dart::BottomBarEnum"
+"dart::core::Enum" <|-- "ucleankim::widgets::custom_bottom_app_bar.dart::BottomBarEnum"
+
+class "ucleankim::widgets::custom_drop_down.dart::CustomDropDown" {
+  +Alignment? alignment
+  +double? width
+  +FocusNode? focusNode
+  +Widget? icon
+  +bool? autofocus
+  +TextStyle? textStyle
+  +List<SelectionPopupModel>? items
+  +String? hintText
+  +TextStyle? hintStyle
+  +Widget? prefix
+  +BoxConstraints? prefixConstraints
+  +Widget? suffix
+  +BoxConstraints? suffixConstraints
+  +EdgeInsets? contentPadding
+  +InputBorder? borderDecoration
+  +Color? fillColor
+  +bool? filled
+  +String? Function(SelectionPopupModel?)? validator
+  +dynamic Function(SelectionPopupModel)? onChanged
+  +Widget dropDownWidget
+  +InputDecoration decoration
+  +Widget build()
+}
+
+"ucleankim::widgets::custom_drop_down.dart::CustomDropDown" o-- "flutter::src::painting::alignment.dart::Alignment"
+"ucleankim::widgets::custom_drop_down.dart::CustomDropDown" o-- "flutter::src::widgets::focus_manager.dart::FocusNode"
+"ucleankim::widgets::custom_drop_down.dart::CustomDropDown" o-- "flutter::src::widgets::framework.dart::Widget"
+"ucleankim::widgets::custom_drop_down.dart::CustomDropDown" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"ucleankim::widgets::custom_drop_down.dart::CustomDropDown" o-- "flutter::src::rendering::box.dart::BoxConstraints"
+"ucleankim::widgets::custom_drop_down.dart::CustomDropDown" o-- "flutter::src::painting::edge_insets.dart::EdgeInsets"
+"ucleankim::widgets::custom_drop_down.dart::CustomDropDown" o-- "flutter::src::material::input_border.dart::InputBorder"
+"ucleankim::widgets::custom_drop_down.dart::CustomDropDown" o-- "dart::ui::Color"
+"ucleankim::widgets::custom_drop_down.dart::CustomDropDown" o-- "flutter::src::widgets::form.dart::String Function(SelectionPopupModel)"
+"ucleankim::widgets::custom_drop_down.dart::CustomDropDown" o-- "null::dynamic Function(SelectionPopupModel)"
+"ucleankim::widgets::custom_drop_down.dart::CustomDropDown" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::custom_drop_down.dart::CustomDropDown"
+
+class "ucleankim::widgets::custom_elevated_button.dart::CustomElevatedButton" {
+  +BoxDecoration? decoration
+  +Widget? leftIcon
+  +Widget? rightIcon
+  +Widget buildElevatedButtonWidget
+  +Widget build()
+}
+
+"ucleankim::widgets::custom_elevated_button.dart::CustomElevatedButton" o-- "flutter::src::painting::box_decoration.dart::BoxDecoration"
+"ucleankim::widgets::custom_elevated_button.dart::CustomElevatedButton" o-- "flutter::src::widgets::framework.dart::Widget"
+"ucleankim::widgets::base_button.dart::BaseButton" <|-- "ucleankim::widgets::custom_elevated_button.dart::CustomElevatedButton"
+
+class "ucleankim::widgets::custom_floating_button.dart::CustomFloatingButton" {
+  +Alignment? alignment
+  +Color? backgroundColor
+  +void Function()? onTap
+  +double? width
+  +double? height
+  +BoxDecoration? decoration
+  +Widget? child
+  +Widget fabWidget
+  +Widget build()
+}
+
+"ucleankim::widgets::custom_floating_button.dart::CustomFloatingButton" o-- "flutter::src::painting::alignment.dart::Alignment"
+"ucleankim::widgets::custom_floating_button.dart::CustomFloatingButton" o-- "dart::ui::Color"
+"ucleankim::widgets::custom_floating_button.dart::CustomFloatingButton" o-- "dart::ui::void Function()"
+"ucleankim::widgets::custom_floating_button.dart::CustomFloatingButton" o-- "flutter::src::painting::box_decoration.dart::BoxDecoration"
+"ucleankim::widgets::custom_floating_button.dart::CustomFloatingButton" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::custom_floating_button.dart::CustomFloatingButton"
+
+class "ucleankim::widgets::custom_icon_button.dart::CustomIconButton" {
+  +Alignment? alignment
+  +double? height
+  +double? width
+  +EdgeInsetsGeometry? padding
+  +BoxDecoration? decoration
+  +Widget? child
+  +void Function()? onTap
+  +Widget iconButtonWidget
+  +Widget build()
+}
+
+"ucleankim::widgets::custom_icon_button.dart::CustomIconButton" o-- "flutter::src::painting::alignment.dart::Alignment"
+"ucleankim::widgets::custom_icon_button.dart::CustomIconButton" o-- "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"ucleankim::widgets::custom_icon_button.dart::CustomIconButton" o-- "flutter::src::painting::box_decoration.dart::BoxDecoration"
+"ucleankim::widgets::custom_icon_button.dart::CustomIconButton" o-- "flutter::src::widgets::framework.dart::Widget"
+"ucleankim::widgets::custom_icon_button.dart::CustomIconButton" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::custom_icon_button.dart::CustomIconButton"
+
+class "ucleankim::widgets::custom_image_view.dart::CustomImageView" {
+  +String? imagePath
+  +double? height
+  +double? width
+  +Color? color
+  +BoxFit? fit
+  +String placeHolder
+  +Alignment? alignment
+  +void Function()? onTap
+  +EdgeInsetsGeometry? margin
+  +BorderRadius? radius
+  +BoxBorder? border
+  +Widget build()
+  -Widget _buildWidget()
+  -dynamic _buildCircleImage()
+  -dynamic _buildImageWithBorder()
+  -Widget _buildImageView()
+}
+
+"ucleankim::widgets::custom_image_view.dart::CustomImageView" o-- "dart::ui::Color"
+"ucleankim::widgets::custom_image_view.dart::CustomImageView" o-- "flutter::src::painting::box_fit.dart::BoxFit"
+"ucleankim::widgets::custom_image_view.dart::CustomImageView" o-- "flutter::src::painting::alignment.dart::Alignment"
+"ucleankim::widgets::custom_image_view.dart::CustomImageView" o-- "dart::ui::void Function()"
+"ucleankim::widgets::custom_image_view.dart::CustomImageView" o-- "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"ucleankim::widgets::custom_image_view.dart::CustomImageView" o-- "flutter::src::painting::border_radius.dart::BorderRadius"
+"ucleankim::widgets::custom_image_view.dart::CustomImageView" o-- "flutter::src::painting::box_border.dart::BoxBorder"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::custom_image_view.dart::CustomImageView"
+
+class "ucleankim::widgets::custom_image_view.dart::ImageType" {
+  +int index
+  {static} +List<ImageType> values
+  {static} +ImageType svg
+  {static} +ImageType png
+  {static} +ImageType network
+  {static} +ImageType file
+  {static} +ImageType unknown
+}
+
+"ucleankim::widgets::custom_image_view.dart::ImageType" o-- "ucleankim::widgets::custom_image_view.dart::ImageType"
+"dart::core::Enum" <|-- "ucleankim::widgets::custom_image_view.dart::ImageType"
+
+class "ucleankim::widgets::custom_outlined_button.dart::CustomOutlinedButton" {
+  +BoxDecoration? decoration
+  +Widget? leftIcon
+  +Widget? rightIcon
+  +Widget? label
+  +Widget buildOutlinedButtonWidget
+  +Widget build()
+}
+
+"ucleankim::widgets::custom_outlined_button.dart::CustomOutlinedButton" o-- "flutter::src::painting::box_decoration.dart::BoxDecoration"
+"ucleankim::widgets::custom_outlined_button.dart::CustomOutlinedButton" o-- "flutter::src::widgets::framework.dart::Widget"
+"ucleankim::widgets::base_button.dart::BaseButton" <|-- "ucleankim::widgets::custom_outlined_button.dart::CustomOutlinedButton"
+
+class "ucleankim::widgets::custom_pin_code_text_field.dart::CustomPinCodeTextField" {
+  +Alignment? alignment
+  +BuildContext context
+  +TextEditingController? controller
+  +TextStyle? textStyle
+  +TextStyle? hintStyle
+  +dynamic Function(String) onChanged
+  +String? Function(String?)? validator
+  +Widget pinCodeTextFieldWidget
+  +Widget build()
+}
+
+"ucleankim::widgets::custom_pin_code_text_field.dart::CustomPinCodeTextField" o-- "flutter::src::painting::alignment.dart::Alignment"
+"ucleankim::widgets::custom_pin_code_text_field.dart::CustomPinCodeTextField" o-- "flutter::src::widgets::framework.dart::BuildContext"
+"ucleankim::widgets::custom_pin_code_text_field.dart::CustomPinCodeTextField" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"ucleankim::widgets::custom_pin_code_text_field.dart::CustomPinCodeTextField" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"ucleankim::widgets::custom_pin_code_text_field.dart::CustomPinCodeTextField" o-- "null::dynamic Function(String)"
+"ucleankim::widgets::custom_pin_code_text_field.dart::CustomPinCodeTextField" o-- "flutter::src::widgets::form.dart::String Function(String)"
+"ucleankim::widgets::custom_pin_code_text_field.dart::CustomPinCodeTextField" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::custom_pin_code_text_field.dart::CustomPinCodeTextField"
+
+class "ucleankim::widgets::custom_switch.dart::CustomSwitch" {
+  +Alignment? alignment
+  +bool? value
+  +dynamic Function(bool) onChange
+  +double? width
+  +double? height
+  +EdgeInsetsGeometry? margin
+  +Widget switchWidget
+  +Widget build()
+}
+
+"ucleankim::widgets::custom_switch.dart::CustomSwitch" o-- "flutter::src::painting::alignment.dart::Alignment"
+"ucleankim::widgets::custom_switch.dart::CustomSwitch" o-- "null::dynamic Function(bool)"
+"ucleankim::widgets::custom_switch.dart::CustomSwitch" o-- "flutter::src::painting::edge_insets.dart::EdgeInsetsGeometry"
+"ucleankim::widgets::custom_switch.dart::CustomSwitch" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::custom_switch.dart::CustomSwitch"
+
+class "ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" {
+  +Alignment? alignment
+  +double? width
+  +TextEditingController? scrollPadding
+  +TextEditingController? controller
+  +FocusNode? focusNode
+  +bool? autofocus
+  +TextStyle? textStyle
+  +bool? obscureText
+  +TextInputAction? textInputAction
+  +TextInputType? textInputType
+  +int? maxLines
+  +String? hintText
+  +TextStyle? hintStyle
+  +Widget? prefix
+  +BoxConstraints? prefixConstraints
+  +Widget? suffix
+  +BoxConstraints? suffixConstraints
+  +EdgeInsets? contentPadding
+  +InputBorder? borderDecoration
+  +Color? fillColor
+  +bool? filled
+  +String? Function(String?)? validator
+  +InputDecoration decoration
+  +Widget build()
+  +Widget textFormFieldWidget()
+}
+
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::painting::alignment.dart::Alignment"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::widgets::focus_manager.dart::FocusNode"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::painting::text_style.dart::TextStyle"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::services::text_input.dart::TextInputAction"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::services::text_input.dart::TextInputType"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::widgets::framework.dart::Widget"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::rendering::box.dart::BoxConstraints"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::painting::edge_insets.dart::EdgeInsets"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::material::input_border.dart::InputBorder"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "dart::ui::Color"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::widgets::form.dart::String Function(String)"
+"ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField" o-- "flutter::src::material::input_decorator.dart::InputDecoration"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "ucleankim::widgets::custom_text_form_field.dart::CustomTextFormField"
+
+
+@enduml
