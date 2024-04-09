@@ -1,6 +1,6 @@
 class GetGetTripsFromX8kiLetlTwmtResp {
   int? id;
-  double? distance;
+  num? distance;
   String? date;
   String? meansoftransport;
   String? pointa;
