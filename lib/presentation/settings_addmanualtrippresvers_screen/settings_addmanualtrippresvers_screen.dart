@@ -197,7 +197,7 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                   hintText: "lbl_10_28".tr,
                   hintStyle: CustomTextStyles.bodyMediumBlack900Light_1,
                   prefix: Container(
-                      margin: EdgeInsets.fromLTRB(135.h, 14.v, 10.h, 15.v),
+                      margin: EdgeInsets.fromLTRB(97.h, 11.v, 9.h, 11.v),
                       child: CustomImageView(
                           imagePath: ImageConstant.imgClock,
                           height: 20.adaptSize,
