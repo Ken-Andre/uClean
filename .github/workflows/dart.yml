@@ -7,16 +7,19 @@ name: Lint, Build and Release
 
 on:
   push:
-    branches: [ "main" ]
+    branches: 
+      - main
+      - release/*
   pull_request:
     branches:
       - main
       - master
+  workflow_dispatch:
      
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
