@@ -150,18 +150,20 @@ class TextThemes {
 class ColorSchemes {
   static final primaryColorScheme = ColorScheme.light(
     // Primary colors
-    primary: Color(0XFFF7F7FF),
+    primary: Color(0XFFFFF7F7),
     primaryContainer: Color(0XAB606060),
     secondaryContainer: Color(0XFF200E32),
 
     // Error colors
     errorContainer: Color(0XFFFF860B),
     onError: Color(0X97FFE5CB),
-    onErrorContainer: Color(0XA2212121),
+    // onErrorContainer: Color(0XA2212121),
+    onErrorContainer: Color(0XA2202224),
 
     // On colors(text colors)
-    onPrimary: Color(0XFF162E38),
-    onPrimaryContainer: Color(0XFF0C0C0C),
+    // onPrimary: Color(0XFF162E38),
+    onPrimary: Color(0XFFD7D7D7),
+    onPrimaryContainer: Color(0X10FEFEFF),
     onSecondaryContainer: Color(0XA200A4FD),
   );
 }
@@ -170,6 +172,9 @@ class ColorSchemes {
 class PrimaryColors {
   // Black
   Color get black900 => Color(0XFF000000);
+
+  //Indingo
+  Color get indigo300 => Color(0XFF718EBF);
 
   // Blue
   Color get blue300 => Color(0XFF63ACD4);

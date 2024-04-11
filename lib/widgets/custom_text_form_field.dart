@@ -92,36 +92,39 @@ class CustomTextFormField extends StatelessWidget {
           controller: controller,
           focusNode: focusNode ?? FocusNode(),
           autofocus: autofocus!,
-          style: textStyle ?? CustomTextStyles.bodyLargeBlack900_1,
+          style: textStyle ?? CustomTextStyles.bodyLargeBlack900, //TODO
           obscureText: obscureText!,
           textInputAction: textInputAction,
           keyboardType: textInputType,
           maxLines: maxLines ?? 1,
           decoration: decoration,
           validator: validator,
+          cursorColor: Color(0XFF0C0CFF),
         ),
       );
   InputDecoration get decoration => InputDecoration(
         hintText: hintText ?? "",
-        hintStyle: hintStyle ?? CustomTextStyles.bodyLargeBlack900_1,
+        hintStyle: hintStyle ?? CustomTextStyles.bodyLargeBlack900_1, //TODO
         prefixIcon: prefix,
         prefixIconConstraints: prefixConstraints,
         suffixIcon: suffix,
         suffixIconConstraints: suffixConstraints,
         isDense: true,
         contentPadding: contentPadding ??
-            EdgeInsets.only(
-              left: 10.h,
-              top: 10.v,
-              bottom: 10.v,
-            ),
-        fillColor: fillColor ?? theme.colorScheme.primary,
+            // EdgeInsets.only(
+            //   left: 10.h,
+            //   top: 10.v,
+            //   bottom: 10.v,
+            // )
+            EdgeInsets.all(12.h)
+    ,
+        fillColor: fillColor ?? theme.colorScheme.onPrimaryContainer,
         filled: filled,
         border: borderDecoration ??
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.h),
               borderSide: BorderSide(
-                color: appTheme.gray5003f,
+                color: appTheme.indigo300,
                 width: 1,
               ),
             ),
@@ -129,7 +132,7 @@ class CustomTextFormField extends StatelessWidget {
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.h),
               borderSide: BorderSide(
-                color: appTheme.blueGray20001,
+                color: appTheme.blue300,
                 width: 1,
               ),
             ),
@@ -137,7 +140,7 @@ class CustomTextFormField extends StatelessWidget {
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.h),
               borderSide: BorderSide(
-                color: appTheme.blueGray20001,
+                color: appTheme.blueA400,
                 width: 1,
               ),
             ),

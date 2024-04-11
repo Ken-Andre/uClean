@@ -20,6 +20,9 @@ class CustomTextStyles {
   static get bodyLargeBlack900_2 => theme.textTheme.bodyLarge!.copyWith(
         color: appTheme.black900.withOpacity(0.45),
       );
+  static get bodyLargeIndigo300 => theme.textTheme.bodyLarge!.copyWith(
+        color: appTheme.indigo300.withOpacity(0.45),
+      );
   static get bodyLargeBlue300 => theme.textTheme.bodyLarge!.copyWith(
         color: appTheme.blue300,
       );

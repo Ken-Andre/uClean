@@ -108,11 +108,11 @@ class CustomDropDown extends StatelessWidget {
         suffixIconConstraints: suffixConstraints,
         isDense: true,
         contentPadding: contentPadding ??
-            EdgeInsets.only(
-              top: 11.v,
-              bottom: 9.v,
-            ),
-        fillColor: fillColor ?? theme.colorScheme.primary,
+            // EdgeInsets.only(
+            //   top: 11.v,
+            //   bottom: 9.v,)
+            EdgeInsets.all(10.h),
+        fillColor: fillColor ?? theme.colorScheme.onPrimaryContainer,
         filled: filled,
         border: borderDecoration ??
             OutlineInputBorder(
@@ -125,12 +125,18 @@ class CustomDropDown extends StatelessWidget {
         enabledBorder: borderDecoration ??
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.h),
-              borderSide: BorderSide.none,
+              borderSide: BorderSide(
+                color: appTheme.gray5003f,
+                width: 1,
+              ),
             ),
         focusedBorder: borderDecoration ??
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.h),
-              borderSide: BorderSide.none,
+              borderSide: BorderSide(
+                color: appTheme.gray5003f,
+                width: 1,
+              ),
             ),
       );
 }

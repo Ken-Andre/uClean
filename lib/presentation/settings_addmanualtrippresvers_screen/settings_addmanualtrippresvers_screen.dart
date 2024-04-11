@@ -179,7 +179,8 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                   },
                   contentPadding: EdgeInsets.only(top: 11.v, bottom: 9.v),
                   // borderDecoration: TextFormFieldStyleHelper.fillPrimaryTL5,
-                  fillColor: theme.colorScheme.primary);
+                  // fillColor: theme.colorScheme.primary
+              );
             }));
   }
 
@@ -210,7 +211,8 @@ class SettingsAddmanualtrippresversScreen extends StatelessWidget {
                   },
                   contentPadding: EdgeInsets.only(top: 13.v, bottom: 14.v),
                   // borderDecoration: TextFormFieldStyleHelper.fillPrimaryTL5,
-                  fillColor: theme.colorScheme.primary);
+                  // fillColor: theme.colorScheme.primary
+              );
             }));
   }
 
