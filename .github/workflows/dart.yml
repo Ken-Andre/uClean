@@ -3,13 +3,16 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Flutter_lint
+name: Lint, Build and Release
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - master
+      - develop
 
 jobs:
   build:
@@ -20,14 +23,13 @@ jobs:
       - uses: actions/setup-node@v4  # Add Node.js setup for actions/checkout
         with:
           node-version: 20
+      - uses: actions/setup-java@1
 
       # Note: This workflow uses the latest stable version of the Dart SDK.
       # You can specify other versions if desired, see documentation here:
       # https://github.com/dart-lang/setup-dart/blob/main/README.md
       # - uses: dart-lang/setup-dart@v1
       #- uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
-
-      
 
       # Uncomment this step to verify the use of 'dart format' on each commit.
       # - name: Verify formatting
@@ -69,7 +71,15 @@ jobs:
 
           # Filter output to display warnings and info only (modify if needed)
           grep -E 'warning|info' <<< $(flutter analyze 2>&1) || true  # Suppress empty output
+      
+         flutter build apk --debug --split-per-abi
 
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artFLUTTERifacts: "build/app/outputs/apk/debug/*"
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.RTOKEN }}
       # - name: Check for Analysis Errors
       #   run: |
       #     if [ ${{ steps.analyze.outcome }} != 'success' ]; then
