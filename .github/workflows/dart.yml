@@ -61,7 +61,7 @@ jobs:
       - name: Run Flutter Analysis
         id: analyze
         run: flutter analyze || true
-
+        
       - name: Check for Analysis Errors (Warnings & Info Only)
         run: |
           if [[ ${{ steps.analyze.outcome }} == 'failure' ]]; then
