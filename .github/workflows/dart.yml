@@ -71,24 +71,24 @@ jobs:
 
           # Filter output to display warnings and info only (modify if needed)
           grep -E 'warning|info' <<< $(flutter analyze 2>&1) || true  # Suppress empty output
-      
-         flutter build apk --debug --split-per-abi
+          
+      - name: Build apk
+        run: flutter build apk --debug --split-per-abi
+      - run: |
+          flutter build ios --no-codesign
+          cd build/ios/iphoneos
+          mkdir Payload
+          ln -d ../Runner.app
+          cd ..
+          zip -r app.ipa Payload
 
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
-          artFLUTTERifacts: "build/app/outputs/apk/debug/*"
+          artifacts: "build/app/outputs/apk/debug/*,build/ios/iphones/app.ipa"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.RTOKEN }}
-      # - name: Check for Analysis Errors
-      #   run: |
-      #     if [ ${{ steps.analyze.outcome }} != 'success' ]; then
-      #       echo "Analysis errors detected."
-      #       exit  1
-      #     else
-      #       echo "No analysis errors."
-      #       # Logic to label the PR as valid goes here
-      #     fi
+     
 
       # Optional: Add steps to build and run the app on Chrome
       # - name: Build for web
