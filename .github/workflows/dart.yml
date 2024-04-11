@@ -83,16 +83,16 @@ jobs:
       - run: |
           flutter build ipa -h
           flutter build ipa --release --no-codesign
-          cd build/ios/iphoneos
-          mkdir Payload
-          ln -d ../Runner.app
-          cd ..
-          zip -r app.ipa Payload
+          # cd build/ios/iphoneos
+          # mkdir Payload
+          # ln -d ../Runner.app
+          # cd ..
+          # zip -r app.ipa Payload
 
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/debug/*,build/ios/iphones/app.ipa"
+          artifacts: "build/app/outputs/apk/debug/*,build/ios/ipa/*.ipa"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.RTOKEN }}
      
