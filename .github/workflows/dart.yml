@@ -79,7 +79,7 @@ jobs:
           grep -E 'warning|info' <<< $(flutter analyze 2>&1) || true  # Suppress empty output
           
       - name: Build apk & ios
-        run: flutter build apk --debug --split-per-abi -v
+        run: flutter build apk --release -v
       - run: |
           flutter build ipa -h
           flutter build ipa --release --no-codesign
