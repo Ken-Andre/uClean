@@ -1,12 +1,12 @@
 // TODO Implement this library.
 class FontsConstant {
-  static String fontPath = 'fonts';
+  static String fontPath = 'assets/fonts';
 
   static String Poppins = '$fontPath/Poppins';
 
   static String Inter = '$fontPath/Inter';
 
-  static String Roboto = '$fontPath/Roboto';
+  // static String Roboto = '$fontPath/Inter';
 
-  static String Montserrat = '$fontPath/Montserrat';
+  // static String Montserrat = '$fontPath/Montserrat';
 }

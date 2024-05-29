@@ -175,7 +175,7 @@ class AppNavigationScreen extends StatelessWidget {
                 style: TextStyle(
                   color: Color(0XFF000000),
                   fontSize: 20.fSize,
-                  fontFamily: FontsConstant.Roboto,
+                  fontFamily: FontsConstant.Inter,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -193,7 +193,7 @@ class AppNavigationScreen extends StatelessWidget {
                 style: TextStyle(
                   color: Color(0XFF888888),
                   fontSize: 16.fSize,
-                  fontFamily: FontsConstant.Roboto,
+                  fontFamily: FontsConstant.Inter,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -237,7 +237,7 @@ class AppNavigationScreen extends StatelessWidget {
                   style: TextStyle(
                     color: Color(0XFF000000),
                     fontSize: 20.fSize,
-                    fontFamily: FontsConstant.Roboto,
+                    fontFamily: FontsConstant.Inter,
                     fontWeight: FontWeight.w400,
                   ),
                 ),

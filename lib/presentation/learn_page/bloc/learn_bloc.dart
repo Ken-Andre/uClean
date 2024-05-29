@@ -25,16 +25,16 @@ class LearnBloc extends Bloc<LearnEvent, LearnState> {
     return [
       LearncontainerItemModel(
           image: ImageConstant.imgAnArtisticAnd,
-          theBeautyOfThe: "The beauty of the sky"),
+          theBeautyOfThe: "msg_Vilogia".tr),
       LearncontainerItemModel(
           image: ImageConstant.imgThePhotoHighl,
-          theBeautyOfThe: "Learn about CO2 footprint impact"),
+          theBeautyOfThe: "msg_Emissions_de_CO2".tr),
       LearncontainerItemModel(
           image: ImageConstant.imgThePhotoHighl113x353,
-          theBeautyOfThe: "Understanding the Environmental Impact of Travel"),
+          theBeautyOfThe: "msg_Emissions_de_CO2_hors_UTCATF".tr),
       LearncontainerItemModel(
           image: ImageConstant.imgThePhotoHighl1,
-          theBeautyOfThe: "Reducing Your Carbon Footprint in Daily Travel")
+          theBeautyOfThe: "msg_le_schema_du_directeur".tr)
     ];
   }
 }

@@ -8,7 +8,7 @@ class LearncontainerItemModel {
     this.id,
   }) {
     image = image ?? ImageConstant.imgAnArtisticAnd;
-    theBeautyOfThe = theBeautyOfThe ?? "The beauty of the sky";
+    theBeautyOfThe = theBeautyOfThe ?? "The beauty of your sky";
     id = id ?? "";
   }
 

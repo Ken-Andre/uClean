@@ -112,6 +112,12 @@ final Map<String, String> enUs = {
 
   // Learn Screen
   "lbl_articles": "Articles",
+  "msg_Vilogia":
+      "Vilogia : la mobilité, un moyen d\'agir pour réduire son empreinte carbone Vilogia 2023",
+  "msg_Emissions_de_CO2": "Émissions de CO2 en 2020",
+  "msg_Emissions_de_CO2_hors_UTCATF":
+      "Émissions de CO2 hors UTCATF dans le monde",
+  "msg_le_schema_du_directeur": "Le schéma du directeur",
   "msg_learn_about_co2": "Learn about CO2 footprint impact",
   "msg_reducing_your_carbon": "Reducing Your Carbon Footprint in Daily Travel",
   "msg_understanding_the": "Understanding the Environmental Impact of Travel",
@@ -119,6 +125,21 @@ final Map<String, String> enUs = {
   // LearnTwo Screen
   "lbl_cyclin": " Cycling",
   "lbl_walkin": " Walking",
+  "lbl_vilogia_mobility":
+      "Vilogia : la mobilité, un moyen d’agir pour réduire son empreinte carbone",
+  "msg_vilogia_overview":
+      "À la fois bailleur social, constructeur et aménageur, Vilogia assume des missions dont l’impact sur les facteurs qui contribuent au changement climatique est direct. Tous les quatre ans, Vilogia dresse un bilan carbone complet de ses actions, pour disposer d’une carte précise de ses émissions de gaz à effet de serre par poste et par type d’activités. Engagé dans une démarche RSE depuis 2015, le Groupe peut ainsi définir un plan d’actions adapté. Objectif : réduire au maximum l’empreinte carbone de l’entreprise.",
+  "msg_context":
+      "**Contexte**\n\nRéalisé en 2019 (sur les données de 2018), le dernier bilan carbone a donné lieu à un nouveau plan de rémission de gaz à effet de serre. Parmi les leviers majeurs : la mobilité. Pour être en phase avec les attentes de ses collaborateurs, Vilogia a présenté la feuille de route de son nouveau plan de mobilité dans toutes les agences ainsi qu’au siège. Vilogia compte près de 1 200 collaborateurs répartis dans plus de quarante sites différents sur le territoire.",
+  "msg_objectives":
+      "**Objectifs**\n\n• Porter le sujet de la mobilité auprès de tous les salariés.\n• Sensibiliser les collaborateurs aux modes de déplacement doux pour leurs trajets domicile-travail ainsi que pour leurs déplacements professionnels.\n• Encourager l’usage des transports en commun.\n• Inciter à la pratique du vélo.",
+  "msg_concrete_actions":
+      "**Actions concrètes**\n\n> *La sensibilisation aux mobilités douces*\n\nVilogia crée régulièrement des événements pour porter le sujet en interne et participe chaque année au Challenge de la Mobilité. Rebaptisé le Tonic Challenge, ce dernier se déroule sur trois semaines et devient un rendez-vous très attendu par les collaborateurs. Cette année, les salariés ont réalisé ensemble pas moins de deux tours du monde en trois semaines sans utiliser la voiture !\n\nVilogia a d’ailleurs reçu le prix coup de cœur du Challenge de la Mobilité.\n\n> *Les trajets domicile-travail*\n\n- Cartographie des trajets : Vilogia a mené un travail de cartographie pour analyser les trajets de ses collaborateurs. Objectif : identifier les flux et avoir une vision claire des potentialités. \"L’idée était d’avoir une cartographie pour être le plus pragmatique possible et imaginer des actions dont les salariés peuvent se saisir. Avec cette analyse, nous savons où il est plus facile de circuler à vélo sans danger, où les transports en commun peuvent être une solution alternative, etc.\" témoigne Julie Xavier, responsable du Pôle RSE.\n\n- Encouragement à l’utilisation des transports en commun : Vilogia a fait évoluer son ancien dispositif d’aides aux mobilités douces. Le remboursement des abonnements transports en commun est passé à 75 % en 2021 et à 100 % en 2022.\n\n- Incitation à la cyclomobilité : Vilogia a mis en place le Forfait Mobilités durables (FMD) qui prévoit le versement d’une indemnité kilométrique vélo aux \"vélo-tafeurs\" (0,25 € par kilomètre parcouru dans la limite de 200 euros par an). En 2021, l’indemnité s’est élargie aux utilisateurs de trottinettes. Le FMD prévoit aussi une aide à l’achat ou à la réparation d’un vélo (électrique ou non) ou d’une trottinette (électrique ou non) pour les collaborateurs qui s’engagent à les utiliser au moins 60 jours par an pour se rendre sur leur lieu de travail.\n\n- Le développement du télétravail : selon leur poste, les salariés de Vilogia peuvent télétravailler jusqu’à deux jours par semaine (sur appréciation du manager).\n\n> *Les trajets professionnels*\n\nÉvolution de la flotte de véhicules. \"Nous passons progressivement notre flotte de véhicules à l’hybride\", indique Julie Xavier. Trois véhicules électriques sont également disponibles au siège pour les trajets professionnels occasionnels.",
+  "msg_results_and_perspectives":
+      "**Résultats et perspectives**\n\n• Les salariés de Vilogia s’emparent de plus en plus du sujet. Les consciences évoluent. \"Nous sommes près de 200 à utiliser quotidiennement les transports en commun. L’incitation financière se révèle efficace. Nous avons toujours un public sous contrainte (conduites familiales, situation géographique, etc.) pour qui la mobilité douce reste compliquée, mais globalement, nous percevons des changements de comportements notables, notamment chez les urbains et les salariés plus jeunes. Nous avons d’ailleurs clairement positionné notre politique RSE sur la marque employeur. Elle a un effet à la fois sur le recrutement et sur la fidélisation des équipes en place\", témoigne Julie Xavier.\n\n• Le prochain bilan carbone va être réalisé cette année, en 2023, sur les données de 2022. \"Nous pourrons quantifier et qualifier toutes les actions mises en place dernièrement\" commente Julie Xavier.",
+  "msg_did_you_know":
+      "**Le saviez-vous ?**\n\nVilogia figure à la 121e place du palmarès 2021 des Entreprises Socialement Responsables publié dans le magazine Le Point en novembre 2020. Ce classement, réalisé par l’institut indépendant Statista, repose sur une analyse de près de 2 000 entreprises de plus de 500 salariés ayant leur siège social en France. L’étude a été menée autour de trois items : environnement, social et gouvernance. Vilogia est le seul bailleur social à figurer dans ce palmarès.",
+
   "msg_g_a_step_closer":
       "g - A Step Closer to Nature: Step into a greener lifestyle by choosing to walk. Discover the joy of reducing your carbon footprint and embracing the beauty of the sky with every eco-conscious step.\n2.",
   "msg_g_pedal_through":
@@ -131,6 +152,10 @@ final Map<String, String> enUs = {
       " Public Transport - Shared Journeys, Shared Skies: Embark on a journey where communal transportation becomes a shared commitment to cleaner skies. Understand the collective impact of choosing buses, trains, and other shared means of transport.\n4. Carpooling - Together We Soar: Explore the benefits of carpooling and witness how shared rides elevate not only your travel experience but also contribute to a clearer, more vibrant sky for everyone.\n5. Aviation - Navigating the Skies Responsibly: For those times when the sky is your highway, delve into responsible air travel practices. Uncover ways to make your flights more eco-friendly, ensuring that even when you soar, you leave the sky's beauty intact.\nAs we educate ourselves on sustainable travel choices, we collectively paint a canvas of clear skies and vibrant horizons. Join us on this enlightening journey and witness the beauty of the sky unfold with every conscious decision we make. 🌍✈️",
 
   // LearnThree Screen
+  "msg_global_carbon_emissions":
+      "En 2020, le Centre d'analyse des informations relatives au dioxyde de carbone, situé à Oak Ridge National Laboratory, Tennessee, États-Unis, a rassemblé une vaste gamme de données sur les émissions de gaz à effet de serre (GES) provenant de différents pays et régions du monde. Les chiffres montrent que les émissions mondiales de dioxyde de carbone (CO2) ont atteint un total de 33 566 428 milliers de tonnes.\n\nParmi les pays les plus émetteurs, les États-Unis ont contribué à hauteur de 4 320 533 milliers de tonnes, tandis que la Chine a enregistré un chiffre impressionnant de 10 944 686 milliers de tonnes. D'autres acteurs majeurs de l'émission de CO2 comprennent l'Inde avec 2 200 836 milliers de tonnes, l'Allemagne avec 603 351 milliers de tonnes, le Royaume-Uni avec 308 650 milliers de tonnes, et le Japon avec 1 014 065 milliers de tonnes. Ces chiffres mettent en lumière les contributions substantielles de diverses économies au niveau mondial.\n\nEn outre, les données sont ventilées par région, révélant que l'Afrique du Nord et le Moyen-Orient ont émis 2 416 065 milliers de tonnes de CO2, tandis que l'Amérique du Nord a enregistré un total de 4 837 406 milliers de tonnes. Dans la région de l'Asie de l'Est et du Pacifique, les émissions ont atteint 14 708 136 milliers de tonnes.\n\nIl est également intéressant de noter que les économies à revenu élevé ont généré un total de 10 864 997 milliers de tonnes de CO2, tandis que les pays les moins avancés ont contribué avec 351 230 milliers de tonnes. Ces chiffres soulignent l'importance de surveiller et de comprendre les émissions de GES à l'échelle mondiale pour lutter contre le changement climatique.",
+  "msg_global_carbon_emissions_title": "Émissions de CO2 à l'échelle mondiale",
+
   "msg_every_action_we":
       "Every action we take, from commuting to work to using electronic devices, has an associated carbon footprint. This footprint represents the amount of CO2 emissions generated due to our activities. Understanding this impact is essential for making sustainable choices. By reducing our carbon footprint, we can contribute to mitigating climate change and preserving our planet for future generations.\n",
   "msg_how_does_it_work_our":
@@ -162,6 +187,19 @@ final Map<String, String> enUs = {
       ":Welcome to a journey of discovery where we delve into the environmental impact of our daily travels. This educational section aims to shed light on the footprint we leave behind with every journey, empowering us to make informed, Eco-conscious decisions.\n1. ",
 
   // LearnFive Screen
+  "msg_le_schema_du_directeur": "Le schéma du directeur",
+  "msg_Vision_et_Engagement":
+      "**Vision et Engagement**\nL'Icam, dans sa stratégie à l'horizon 2025, se positionne résolument en faveur de l'écologie intégrale. Cette approche, plaçant l'humain et l'environnement au cœur de ses préoccupations, guide toutes ses décisions. Au-delà d'un simple choix, l'engagement dans la transition écologique et sociétale devient une nécessité impérieuse pour l'institution. Face aux défis majeurs qui se dressent devant nous, la mobilisation de l'ensemble de la communauté de l'Icam est essentielle pour répondre aux enjeux actuels et futurs.\n",
+  "msg_Actions_Déjà_Entreprises":
+      "**Actions Déjà Entreprises**\nSous l'égide du plan stratégique 2020-2025, l'Icam a déjà entrepris de nombreuses actions concrètes. Ces initiatives, allant de l'évolution de la pédagogie à la rénovation des campus en passant par des mesures de sobriété énergétique et des actions en faveur de la biodiversité, témoignent de son engagement envers l'écologie intégrale.\n",
+  "msg_Axes_Stratégiques_du_Schéma_Directeur_DD&RS":
+      "**Axes Stratégiques du Schéma Directeur DD&RS**\nLe schéma directeur DD&RS de l'Icam est construit autour de cinq axes principaux, reflétant les différentes dimensions de son engagement : stratégie et gouvernance, enseignement et formation, recherche et innovation, environnement, et politique sociale. Ces axes fixent les grandes lignes d'action pour les trois prochaines années.\n",
+  "msg_Engagements_et_Objectifs":
+      "**Engagements et Objectifs**\nDans le cadre de ce schéma directeur, l'Icam s'engage à mettre en œuvre plusieurs objectifs ambitieux. Parmi ceux-ci, on retrouve la coordination des initiatives DD&RS sur l'ensemble de ses sites, l'intégration des enjeux de la transition écologique dans ses formations, la réduction des émissions de gaz à effet de serre et la labellisation DD&RS d'ici 2026.\n",
+  "msg_Actions_Prévues":
+      "**Actions Prévues**\nDes actions spécifiques sont prévues pour concrétiser ces engagements. Elles couvrent un large éventail de domaines, allant des achats responsables à la mobilité douce, en passant par la réduction des déchets et la préservation de la biodiversité. L'Icam envisage également des initiatives en matière de numérique responsable, de qualité de vie au travail et d'égalité et de diversité.\n",
+  "msg_Un_Engagement_Collectif":
+      "**Un Engagement Collectif**\nÀ travers ce schéma directeur, l'Icam aspire à devenir un acteur majeur de la transition écologique et sociétale. Cet engagement requiert la participation active de l'ensemble de sa communauté - étudiants, collaborateurs, administrateurs et dirigeants. En unissant leurs efforts, ils contribueront à façonner un avenir plus durable et résilient.\n",
   "msg_embark_on_a_journey":
       "Embark on a journey that transcends mere transportation. Each step, each mode of travel, holds a story. Our application seeks to unravel these narratives, weaving a tapestry of understanding that connects us to the world around us. Through this exploration, we aim to cultivate a sense of responsibility and mindfulness in our travels.\n",
   "msg_reducing_your_carbon2": "Reducing your Carbon Footprint in Daily Travel",
@@ -220,9 +258,11 @@ final Map<String, String> enUs = {
   "msg_your_sustainable":
       "Your Sustainable Travel Companion Aiming to Reduce Your Carbon Footprint and Make Every Journey Count",
   "msg_track_your_journey": "Track Your Journeys",
-  "msg_log_your_trips": "Log your trips, categorize them, and contribute to your institution's carbon footprint assessment.",
+  "msg_log_your_trips":
+      "Log your trips, categorize them, and contribute to your institution's carbon footprint assessment.",
   "msg_monitor_your_impact": "Monitor Your Impact",
-  "msg_keeps_tabs_on": "Keep tabs on your carbon emissions by recording and organizing your travels effortlessly.",
+  "msg_keeps_tabs_on":
+      "Keep tabs on your carbon emissions by recording and organizing your travels effortlessly.",
 
   // Common String
   "lbl_10_28": "10:28",

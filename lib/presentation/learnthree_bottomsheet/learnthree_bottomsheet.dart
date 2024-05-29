@@ -37,7 +37,7 @@ class LearnthreeBottomsheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "msg_learn_about_co22".tr,
+              "msg_global_carbon_emissions_title".tr,
               style: CustomTextStyles.titleLargeSemiBold,
             ),
             SizedBox(height: 9.v),
@@ -47,22 +47,22 @@ class LearnthreeBottomsheet extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   children: [
+                    // TextSpan(
+                    //   text: "msg_welcome_to_the_learn2".tr,
+                    //   style: theme.textTheme.bodyMedium,
+                    // ),
+                    // TextSpan(
+                    //   text: "msg_why_is_it_important".tr,
+                    //   style: CustomTextStyles.titleSmallff000000,
+                    // ),
                     TextSpan(
-                      text: "msg_welcome_to_the_learn2".tr,
+                      text: "msg_global_carbon_emissions".tr,
                       style: theme.textTheme.bodyMedium,
                     ),
-                    TextSpan(
-                      text: "msg_why_is_it_important".tr,
-                      style: CustomTextStyles.titleSmallff000000,
-                    ),
-                    TextSpan(
-                      text: "msg_every_action_we".tr,
-                      style: theme.textTheme.bodyMedium,
-                    ),
-                    TextSpan(
-                      text: "msg_how_does_it_work_our".tr,
-                      style: CustomTextStyles.titleSmallff000000,
-                    ),
+                    // TextSpan(
+                    //   text: "msg_how_does_it_work_our".tr,
+                    //   style: CustomTextStyles.titleSmallff000000,
+                    // ),
                   ],
                 ),
                 textAlign: TextAlign.left,

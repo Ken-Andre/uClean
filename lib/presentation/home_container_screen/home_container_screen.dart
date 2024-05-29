@@ -47,8 +47,10 @@ class HomeContainerScreen extends StatelessWidget {
                   },
                   child: CustomImageView(
                       imagePath: ImageConstant.imgCirclePlus,
-                      height: 27.0.v,
-                      width: 27.0.h)),
+                      height: 27.0.adaptSize,
+                      width: 27.0.adaptSize,
+                    color: appTheme.whiteA700,
+                  )),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked));
     });

@@ -134,7 +134,7 @@ class TextThemes {
         titleMedium: TextStyle(
           color: appTheme.black900,
           fontSize: 16.fSize,
-          fontFamily: FontsConstant.Montserrat,
+          fontFamily: FontsConstant.Inter,
           fontWeight: FontWeight.w500,
         ),
         titleSmall: TextStyle(

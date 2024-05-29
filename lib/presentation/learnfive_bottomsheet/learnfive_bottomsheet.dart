@@ -32,7 +32,7 @@ class LearnfiveBottomsheet extends StatelessWidget {
             // [
             _buildReducingYourCarbon(
           context,
-          reducingYourCarbon: "msg_reducing_your_carbon2".tr,
+          reducingYourCarbon: "msg_le_schema_du_directeur".tr,
           description: "msg_welcome_to_the_understanding".tr,
         ),
         // SingleChildScrollView(
@@ -147,15 +147,28 @@ class LearnfiveBottomsheet extends StatelessWidget {
                           style: theme.textTheme.bodyMedium,
                         ),
                         TextSpan(
-                          text: "msg_the_journey_begins".tr,
+                          text: "msg_Vision_et_Engagement".tr,
                           style: CustomTextStyles.titleSmallff000000,
                         ),
                         TextSpan(
-                          text: "msg_embark_on_a_journey".tr,
+                          text: "msg_Actions_Déjà_Entreprises".tr,
                           style: theme.textTheme.bodyMedium,
                         ),
                         TextSpan(
-                          text: "msg_unveiling_the_footprint_every".tr,
+                          text:
+                              "msg_Axes_Stratégiques_du_Schéma_Directeur_DD".tr,
+                          style: theme.textTheme.bodyMedium,
+                        ),
+                        TextSpan(
+                          text: "msg_Engagements_et_Objectifs".tr,
+                          style: theme.textTheme.bodyMedium,
+                        ),
+                        TextSpan(
+                          text: "msg_Actions_Prévues".tr,
+                          style: theme.textTheme.bodyMedium,
+                        ),
+                        TextSpan(
+                          text: "msg_Un_Engagement_Collectif".tr,
                           style: CustomTextStyles.titleSmallff000000,
                         ),
                       ],

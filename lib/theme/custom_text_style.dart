@@ -140,15 +140,15 @@ class CustomTextStyles {
         color: theme.colorScheme.primary,
       );
   static get bodyLargeRobotoPrimaryContainer =>
-      theme.textTheme.bodyLarge!.roboto.copyWith(
+      theme.textTheme.bodyLarge!.inter.copyWith(
         color: theme.colorScheme.primaryContainer,
       );
   static get bodyLargeRobotoPrimaryContainer_1 =>
-      theme.textTheme.bodyLarge!.roboto.copyWith(
+      theme.textTheme.bodyLarge!.inter.copyWith(
         color: theme.colorScheme.primaryContainer.withOpacity(1),
       );
   static get bodyLargeRobotoff606060 =>
-      theme.textTheme.bodyLarge!.roboto.copyWith(
+      theme.textTheme.bodyLarge!.inter.copyWith(
         color: Color(0XFF606060),
       );
   static get bodyLargeWhiteA70001 => theme.textTheme.bodyLarge!.copyWith(
@@ -205,7 +205,7 @@ class CustomTextStyles {
         fontWeight: FontWeight.w300,
       );
   static get bodyMediumRobotoPrimaryContainer =>
-      theme.textTheme.bodyMedium!.roboto.copyWith(
+      theme.textTheme.bodyMedium!.inter.copyWith(
         color: theme.colorScheme.primaryContainer.withOpacity(1),
       );
   static get bodyMediumWhiteA70001 => theme.textTheme.bodyMedium!.copyWith(
@@ -276,15 +276,15 @@ class CustomTextStyles {
         fontWeight: FontWeight.w600,
       );
   static get titleMediumInter_1 => theme.textTheme.titleMedium!.inter;
-  static get titleMediumRoboto => theme.textTheme.titleMedium!.roboto.copyWith(
+  static get titleMediumRoboto => theme.textTheme.titleMedium!.inter.copyWith(
         fontWeight: FontWeight.w600,
       );
   static get titleMediumRobotoff000000 =>
-      theme.textTheme.titleMedium!.roboto.copyWith(
+      theme.textTheme.titleMedium!.inter.copyWith(
         color: Color(0XFF000000),
       );
   static get titleMediumRobotoff606060 =>
-      theme.textTheme.titleMedium!.roboto.copyWith(
+      theme.textTheme.titleMedium!.inter.copyWith(
         color: Color(0XFF606060),
       );
   static get titleSmallBold => theme.textTheme.titleSmall!.copyWith(
@@ -301,11 +301,11 @@ class CustomTextStyles {
 }
 
 extension on TextStyle {
-  TextStyle get roboto {
-    return copyWith(
-      fontFamily: 'Roboto',
-    );
-  }
+  // TextStyle get inter {
+  //   return copyWith(
+  //     fontFamily: 'Poppins',
+  //   );
+  // }
 
   TextStyle get inter {
     return copyWith(

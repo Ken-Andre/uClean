@@ -91,6 +91,7 @@ class HomePage extends StatelessWidget {
                                                 context.read<HomeBloc>().add(
                                                     UpdateHomeModelEvent(
                                                         newHomeModel!));
+                                                        print("Auto track buttond pressed: $isAutoTracked");
                                               },
                                             );
                                           },

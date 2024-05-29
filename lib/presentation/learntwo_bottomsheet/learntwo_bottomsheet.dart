@@ -39,7 +39,7 @@ class LearntwoBottomsheet extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "msg_the_beauty_of_the".tr,
+                "lbl_vilogia_mobility".tr,
                 style: CustomTextStyles.titleLargeSemiBold,
               ),
               SizedBox(height: 9.v),
@@ -49,34 +49,38 @@ class LearntwoBottomsheet extends StatelessWidget {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: "msg_in_our_journey_towards2".tr,
+                        text: "lbl_vilogia_mobility".tr,
                         style: theme.textTheme.bodyMedium,
                       ),
                       TextSpan(
-                        text: "lbl_walkin".tr,
+                        text: "msg_vilogia_overview".tr,
                         style: theme.textTheme.bodyMedium!.copyWith(
-                          decoration: TextDecoration.underline,
+                          decoration: TextDecoration.none,
                         ),
                       ),
                       TextSpan(
-                        text: "msg_g_a_step_closer".tr,
+                        text: "msg_context".tr,
                         style: theme.textTheme.bodyMedium,
                       ),
                       TextSpan(
-                        text: "lbl_cyclin".tr,
+                        text: "msg_objectives".tr,
                         style: theme.textTheme.bodyMedium!.copyWith(
-                          decoration: TextDecoration.underline,
+                          decoration: TextDecoration.none,
                         ),
                       ),
                       TextSpan(
-                        text: "msg_g_pedal_through".tr,
+                        text: "msg_concrete_actions".tr,
                         style: theme.textTheme.bodyMedium,
                       ),
                       TextSpan(
-                        text: "msg_public_transport".tr,
+                        text: "msg_results_and_perspectives".tr,
                         style: theme.textTheme.bodyMedium!.copyWith(
-                          decoration: TextDecoration.underline,
+                          decoration: TextDecoration.none,
                         ),
+                      ),
+                      TextSpan(
+                        text: "msg_did_you_know".tr,
+                        style: theme.textTheme.bodyMedium,
                       ),
                     ],
                   ),
