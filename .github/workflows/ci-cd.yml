@@ -2,7 +2,7 @@ name: Flutter CI/CD
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, DhiWise-vlE7clKW ]
   pull_request:
     branches: [ main, develop ]
 
