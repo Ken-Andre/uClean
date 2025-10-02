@@ -1,60 +1,71 @@
-name: CI/CD Pipeline
+name: Flutter CI/CD
 
 on:
   push:
     branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
 
 jobs:
-  test:
+  analyze-test:
+    name: Analyze and Test
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.24.0'
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
 
-    - name: Install dependencies
-      run: flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
 
-    - name: Run tests
-      run: flutter test
+      - name: Analyze code
+        run: flutter analyze
 
-    - name: Analyze code
-      run: flutter analyze
+      - name: Check formatting
+        run: flutter format --set-exit-if-changed .
 
-    - name: Check formatting
-      run: flutter format --set-exit-if-changed .
+      - name: Run tests
+        run: flutter test --coverage
+
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
 
   build-android:
+    name: Build Android APK & Bundle
     runs-on: ubuntu-latest
-    needs: test
+    needs: analyze-test
     if: github.ref == 'refs/heads/main'
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.24.0'
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
 
-    - name: Install dependencies
-      run: flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
 
-    - name: Build APK
-      run: flutter build apk --release
+      - name: Build APK
+        run: flutter build apk --release
 
-    - name: Build App Bundle
-      run: flutter build appbundle --release
+      - name: Build App Bundle
+        run: flutter build appbundle --release
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: android-builds
-        path: |
-          build/app/outputs/apk/release/*.apk
-          build/app/outputs/bundle/release/*.aab
+      - name: Upload APK & AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-builds
+          path: |
+            build/app/outputs/apk/release/*.apk
+            build/app/outputs/bundle/release/*.aab
