@@ -76,7 +76,7 @@ class OnboardingScreen extends StatelessWidget {
                           state.onboardingModelObj?.page,
                           builder: (context, page) {
                             return DotsIndicator(
-                                position: page ?? 0,
+                                position: page?.toDouble() ?? 0,
                                 dotsCount: 3,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 decorator: DotsDecorator(

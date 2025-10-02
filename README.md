@@ -16,7 +16,7 @@ This section guides you through downloading, installing, and running the ucleank
 
 * **Flutter**: Download and install Flutter from the official website: [https://docs.flutter.dev/get-started/install](https://docs.flutter.dev/get-started/install)
 * **Code Editor**: Choose your preferred code editor like Visual Studio Code (VS Code) or Android Studio.
-* **Version**:Dart SDK Version 3.3.0 or greater. Flutter SDK Version 3.3.0 or greater.
+* **Version**: Dart SDK version 3.7.0 or greater. Flutter SDK version 3.27.0 or greater.
 * **Steps:**
 
 1. **Clone the Repository:**
