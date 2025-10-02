@@ -1,0 +1,32 @@
+# Créer un keystore pour la signature de l'application
+# Utilisez cette commande pour générer votre keystore :
+# keytool -genkey -v -keystore android/app/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+
+# Ajoutez ces lignes à votre build.gradle après la section android {
+android {
+    // ... autres configurations ...
+
+    signingConfigs {
+        release {
+            keyAlias 'upload'
+            keyPassword 'VOTRE_KEY_PASSWORD'
+            storeFile file('key.jks')
+            storePassword 'VOTRE_STORE_PASSWORD'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+# Puis ajoutez ces lignes à votre gradle.properties :
+RELEASE_STORE_FILE=key.jks
+RELEASE_STORE_PASSWORD=VOTRE_STORE_PASSWORD
+RELEASE_KEY_ALIAS=upload
+RELEASE_KEY_PASSWORD=VOTRE_KEY_PASSWORD

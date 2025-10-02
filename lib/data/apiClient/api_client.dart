@@ -36,7 +36,7 @@ class ApiClient {
   ///method can be used for checking internet connection
   ///returns [bool] based on availability of internet
   Future isNetworkConnected() async {
-    if (!await NetworkInfo().isConnected()) {
+    if (!(await NetworkInfo().isConnected())) {
       throw NoInternetException('No Internet Found!');
     }
   }

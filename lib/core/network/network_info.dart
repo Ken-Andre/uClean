@@ -4,9 +4,9 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 abstract class NetworkInfoI {
   Future<bool> isConnected();
 
-  Future<ConnectivityResult> get connectivityResult;
+  Future<List<ConnectivityResult>> get connectivityResult;
 
-  Stream<ConnectivityResult> get onConnectivityChanged;
+  Stream<List<ConnectivityResult>> get onConnectivityChanged;
 }
 
 class NetworkInfo implements NetworkInfoI {
@@ -28,7 +28,7 @@ class NetworkInfo implements NetworkInfoI {
   @override
   Future<bool> isConnected() async {
     final result = await connectivity.checkConnectivity();
-    if (result != ConnectivityResult.none) {
+    if (result.any((result) => result != ConnectivityResult.none)) {
       return true;
     }
     return false;
@@ -36,12 +36,12 @@ class NetworkInfo implements NetworkInfoI {
 
   // to check type of internet connectivity
   @override
-  Future<ConnectivityResult> get connectivityResult async {
+  Future<List<ConnectivityResult>> get connectivityResult async {
     return connectivity.checkConnectivity();
   }
 
   //check the type on internet connection on changed of internet connection
   @override
-  Stream<ConnectivityResult> get onConnectivityChanged =>
+  Stream<List<ConnectivityResult>> get onConnectivityChanged =>
       connectivity.onConnectivityChanged;
 }
