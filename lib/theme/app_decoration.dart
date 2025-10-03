@@ -1,211 +1,152 @@
 import 'package:flutter/material.dart';
 import 'package:ucleankim/core/app_export.dart';
 
+/// A class that holds custom shadow and border styles for the application.
 class AppDecoration {
-  // Fill decorations
-  static BoxDecoration get fillCyanCc => BoxDecoration(
-        color: appTheme.cyan200Cc,
-      );
+  // ------------------- Private Reusable Components -------------------
 
-  static BoxDecoration get fillGray => BoxDecoration(
-        color: appTheme.gray10001,
-      );
-  static BoxDecoration get fillGray5059 => BoxDecoration(
-        color: appTheme.gray5059,
-      );
-  static BoxDecoration get fillLightGreen => BoxDecoration(
-        color: appTheme.lightGreen200,
-      );
-  static BoxDecoration get fillPrimary => BoxDecoration(
-        color: theme.colorScheme.primary,
-      );
-  static BoxDecoration get fillWhiteA => BoxDecoration(
-        color: appTheme.whiteA70001,
-      );
+  /// A soft shadow for cards and elevated elements.
+  static final BoxShadow _softShadow = BoxShadow(
+    color: appTheme.black900.withValues(alpha: 0.25),
+    spreadRadius: 2.h,
+    blurRadius: 2.h,
+    offset: Offset(0, 1),
+  );
 
-  // Outline decorations
-  static BoxDecoration get outlineBlack => BoxDecoration(
+  /// A medium shadow, slightly more pronounced.
+  static final BoxShadow _mediumShadow = BoxShadow(
+    color: appTheme.black900.withValues(alpha: 0.25),
+    spreadRadius: 2.h,
+    blurRadius: 2.h,
+    offset: Offset(0, 2),
+  );
+
+  /// A custom shadow with a different offset.
+  static final BoxShadow _angledShadow = BoxShadow(
+    color: appTheme.black900.withValues(alpha: 0.25),
+    spreadRadius: 2.h,
+    blurRadius: 2.h,
+    offset: Offset(1, 2),
+  );
+
+  // ------------------- Fill Decorations -------------------
+
+  static final BoxDecoration fillCyan = BoxDecoration(
+    color: appTheme.cyan200Cc,
+  );
+
+  static final BoxDecoration fillGray = BoxDecoration(
+    color: appTheme.gray10001,
+  );
+
+  static final BoxDecoration fillGray50 = BoxDecoration(
+    color: appTheme.gray5059,
+  );
+
+  static final BoxDecoration fillLightGreen = BoxDecoration(
+    color: appTheme.lightGreen200,
+  );
+
+  static final BoxDecoration fillPrimary = BoxDecoration(
+    color: theme.colorScheme.primary,
+  );
+
+  static final BoxDecoration fillWhite = BoxDecoration(
+    color: appTheme.whiteA70001,
+  );
+
+  // ------------------- Outline & Shadow Decorations -------------------
+
+  /// A card with a gray background and a medium shadow.
+  static BoxDecoration get cardWithMediumShadow => BoxDecoration(
         color: appTheme.gray100,
-        boxShadow: [
-          BoxShadow(
-            color: appTheme.black900.withOpacity(0.25),
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(
-              0,
-              2,
-            ),
-          ),
-        ],
+        boxShadow: [_mediumShadow],
       );
-  static BoxDecoration get outlineBlack900 => BoxDecoration(
+
+  /// A card with a white background and an angled shadow.
+  static BoxDecoration get cardWithAngledShadow => BoxDecoration(
         color: appTheme.whiteA70001,
-        boxShadow: [
-          BoxShadow(
-            color: appTheme.black900.withOpacity(0.25),
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(
-              0,
-              1,
-            ),
-          ),
-        ],
+        boxShadow: [_angledShadow],
       );
-  static BoxDecoration get outlineBlack9001 => BoxDecoration(
-        color: appTheme.gray10002,
-        boxShadow: [
-          BoxShadow(
-            color: appTheme.black900.withOpacity(0.25),
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(
-              0,
-              1,
-            ),
-          ),
-        ],
-      );
-  static BoxDecoration get outlineBlack9002 => BoxDecoration(
-        color: appTheme.whiteA70001,
-        boxShadow: [
-          BoxShadow(
-            color: appTheme.black900.withOpacity(0.25),
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(
-              0,
-              1,
-            ),
-          ),
-        ],
-      );
-  static BoxDecoration get outlineBlack9003 => BoxDecoration(
-        color: appTheme.whiteA70001,
-        boxShadow: [
-          BoxShadow(
-            color: appTheme.black900.withOpacity(0.25),
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(
-              0,
-              1,
-            ),
-          ),
-        ],
-      );
-  static BoxDecoration get outlineBlack9004 => BoxDecoration(
-        color: appTheme.whiteA700,
-        boxShadow: [
-          BoxShadow(
-            color: appTheme.black900.withOpacity(0.25),
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(
-              1,
-              2,
-            ),
-          ),
-        ],
-      );
+
+  /// A container with a semi-transparent blue-gray border.
   static BoxDecoration get outlineBlueGray => BoxDecoration(
         color: appTheme.whiteA70001,
         border: Border.all(
-          color: appTheme.blueGray100.withOpacity(0.65),
+          color: appTheme.blueGray100.withValues(alpha: 0.65),
           width: 1.h,
+          strokeAlign: strokeAlignOutside,
         ),
       );
+
+  /// A simple gray border on all sides.
   static BoxDecoration get outlineGray => BoxDecoration(
         border: Border.all(
           color: appTheme.gray400,
           width: 1.h,
+          strokeAlign: strokeAlignOutside,
         ),
       );
-  static BoxDecoration get outlineGray400 => BoxDecoration(
-        color: appTheme.black900.withOpacity(0.06),
-        border: Border(
-          top: BorderSide(
-            color: appTheme.gray400,
-            width: 1.h,
-          ),
-          left: BorderSide(
-            color: appTheme.gray400,
-            width: 1.h,
-          ),
-        ),
-      );
-  static BoxDecoration get outlineGray4001 => BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: appTheme.gray400,
-            width: 1.h,
-          ),
-          left: BorderSide(
-            color: appTheme.gray400,
-            width: 1.h,
-          ),
-        ),
-      );
-  static BoxDecoration get outlineGray5003f => BoxDecoration(
+
+  /// A simple black border on all sides (previously outlineBlack9002/outlineBlack9003/outlineBlack9004).
+  static BoxDecoration get outlineBlack => BoxDecoration(
         border: Border.all(
-          color: appTheme.gray5003f,
+          color: appTheme.black900,
           width: 1.h,
+          strokeAlign: strokeAlignOutside,
         ),
       );
-  static BoxDecoration get outlineGrayF => BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: appTheme.gray5003f,
-            width: 1.h,
-          ),
-        ),
-      );
-  static BoxDecoration get outlineWhiteA => BoxDecoration(
+
+  /// A light gray border for table cells (previously outlineGray4001).
+  static BoxDecoration get outlineGrayLight => BoxDecoration(
         border: Border.all(
-          color: appTheme.whiteA70001.withOpacity(0.5),
+          color: appTheme.gray400,
+          width: 1.h,
+          strokeAlign: strokeAlignOutside,
+        ),
+      );
+
+  /// A semi-transparent white border.
+  static BoxDecoration get outlineWhite => BoxDecoration(
+        border: Border.all(
+          color: appTheme.whiteA70001.withValues(alpha: 0.5),
           width: 1.h,
           strokeAlign: strokeAlignOutside,
         ),
       );
 }
 
+/// A class that holds custom border radius values.
 class BorderRadiusStyle {
-  // Circle borders
-  static BorderRadius get circleBorder20 => BorderRadius.circular(
-        20.h,
-      );
+  // --- Constant Border Radius Values ---
+  // Use these when you don't need responsive sizing for better performance.
+  static const BorderRadius roundedBorder5 =
+      BorderRadius.all(Radius.circular(5));
+  static const BorderRadius roundedBorder9 =
+      BorderRadius.all(Radius.circular(9));
+  static const BorderRadius circleBorder20 =
+      BorderRadius.all(Radius.circular(20));
+  static const BorderRadius roundedBorder23 =
+      BorderRadius.all(Radius.circular(23));
+  static const BorderRadius customBorderTop12 =
+      BorderRadius.vertical(top: Radius.circular(12));
 
-  // Custom borders
-  static BorderRadius get customBorderTL12 => BorderRadius.vertical(
-        top: Radius.circular(12.h),
-      );
-
-  // Rounded borders
-  static BorderRadius get roundedBorder23 => BorderRadius.circular(
-        23.h,
-      );
-  static BorderRadius get roundedBorder5 => BorderRadius.circular(
-        5.h,
-      );
-  static BorderRadius get roundedBorder9 => BorderRadius.circular(
-        9.h,
-      );
+  // --- Responsive Border Radius Getters ---
+  // Use these when the radius needs to scale with the screen size.
+  static BorderRadius get roundedBorder5Responsive =>
+      BorderRadius.circular(5.h);
+  static BorderRadius get roundedBorder9Responsive =>
+      BorderRadius.circular(9.h);
+  static BorderRadius get circleBorder20Responsive =>
+      BorderRadius.circular(20.h);
+  static BorderRadius get roundedBorder23Responsive =>
+      BorderRadius.circular(23.h);
+  static BorderRadius get customBorderTop12Responsive =>
+      BorderRadius.vertical(top: Radius.circular(12.h));
 }
 
-// Comment/Uncomment the below code based on your Flutter SDK version.
-
-// For Flutter SDK Version 3.7.2 or greater.
-
+// StrokeAlign is a helper to access BorderSide stroke alignment constants.
+// This is fine as is, but ensure your project's minimum Flutter version is 3.7.2 or greater.
 double get strokeAlignInside => BorderSide.strokeAlignInside;
-
 double get strokeAlignCenter => BorderSide.strokeAlignCenter;
-
 double get strokeAlignOutside => BorderSide.strokeAlignOutside;
-
-// For Flutter SDK Version 3.7.1 or less.
-
-// StrokeAlign get strokeAlignInside => StrokeAlign.inside;
-//
-// StrokeAlign get strokeAlignCenter => StrokeAlign.center;
-//
-// StrokeAlign get strokeAlignOutside => StrokeAlign.outside;

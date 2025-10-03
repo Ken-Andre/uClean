@@ -14,7 +14,7 @@ class SettingspagePage extends StatelessWidget {
         create: (context) => SettingspageBloc(
             SettingspageState(settingspageModelObj: SettingspageModel()))
           ..add(SettingspageInitialEvent()),
-        child: SettingspagePage());
+        child: const SettingspagePage());
   }
 
   @override
@@ -22,244 +22,258 @@ class SettingspagePage extends StatelessWidget {
     return BlocBuilder<SettingspageBloc, SettingspageState>(
         builder: (context, state) {
       return SafeArea(
-          child: Scaffold(
-              body: Container(
-                  width: double.maxFinite,
-                  decoration: AppDecoration.fillGray,
-                  child: Column(children: [
-                    _buildSettings(context),
-                    SizedBox(height: 8.v),
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                            padding: EdgeInsets.only(left: 19.h),
-                            child: Text("lbl_tracking".tr,
-                                style: theme.textTheme.titleSmall))),
-                    SizedBox(height: 2.v),
-                    _buildCheckConfiguration(context),
-                    SizedBox(height: 11.v),
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                            padding: EdgeInsets.only(left: 19.h),
-                            child: Text("lbl_reporting".tr,
-                                style: theme.textTheme.titleSmall))),
-                    SizedBox(height: 2.v),
-                    _buildReportingPeriods(context),
-                    SizedBox(height: 10.v),
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                            padding: EdgeInsets.only(left: 19.h),
-                            child: Text("lbl_account".tr,
-                                style: theme.textTheme.titleSmall))),
-                    SizedBox(height: 3.v),
-                    _buildYourAccount(context),
-                    SizedBox(height: 4.v),
-                    _buildNotifications(context),
-                    SizedBox(height: 4.v),
-                    _buildTeams(context),
-                    SizedBox(height: 11.v),
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                            padding: EdgeInsets.only(left: 19.h),
-                            child: Text("lbl_support".tr,
-                                style: theme.textTheme.titleSmall))),
-                    SizedBox(height: 2.v),
-                    _buildHelpCenter(context),
-                    SizedBox(height: 11.v),
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                            padding: EdgeInsets.only(left: 19.h),
-                            child: Text("lbl_our_app".tr,
-                                style: theme.textTheme.titleSmall))),
-                    SizedBox(height: 2.v),
-                    _buildRankOurApp(context),
-                    SizedBox(height: 10.v),
-                    _buildLogOut(context),
-                    SizedBox(height: 11.v),
-                    Opacity(
-                        opacity: 0.7,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomImageView(
-                                  imagePath: ImageConstant.imgInbox,
-                                  height: 16.adaptSize,
-                                  width: 16.adaptSize,
-                                  margin:
-                                      EdgeInsets.only(top: 2.v, bottom: 5.v)),
-                              Padding(
-                                  padding: EdgeInsets.only(left: 10.h),
-                                  child: Text("lbl_uclean_2024".tr,
-                                      style: CustomTextStyles
-                                          .bodyLargePoppinsBlack900_3))
-                            ])),
-                    SizedBox(height: 5.v)
-                  ]))));
+        child: Scaffold(
+          backgroundColor: appTheme.gray10001,
+          body: SingleChildScrollView(
+            child: Container(
+              width: double.maxFinite,
+              padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 24.v),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 30.v),
+                  Text("lbl_settings".tr,
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      )),
+                  SizedBox(height: 24.v),
+                  Text("lbl_tracking".tr,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      )),
+                  SizedBox(height: 12.v),
+                  _buildCheckConfiguration(context),
+                  SizedBox(height: 24.v),
+                  Text("lbl_reporting".tr,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      )),
+                  SizedBox(height: 12.v),
+                  _buildReportingPeriods(context),
+                  SizedBox(height: 24.v),
+                  Text("lbl_account".tr,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      )),
+                  SizedBox(height: 12.v),
+                  _buildYourAccount(context),
+                  SizedBox(height: 8.v),
+                  _buildNotifications(context),
+                  SizedBox(height: 8.v),
+                  _buildTeams(context),
+                  SizedBox(height: 24.v),
+                  Text("lbl_support".tr,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      )),
+                  SizedBox(height: 12.v),
+                  _buildHelpCenter(context),
+                  SizedBox(height: 24.v),
+                  Text("lbl_our_app".tr,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      )),
+                  SizedBox(height: 12.v),
+                  _buildRankOurApp(context),
+                  SizedBox(height: 24.v),
+                  Center(child: _buildLogOut(context)),
+                  SizedBox(height: 24.v),
+                  Center(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CustomImageView(
+                            imagePath: ImageConstant.imgInbox,
+                            height: 16.adaptSize,
+                            width: 16.adaptSize),
+                        SizedBox(width: 8.h),
+                        Text("lbl_uclean_2024".tr,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              fontFamily: 'Inter',
+                              color: appTheme.black900.withValues(alpha: 0.6),
+                            ))
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 24.v)
+                ],
+              ),
+            ),
+          ),
+        ),
+      ); // La SafeArea est correctement fermée ici.
     });
   }
 
   /// Section Widget
-  Widget _buildSettings(BuildContext context) {
-    return CustomElevatedButton(
-        height: 46.v,
-        text: "lbl_settings".tr,
-        buttonStyle: CustomButtonStyles.outlineBlack1,
-        buttonTextStyle: CustomTextStyles.titleLargeBlack900,
-        alignment: Alignment.centerLeft);
+  Widget _buildCheckConfiguration(BuildContext context) {
+    return _buildSettingsCard(
+      context,
+      icon: ImageConstant.imgCheckmark,
+      text: "msg_check_configuration".tr,
+      onTap: () => onTapCheckConfiguration(context),
+    );
   }
 
-  /// Section Widget
-  Widget _buildCheckConfiguration(BuildContext context) {
-    return CustomElevatedButton(
-        height: 38.v,
-        text: "msg_check_configuration".tr,
-        margin: EdgeInsets.symmetric(horizontal: 10.h),
-        leftIcon: Container(
-            margin: EdgeInsets.only(right: 10.h),
-            child: CustomImageView(
-                imagePath: ImageConstant.imgCheckmark,
-                height: 24.adaptSize,
-                width: 24.adaptSize)),
-        buttonStyle: CustomButtonStyles.fillWhiteA,
-        buttonTextStyle: theme.textTheme.bodyMedium!,
-        onPressed: () {
-          onTapCheckConfiguration(context);
-        });
+  /// Modern Settings Card Widget
+  Widget _buildSettingsCard(BuildContext context,
+      {required String icon,
+      required String text,
+      required VoidCallback onTap,
+      bool isDisabled = false}) {
+    return GestureDetector(
+      onTap: isDisabled ? null : onTap,
+      child: Container(
+        padding: EdgeInsets.all(16.h),
+        decoration: BoxDecoration(
+          color: isDisabled
+              ? appTheme.whiteA70001.withValues(alpha: 0.5)
+              : appTheme.whiteA70001,
+          borderRadius: BorderRadius.circular(12.h),
+          boxShadow: [
+            BoxShadow(
+              color: appTheme.black900.withValues(alpha: 0.08),
+              blurRadius: 8,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: EdgeInsets.all(8.h),
+              decoration: BoxDecoration(
+                color: appTheme.gray10001,
+                borderRadius: BorderRadius.circular(8.h),
+              ),
+              child: CustomImageView(
+                imagePath: icon,
+                height: 20.adaptSize,
+                width: 20.adaptSize,
+              ),
+            ),
+            SizedBox(width: 16.h),
+            Expanded(
+              child: Text(
+                text,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
+                  color: isDisabled
+                      ? appTheme.black900.withValues(alpha: 0.4)
+                      : appTheme.black900,
+                ),
+              ),
+            ),
+            Icon(Icons.chevron_right,
+                size: 20,
+                color: isDisabled
+                    ? appTheme.black900.withValues(alpha: 0.3)
+                    : appTheme.black900.withValues(alpha: 0.6)),
+          ],
+        ),
+      ),
+    );
   }
 
   /// Section Widget
   Widget _buildReportingPeriods(BuildContext context) {
-    return CustomElevatedButton(
-        height: 40.v,
-        text: "msg_reporting_periods".tr,
-        margin: EdgeInsets.only(left: 10.h, right: 8.h),
-        leftIcon: Container(
-            margin: EdgeInsets.only(right: 22.h),
-            child: CustomImageView(
-                imagePath: ImageConstant.imgSave,
-                height: 24.adaptSize,
-                width: 24.adaptSize)),
-        buttonStyle: CustomButtonStyles.fillWhiteA,
-        buttonTextStyle: theme.textTheme.bodyMedium!,
-        onPressed: () {
-          onTapReportingPeriods(context);
-        },
-        alignment: Alignment.centerLeft);
+    return _buildSettingsCard(
+      context,
+      icon: ImageConstant.imgSave,
+      text: "msg_reporting_periods".tr,
+      onTap: () => onTapReportingPeriods(context),
+    );
   }
 
   /// Section Widget
   Widget _buildYourAccount(BuildContext context) {
-    return CustomElevatedButton(
-        height: 38.v,
-        text: "lbl_your_account".tr,
-        margin: EdgeInsets.symmetric(horizontal: 10.h),
-        leftIcon: Container(
-            margin: EdgeInsets.only(right: 18.h),
-            child: CustomImageView(
-                imagePath: ImageConstant.imgLock,
-                height: 24.adaptSize,
-                width: 24.adaptSize)),
-        buttonStyle: CustomButtonStyles.fillWhiteA,
-        buttonTextStyle: theme.textTheme.bodyMedium!,
-        onPressed: () {
-          onTapYourAccount(context);
-        });
+    return _buildSettingsCard(
+      context,
+      icon: ImageConstant.imgLock,
+      text: "lbl_your_account".tr,
+      onTap: () => onTapYourAccount(context),
+    );
   }
 
   /// Section Widget
   Widget _buildNotifications(BuildContext context) {
-    return CustomElevatedButton(
-        height: 40.v,
-        text: "lbl_notifications".tr,
-        margin: EdgeInsets.only(left: 10.h, right: 8.h),
-        leftIcon: Container(
-            margin: EdgeInsets.only(right: 22.h),
-            child: CustomImageView(
-                imagePath: ImageConstant.imgGroup,
-                height: 24.adaptSize,
-                width: 24.adaptSize)),
-        buttonStyle: CustomButtonStyles.fillWhiteA,
-        buttonTextStyle: theme.textTheme.bodyMedium!,
-        onPressed: () {
-          onTapNotifications(context);
-        },
-        alignment: Alignment.centerLeft);
+    return _buildSettingsCard(
+      context,
+      icon: ImageConstant.imgGroup,
+      text: "lbl_notifications".tr,
+      onTap: () => onTapNotifications(context),
+    );
   }
 
   /// Section Widget
   Widget _buildTeams(BuildContext context) {
-    return CustomElevatedButton(
-        height: 40.v,
-        text: "lbl_teams".tr,
-        margin: EdgeInsets.symmetric(horizontal: 10.h),
-        leftIcon: Container(
-            margin: EdgeInsets.only(right: 22.h),
-            child: CustomImageView(
-                imagePath: ImageConstant.imgSave,
-                height: 24.adaptSize,
-                width: 24.adaptSize)),
-        buttonStyle: CustomButtonStyles.fillWhiteA,
-        buttonTextStyle: CustomTextStyles.bodyMediumBlack900,
-        isDisabled: true);
+    return _buildSettingsCard(
+      context,
+      icon: ImageConstant.imgSave,
+      text: "lbl_teams".tr,
+      onTap: () {},
+      isDisabled: true,
+    );
   }
 
   /// Section Widget
   Widget _buildHelpCenter(BuildContext context) {
-    return CustomElevatedButton(
-        height: 39.v,
-        text: "lbl_help_center".tr,
-        margin: EdgeInsets.only(left: 10.h, right: 8.h),
-        leftIcon: Container(
-            margin: EdgeInsets.only(right: 22.h),
-            child: CustomImageView(
-                imagePath: ImageConstant.imgContrast,
-                height: 20.adaptSize,
-                width: 20.adaptSize)),
-        buttonStyle: CustomButtonStyles.fillWhiteA,
-        buttonTextStyle: theme.textTheme.bodyMedium!,
-        onPressed: () {
-          onTapHelpCenter(context);
-        },
-        alignment: Alignment.centerLeft);
+    return _buildSettingsCard(
+      context,
+      icon: ImageConstant.imgContrast,
+      text: "lbl_help_center".tr,
+      onTap: () => onTapHelpCenter(context),
+    );
   }
 
   /// Section Widget
   Widget _buildRankOurApp(BuildContext context) {
-    return CustomElevatedButton(
-        height: 39.v,
-        text: "lbl_rank_our_app".tr,
-        margin: EdgeInsets.only(left: 10.h, right: 9.h),
-        leftIcon: Container(
-            margin: EdgeInsets.only(right: 20.h),
-            child: CustomImageView(
-                imagePath: ImageConstant.imgSignal,
-                height: 24.adaptSize,
-                width: 24.adaptSize)),
-        buttonStyle: CustomButtonStyles.fillWhiteA,
-        buttonTextStyle: theme.textTheme.bodyMedium!,
-        onPressed: () {
-          onTapRankOurApp(context);
-        },
-        alignment: Alignment.centerLeft);
+    return _buildSettingsCard(
+      context,
+      icon: ImageConstant.imgSignal,
+      text: "lbl_rank_our_app".tr,
+      onTap: () => onTapRankOurApp(context),
+    );
   }
 
   /// Section Widget
   Widget _buildLogOut(BuildContext context) {
-    return Opacity(
-        opacity: 0.67,
-        child: CustomElevatedButton(
-            width: 185.h,
-            text: "lbl_log_out".tr,
-            buttonStyle: CustomButtonStyles.fillOnError,
-            buttonTextStyle: CustomTextStyles.bodyLargeOrange700,
-            onPressed: () {
-              onTapLogOut(context);
-            }));
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 32.h, vertical: 12.v),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFFCD7A91), Color(0xFFFF7968)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(25.h),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xFFFF7968).withValues(alpha: 0.3),
+            blurRadius: 12,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: GestureDetector(
+        onTap: () => onTapLogOut(context),
+        child: Text(
+          "lbl_log_out".tr,
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+            color: appTheme.whiteA70001,
+          ),
+        ),
+      ),
+    );
   }
 
   /// Asks the user for permission to access their device's location using the

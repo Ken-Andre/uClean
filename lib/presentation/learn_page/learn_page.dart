@@ -24,55 +24,48 @@ class LearnPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            backgroundColor: appTheme.gray10001,
             body: Container(
                 width: double.maxFinite,
-                decoration: AppDecoration.fillWhiteA,
-                child: Column(children: [
-                  SizedBox(height: 65.v),
-                  _buildTopNavApp(context),
-                  SizedBox(height: 14.v),
+                padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 24.v),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                  SizedBox(height: 30.v),
+                  Text("lbl_articles".tr,
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      )),
+                  SizedBox(height: 24.v),
                   _buildLearnContainer(context)
                 ]))));
   }
 
   /// Section Widget
-  Widget _buildTopNavApp(BuildContext context) {
-    return Container(
-        width: double.maxFinite,
-        padding: EdgeInsets.symmetric(horizontal: 20.h),
-        decoration: AppDecoration.outlineWhiteA,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(height: 6.v),
-          Text("lbl_articles".tr, style: theme.textTheme.titleLarge)
-        ]));
-  }
-
-  /// Section Widget
   Widget _buildLearnContainer(BuildContext context) {
     return Expanded(
-      child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.h),
-          child: BlocSelector<LearnBloc, LearnState, LearnModel?>(
-              selector: (state) => state.learnModelObj,
-              builder: (context, learnModelObj) {
-                return ListView.separated(
-                    physics: BouncingScrollPhysics(),
-                    shrinkWrap: true,
-                    separatorBuilder: (context, index) {
-                      return SizedBox(height: 6.v);
-                    },
-                    itemCount:
-                        learnModelObj?.learncontainerItemList.length ?? 0,
-                    itemBuilder: (context, index) {
-                      LearncontainerItemModel model =
-                          learnModelObj?.learncontainerItemList[index] ??
-                              LearncontainerItemModel();
-                      return LearncontainerItemWidget(model,
-                          onTapTheBeautyOfThe: () {
-                        onTapTheBeautyOfThe(context, index);
-                      });
-                    });
-              })),
+      child: BlocSelector<LearnBloc, LearnState, LearnModel?>(
+          selector: (state) => state.learnModelObj,
+          builder: (context, learnModelObj) {
+            return ListView.separated(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                separatorBuilder: (context, index) {
+                  return SizedBox(height: 16.v);
+                },
+                itemCount:
+                    learnModelObj?.learncontainerItemList.length ?? 0,
+                itemBuilder: (context, index) {
+                  LearncontainerItemModel model =
+                      learnModelObj?.learncontainerItemList[index] ??
+                          LearncontainerItemModel();
+                  return LearncontainerItemWidget(model,
+                      onTapTheBeautyOfThe: () {
+                    onTapTheBeautyOfThe(context, index);
+                  });
+                });
+          }),
     );
   }
 

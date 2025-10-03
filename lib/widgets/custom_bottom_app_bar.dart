@@ -129,7 +129,7 @@ class CustomBottomAppBarState extends State<CustomBottomAppBar> {
             ),
             activeIcon: Container(
               padding: EdgeInsets.symmetric(horizontal: 10.h),
-              decoration: AppDecoration.fillCyanCc.copyWith(
+              decoration: AppDecoration.fillCyan.copyWith(
                 borderRadius: BorderRadiusStyle.circleBorder20,
               ),
               child: CustomImageView(

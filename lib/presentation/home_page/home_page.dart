@@ -20,147 +20,203 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            backgroundColor: appTheme.gray10001,
             appBar: _buildAppBar(context),
             body: SizedBox(
                 width: SizeUtils.width,
                 child: SingleChildScrollView(
-                    padding: EdgeInsets.only(top: 34.v),
-                    child: Column(children: [
-                      CustomImageView(
-                          imagePath: ImageConstant.imgGroupYellow400,
-                          height: 96.v,
-                          width: 122.h),
-                      SizedBox(height: 10.v),
-                      BlocSelector<HomeBloc, HomeState, String?>(
-                          selector: (state) =>
-                              state.homeModelObj!.welcomeIsabelle,
-                          builder: (context, welcomeIsabelle) {
-                            return Text(welcomeIsabelle ?? "",
-                                style: CustomTextStyles.headlineSmallPoppins_1);
-                          }),
-                      SizedBox(height: 23.v),
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                              padding: EdgeInsets.only(left: 14.h),
-                              child: Text("msg_set_live_tracking".tr,
-                                  style: CustomTextStyles
-                                      .headlineSmallPoppinsBold))),
-                      Divider(color: appTheme.black900.withOpacity(0.25)),
-                      SizedBox(height: 24.v),
-                      Align(
-                          alignment: Alignment.centerRight,
-                          child: Padding(
-                              padding: EdgeInsets.only(right: 20.h),
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                        height: 135.v,
-                                        width: 141.h,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 5.h, vertical: 4.v),
-                                        decoration: AppDecoration.fillGray5059
-                                            .copyWith(
-                                                borderRadius: BorderRadiusStyle
-                                                    .roundedBorder23),
-                                        child: BlocSelector<HomeBloc, HomeState,
-                                            bool?>(
-                                          selector: (state) =>
-                                              state.homeModelObj?.isautoTracked,
-                                          builder: (context, isAutoTracked) {
-                                            return CustomImageView(
-                                              imagePath: isAutoTracked!
-                                                  ? ImageConstant
-                                                      .imgVectorOff // Si isautoTracked est vrai, afficher imgVectorOff
-                                                  : ImageConstant
-                                                      .imgVectorOn, // Sinon, afficher imgVectorOn
-                                              height: 124.v,
-                                              width: 129.h,
-                                              alignment: Alignment.center,
-                                              onTap: () {
-                                                final newHomeModel = context
-                                                    .read<HomeBloc>()
-                                                    .state
-                                                    .homeModelObj
-                                                    ?.copyWith(
-                                                      isautoTracked:
-                                                          !isAutoTracked,
-                                                    );
-                                                context.read<HomeBloc>().add(
-                                                    UpdateHomeModelEvent(
-                                                        newHomeModel!));
-                                                        print("Auto track buttond pressed: $isAutoTracked");
-                                              },
-                                            );
-                                          },
-                                        )),
-                                    CustomImageView(
-                                        imagePath:
-                                            ImageConstant.imgCloseCyan900,
-                                        height: 27.v,
-                                        width: 84.h,
-                                        margin: EdgeInsets.only(
-                                            left: 20.h, bottom: 107.v),
-                                        onTap: () {
-                                          onTapImgClose(context);
-                                        })
-                                  ]))),
-                      SizedBox(height: 14.v),
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                              padding: EdgeInsets.only(left: 14.h),
-                              child: Text("msg_unclassified_trip".tr,
-                                  style: CustomTextStyles
-                                      .headlineSmallPoppinsBold))),
-                      Divider(color: appTheme.black900.withOpacity(0.25)),
-                      SizedBox(height: 22.v),
+                    padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 24.v),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      // Welcome Section
+                      Center(
+                        child: Column(
+                          children: [
+                            CustomImageView(
+                                imagePath: ImageConstant.imgGroupYellow400,
+                                height: 80.v,
+                                width: 100.h),
+                            SizedBox(height: 16.v),
+                            BlocSelector<HomeBloc, HomeState, String?>(
+                                selector: (state) =>
+                                    state.homeModelObj!.welcomeIsabelle,
+                                builder: (context, welcomeIsabelle) {
+                                  return Text(welcomeIsabelle ?? "",
+                                      style: theme.textTheme.headlineSmall?.copyWith(
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.w600,
+                                      ));
+                                }),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 32.v),
+
+                      // Set Live Tracking Section
+                      Text("msg_set_live_tracking".tr,
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600,
+                          )),
+                      SizedBox(height: 16.v),
+                      _buildTrackingCard(context),
+                      SizedBox(height: 32.v),
+
+                      // Unclassified Trips Section
+                      Text("msg_unclassified_trip".tr,
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600,
+                          )),
+                      SizedBox(height: 16.v),
                       _buildFrameNinetyThree(context),
-                      SizedBox(height: 21.v),
+                      SizedBox(height: 16.v),
                       _buildUntripOne(context),
-                      SizedBox(height: 22.v),
-                      _buildUntripOne1(context)
+                      SizedBox(height: 16.v),
+                      _buildUntripOne1(context),
+                      SizedBox(height: 16.v),
                     ])))));
   }
 
   /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return CustomAppBar(
-        height: 103.v,
+        height: 70.v,
         centerTitle: true,
-        title: Container(
-            padding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 11.v),
-            decoration: AppDecoration.fillPrimary,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AppbarImage(
-                      imagePath: ImageConstant.imgLockBlack900,
-                      onTap: () {
-                        onTapLock(context);
-                      }),
-                  Container(
-                      margin: EdgeInsets.fromLTRB(290.h, 2.v, 1.h, 2.v),
-                      padding: EdgeInsets.symmetric(horizontal: 6.h),
-                      decoration: AppDecoration.fillLightGreen.copyWith(
-                          borderRadius: BorderRadiusStyle.roundedBorder9),
-                      child: Row(children: [
-                        // AppbarSubtitleOne(text: "lbl_127".tr),
+        title: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.h),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () => onTapLock(context),
+                  child: Container(
+                    padding: EdgeInsets.all(8.h),
+                    decoration: BoxDecoration(
+                      color: appTheme.whiteA70001,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: appTheme.black900.withValues(alpha: 0.08),
+                          blurRadius: 8,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: CustomImageView(
+                        imagePath: ImageConstant.imgLockBlack900,
+                        height: 24.adaptSize,
+                        width: 24.adaptSize),
+                  ),
+                ),
+                Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 6.v),
+                    decoration: BoxDecoration(
+                      color: appTheme.lightGreen200,
+                      borderRadius: BorderRadius.circular(20.h),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
                         BlocSelector<HomeBloc, HomeState, String?>(
                             selector: (state) =>
                                 state.homeModelObj!.gamingPoints,
                             builder: (context, gamingPoints) {
-                              return AppbarSubtitleOne(
-                                  text: gamingPoints ?? "lbl_127".tr);
+                              return Text(
+                                gamingPoints ?? "lbl_127".tr,
+                                style: theme.textTheme.titleMedium?.copyWith(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              );
                             }),
-                        AppbarImage(
+                        SizedBox(width: 8.h),
+                        CustomImageView(
                             imagePath: ImageConstant.imgClose,
-                            margin: EdgeInsets.fromLTRB(9.h, 5.v, 5.h, 4.v))
-                      ]))
-                ])),
-        styleType: Style.bgOutline);
+                            height: 20.adaptSize,
+                            width: 20.adaptSize)
+                    ]))
+              ]),
+        ));
+  }
+
+  /// Modern Tracking Card
+  Widget _buildTrackingCard(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20.h),
+      decoration: BoxDecoration(
+        color: appTheme.whiteA70001,
+        borderRadius: BorderRadius.circular(16.h),
+        boxShadow: [
+          BoxShadow(
+            color: appTheme.black900.withValues(alpha: 0.08),
+            blurRadius: 12,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: BlocSelector<HomeBloc, HomeState, bool?>(
+              selector: (state) => state.homeModelObj?.isautoTracked,
+              builder: (context, isAutoTracked) {
+                return GestureDetector(
+                  onTap: () {
+                    final newHomeModel = context
+                        .read<HomeBloc>()
+                        .state
+                        .homeModelObj
+                        ?.copyWith(
+                          isautoTracked: !isAutoTracked!,
+                        );
+                    context.read<HomeBloc>().add(
+                        UpdateHomeModelEvent(newHomeModel!));
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(20.h),
+                    decoration: BoxDecoration(
+                      color: isAutoTracked! 
+                          ? appTheme.cyan800.withValues(alpha: 0.1)
+                          : appTheme.gray10001,
+                      borderRadius: BorderRadius.circular(12.h),
+                    ),
+                    child: CustomImageView(
+                      imagePath: isAutoTracked
+                          ? ImageConstant.imgVectorOff
+                          : ImageConstant.imgVectorOn,
+                      height: 80.v,
+                      width: 80.h,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          SizedBox(width: 16.h),
+          GestureDetector(
+            onTap: () => onTapImgClose(context),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 8.v),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color(0xFF003366), Color(0xFF63ACD4)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(20.h),
+              ),
+              child: CustomImageView(
+                  imagePath: ImageConstant.imgCloseCyan900,
+                  height: 24.v,
+                  width: 60.h,
+                  color: appTheme.whiteA70001),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   /// Section Widget
@@ -185,119 +241,215 @@ class HomePage extends StatelessWidget {
   /// Section Widget
   Widget _buildUntripOne(BuildContext context) {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.h),
-        decoration: AppDecoration.outlineBlack9001
-            .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
+        padding: EdgeInsets.all(16.h),
+        decoration: BoxDecoration(
+          color: appTheme.whiteA70001,
+          borderRadius: BorderRadius.circular(12.h),
+          boxShadow: [
+            BoxShadow(
+              color: appTheme.black900.withValues(alpha: 0.08),
+              blurRadius: 8,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          _buildTopContainerUnTrip(context,
-              sixtyNine: "lbl_6_9".tr,
-              kM: "lbl_km2".tr,
-              date: "lbl_16_01_2024".tr),
-          Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                  padding: EdgeInsets.only(left: 13.h),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                            padding: EdgeInsets.only(bottom: 9.v),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Text("lbl_17_12".tr,
-                                          style:
-                                              CustomTextStyles.bodyMedium15)),
-                                  SizedBox(height: 24.v),
-                                  Text("lbl_19_15".tr,
-                                      style:
-                                          CustomTextStyles.bodyMediumBlack90015)
-                                ])),
-                        CustomImageView(
-                            imagePath: ImageConstant.imgSettings,
-                            height: 66.v,
-                            width: 21.h,
-                            margin: EdgeInsets.only(
-                                left: 16.h, top: 2.v, bottom: 12.v)),
-                        Padding(
-                            padding: EdgeInsets.only(left: 5.h),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("msg_douala_cameroon".tr,
-                                      style: theme.textTheme.labelLarge),
-                                  SizedBox(height: 1.v),
-                                  Text("msg_entree_lycee_ndogpassi".tr,
-                                      style: CustomTextStyles.bodyMediumInter),
-                                  SizedBox(height: 14.v),
-                                  Text("msg_douala_cameroon".tr,
-                                      style: theme.textTheme.labelLarge),
-                                  SizedBox(height: 1.v),
-                                  Text("msg_entree_lycee_ndogpassi".tr,
-                                      style: CustomTextStyles.bodyMediumInter)
-                                ]))
-                      ]))),
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: 11.h),
-              child: _buildBottomContainer(context))
+          // Header with distance and date
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text("lbl_6_9".tr,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      )),
+                  SizedBox(width: 4.h),
+                  Text("lbl_km2".tr,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        fontFamily: 'Inter',
+                      )),
+                ],
+              ),
+              Row(
+                children: [
+                  CustomImageView(
+                      imagePath: ImageConstant.imgUser, height: 20.v, width: 30.h),
+                  SizedBox(width: 8.h),
+                  Text("lbl_16_01_2024".tr,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontFamily: 'Inter',
+                      )),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(height: 16.v),
+          // Trip details
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("lbl_17_12".tr,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          )),
+                      SizedBox(height: 24.v),
+                      Text("lbl_19_15".tr,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ))
+                    ]),
+                SizedBox(width: 16.h),
+                CustomImageView(
+                    imagePath: ImageConstant.imgSettings,
+                    height: 66.v,
+                    width: 21.h),
+                SizedBox(width: 8.h),
+                Expanded(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("msg_douala_cameroon".tr,
+                              style: theme.textTheme.labelLarge?.copyWith(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w600,
+                              )),
+                          SizedBox(height: 4.v),
+                          Text("msg_entree_lycee_ndogpassi".tr,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                fontFamily: 'Inter',
+                                color: appTheme.black900.withValues(alpha: 0.6),
+                              )),
+                          SizedBox(height: 16.v),
+                          Text("msg_douala_cameroon".tr,
+                              style: theme.textTheme.labelLarge?.copyWith(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w600,
+                              )),
+                          SizedBox(height: 4.v),
+                          Text("msg_entree_lycee_ndogpassi".tr,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                fontFamily: 'Inter',
+                                color: appTheme.black900.withValues(alpha: 0.6),
+                              ))
+                        ]))
+              ]),
+          SizedBox(height: 12.v),
+          Divider(color: appTheme.black900.withValues(alpha: 0.1)),
+          SizedBox(height: 8.v),
+          _buildBottomContainer(context)
         ]));
   }
 
   /// Section Widget
   Widget _buildUntripOne1(BuildContext context) {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.h),
-        decoration: AppDecoration.outlineBlack9001
-            .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
+        padding: EdgeInsets.all(16.h),
+        decoration: BoxDecoration(
+          color: appTheme.whiteA70001,
+          borderRadius: BorderRadius.circular(12.h),
+          boxShadow: [
+            BoxShadow(
+              color: appTheme.black900.withValues(alpha: 0.08),
+              blurRadius: 8,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          _buildTopContainerUnTrip(context,
-              sixtyNine: "lbl_6_9".tr,
-              kM: "lbl_km2".tr,
-              date: "lbl_16_01_2024".tr),
+          // Header with distance and date
           Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text("lbl_6_9".tr,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      )),
+                  SizedBox(width: 4.h),
+                  Text("lbl_km2".tr,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        fontFamily: 'Inter',
+                      )),
+                ],
+              ),
+              Row(
+                children: [
+                  CustomImageView(
+                      imagePath: ImageConstant.imgUser, height: 20.v, width: 30.h),
+                  SizedBox(width: 8.h),
+                  Text("lbl_16_01_2024".tr,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontFamily: 'Inter',
+                      )),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(height: 16.v),
+          Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                    padding: EdgeInsets.only(bottom: 5.v),
-                    child: Column(children: [
-                      Text("lbl_17_12".tr,
-                          textAlign: TextAlign.center,
-                          style: CustomTextStyles.bodyMediumBlack90015),
-                      SizedBox(height: 24.v),
-                      Text("lbl_19_15".tr,
-                          textAlign: TextAlign.center,
-                          style: CustomTextStyles.bodyMediumBlack90015)
-                    ])),
+                Column(children: [
+                  Text("lbl_17_12".tr,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                      )),
+                  SizedBox(height: 24.v),
+                  Text("lbl_19_15".tr,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                      ))
+                ]),
+                SizedBox(width: 16.h),
                 CustomImageView(
                     imagePath: ImageConstant.imgSettings,
                     height: 66.v,
-                    width: 21.h,
-                    margin: EdgeInsets.only(left: 4.h, top: 2.v, bottom: 7.v)),
+                    width: 21.h),
+                SizedBox(width: 8.h),
                 Expanded(
-                    child: Padding(
-                        padding: EdgeInsets.only(left: 5.h, top: 2.v),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("msg_douala_cameroon".tr,
-                                  style: theme.textTheme.labelLarge),
-                              SizedBox(height: 8.v),
-                              Text("msg_entree_lycee_ndogpassi".tr,
-                                  style: CustomTextStyles.bodyMediumInter),
-                              SizedBox(height: 21.v),
-                              Text("msg_douala_cameroon".tr,
-                                  style: theme.textTheme.labelLarge),
-                              SizedBox(height: 8.v),
-                              Text("msg_entree_lycee_ndogpassi".tr,
-                                  style: CustomTextStyles.bodyMediumInter)
-                            ])))
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("msg_douala_cameroon".tr,
+                              style: theme.textTheme.labelLarge?.copyWith(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w600,
+                              )),
+                          SizedBox(height: 4.v),
+                          Text("msg_entree_lycee_ndogpassi".tr,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                fontFamily: 'Inter',
+                                color: appTheme.black900.withValues(alpha: 0.6),
+                              )),
+                          SizedBox(height: 16.v),
+                          Text("msg_douala_cameroon".tr,
+                              style: theme.textTheme.labelLarge?.copyWith(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w600,
+                              )),
+                          SizedBox(height: 4.v),
+                          Text("msg_entree_lycee_ndogpassi".tr,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                fontFamily: 'Inter',
+                                color: appTheme.black900.withValues(alpha: 0.6),
+                              ))
+                        ]))
               ]),
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: 11.h),
-              child: _buildBottomContainer(context))
+          SizedBox(height: 12.v),
+          Divider(color: appTheme.black900.withValues(alpha: 0.1)),
+          SizedBox(height: 8.v),
+          _buildBottomContainer(context)
         ]));
   }
 

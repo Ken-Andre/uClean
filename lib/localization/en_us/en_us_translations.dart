@@ -268,6 +268,7 @@ final Map<String, String> enUs = {
   "lbl_10_28": "10:28",
   "lbl_9999": "9999",
   "lbl_add_drive": "Add Drive",
+  "lbl_address": "Address",
   "lbl_continue": "Continue",
   "lbl_detailed": "Detailed",
   "lbl_email": "Email",

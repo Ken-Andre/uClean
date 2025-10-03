@@ -35,13 +35,13 @@ class SettingspageBloc extends Bloc<SettingspageEvent, SettingspageState> {
     CreateLogoutEvent event,
     Emitter<SettingspageState> emit,
   ) async {
-    var postLogoutPostReq = PostLogoutPostReq();
-    var logToken = PrefUtils().getAuthToken();
-    print('here is the logToken $logToken');
+    final postLogoutPostReq = PostLogoutPostReq();
+    final logToken = PrefUtils().getAuthToken();
+    debugPrint('here is the logToken $logToken');
     await _repository.logoutPost(
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer ${logToken}',
+        'Authorization': 'Bearer $logToken',
       },
       requestData: postLogoutPostReq.toJson(),
     ).then((value) async {

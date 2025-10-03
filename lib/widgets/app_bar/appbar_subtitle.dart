@@ -12,11 +12,11 @@ class AppbarSubtitle extends StatelessWidget {
           key: key,
         );
 
-  String text;
+  final String text;
 
   EdgeInsetsGeometry? margin;
 
-  Function? onTap;
+  final Function? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class AppbarSubtitle extends StatelessWidget {
         child: Text(
           text,
           style: CustomTextStyles.titleLargeBlack900SemiBold.copyWith(
-            color: appTheme.black900.withOpacity(0.85),
+            color: appTheme.black900.withValues(alpha: 0.85),
           ),
         ),
       ),

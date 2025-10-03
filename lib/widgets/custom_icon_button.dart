@@ -54,7 +54,7 @@ class CustomIconButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(3.h),
                   boxShadow: [
                     BoxShadow(
-                      color: appTheme.black900.withOpacity(0.25),
+                      color: appTheme.black900.withValues(alpha: 0.25),
                       spreadRadius: 2.h,
                       blurRadius: 2.h,
                       offset: Offset(
@@ -77,7 +77,7 @@ extension IconButtonStyleHelper on CustomIconButton {
         borderRadius: BorderRadius.circular(3.h),
         boxShadow: [
           BoxShadow(
-            color: appTheme.black900.withOpacity(0.25),
+            color: appTheme.black900.withValues(alpha: 0.25),
             spreadRadius: 2.h,
             blurRadius: 2.h,
             offset: Offset(

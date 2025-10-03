@@ -16,7 +16,7 @@ class SettingsContactusScreen extends StatelessWidget {
         create: (context) => SettingsContactusBloc(SettingsContactusState(
             settingsContactusModelObj: SettingsContactusModel()))
           ..add(SettingsContactusInitialEvent()),
-        child: SettingsContactusScreen());
+        child: const SettingsContactusScreen());
   }
 
   @override

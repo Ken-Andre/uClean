@@ -6,6 +6,8 @@ import 'package:ucleankim/data/models/authLoginPost/post_auth_login_post_resp.da
 import 'package:ucleankim/data/models/authLoginPost/post_auth_login_post_req.dart';
 import 'dart:async';
 import 'package:ucleankim/data/repository/repository.dart';
+import 'package:ucleankim/core/errors/error_handler.dart';
+import 'package:dio/dio.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
@@ -48,31 +50,74 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     CreateLoginEvent event,
     Emitter<LoginState> emit,
   ) async {
-    var postAuthLoginPostReq = PostAuthLoginPostReq(
-      email: state.emailController?.text ?? '',
-      password: state.passwordController?.text ?? '',
-    );
-    await _repository.authLoginPost(
-      headers: {
-        'Content-type': 'application/json',
-      },
-      requestData: postAuthLoginPostReq.toJson(),
-    ).then((value) async {
-      postAuthLoginPostResp = value;
-      _onAuthLoginPostSuccess(value, emit);
+    // Clear any previous error and start loading
+    emit(state.copyWith(
+      isLoading: true,
+      errorMessage: null,
+    ));
+
+    try {
+      var postAuthLoginPostReq = PostAuthLoginPostReq(
+        email: state.emailController?.text ?? '',
+        password: state.passwordController?.text ?? '',
+      );
+
+      final response = await _repository.authLoginPost(
+        headers: {
+          'Content-type': 'application/json',
+        },
+        requestData: postAuthLoginPostReq.toJson(),
+      );
+
+      postAuthLoginPostResp = response;
+      _onAuthLoginPostSuccess(response, emit);
       event.onCreateLoginEventSuccess?.call();
-    }).onError((error, stackTrace) {
-      //implement error call
-      _onAuthLoginPostError();
+
+    } catch (error, stackTrace) {
+      // Handle error using the ErrorHandler
+      final userFriendlyMessage = _getUserFriendlyErrorMessage(error);
+      _onAuthLoginPostError(error, userFriendlyMessage, emit);
       event.onCreateLoginEventError?.call();
-    });
+
+      // Log the error for debugging
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+    }
   }
 
   void _onAuthLoginPostSuccess(
     PostAuthLoginPostResp resp,
     Emitter<LoginState> emit,
-  ) {}
-  void _onAuthLoginPostError() {
-    //implement error method body...
+  ) {
+    emit(state.copyWith(
+      isLoading: false,
+      isLoggedIn: true,
+      errorMessage: null,
+    ));
+  }
+
+  void _onAuthLoginPostError(dynamic error, String userMessage, Emitter<LoginState> emit) {
+    emit(state.copyWith(
+      isLoading: false,
+      errorMessage: userMessage,
+      isLoggedIn: false,
+    ));
+  }
+
+  /// Converts technical errors to user-friendly messages
+  String _getUserFriendlyErrorMessage(dynamic error) {
+    if (error is DioError) {
+      final exception = ErrorHandler.handle(error);
+      return ErrorHandler.getErrorMessage(exception);
+    }
+
+    // Handle other types of errors
+    if (error is Exception) {
+      return ErrorHandler.getErrorMessage(error);
+    }
+
+    return 'An unexpected error occurred. Please try again.';
   }
 }

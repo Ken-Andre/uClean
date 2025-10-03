@@ -28,8 +28,8 @@ class LearnthreeBottomsheet extends StatelessWidget {
         horizontal: 21.h,
         vertical: 26.v,
       ),
-      decoration: AppDecoration.fillWhiteA.copyWith(
-        borderRadius: BorderRadiusStyle.customBorderTL12,
+      decoration: AppDecoration.fillWhite.copyWith(
+        borderRadius: BorderRadiusStyle.customBorderTop12,
       ),
       child: SingleChildScrollView(
         child: Column(

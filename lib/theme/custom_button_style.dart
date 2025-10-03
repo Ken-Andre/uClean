@@ -17,7 +17,7 @@ class CustomButtonStyles {
         ),
       );
   static ButtonStyle get fillOnSecondaryContainer => ElevatedButton.styleFrom(
-        backgroundColor: theme.colorScheme.onSecondaryContainer.withOpacity(1),
+        backgroundColor: theme.colorScheme.onSecondaryContainer.withValues(alpha: 1),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.h),
         ),
@@ -48,7 +48,7 @@ class CustomButtonStyles {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.h),
         ),
-        shadowColor: appTheme.black900.withOpacity(0.25),
+        shadowColor: appTheme.black900.withValues(alpha: 0.25),
         elevation: 2,
       );
   static ButtonStyle get outlineBlackTL5 => OutlinedButton.styleFrom(
@@ -62,13 +62,13 @@ class CustomButtonStyles {
         ),
       );
   static ButtonStyle get outlineBlack1 => ElevatedButton.styleFrom(
-        backgroundColor: appTheme.whiteA70001.withOpacity(0.7),
-        shadowColor: appTheme.black900.withOpacity(0.25),
+        backgroundColor: appTheme.whiteA70001.withValues(alpha: 0.7),
+        shadowColor: appTheme.black900.withValues(alpha: 0.25),
         elevation: 3,
       );
   // text button style
   static ButtonStyle get none => ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-        elevation: MaterialStateProperty.all<double>(0),
+        backgroundColor: WidgetStateProperty.all<Color>(Colors.transparent),
+        elevation: WidgetStateProperty.all<double>(0),
       );
 }

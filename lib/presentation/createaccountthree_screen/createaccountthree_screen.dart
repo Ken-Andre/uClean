@@ -170,7 +170,7 @@ class CreateaccountthreeScreen extends StatelessWidget {
                       child: SizedBox(
                           width: 105.h,
                           child: Divider(
-                              color: appTheme.black900.withOpacity(0.6))))),
+                              color: appTheme.black900.withValues(alpha: 0.6))))),
               Opacity(
                   opacity: 0.7,
                   child: Text("lbl_follow_us_on".tr,
@@ -182,7 +182,7 @@ class CreateaccountthreeScreen extends StatelessWidget {
                       child: SizedBox(
                           width: 105.h,
                           child: Divider(
-                              color: appTheme.black900.withOpacity(0.6)))))
+                              color: appTheme.black900.withValues(alpha: 0.6)))))
             ])));
   }
 

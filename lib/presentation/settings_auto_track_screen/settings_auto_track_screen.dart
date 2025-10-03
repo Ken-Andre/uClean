@@ -69,7 +69,7 @@ class SettingsAutoTrackScreen extends StatelessWidget {
     return Container(
         margin: EdgeInsets.symmetric(horizontal: 9.h),
         padding: EdgeInsets.symmetric(horizontal: 42.h, vertical: 6.v),
-        decoration: AppDecoration.outlineBlack9002
+        decoration: AppDecoration.outlineBlack
             .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -97,7 +97,7 @@ class SettingsAutoTrackScreen extends StatelessWidget {
     return Container(
         margin: EdgeInsets.symmetric(horizontal: 9.h),
         padding: EdgeInsets.symmetric(horizontal: 43.h, vertical: 2.v),
-        decoration: AppDecoration.outlineBlack9002
+        decoration: AppDecoration.outlineBlack
             .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -117,7 +117,7 @@ class SettingsAutoTrackScreen extends StatelessWidget {
     return Container(
         margin: EdgeInsets.only(left: 14.h, right: 4.h),
         padding: EdgeInsets.all(2.h),
-        decoration: AppDecoration.outlineBlack9003
+        decoration: AppDecoration.outlineBlack
             .copyWith(borderRadius: BorderRadiusStyle.roundedBorder5),
         child: Container(
             decoration: AppDecoration.outlineGray
@@ -137,14 +137,14 @@ class SettingsAutoTrackScreen extends StatelessWidget {
                     width: 110.h,
                     padding:
                         EdgeInsets.symmetric(horizontal: 12.h, vertical: 6.v),
-                    decoration: AppDecoration.outlineGray4001,
+                    decoration: AppDecoration.outlineGrayLight,
                     child: Text("lbl2".tr,
                         style: CustomTextStyles.bodyMediumBlack900_1)),
                 Container(
                     width: 110.h,
                     padding:
                         EdgeInsets.symmetric(horizontal: 12.h, vertical: 6.v),
-                    decoration: AppDecoration.outlineGray4001,
+                    decoration: AppDecoration.outlineGrayLight,
                     child: Text("lbl2".tr,
                         style: CustomTextStyles.bodyMediumBlack900_1))
               ]),
@@ -170,24 +170,24 @@ class SettingsAutoTrackScreen extends StatelessWidget {
       Container(
           width: 110.h,
           padding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 6.v),
-          decoration: AppDecoration.outlineGray4001,
+          decoration: AppDecoration.outlineGrayLight,
           child: Text(cell,
               style: CustomTextStyles.bodyMediumBlack900_2
                   .copyWith(color: appTheme.black900))),
       Container(
           width: 110.h,
           padding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 6.v),
-          decoration: AppDecoration.outlineGray4001,
+          decoration: AppDecoration.outlineGrayLight,
           child: Text(cell1,
               style: CustomTextStyles.bodyMediumBlack900_1
-                  .copyWith(color: appTheme.black900.withOpacity(0.45)))),
+                  .copyWith(color: appTheme.black900.withValues(alpha: 0.45)))),
       Container(
           width: 110.h,
           padding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 6.v),
-          decoration: AppDecoration.outlineGray4001,
+          decoration: AppDecoration.outlineGrayLight,
           child: Text(cell2,
               style: CustomTextStyles.bodyMediumBlack900_1
-                  .copyWith(color: appTheme.black900.withOpacity(0.45))))
+                  .copyWith(color: appTheme.black900.withValues(alpha: 0.45))))
     ]);
   }
 

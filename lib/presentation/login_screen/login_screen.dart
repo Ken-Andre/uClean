@@ -58,8 +58,66 @@ class LoginScreen extends StatelessWidget {
                                       EdgeInsets.only(top: 96.v, right: 54.h)),
                               _buildFrameTen(context),
                               CustomImageView(
-                                  height: 271.v, alignment: Alignment.topRight)
+                                  height: 271.v, alignment: Alignment.topRight),
+                              _buildErrorMessage(context),
                             ])))))));
+  }
+
+  /// Error Message Widget
+  Widget _buildErrorMessage(BuildContext context) {
+    return BlocBuilder<LoginBloc, LoginState>(
+      builder: (context, state) {
+        if (state.errorMessage == null || state.errorMessage!.isEmpty) {
+          return SizedBox.shrink();
+        }
+
+        return Positioned(
+          bottom: 20.v,
+          left: 20.h,
+          right: 20.h,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 12.v),
+            decoration: BoxDecoration(
+              color: Colors.red.shade50,
+              border: Border.all(color: Colors.red.shade300),
+              borderRadius: BorderRadius.circular(8.h),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.red.shade200.withValues(alpha: 0.3),
+                  blurRadius: 4,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Icon(Icons.error_outline, color: Colors.red, size: 20),
+                SizedBox(width: 12.h),
+                Expanded(
+                  child: Text(
+                    state.errorMessage!,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: Colors.red.shade800,
+                      fontSize: 14.fSize,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => context.read<LoginBloc>().add(
+                        CreateLoginEvent(
+                          onCreateLoginEventSuccess: () {},
+                          onCreateLoginEventError: () {},
+                        ),
+                      ),
+                  child:
+                      Icon(Icons.close, color: Colors.red.shade600, size: 20),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   /// Section Widget
@@ -127,13 +185,21 @@ class LoginScreen extends StatelessWidget {
                             style: CustomTextStyles.bodyLargeCyan800)))
               ]),
               SizedBox(height: 11.v),
-              CustomElevatedButton(
-                  width: 146.h,
-                  text: "lbl_next".tr,
-                  buttonStyle: CustomButtonStyles.fillOnSecondaryContainer,
-                  onPressed: () {
-                    navigatetoHomeCall(context);
-                  }),
+              BlocBuilder<LoginBloc, LoginState>(
+                builder: (context, state) {
+                  return CustomElevatedButton(
+                      width: 146.h,
+                      text: state.isLoading ? "Loading..." : "lbl_next".tr,
+                      buttonStyle: state.isLoading
+                          ? CustomButtonStyles.fillCyanTL5
+                          : CustomButtonStyles.fillOnSecondaryContainer,
+                      onPressed: state.isLoading
+                          ? null
+                          : () {
+                              navigatetoHomeCall(context);
+                            });
+                },
+              ),
               SizedBox(height: 14.v),
               Align(
                   alignment: Alignment.centerRight,
@@ -183,15 +249,10 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  /// Navigates to the recoveraccounttwoScreen when the action is triggered.
+  /// Handles login error - now errors are displayed in the UI through state management
   void _onAuthLoginPostEventError(BuildContext context) {
-    Fluttertoast.showToast(
-        msg: "Something went wrong, try again... \n ",
-        timeInSecForIosWeb: 3,
-        gravity: ToastGravity.TOP);
-    NavigatorService.pushNamed(
-      AppRoutes.recoveraccounttwoScreen,
-    );
+    // Error is already handled through Bloc state management
+    // No navigation or toast needed - error message is shown in UI
   }
 
   /// Opens a URL in the device's default web browser.

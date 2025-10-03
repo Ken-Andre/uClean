@@ -22,7 +22,7 @@ class SettingsaddmanualtrippresversItemWidget extends StatelessWidget {
         horizontal: 38.h,
         vertical: 5.v,
       ),
-      decoration: AppDecoration.fillWhiteA.copyWith(
+      decoration: AppDecoration.fillWhite.copyWith(
         borderRadius: BorderRadiusStyle.roundedBorder5,
       ),
       child: Row(
