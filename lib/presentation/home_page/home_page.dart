@@ -1,217 +1,183 @@
-import 'package:ucleankim/widgets/app_bar/custom_app_bar.dart';
-import 'package:ucleankim/widgets/app_bar/appbar_image.dart';
-import 'package:ucleankim/widgets/app_bar/appbar_subtitle_one.dart';
-import 'models/home_model.dart';
 import 'package:flutter/material.dart';
-import 'package:ucleankim/core/app_export.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../services/trip_service.dart';
+import '../../services/step_counter_service.dart';
+import '../../services/gamification_service.dart';
+import '../../models/trip.dart';
+import '../../widgets/trip_card.dart';
+import '../../core/app_export.dart';
 import 'bloc/home_bloc.dart';
+import 'models/home_model.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+/// Page d'accueil modernisée avec Material Design 3
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   static Widget builder(BuildContext context) {
     return BlocProvider<HomeBloc>(
-        create: (context) => HomeBloc(HomeState(homeModelObj: HomeModel()))
-          ..add(HomeInitialEvent()),
-        child: HomePage());
+      create: (context) => HomeBloc(HomeState(homeModelObj: HomeModel()))
+        ..add(HomeInitialEvent()),
+      child: const HomePage(),
+    );
+  }
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+  final TripService _tripService = TripService();
+  final StepCounterService _stepCounter = StepCounterService.instance;
+  final GamificationService _gamification = GamificationService();
+  
+  bool _isTrackingEnabled = false;
+  int _totalPoints = 0;
+  int _stepsToday = 0;
+  List<Trip> _unclassifiedTrips = [];
+  
+  late AnimationController _animationController;
+  late Animation<double> _fadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 800),
+      vsync: this,
+    );
+    _fadeAnimation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOut,
+    );
+    _animationController.forward();
+    _loadData();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loadData() async {
+    final points = await _gamification.getTotalPoints();
+    final steps = _stepCounter.stepsToday;
+    final trips = await _tripService.getUnclassifiedTrips();
+    
+    if (mounted) {
+      setState(() {
+        _totalPoints = points;
+        _stepsToday = steps;
+        _unclassifiedTrips = trips;
+      });
+    }
+  }
+
+  Future<void> _toggleTracking() async {
+    setState(() {
+      _isTrackingEnabled = !_isTrackingEnabled;
+    });
+    
+    if (_isTrackingEnabled) {
+      await _stepCounter.startTracking();
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Row(
+              children: [
+                Icon(Icons.check_circle, color: Colors.white),
+                SizedBox(width: 12),
+                Text('Suivi automatique activé'),
+              ],
+            ),
+            backgroundColor: Colors.green,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        );
+      }
+    } else {
+      await _stepCounter.stopTracking();
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Row(
+              children: [
+                Icon(Icons.pause_circle, color: Colors.white),
+                SizedBox(width: 12),
+                Text('Suivi automatique désactivé'),
+              ],
+            ),
+            backgroundColor: Colors.orange,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        );
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            backgroundColor: appTheme.gray10001,
-            appBar: _buildAppBar(context),
-            body: SizedBox(
-                width: SizeUtils.width,
-                child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 24.v),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                      // Welcome Section
-                      Center(
-                        child: Column(
-                          children: [
-                            CustomImageView(
-                                imagePath: ImageConstant.imgGroupYellow400,
-                                height: 80.v,
-                                width: 100.h),
-                            SizedBox(height: 16.v),
-                            BlocSelector<HomeBloc, HomeState, String?>(
-                                selector: (state) =>
-                                    state.homeModelObj!.welcomeIsabelle,
-                                builder: (context, welcomeIsabelle) {
-                                  return Text(welcomeIsabelle ?? "",
-                                      style: theme.textTheme.headlineSmall?.copyWith(
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w600,
-                                      ));
-                                }),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 32.v),
-
-                      // Set Live Tracking Section
-                      Text("msg_set_live_tracking".tr,
-                          style: theme.textTheme.titleLarge?.copyWith(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w600,
-                          )),
-                      SizedBox(height: 16.v),
-                      _buildTrackingCard(context),
-                      SizedBox(height: 32.v),
-
-                      // Unclassified Trips Section
-                      Text("msg_unclassified_trip".tr,
-                          style: theme.textTheme.titleLarge?.copyWith(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w600,
-                          )),
-                      SizedBox(height: 16.v),
-                      _buildFrameNinetyThree(context),
-                      SizedBox(height: 16.v),
-                      _buildUntripOne(context),
-                      SizedBox(height: 16.v),
-                      _buildUntripOne1(context),
-                      SizedBox(height: 16.v),
-                    ])))));
-  }
-
-  /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
-    return CustomAppBar(
-        height: 70.v,
-        centerTitle: true,
-        title: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.h),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Scaffold(
+      backgroundColor: Colors.grey[50],
+      appBar: _buildModernAppBar(),
+      body: RefreshIndicator(
+        onRefresh: _loadData,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: FadeTransition(
+            opacity: _fadeAnimation,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: () => onTapLock(context),
-                  child: Container(
-                    padding: EdgeInsets.all(8.h),
-                    decoration: BoxDecoration(
-                      color: appTheme.whiteA70001,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: appTheme.black900.withValues(alpha: 0.08),
-                          blurRadius: 8,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: CustomImageView(
-                        imagePath: ImageConstant.imgLockBlack900,
-                        height: 24.adaptSize,
-                        width: 24.adaptSize),
-                  ),
-                ),
-                Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12.h, vertical: 6.v),
-                    decoration: BoxDecoration(
-                      color: appTheme.lightGreen200,
-                      borderRadius: BorderRadius.circular(20.h),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        BlocSelector<HomeBloc, HomeState, String?>(
-                            selector: (state) =>
-                                state.homeModelObj!.gamingPoints,
-                            builder: (context, gamingPoints) {
-                              return Text(
-                                gamingPoints ?? "lbl_127".tr,
-                                style: theme.textTheme.titleMedium?.copyWith(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              );
-                            }),
-                        SizedBox(width: 8.h),
-                        CustomImageView(
-                            imagePath: ImageConstant.imgClose,
-                            height: 20.adaptSize,
-                            width: 20.adaptSize)
-                    ]))
-              ]),
-        ));
-  }
-
-  /// Modern Tracking Card
-  Widget _buildTrackingCard(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20.h),
-      decoration: BoxDecoration(
-        color: appTheme.whiteA70001,
-        borderRadius: BorderRadius.circular(16.h),
-        boxShadow: [
-          BoxShadow(
-            color: appTheme.black900.withValues(alpha: 0.08),
-            blurRadius: 12,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: BlocSelector<HomeBloc, HomeState, bool?>(
-              selector: (state) => state.homeModelObj?.isautoTracked,
-              builder: (context, isAutoTracked) {
-                return GestureDetector(
-                  onTap: () {
-                    final newHomeModel = context
-                        .read<HomeBloc>()
-                        .state
-                        .homeModelObj
-                        ?.copyWith(
-                          isautoTracked: !isAutoTracked!,
-                        );
-                    context.read<HomeBloc>().add(
-                        UpdateHomeModelEvent(newHomeModel!));
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(20.h),
-                    decoration: BoxDecoration(
-                      color: isAutoTracked! 
-                          ? appTheme.cyan800.withValues(alpha: 0.1)
-                          : appTheme.gray10001,
-                      borderRadius: BorderRadius.circular(12.h),
-                    ),
-                    child: CustomImageView(
-                      imagePath: isAutoTracked
-                          ? ImageConstant.imgVectorOff
-                          : ImageConstant.imgVectorOn,
-                      height: 80.v,
-                      width: 80.h,
-                    ),
-                  ),
-                );
-              },
+                _buildWelcomeHeader(),
+                const SizedBox(height: 24),
+                _buildTrackingSection(),
+                const SizedBox(height: 32),
+                _buildUnclassifiedTripsSection(),
+                const SizedBox(height: 24),
+              ],
             ),
           ),
-          SizedBox(width: 16.h),
-          GestureDetector(
-            onTap: () => onTapImgClose(context),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 8.v),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Color(0xFF003366), Color(0xFF63ACD4)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+        ),
+      ),
+    );
+  }
+
+  PreferredSizeWidget _buildModernAppBar() {
+    return AppBar(
+      elevation: 0,
+      backgroundColor: appTheme.whiteA700,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            icon: Icon(Icons.person_outline, color: appTheme.gray900),
+            onPressed: () {
+              NavigatorService.pushNamed(AppRoutes.profileScreen);
+            },
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            decoration: BoxDecoration(
+              color: appTheme.lightGreen200,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  '$_totalPoints',
+                  style: TextStyle(
+                    color: appTheme.gray900,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
-                borderRadius: BorderRadius.circular(20.h),
-              ),
-              child: CustomImageView(
-                  imagePath: ImageConstant.imgCloseCyan900,
-                  height: 24.v,
-                  width: 60.h,
-                  color: appTheme.whiteA70001),
+                const SizedBox(width: 8),
+                Icon(Icons.stars, color: appTheme.gray900, size: 20),
+              ],
             ),
           ),
         ],
@@ -219,301 +185,307 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  /// Section Widget
-  Widget _buildFrameNinetyThree(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget _buildWelcomeHeader() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.v),
-              child: SizedBox(
-                  width: 73.h, child: Divider(color: appTheme.gray500))),
-          Text("msg_personnal_swipe".tr,
-              style: CustomTextStyles.bodySmallGray50001),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.v),
-              child: SizedBox(
-                  width: 73.h, child: Divider(color: appTheme.gray500)))
-        ]);
-  }
-
-  /// Section Widget
-  Widget _buildUntripOne(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(16.h),
-        decoration: BoxDecoration(
-          color: appTheme.whiteA70001,
-          borderRadius: BorderRadius.circular(12.h),
-          boxShadow: [
-            BoxShadow(
-              color: appTheme.black900.withValues(alpha: 0.08),
-              blurRadius: 8,
-              offset: Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          // Header with distance and date
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Text("lbl_6_9".tr,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                      )),
-                  SizedBox(width: 4.h),
-                  Text("lbl_km2".tr,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        fontFamily: 'Inter',
-                      )),
-                ],
+              Container(
+                height: 60,
+                width: 60,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.eco,
+                  size: 32,
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-              Row(
-                children: [
-                  CustomImageView(
-                      imagePath: ImageConstant.imgUser, height: 20.v, width: 30.h),
-                  SizedBox(width: 8.h),
-                  Text("lbl_16_01_2024".tr,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontFamily: 'Inter',
-                      )),
-                ],
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Bonjour !',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Vos déplacements écologiques',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-          SizedBox(height: 16.v),
-          // Trip details
+          const SizedBox(height: 20),
           Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("lbl_17_12".tr,
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                          )),
-                      SizedBox(height: 24.v),
-                      Text("lbl_19_15".tr,
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                          ))
-                    ]),
-                SizedBox(width: 16.h),
-                CustomImageView(
-                    imagePath: ImageConstant.imgSettings,
-                    height: 66.v,
-                    width: 21.h),
-                SizedBox(width: 8.h),
-                Expanded(
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("msg_douala_cameroon".tr,
-                              style: theme.textTheme.labelLarge?.copyWith(
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w600,
-                              )),
-                          SizedBox(height: 4.v),
-                          Text("msg_entree_lycee_ndogpassi".tr,
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                fontFamily: 'Inter',
-                                color: appTheme.black900.withValues(alpha: 0.6),
-                              )),
-                          SizedBox(height: 16.v),
-                          Text("msg_douala_cameroon".tr,
-                              style: theme.textTheme.labelLarge?.copyWith(
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w600,
-                              )),
-                          SizedBox(height: 4.v),
-                          Text("msg_entree_lycee_ndogpassi".tr,
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                fontFamily: 'Inter',
-                                color: appTheme.black900.withValues(alpha: 0.6),
-                              ))
-                        ]))
-              ]),
-          SizedBox(height: 12.v),
-          Divider(color: appTheme.black900.withValues(alpha: 0.1)),
-          SizedBox(height: 8.v),
-          _buildBottomContainer(context)
-        ]));
-  }
-
-  /// Section Widget
-  Widget _buildUntripOne1(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(16.h),
-        decoration: BoxDecoration(
-          color: appTheme.whiteA70001,
-          borderRadius: BorderRadius.circular(12.h),
-          boxShadow: [
-            BoxShadow(
-              color: appTheme.black900.withValues(alpha: 0.08),
-              blurRadius: 8,
-              offset: Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          // Header with distance and date
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Text("lbl_6_9".tr,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                      )),
-                  SizedBox(width: 4.h),
-                  Text("lbl_km2".tr,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        fontFamily: 'Inter',
-                      )),
-                ],
+              _buildStatCard(
+                icon: Icons.directions_walk,
+                label: 'Pas aujourd\'hui',
+                value: '$_stepsToday',
+                color: Colors.blue,
               ),
-              Row(
-                children: [
-                  CustomImageView(
-                      imagePath: ImageConstant.imgUser, height: 20.v, width: 30.h),
-                  SizedBox(width: 8.h),
-                  Text("lbl_16_01_2024".tr,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontFamily: 'Inter',
-                      )),
-                ],
+              const SizedBox(width: 12),
+              _buildStatCard(
+                icon: Icons.pending_actions,
+                label: 'À classifier',
+                value: '${_unclassifiedTrips.length}',
+                color: Colors.orange,
               ),
             ],
           ),
-          SizedBox(height: 16.v),
-          Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(children: [
-                  Text("lbl_17_12".tr,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w500,
-                      )),
-                  SizedBox(height: 24.v),
-                  Text("lbl_19_15".tr,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w500,
-                      ))
-                ]),
-                SizedBox(width: 16.h),
-                CustomImageView(
-                    imagePath: ImageConstant.imgSettings,
-                    height: 66.v,
-                    width: 21.h),
-                SizedBox(width: 8.h),
-                Expanded(
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("msg_douala_cameroon".tr,
-                              style: theme.textTheme.labelLarge?.copyWith(
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w600,
-                              )),
-                          SizedBox(height: 4.v),
-                          Text("msg_entree_lycee_ndogpassi".tr,
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                fontFamily: 'Inter',
-                                color: appTheme.black900.withValues(alpha: 0.6),
-                              )),
-                          SizedBox(height: 16.v),
-                          Text("msg_douala_cameroon".tr,
-                              style: theme.textTheme.labelLarge?.copyWith(
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w600,
-                              )),
-                          SizedBox(height: 4.v),
-                          Text("msg_entree_lycee_ndogpassi".tr,
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                fontFamily: 'Inter',
-                                color: appTheme.black900.withValues(alpha: 0.6),
-                              ))
-                        ]))
-              ]),
-          SizedBox(height: 12.v),
-          Divider(color: appTheme.black900.withValues(alpha: 0.1)),
-          SizedBox(height: 8.v),
-          _buildBottomContainer(context)
-        ]));
-  }
-
-  /// Common widget
-  Widget _buildTopContainerUnTrip(
-    BuildContext context, {
-    required String sixtyNine,
-    required String kM,
-    required String date,
-  }) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Text(sixtyNine,
-          style: CustomTextStyles.titleSmallBold
-              .copyWith(color: appTheme.black900)),
-      Padding(
-          padding: EdgeInsets.only(left: 12.h, top: 2.v, bottom: 3.v),
-          child: Text(kM,
-              style: CustomTextStyles.bodySmall11
-                  .copyWith(color: appTheme.black900))),
-      Spacer(flex: 56),
-      CustomImageView(
-          imagePath: ImageConstant.imgUser, height: 21.v, width: 36.h),
-      Spacer(flex: 43),
-      Text(date,
-          style: CustomTextStyles.bodyMediumBlack90015
-              .copyWith(color: appTheme.black900))
-    ]);
-  }
-
-  /// Common widget
-  Widget _buildBottomContainer(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.symmetric(vertical: 7.v),
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          CustomImageView(
-              imagePath: ImageConstant.imgLinkedin,
-              height: 17.v,
-              width: 9.h,
-              margin: EdgeInsets.only(top: 1.v)),
-          CustomImageView(
-              imagePath: ImageConstant.imgCar,
-              height: 17.v,
-              width: 15.h,
-              margin: EdgeInsets.only(left: 17.h, top: 1.v)),
-          Spacer(),
-          CustomImageView(
-              imagePath: ImageConstant.imgThumbsUp,
-              height: 17.v,
-              width: 11.h,
-              margin: EdgeInsets.only(top: 1.v))
-        ]));
-  }
-
-  /// Navigates to the profileScreen when the action is triggered.
-  onTapLock(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.profileScreen,
+        ],
+      ),
     );
   }
 
-  /// Navigates to the settingsAutoTrackScreen when the action is triggered.
-  onTapImgClose(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.settingsAutoTrackScreen,
+  Widget _buildStatCard({
+    required IconData icon,
+    required String label,
+    required String value,
+    required Color color,
+  }) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.grey[200]!),
+        ),
+        child: Column(
+          children: [
+            Icon(icon, size: 24, color: color),
+            const SizedBox(height: 8),
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey[600],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTrackingSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.grey[200]!),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  _isTrackingEnabled ? Icons.gps_fixed : Icons.gps_off,
+                  color: _isTrackingEnabled ? Colors.green : Colors.grey,
+                  size: 24,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Suivi automatique',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: _isTrackingEnabled ? Colors.green : Colors.grey,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        _isTrackingEnabled
+                            ? 'Vos déplacements sont suivis'
+                            : 'Suivi désactivé',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Switch(
+                  value: _isTrackingEnabled,
+                  onChanged: (value) {
+                    _toggleTracking();
+                  },
+                  activeColor: Colors.green,
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            TextButton.icon(
+              onPressed: () {
+                NavigatorService.pushNamed(AppRoutes.settingsAutoTrackScreen);
+              },
+              icon: const Icon(Icons.settings, size: 18),
+              label: const Text('Configurer le suivi'),
+              style: TextButton.styleFrom(
+                foregroundColor: Theme.of(context).primaryColor,
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildUnclassifiedTripsSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Trajets à classifier',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+              if (_unclassifiedTrips.isNotEmpty)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: Colors.orange[100],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    '${_unclassifiedTrips.length}',
+                    style: TextStyle(
+                      color: Colors.orange[900],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+                    const SizedBox(height: 8),
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      child: _unclassifiedTrips.isEmpty
+                          ? Container(
+                              key: const ValueKey('empty'),
+                              padding: const EdgeInsets.all(32),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(color: Colors.grey[200]!),
+                              ),
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.check_circle_outline,
+                                    size: 48,
+                                    color: Colors.green[400],
+                                  ),
+                                  const SizedBox(height: 12),
+                                  const Text(
+                                    'Tout est à jour !',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    'Aucun trajet à classifier',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey[600],
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            )
+                          : Column(
+                              key: const ValueKey('trips'),
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(vertical: 12),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(child: Divider(color: Colors.grey[300])),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                                        child: Text(
+                                          '← Glisser pour classer →',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey[600],
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(child: Divider(color: Colors.grey[300])),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                ..._unclassifiedTrips.asMap().entries.map((entry) {
+                                  final trip = entry.value;
+                                  return AnimatedSwitcher(
+                                    duration: const Duration(milliseconds: 300),
+                                    child: Container(
+                                      key: ValueKey(trip.id),
+                                      child: TripCard(
+                                        trip: trip,
+                                        onClassified: _loadData,
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                              ],
+                            ),
+                    ),
+        ],
+      ),
     );
   }
 }

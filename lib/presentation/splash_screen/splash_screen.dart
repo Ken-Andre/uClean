@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
         create: (context) =>
             SplashBloc(SplashState(splashModelObj: SplashModel()))
               ..add(SplashInitialEvent()),
-        child: SplashScreen());
+        child: const SplashScreen());
   }
 
   @override

@@ -150,8 +150,8 @@ class TextThemes {
 class ColorSchemes {
   static final primaryColorScheme = ColorScheme.light(
     // Primary colors
-    primary: Color(0XFFFFF7F7),
-    primaryContainer: Color(0XAB606060),
+    primary: Color(0XFFFF90A4), // Bleu-vert plus prononcé et harmonieux
+    primaryContainer: Color(0XFF6FA8B3),
     secondaryContainer: Color(0XFF200E32),
 
     // Error colors
@@ -162,7 +162,7 @@ class ColorSchemes {
 
     // On colors(text colors)
     // onPrimary: Color(0XFF162E38),
-    onPrimary: Color(0XFFD7D7D7),
+    onPrimary: Color(0XFFFFFFFF), // Blanc pour le texte sur la couleur primaire
     onPrimaryContainer: Color(0X10FEFEFF),
     onSecondaryContainer: Color(0XA200A4FD),
   );

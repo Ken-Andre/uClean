@@ -113,7 +113,7 @@ final Map<String, String> enUs = {
   // Learn Screen
   "lbl_articles": "Articles",
   "msg_Vilogia":
-      "Vilogia : la mobilité, un moyen d\'agir pour réduire son empreinte carbone Vilogia 2023",
+      "Vilogia : la mobilité, un moyen d\\'agir pour réduire son empreinte carbone Vilogia 2023",
   "msg_Emissions_de_CO2": "Émissions de CO2 en 2020",
   "msg_Emissions_de_CO2_hors_UTCATF":
       "Émissions de CO2 hors UTCATF dans le monde",

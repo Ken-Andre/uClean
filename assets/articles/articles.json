@@ -1,0 +1,24 @@
+{
+  "articles": [
+    {
+      "id": "1",
+      "title": "The Beauty of Carbon Tracking",
+      "image_path": "assets/images/img_an_artistic_and.png",
+      "date": "2024-01-15",
+      "category": "Environment",
+      "points": 5,
+      "content_path": "assets/articles/article-1.md",
+      "reading_time": "5 min"
+    },
+    {
+      "id": "2",
+      "title": "Sustainable Mobility",
+      "image_path": "assets/images/img_the_photo_highl_1.png",
+      "date": "2024-01-10",
+      "category": "Transportation",
+      "points": 3,
+      "content_path": "assets/articles/article-2.md",
+      "reading_time": "3 min"
+    }
+  ]
+}
