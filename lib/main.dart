@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
                 supportedLocales: [
                   Locale('en', ''),
                 ],
-                initialRoute: AppRoutes.appNavigationScreen,
+                initialRoute: AppRoutes.splashScreen,
                 routes: AppRoutes.routes,
               );
             },

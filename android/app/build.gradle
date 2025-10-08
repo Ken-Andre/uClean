@@ -9,13 +9,13 @@ android {
     compileSdk 35
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
         coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '17'
     }
 
     sourceSets {
@@ -28,6 +28,15 @@ android {
         targetSdkVersion 35
         versionCode 1
         versionName "1.0.19"
+    }
+
+    signingConfigs {
+        release {
+            keyAlias System.getenv("RELEASE_KEY_ALIAS") ?: project.findProperty("RELEASE_KEY_ALIAS")
+            keyPassword System.getenv("RELEASE_KEY_PASSWORD") ?: project.findProperty("RELEASE_KEY_PASSWORD")
+            storeFile file(System.getenv("RELEASE_STORE_FILE") ?: project.findProperty("RELEASE_STORE_FILE"))
+            storePassword System.getenv("RELEASE_STORE_PASSWORD") ?: project.findProperty("RELEASE_STORE_PASSWORD")
+        }
     }
 
     buildTypes {

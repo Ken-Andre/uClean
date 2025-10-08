@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  analyze-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -21,16 +21,16 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-    - name: Run tests
-      run: flutter test
+      - name: Run tests
+        run: flutter test
 
-    - name: Analyze code
-      run: flutter analyze
+      - name: Analyze code
+        run: flutter analyze
 
       - name: Check formatting
         run: flutter format --set-exit-if-changed .
 
-      - name: Run tests
+      - name: Run tests with coverage
         run: flutter test --coverage
 
       - name: Upload test coverage

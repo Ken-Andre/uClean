@@ -15,10 +15,30 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     SplashInitialEvent event,
     Emitter<SplashState> emit,
   ) async {
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      NavigatorService.popAndPushNamed(
-        AppRoutes.onboardingScreen,
-      );
+    Future.delayed(const Duration(milliseconds: 3000), () async {
+      final prefUtils = PrefUtils();
+      await prefUtils.init();
+
+      // Vérifier si l'onboarding a été complété
+      if (!prefUtils.getOnboardingCompleted()) {
+        // Première fois - aller à l'onboarding
+        NavigatorService.popAndPushNamed(
+          AppRoutes.onboardingScreen,
+        );
+      } else {
+        // Onboarding fait - vérifier l'authentification
+        if (prefUtils.isLoggedIn()) {
+          // Déjà connecté - aller au home
+          NavigatorService.popAndPushNamed(
+            AppRoutes.homeContainerScreen,
+          );
+        } else {
+          // Pas connecté - aller au login
+          NavigatorService.popAndPushNamed(
+            AppRoutes.loginScreen,
+          );
+        }
+      }
     });
   }
 }

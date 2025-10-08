@@ -130,13 +130,18 @@ class OnboardingScreen extends StatelessWidget {
   }
 
   /// Navigates to the loginScreen when the action is triggered.
-  navigatetoLogin(BuildContext context, int index, PageController? pageControllerf) {
+  navigatetoLogin(BuildContext context, int index, PageController? pageControllerf) async {
     if(index<3){
        pageControllerf?.animateToPage(
           index,
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeIn);
     } else {
+      // Marquer l'onboarding comme complété avant de naviguer
+      final prefUtils = PrefUtils();
+      await prefUtils.init();
+      await prefUtils.setOnboardingCompleted(true);
+
       NavigatorService.pushNamed(
         AppRoutes.loginScreen,
       );

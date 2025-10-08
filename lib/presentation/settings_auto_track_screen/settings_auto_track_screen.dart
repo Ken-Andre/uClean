@@ -41,17 +41,55 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
   }
 
   Future<void> _loadSettings() async {
+    final prefUtils = PrefUtils();
+    await prefUtils.init();
+
     setState(() {
-      _stepTrackingEnabled = _stepCounter.isTracking;
-      _wifiTrackingEnabled = _wifiTracking.isTracking;
+      _stepTrackingEnabled = prefUtils.getStepTrackingEnabled();
+      _wifiTrackingEnabled = prefUtils.getWifiTrackingEnabled();
+      _onlyTrackWithinHours = prefUtils.getOnlyTrackWithinHours();
+      _startTime = _parseTimeOfDay(prefUtils.getTrackingStartTime());
+      _endTime = _parseTimeOfDay(prefUtils.getTrackingEndTime());
     });
+
+    // Sync with actual service state
+    if (_stepTrackingEnabled && !_stepCounter.isTracking) {
+      await _stepCounter.startTracking();
+    } else if (!_stepTrackingEnabled && _stepCounter.isTracking) {
+      await _stepCounter.stopTracking();
+    }
+
+    if (_wifiTrackingEnabled && !_wifiTracking.isTracking) {
+      await _wifiTracking.startTracking();
+    } else if (!_wifiTrackingEnabled && _wifiTracking.isTracking) {
+      await _wifiTracking.stopTracking();
+    }
+  }
+
+  TimeOfDay _parseTimeOfDay(String timeString) {
+    try {
+      final parts = timeString.split(':');
+      final hour = int.parse(parts[0]);
+      final minute = int.parse(parts[1]);
+      return TimeOfDay(hour: hour, minute: minute);
+    } catch (e) {
+      return const TimeOfDay(hour: 8, minute: 0);
+    }
+  }
+
+  String _formatTimeOfDay(TimeOfDay time) {
+    return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
   }
 
   Future<void> _toggleStepTracking(bool value) async {
+    final prefUtils = PrefUtils();
+    await prefUtils.init();
+    await prefUtils.setStepTrackingEnabled(value);
+
     setState(() {
       _stepTrackingEnabled = value;
     });
-    
+
     if (value) {
       await _stepCounter.startTracking();
       if (mounted) {
@@ -66,10 +104,14 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
   }
 
   Future<void> _toggleWifiTracking(bool value) async {
+    final prefUtils = PrefUtils();
+    await prefUtils.init();
+    await prefUtils.setWifiTrackingEnabled(value);
+
     setState(() {
       _wifiTrackingEnabled = value;
     });
-    
+
     if (value) {
       await _wifiTracking.startTracking();
       if (mounted) {
@@ -115,15 +157,24 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
         );
       },
     );
-    
+
     if (picked != null) {
-      setState(() {
-        if (isStartTime) {
+      // Sauvegarder dans SharedPreferences
+      final prefUtils = PrefUtils();
+      await prefUtils.init();
+
+      String formattedTime = _formatTimeOfDay(picked);
+      if (isStartTime) {
+        await prefUtils.setTrackingStartTime(formattedTime);
+        setState(() {
           _startTime = picked;
-        } else {
+        });
+      } else {
+        await prefUtils.setTrackingEndTime(formattedTime);
+        setState(() {
           _endTime = picked;
-        }
-      });
+        });
+      }
     }
   }
 
@@ -303,7 +354,11 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
               ),
               Switch(
                 value: _onlyTrackWithinHours,
-                onChanged: (value) {
+                onChanged: (value) async {
+                  final prefUtils = PrefUtils();
+                  await prefUtils.init();
+                  await prefUtils.setOnlyTrackWithinHours(value);
+
                   setState(() {
                     _onlyTrackWithinHours = value;
                   });
