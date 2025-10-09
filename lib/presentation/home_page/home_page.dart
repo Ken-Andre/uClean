@@ -50,7 +50,25 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       curve: Curves.easeInOut,
     );
     _animationController.forward();
+    _loadSettings();
     _loadData();
+  }
+
+  Future<void> _loadSettings() async {
+    final prefUtils = PrefUtils();
+    await prefUtils.init();
+
+    setState(() {
+      // Charge l'état du suivi automatique depuis les préférences
+      _isTrackingEnabled = prefUtils.getStepTrackingEnabled();
+    });
+
+    // Synchronise l'état réel du service
+    if (_isTrackingEnabled && !_stepCounter.isTracking) {
+      await _stepCounter.startTracking();
+    } else if (!_isTrackingEnabled && _stepCounter.isTracking) {
+      await _stepCounter.stopTracking();
+    }
   }
 
   @override
@@ -74,10 +92,18 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   }
 
   Future<void> _toggleTracking() async {
+    final prefUtils = PrefUtils();
+    await prefUtils.init();
+
+    final newState = !_isTrackingEnabled;
+
+    // Sauvegarde immédiatement dans SharedPreferences
+    await prefUtils.setStepTrackingEnabled(newState);
+
     setState(() {
-      _isTrackingEnabled = !_isTrackingEnabled;
+      _isTrackingEnabled = newState;
     });
-    
+
     if (_isTrackingEnabled) {
       await _stepCounter.startTracking();
       if (mounted) {
