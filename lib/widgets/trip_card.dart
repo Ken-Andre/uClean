@@ -27,9 +27,9 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
   TripType? _swipeDirection;
   bool _isAnimating = false;
 
-  static const double _swipeThreshold = 0.3; // 30% de la largeur de l'écran
+  static const double _swipeThreshold = 0.4; // 40% de la largeur de l'écran
   static const double _velocityThreshold =
-      300; // Vitesse minimum pour déclencher
+      800; // Vitesse minimum pour déclencher
 
   @override
   void initState() {
@@ -79,9 +79,9 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
       _dragPosition += delta;
 
       // Déterminer la direction du swipe
-      if (_dragPosition > 50) {
+      if (_dragPosition > 80) {
         _swipeDirection = TripType.professional;
-      } else if (_dragPosition < -50) {
+      } else if (_dragPosition < -80) {
         _swipeDirection = TripType.personal;
       } else {
         _swipeDirection = null;
@@ -263,7 +263,7 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
@@ -279,7 +279,7 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
@@ -307,7 +307,7 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(Icons.access_time,
@@ -327,7 +327,7 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(Icons.flag,
@@ -413,7 +413,7 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
     return Positioned.fill(
       child: Container(
         decoration: BoxDecoration(
-          color: _getOverlayColor().withOpacity(0.15),
+          color: _getOverlayColor().withValues(alpha: 0.15),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: _getOverlayColor(),
@@ -442,70 +442,68 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
   }
 
   Widget _buildDirectionIndicators() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          left: BorderSide(
-            color: Colors.green.withValues(alpha: 0.8),
-            width: 4,
-          ),
-          right: BorderSide(
-            color: Colors.blue.withValues(alpha: 0.8),
-            width: 4,
-          ),
-        ),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4.0),
-        child: Row(
-          children: [
-            Expanded(
-              child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'Personnel',
-                  style: TextStyle(
-                    color: Colors.green.shade600.withOpacity(0.7),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 11,
-                  ),
-                ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.green.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Colors.green.withValues(alpha: 0.5),
+                width: 1.5,
               ),
             ),
-            Expanded(
-              child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'Pro',
-                  style: TextStyle(
-                    color: Colors.blue.shade600.withOpacity(0.7),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 11,
-                  ),
-                ),
+            child: Text(
+              'Personnel',
+              style: TextStyle(
+                color: Colors.green.shade700,
+                fontWeight: FontWeight.bold,
+                fontSize: 11,
               ),
             ),
-          ],
-        ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.blue.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Colors.blue.withValues(alpha: 0.5),
+                width: 1.5,
+              ),
+            ),
+            child: Text(
+              'Pro',
+              style: TextStyle(
+                color: Colors.blue.shade700,
+                fontWeight: FontWeight.bold,
+                fontSize: 11,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Color _getCardColor() {
     if (_swipeDirection != null) {
-      return _getOverlayColor().withOpacity(0.9);
+      return _getOverlayColor().withValues(alpha: 0.9);
     }
     return Colors.grey.shade800;
   }
 
   Color _getShadowColor() {
     if (_swipeDirection == TripType.personal) {
-      return Colors.green.withOpacity(0.4);
+      return Colors.green.withValues(alpha: 0.4);
     } else if (_swipeDirection == TripType.professional) {
-      return Colors.blue.withOpacity(0.4);
+      return Colors.blue.withValues(alpha: 0.4);
     }
-    return Colors.black.withOpacity(0.2);
+    return Colors.black.withValues(alpha: 0.2);
   }
 
   Color _getOverlayColor() {
