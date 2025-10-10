@@ -28,31 +28,35 @@ class HomeContainerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeContainerBloc, HomeContainerState>(
         builder: (context, state) {
-      return SafeArea(
-          child: Scaffold(
-              body: Navigator(
-                  key: navigatorKey,
-                  initialRoute: AppRoutes.homePage,
-                  onGenerateRoute: (routeSetting) => PageRouteBuilder(
-                      pageBuilder: (ctx, ani, ani1) =>
-                          getCurrentPage(context, routeSetting.name!),
-                      transitionDuration: Duration(seconds: 0))),
-              bottomNavigationBar: _buildBottomBar(context),
-              floatingActionButton: CustomFloatingButton(
-                  height: 50,
-                  width: 50,
-                  backgroundColor: appTheme.blueA400,
-                  onTap: () {
-                    navigatetoAddScreen(context);
-                  },
-                  child: CustomImageView(
-                      imagePath: ImageConstant.imgCirclePlus,
-                      height: 27.0.adaptSize,
-                      width: 27.0.adaptSize,
-                    color: appTheme.whiteA700,
-                  )),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked));
+      return Scaffold(
+          body: SafeArea(
+            top: false,
+            bottom: true,
+            child: Navigator(
+                key: navigatorKey,
+                initialRoute: AppRoutes.homePage,
+                onGenerateRoute: (routeSetting) => PageRouteBuilder(
+                    pageBuilder: (ctx, ani, ani1) =>
+                        getCurrentPage(context, routeSetting.name!),
+                    transitionDuration: Duration(seconds: 0))),
+          ),
+          bottomNavigationBar: _buildBottomBar(context),
+          floatingActionButton: CustomFloatingButton(
+              height: 50,
+              width: 50,
+              backgroundColor: appTheme.blueA400,
+              onTap: () {
+                navigatetoAddScreen(context);
+              },
+              child: CustomImageView(
+                imagePath: ImageConstant.imgCirclePlus,
+                height: 27.0.adaptSize,
+                width: 27.0.adaptSize,
+                color: appTheme.whiteA700,
+              )),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked);
+      // );
     });
   }
 

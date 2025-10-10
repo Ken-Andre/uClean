@@ -16,7 +16,8 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
+          flutter-version: '3.27.0'
+          cache: true
 
       - name: Install dependencies
         run: flutter pub get
@@ -38,6 +39,7 @@ jobs:
         with:
           name: coverage-report
           path: coverage/
+          retention-days: 30
 
   build-android:
     name: Build Android APK & Bundle
@@ -52,10 +54,21 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
+          flutter-version: '3.27.0'
+          cache: true
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Decode keystore
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/app/key.jks
+
+      - name: Create gradle.properties
+        run: |
+          echo "RELEASE_STORE_FILE=key.jks" >> android/gradle.properties
+          echo "RELEASE_STORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> android/gradle.properties
+          echo "RELEASE_KEY_ALIAS=upload" >> android/gradle.properties
+          echo "RELEASE_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> android/gradle.properties
 
       - name: Build APK
         run: flutter build apk --release
@@ -70,3 +83,4 @@ jobs:
           path: |
             build/app/outputs/apk/release/*.apk
             build/app/outputs/bundle/release/*.aab
+          retention-days: 30

@@ -259,7 +259,7 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -270,7 +270,7 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: iconColor.withOpacity(0.1),
+              color: iconColor.withValues(alpha:0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(icon, color: iconColor, size: 28),
@@ -302,7 +302,7 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: Colors.green,
+            activeThumbColor: Colors.green,
           ),
         ],
       ),
@@ -317,7 +317,7 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -363,7 +363,7 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
                     _onlyTrackWithinHours = value;
                   });
                 },
-                activeColor: Colors.green,
+                activeThumbColor: Colors.green,
               ),
             ],
           ),
@@ -451,7 +451,7 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha:0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -509,7 +509,7 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha:0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(

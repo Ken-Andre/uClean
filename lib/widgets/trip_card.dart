@@ -28,7 +28,8 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
   bool _isAnimating = false;
 
   static const double _swipeThreshold = 0.3; // 30% de la largeur de l'écran
-  static const double _velocityThreshold = 300; // Vitesse minimum pour déclencher
+  static const double _velocityThreshold =
+      300; // Vitesse minimum pour déclencher
 
   @override
   void initState() {
@@ -171,7 +172,9 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
         content: Row(
           children: [
             Icon(
-              _swipeDirection == TripType.professional ? Icons.business : Icons.home,
+              _swipeDirection == TripType.professional
+                  ? Icons.business
+                  : Icons.home,
               color: Colors.white,
             ),
             const SizedBox(width: 12),
@@ -201,7 +204,8 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
         final normalizedPosition = _dragPosition / screenWidth;
 
         return Transform.translate(
-          offset: Offset(_slideAnimation.value.dx * screenWidth + _dragPosition, 0),
+          offset:
+              Offset(_slideAnimation.value.dx * screenWidth + _dragPosition, 0),
           child: Transform.scale(
             scale: _scaleAnimation.value,
             child: Transform.rotate(
@@ -210,7 +214,8 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
                 onHorizontalDragUpdate: _onHorizontalDragUpdate,
                 onHorizontalDragEnd: _onHorizontalDragEnd,
                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                   decoration: BoxDecoration(
                     color: _getCardColor(),
                     borderRadius: BorderRadius.circular(20),
@@ -229,8 +234,7 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
                       _buildCardContent(),
 
                       // Overlay pour le feedback visuel
-                      if (_swipeDirection != null)
-                        _buildSwipeOverlay(),
+                      if (_swipeDirection != null) _buildSwipeOverlay(),
 
                       // Indicateurs de direction (toujours visibles mais subtils)
                       _buildDirectionIndicators(),
@@ -256,7 +260,8 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(20),
@@ -271,7 +276,8 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(20),
@@ -304,12 +310,14 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
                           color: Colors.white.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: const Icon(Icons.access_time, color: Colors.white, size: 20),
+                        child: const Icon(Icons.access_time,
+                            color: Colors.white, size: 20),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         '${widget.trip.startTime.hour}:${widget.trip.startTime.minute.toString().padLeft(2, '0')}',
-                        style: const TextStyle(color: Colors.white, fontSize: 16),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ],
                   ),
@@ -322,12 +330,14 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
                           color: Colors.white.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: const Icon(Icons.flag, color: Colors.white, size: 20),
+                        child: const Icon(Icons.flag,
+                            color: Colors.white, size: 20),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         '${widget.trip.endTime.hour}:${widget.trip.endTime.minute.toString().padLeft(2, '0')}',
-                        style: const TextStyle(color: Colors.white, fontSize: 16),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ],
                   ),
@@ -343,12 +353,14 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.location_on, color: Colors.white70, size: 18),
+                        const Icon(Icons.location_on,
+                            color: Colors.white70, size: 18),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
                             widget.trip.startLocation ?? 'Lieu de départ',
-                            style: const TextStyle(color: Colors.white, fontSize: 14),
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 14),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -358,12 +370,14 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
                     const SizedBox(height: 12),
                     Row(
                       children: [
-                        const Icon(Icons.location_on, color: Colors.white70, size: 18),
+                        const Icon(Icons.location_on,
+                            color: Colors.white70, size: 18),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
                             widget.trip.endLocation ?? 'Lieu d\'arrivée',
-                            style: const TextStyle(color: Colors.white, fontSize: 14),
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 14),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -380,7 +394,8 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
             const SizedBox(height: 16),
             Row(
               children: [
-                const Icon(Icons.directions_walk, color: Colors.white70, size: 18),
+                const Icon(Icons.directions_walk,
+                    color: Colors.white70, size: 18),
                 const SizedBox(width: 8),
                 Text(
                   '${widget.trip.steps} pas',
@@ -431,45 +446,48 @@ class _TripCardState extends State<TripCard> with TickerProviderStateMixin {
       decoration: BoxDecoration(
         border: Border(
           left: BorderSide(
-            color: Colors.green.withOpacity(0.8),
+            color: Colors.green.withValues(alpha: 0.8),
             width: 4,
           ),
           right: BorderSide(
-            color: Colors.blue.withOpacity(0.8),
+            color: Colors.blue.withValues(alpha: 0.8),
             width: 4,
           ),
         ),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              alignment: Alignment.center,
-              child: Text(
-                'Personnel',
-                style: TextStyle(
-                  color: Colors.green.shade600.withOpacity(0.7),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 11,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4.0),
+        child: Row(
+          children: [
+            Expanded(
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  'Personnel',
+                  style: TextStyle(
+                    color: Colors.green.shade600.withOpacity(0.7),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 11,
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.center,
-              child: Text(
-                'Pro',
-                style: TextStyle(
-                  color: Colors.blue.shade600.withOpacity(0.7),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 11,
+            Expanded(
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  'Pro',
+                  style: TextStyle(
+                    color: Colors.blue.shade600.withOpacity(0.7),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 11,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

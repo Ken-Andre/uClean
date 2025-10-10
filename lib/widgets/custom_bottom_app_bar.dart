@@ -37,7 +37,7 @@ class CustomBottomAppBarState extends State<CustomBottomAppBar> {
       activeIcon: ImageConstant.imgLockGray60001,
       // tooltip: 'lbl_settings'.tr,
       type: BottomBarEnum.Lockgray60001,
-    )
+    ),
     // BottomMenuModel(
     //   icon: ImageConstant.imgStatsUp,
     //   activeIcon: ImageConstant.imgStatsUp,
@@ -50,57 +50,10 @@ class CustomBottomAppBarState extends State<CustomBottomAppBar> {
     // )
   ];
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return BottomAppBar(
-//       shape: CircularNotchedRectangle(),
-//       child: SizedBox(
-//         height: 86.v,
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceAround,
-//           children: List.generate(
-//             bottomMenuList.length,
-//             (index) {
-//               return InkWell(
-//                 onTap: () {
-//                   for (var element in bottomMenuList) {
-//                     element.isSelected = false;
-//                   }
-//                   bottomMenuList[index].isSelected = true;
-//                   widget.onChanged?.call(bottomMenuList[index].type);
-//                   setState(() {});
-//                 },
-//                 child: bottomMenuList[index].isSelected
-//                     ? CustomImageView(
-//                         imagePath: bottomMenuList[index].activeIcon,
-//                         height: 28.v,
-//                         width: 106.h,
-//                         color: appTheme.lightGreen200,
-//                       )
-//                     : CustomImageView(
-//                         imagePath: bottomMenuList[index].icon,
-//                         height: 28.v,
-//                         width: 25.h,
-//                         color: appTheme.whiteA70001,
-//                       ),
-//               );
-//             },
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// enum BottomBarEnum {
-//   Leftlightgreen200,
-//   Statsup,
-//   Cogprimary,
-// }
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50.v,
+      height: 62.v,
       // shape: CircularNotchedRectangle(),
       // decoration: BoxDecoration(
       //   color: theme.colorScheme.primary,
@@ -128,7 +81,7 @@ class CustomBottomAppBarState extends State<CustomBottomAppBar> {
               color: appTheme.gray60001,
             ),
             activeIcon: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10.h),
+              padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 2.v),
               decoration: AppDecoration.fillCyan.copyWith(
                 borderRadius: BorderRadiusStyle.circleBorder20,
               ),
@@ -137,7 +90,8 @@ class CustomBottomAppBarState extends State<CustomBottomAppBar> {
                 height: 24.adaptSize,
                 width: 24.adaptSize,
                 color: appTheme.blueGray900,
-                margin: EdgeInsets.symmetric(vertical: 8.v),
+                // [CORRIGÉ] La marge verticale a été supprimée pour éviter le débordement.
+                // margin: EdgeInsets.symmetric(vertical: 6.v),
               ),
             ),
             label: '',

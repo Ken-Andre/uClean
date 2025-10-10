@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../services/trip_service.dart';
 import '../../services/step_counter_service.dart';
@@ -25,16 +26,17 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   final TripService _tripService = TripService();
   final StepCounterService _stepCounter = StepCounterService.instance;
   final GamificationService _gamification = GamificationService();
-  
+
   bool _isTrackingEnabled = false;
   int _totalPoints = 0;
   int _stepsToday = 0;
   List<Trip> _unclassifiedTrips = [];
-  
+
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
 
@@ -81,7 +83,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     final points = await _gamification.getTotalPoints();
     final steps = _stepCounter.stepsToday;
     final trips = await _tripService.getUnclassifiedTrips();
-    
+
     if (mounted) {
       setState(() {
         _totalPoints = points;
@@ -118,7 +120,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             ),
             backgroundColor: Colors.green,
             behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
         );
       }
@@ -136,7 +139,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             ),
             backgroundColor: Colors.orange,
             behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
         );
       }
@@ -175,6 +179,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return AppBar(
       elevation: 0,
       backgroundColor: appTheme.whiteA700,
+      automaticallyImplyLeading: false,
+      systemOverlayStyle: const SystemUiOverlayStyle(
+        // La barre d'état elle-même est aussi transparente
+        statusBarColor: Colors.transparent,
+        // Les icônes (heure, batterie) sont sombres pour être lisibles
+        statusBarIconBrightness: Brightness.dark,
+      ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -351,7 +362,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: _isTrackingEnabled ? Colors.green : Colors.grey,
+                          color:
+                              _isTrackingEnabled ? Colors.green : Colors.grey,
                         ),
                       ),
                       const SizedBox(height: 2),
@@ -385,7 +397,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               label: const Text('Configurer le suivi'),
               style: TextButton.styleFrom(
                 foregroundColor: Theme.of(context).primaryColor,
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               ),
             ),
           ],
@@ -413,7 +426,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               ),
               if (_unclassifiedTrips.isNotEmpty)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: Colors.orange[100],
                     borderRadius: BorderRadius.circular(20),
@@ -429,87 +443,88 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
             ],
           ),
-                    const SizedBox(height: 8),
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 300),
-                      child: _unclassifiedTrips.isEmpty
-                          ? Container(
-                              key: const ValueKey('empty'),
-                              padding: const EdgeInsets.all(32),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(color: Colors.grey[200]!),
-                              ),
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    Icons.check_circle_outline,
-                                    size: 48,
-                                    color: Colors.green[400],
-                                  ),
-                                  const SizedBox(height: 12),
-                                  const Text(
-                                    'Tout est à jour !',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black87,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    'Aucun trajet à classifier',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.grey[600],
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
-                            )
-                          : Column(
-                              key: const ValueKey('trips'),
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(vertical: 12),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(child: Divider(color: Colors.grey[300])),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                                        child: Text(
-                                          '← Glisser pour classer →',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.grey[600],
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(child: Divider(color: Colors.grey[300])),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                ..._unclassifiedTrips.asMap().entries.map((entry) {
-                                  final trip = entry.value;
-                                  return AnimatedSwitcher(
-                                    duration: const Duration(milliseconds: 300),
-                                    child: Container(
-                                      key: ValueKey(trip.id),
-                                      child: TripCard(
-                                        trip: trip,
-                                        onClassified: _loadData,
-                                      ),
-                                    ),
-                                  );
-                                }).toList(),
-                              ],
-                            ),
+          const SizedBox(height: 8),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: _unclassifiedTrips.isEmpty
+                ? Container(
+                    key: const ValueKey('empty'),
+                    padding: const EdgeInsets.all(32),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Colors.grey[200]!),
                     ),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.check_circle_outline,
+                          size: 48,
+                          color: Colors.green[400],
+                        ),
+                        const SizedBox(height: 12),
+                        const Text(
+                          'Tout est à jour !',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          'Aucun trajet à classifier',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[600],
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  )
+                : Column(
+                    key: const ValueKey('trips'),
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(child: Divider(color: Colors.grey[300])),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Text(
+                                '← Glisser pour classer →',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey[600],
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Expanded(child: Divider(color: Colors.grey[300])),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      ..._unclassifiedTrips.asMap().entries.map((entry) {
+                        final trip = entry.value;
+                        return AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 300),
+                          child: Container(
+                            key: ValueKey(trip.id),
+                            child: TripCard(
+                              trip: trip,
+                              onClassified: _loadData,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ],
+                  ),
+          ),
         ],
       ),
     );
