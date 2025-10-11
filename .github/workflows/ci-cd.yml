@@ -30,7 +30,7 @@ jobs:
         run: flutter analyze --no-fatal-infos --no-fatal-warnings > /dev/null
 
       - name: Check formatting
-        run: flutter format --set-exit-if-changed .
+        run: dart format --set-exit-if-changed .
 
       # - name: Run tests with coverage
       #   run: flutter test --coverage
