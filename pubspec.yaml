@@ -36,12 +36,12 @@ dependencies:
   network_info_plus: ^5.0.3
   pedometer: ^4.0.1
 
-dev_dependencies: 
-  flutter_test: 
+dev_dependencies:
+  flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
   flutter_animate: ^4.5.0
-  flutter_native_splash: ^2.4.6
+  flutter_native_splash: ^2.4.5
 flutter: 
   uses-material-design: true
   assets: 
@@ -74,22 +74,22 @@ flutter:
         - asset: assets/fonts/InterBold.ttf
           weight: 700
 
-flutter_native_splash:
-  # La couleur de fond de votre splash screen.
-  # Doit correspondre à la couleur principale de votre logo ou de votre thème.
-  color: "#FFFFFF" # Exemple pour un fond blanc
+# flutter_native_splash:
+#   # La couleur de fond de votre splash screen.
+#   # Doit correspondre à la couleur principale de votre logo ou de votre thème.
+#   color: "#FFFFFF" # Exemple pour un fond blanc
 
-  # Le chemin vers votre logo.
-  image: assets/images/uclean_black.png
+#   # Le chemin vers votre logo.
+#   image: assets/images/uclean_black.png
 
-  # Indiquez que la configuration est pour Android.
-  android: true
-  # Indiquez que la configuration est pour iOS (même si vous ne ciblez que Android, c'est une bonne pratique).
-  ios: true
+#   # Indiquez que la configuration est pour Android.
+#   android: true
+#   # Indiquez que la configuration est pour iOS (même si vous ne ciblez que Android, c'est une bonne pratique).
+#   ios: true
 
-  # (Optionnel mais recommandé) Pour un affichage "plein écran" (Edge-to-Edge).
-  android_12:
-    color: "#FFFFFF"
-    image: assets/images/uclean_black.png
-    image_dark: assets/images/uclean_light.png
-    color_dark: "#000000"
+#   # (Optionnel mais recommandé) Pour un affichage "plein écran" (Edge-to-Edge).
+#   android_12:
+#     color: "#FFFFFF"
+#     image: assets/images/uclean_black.png
+#     image_dark: assets/images/uclean_light.png
+#     color_dark: "#000000"
