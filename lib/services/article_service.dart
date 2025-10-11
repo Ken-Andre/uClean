@@ -3,7 +3,9 @@ import 'dart:io';
 import 'dart:developer' as developer;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/article.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 /// Service de gestion des articles.
 /// Gère le chargement des articles depuis les assets, la progression de lecture de l'utilisateur,
@@ -145,17 +147,49 @@ class ArticleService {
 
   // --- Méthodes Privées pour la gestion de fichiers ---
 
-  /// Retourne le fichier de progression local.
-  Future<File> _getLocalProgressFile() async {
-    final directory = await getApplicationDocumentsDirectory();
-    return File('${directory.path}/$_localProgressFile');
+  /// Retourne le fichier de progression local avec gestion des plateformes.
+  Future<File?> _getLocalProgressFile() async {
+    if (kIsWeb) {
+      // Sur le web, retourner null car nous utiliserons SharedPreferences
+      return null;
+    }
+
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      return File('${directory.path}/$_localProgressFile');
+    } catch (e) {
+      developer.log(
+        'Erreur lors de l\'accès au répertoire des documents: $e',
+        name: 'ArticleService._getLocalProgressFile',
+      );
+      return null;
+    }
   }
 
   /// Récupère la progression locale depuis le stockage de l'appareil.
   Future<Map<String, dynamic>> _getLocalProgress() async {
+    if (kIsWeb) {
+      // Sur le web, utiliser SharedPreferences
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        final String? content = prefs.getString(_localProgressFile);
+        if (content != null && content.isNotEmpty) {
+          return json.decode(content) as Map<String, dynamic>;
+        }
+      } catch (e, stackTrace) {
+        developer.log(
+          'Erreur lors de la lecture de la progression locale (web).',
+          name: 'ArticleService._getLocalProgress',
+          error: e,
+          stackTrace: stackTrace,
+        );
+      }
+      return {};
+    }
+
     try {
       final file = await _getLocalProgressFile();
-      if (await file.exists()) {
+      if (file != null && await file.exists()) {
         final String content = await file.readAsString();
         if (content.isNotEmpty) {
           return json.decode(content) as Map<String, dynamic>;
@@ -174,8 +208,31 @@ class ArticleService {
 
   /// Sauvegarde la progression locale en fusionnant les nouvelles données avec les anciennes.
   Future<void> _saveLocalProgress(Map<String, dynamic> newProgress) async {
+    if (kIsWeb) {
+      // Sur le web, utiliser SharedPreferences
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        final existingProgress = await _getLocalProgress();
+        existingProgress.addAll(newProgress);
+        await prefs.setString(_localProgressFile, json.encode(existingProgress));
+      } catch (e, stackTrace) {
+        developer.log(
+          'Erreur lors de la sauvegarde de la progression locale (web)',
+          name: 'ArticleService._saveLocalProgress',
+          error: e,
+          stackTrace: stackTrace,
+        );
+        throw Exception('Impossible de sauvegarder la progression.');
+      }
+      return;
+    }
+
     try {
       final file = await _getLocalProgressFile();
+      if (file == null) {
+        throw Exception('Impossible d\'accéder au stockage local.');
+      }
+
       final existingProgress = await _getLocalProgress();
       existingProgress.addAll(newProgress);
       await file.writeAsString(json.encode(existingProgress));

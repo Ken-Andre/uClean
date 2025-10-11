@@ -112,15 +112,17 @@ final Map<String, String> enUs = {
 
   // Learn Screen
   "lbl_articles": "Articles",
-  "msg_Vilogia":
-      "Vilogia : la mobilité, un moyen d\\'agir pour réduire son empreinte carbone Vilogia 2023",
-  "msg_Emissions_de_CO2": "Émissions de CO2 en 2020",
-  "msg_Emissions_de_CO2_hors_UTCATF":
-      "Émissions de CO2 hors UTCATF dans le monde",
-  "msg_le_schema_du_directeur": "Le schéma du directeur",
-  "msg_learn_about_co2": "Learn about CO2 footprint impact",
-  "msg_reducing_your_carbon": "Reducing Your Carbon Footprint in Daily Travel",
-  "msg_understanding_the": "Understanding the Environmental Impact of Travel",
+  // Migrated to article-1.md
+  // "msg_Vilogia": "Vilogia : la mobilité, un moyen d\\'agir pour réduire son empreinte carbone Vilogia 2023",
+  // "msg_Emissions_de_CO2": "Émissions de CO2 en 2020",
+  // Migrated to article-2.md
+  // "msg_Emissions_de_CO2_hors_UTCATF": "Émissions de CO2 hors UTCATF dans le monde",
+  // "msg_le_schema_du_directeur": "Le schéma du directeur",
+  // Migrated to article-3.md
+  // "msg_learn_about_co2": "Learn about CO2 footprint impact",
+  // "msg_reducing_your_carbon": "Reducing Your Carbon Footprint in Daily Travel",
+  // Migrated to article-4.md
+  // "msg_understanding_the": "Understanding the Environmental Impact of Travel",
 
   // LearnTwo Screen
   "lbl_cyclin": " Cycling",

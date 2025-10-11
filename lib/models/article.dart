@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import '../services/points_config_service.dart';
 
 /// Modèle représentant un article
 class Article {
@@ -28,6 +29,11 @@ class Article {
     this.isRead = false,
     this.lastReadAt,
   });
+
+  /// Récupère les points effectifs pour cet article (peut être différent de la valeur stockée)
+  int getEffectivePoints() {
+    return PointsConfigService.currentConfig.getPointsForArticle(category);
+  }
 
   /// Factory pour créer depuis JSON
   factory Article.fromJson(Map<String, dynamic> json) {

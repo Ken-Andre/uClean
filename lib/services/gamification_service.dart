@@ -4,6 +4,7 @@ import '../services/gamification_config_service.dart';
 import 'api_gamification_service.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import '../core/utils/logger.dart';
+import 'points_config_service.dart';
 
 /// Service de gestion de la gamification avec configuration dynamique et synchronisation API
 class GamificationService {
@@ -56,12 +57,13 @@ class GamificationService {
   /// Ajoute des points pour un événement spécifique avec configuration dynamique
   Future<int> addPoints(String event, {Map<String, dynamic>? metadata}) async {
     final data = await getGamificationData();
-    final config = GamificationConfigService.currentConfig;
+    final pointsConfig = PointsConfigService.currentConfig;
+    final gamificationConfig = GamificationConfigService.currentConfig;
 
-    // Calculer les points selon la configuration
-    final basePoints = config.pointsPerEvent[event] ?? 0;
+    // Calculer les points selon la configuration des points
+    final basePoints = pointsConfig.getPointsForEvent(event);
     final multiplier = metadata?['multiplier'] as double? ??
-        config.activityMultipliers[event] ??
+        gamificationConfig.activityMultipliers[event] ??
         1.0;
     final pointsToAdd = (basePoints * multiplier).round();
 
@@ -315,33 +317,33 @@ class GamificationService {
 
   /// Synchronise les données de gamification depuis l'API avec fallback sur le cache local
   Future<void> syncDataFromAPI() async {
-    Logger.log('🟠 Vérification connectivité pour sync API...');
+    print('🟠 Vérification connectivité pour sync API...');
     try {
       // Vérifier la connectivité
       final connectivityResult = await Connectivity().checkConnectivity();
       final isOnline = connectivityResult != ConnectivityResult.none;
 
-      Logger.log(
+      print(
           '🔗 État connectivité: ${isOnline ? 'EN LIGNE' : 'HORS LIGNE'}');
 
       if (isOnline) {
-        Logger.log('📡 Tentative récupération données depuis API...');
+        print('📡 Tentative récupération données depuis API...');
         try {
           // Récupérer les données depuis l'API
           final apiPoints = await _apiService.getGamificationPoints();
-          Logger.log(
+          print(
               '📋 Points récupérés depuis API: ${apiPoints.length} points');
 
           if (apiPoints.isNotEmpty) {
             final currentLocalPoints = await getTotalPoints();
-            Logger.log('🏠 Points locaux actuels: $currentLocalPoints');
+            print('🏠 Points locaux actuels: $currentLocalPoints');
 
             final data = await getGamificationData();
 
             // Calculer le total des points depuis l'API
             final apiTotalPoints =
                 apiPoints.fold<int>(0, (sum, point) => sum + point.points);
-            Logger.log('☁️ Total points API: $apiTotalPoints');
+            print('☁️ Total points API: $apiTotalPoints');
 
             // Utiliser les données API si elles sont plus récentes ou plus complètes
             data[_totalPointsKey] = apiTotalPoints;
@@ -352,31 +354,31 @@ class GamificationService {
             data[_lastSyncKey] = DateTime.now().toIso8601String();
 
             await _saveGamificationData(data);
-            Logger.log('💾 Données mises à jour avec les données API');
+            print('💾 Données mises à jour avec les données API');
           } else {
-            Logger.log('⚠️ Aucun point récupéré depuis l\'API');
+            print('⚠️ Aucun point récupéré depuis l\'API');
           }
         } catch (apiError) {
-          Logger.log(
+          print(
               '❌ Erreur lors de la synchronisation depuis l\'API: $apiError');
 
           // Check if it's an authentication error
           if (apiError.toString().contains('401')) {
-            Logger.log(
+            print(
                 '🔒 Erreur 401 détectée - Token invalide, utilisation du cache local');
           } else if (apiError.toString().contains('403')) {
-            Logger.log(
+            print(
                 '🚫 Erreur 403 détectée - Accès interdit, utilisation du cache local');
           }
 
           // Continuer avec les données locales (fallback déjà implémenté dans getGamificationData)
         }
       } else {
-        Logger.log('📴 Hors ligne - utilisation du cache local');
+        print('📴 Hors ligne - utilisation du cache local');
       }
       // Si hors ligne, utiliser le cache local (déjà géré)
     } catch (error) {
-      Logger.log('❌ Erreur générale lors de la synchronisation: $error');
+      print('❌ Erreur générale lors de la synchronisation: $error');
       // Ignorer l'erreur et utiliser le cache local
     }
   }
@@ -534,21 +536,21 @@ class GamificationService {
 
   /// Initialise la synchronisation au démarrage de l'app
   Future<void> initializeSync() async {
-    Logger.log('🟡 Initialisation sync gamification...');
+    print('🟡 Initialisation sync gamification...');
     try {
       await syncDataFromAPI(); // Sync données depuis API
-      Logger.log('✅ Sync données depuis API terminée');
+      print('✅ Sync données depuis API terminée');
     } catch (e) {
-      Logger.log('❌ Erreur sync données depuis API: $e');
+      print('❌ Erreur sync données depuis API: $e');
     }
 
     try {
       final syncedCount =
           await syncPendingPointsToAPI(); // Sync points en attente
-      Logger.log(
+      print(
           '✅ Sync points en attente terminée: $syncedCount points synchronisés');
     } catch (e) {
-      Logger.log('❌ Erreur sync points en attente: $e');
+      print('❌ Erreur sync points en attente: $e');
     }
   }
 }

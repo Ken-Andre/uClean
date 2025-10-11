@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import '../../models/article.dart';
 import '../../services/article_service.dart';
+import '../../services/gamification_service.dart';
 
 class ArticleViewerScreen extends StatefulWidget {
   final Article article;
@@ -17,6 +18,7 @@ class ArticleViewerScreen extends StatefulWidget {
 
 class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
   final ArticleService _articleService = ArticleService();
+  final GamificationService _gamificationService = GamificationService();
   String? _markdownContent;
   bool _isLoading = true;
   bool _hasMarkedAsRead = false;
@@ -61,21 +63,36 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
   }
 
   Future<void> _markAsRead() async {
-    if (_hasMarkedAsRead) return;
-
     try {
+      // Marquer l'article comme lu dans le service des articles
       await _articleService.markArticleAsRead(widget.article.id);
+
+      // Attribuer les points via le service de gamification
+      final pointsEarned = await _gamificationService.addPointsWithAPISync(
+        GamificationService.eventArticleRead,
+        metadata: {
+          'article_id': widget.article.id,
+          'article_title': widget.article.title,
+          'points_value': widget.article.getEffectivePoints(),
+        }
+      );
+
       setState(() {
         _hasMarkedAsRead = true;
       });
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('🎉 +${widget.article.points} points gagnés !')),
+          SnackBar(content: Text('🎉 +$pointsEarned points gagnés !')),
         );
       }
     } catch (e) {
       print('Erreur lors du marquage: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Erreur lors du marquage de l\'article comme lu')),
+        );
+      }
     }
   }
 
@@ -106,7 +123,7 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
-              '${widget.article.points} pts',
+              '${widget.article.getEffectivePoints()} pts',
               style: TextStyle(
                 color: widget.article.isRead ? Colors.green.shade700 : Colors.blue.shade700,
                 fontWeight: FontWeight.w600,
@@ -222,7 +239,7 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
                           child: ElevatedButton.icon(
                             onPressed: _markAsRead,
                             icon: const Icon(Icons.check_circle_outline),
-                            label: Text('Marquer comme lu (+${widget.article.points} pts)'),
+                            label: Text('Marquer comme lu (+${widget.article.getEffectivePoints()} pts)'),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Theme.of(context).primaryColor,
                               foregroundColor: Colors.white,
@@ -254,7 +271,7 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
                                 const Icon(Icons.check_circle, color: Colors.green),
                                 const SizedBox(width: 8),
                                 Text(
-                                  'Lu (+${widget.article.points} pts)',
+                                  'Lu (+${widget.article.getEffectivePoints()} pts)',
                                   style: TextStyle(
                                     color: Colors.green.shade700,
                                     fontWeight: FontWeight.w600,

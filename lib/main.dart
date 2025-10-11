@@ -8,6 +8,7 @@ import 'services/step_counter_service.dart';
 import 'services/wifi_tracking_service.dart';
 import 'services/tracking_controller.dart'; // Contient maintenant TrackingBloc
 import 'services/gamification_service.dart';
+import 'services/points_config_service.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
@@ -21,6 +22,9 @@ void main() async {
   // Initialisation des services singletons
   await PrefUtils().init();
   await NotificationService.instance.initialize();
+
+  // Initialisation de la configuration des points
+  await PointsConfigService.loadConfig();
 
   // Initialisation de la synchronisation gamification
   final gamificationService = GamificationService();

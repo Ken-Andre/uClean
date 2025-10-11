@@ -2,7 +2,7 @@
   "articles": [
     {
       "id": "1",
-      "title": "The Beauty of Carbon Tracking",
+      "title": "Vilogia : la mobilité, un moyen d'agir pour réduire son empreinte carbone",
       "image_path": "assets/images/img_an_artistic_and.png",
       "date": "2024-01-15",
       "category": "Environment",
@@ -12,13 +12,43 @@
     },
     {
       "id": "2",
-      "title": "Sustainable Mobility",
+      "title": "Émissions de CO2 à l'échelle mondiale",
       "image_path": "assets/images/img_the_photo_highl_1.png",
       "date": "2024-01-10",
-      "category": "Transportation",
+      "category": "Environment",
       "points": 3,
       "content_path": "assets/articles/article-2.md",
       "reading_time": "3 min"
+    },
+    {
+      "id": "3",
+      "title": "Learn about CO2 Impact",
+      "image_path": "assets/images/img_the_photo_highl_113x353.png",
+      "date": "2024-01-08",
+      "category": "Education",
+      "points": 4,
+      "content_path": "assets/articles/article-3.md",
+      "reading_time": "4 min"
+    },
+    {
+      "id": "4",
+      "title": "Understanding the Environmental Impact of Travel",
+      "image_path": "assets/images/img_the_photo_highl.png",
+      "date": "2024-01-05",
+      "category": "Transportation",
+      "points": 5,
+      "content_path": "assets/articles/article-4.md",
+      "reading_time": "6 min"
+    },
+    {
+      "id": "5",
+      "title": "Le schéma du directeur",
+      "image_path": "assets/images/img_color.png",
+      "date": "2024-01-01",
+      "category": "Strategy",
+      "points": 6,
+      "content_path": "assets/articles/article-5.md",
+      "reading_time": "7 min"
     }
   ]
 }

@@ -1,0 +1,29 @@
+{
+  "article_points": {
+    "default": 5,
+    "by_category": {
+      "Environment": 5,
+      "Education": 4,
+      "Transportation": 5,
+      "Strategy": 6
+    },
+    "by_difficulty": {
+      "easy": 3,
+      "medium": 5,
+      "hard": 8
+    }
+  },
+  "gamification_events": {
+    "article_read": 5,
+    "trip_recorded": 2,
+    "trip_classified": 3,
+    "weekly_streak": 10,
+    "monthly_consistency": 15,
+    "daily_goal": 5
+  },
+  "point_multipliers": {
+    "streak_bonus": 1.5,
+    "classification_accuracy": 1.2,
+    "first_time": 1.3
+  }
+}

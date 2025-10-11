@@ -4,6 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 // TODO: Remplacer l'accès par singleton par une injection de dépendances (Règle #4).
 
@@ -173,6 +174,12 @@ class WifiTrackingService {
 
   /// **[CORRIGÉ]** Récupère les informations WiFi actuelles avec gestion des permissions.
   Future<WifiInfo?> _getCurrentWifiInfo() async {
+    if (kIsWeb) {
+      // Sur le web, retourner null car l'accès WiFi n'est pas disponible
+      print('🔴 WiFi tracking non disponible sur le web');
+      return null;
+    }
+
     try {
       // Vérifier la connexion WiFi
       final connectivity = Connectivity();
@@ -187,7 +194,7 @@ class WifiTrackingService {
       if (await _requestLocationPermission()) {
         final networkInfo = NetworkInfo();
         String? ssid = await networkInfo.getWifiName();
-        
+
         // Sanitize SSID - remove quotes and special characters
         if (ssid != null && ssid.isNotEmpty) {
           ssid = _sanitizeSsid(ssid);
@@ -198,7 +205,7 @@ class WifiTrackingService {
       } else {
         print('⚠️ Permission de localisation refusée - impossible d\'accéder au WiFi');
       }
-      
+
       return null;
     } catch (e) {
       print('🔴 Erreur récupération infos WiFi: $e');
@@ -208,18 +215,24 @@ class WifiTrackingService {
 
   /// Demande la permission de localisation (nécessaire pour accéder au WiFi sur Android)
   Future<bool> _requestLocationPermission() async {
+    if (kIsWeb) {
+      // Sur le web, retourner false car les permissions ne sont pas gérées de la même manière
+      print('🔴 Permissions non disponibles sur le web');
+      return false;
+    }
+
     try {
       final status = await Permission.locationWhenInUse.status;
-      
+
       if (status.isGranted) {
         return true;
       }
-      
+
       if (status.isDenied) {
         final result = await Permission.locationWhenInUse.request();
         return result.isGranted;
       }
-      
+
       return false;
     } catch (e) {
       print('🔴 Erreur lors de la demande de permission: $e');
