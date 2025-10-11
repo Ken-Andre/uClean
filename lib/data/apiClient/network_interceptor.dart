@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'package:dio/dio.dart';
+import 'package:ucleankim/core/utils/pref_utils.dart';
 
 /// NetworkInterceptor class for intercepting API requests, responses, and exceptions.
 ///
@@ -17,7 +18,21 @@ class NetworkInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) {
     super.onRequest(options, handler);
-    //intercept api request
+
+    // Ajouter automatiquement le token d'authentification si disponible
+    final token = PrefUtils().getAuthToken();
+    
+    // Log des requêtes pour le debug
+    print('🚀 API Request: ${options.method} ${options.uri}');
+    
+    if (token.isNotEmpty) {
+      options.headers['Authorization'] = 'Bearer $token';
+      print('🔐 Auth token présent dans les headers');
+      print('🔍 Token length: ${token.length} chars');
+      print('🔍 Token start: ${token.substring(0, token.length > 30 ? 30 : token.length)}...');
+    } else {
+      print('! Aucun token d\'authentification trouvé');
+    }
   }
 
   @override
@@ -26,7 +41,26 @@ class NetworkInterceptor extends Interceptor {
     ErrorInterceptorHandler handler,
   ) {
     super.onError(err, handler);
-    //intercept api exceptions
+
+    // Log des erreurs pour le debug
+    print('❌ API Error: ${err.response?.statusCode} ${err.response?.statusMessage}');
+    print('URL: ${err.requestOptions.uri}');
+    print('Method: ${err.requestOptions.method}');
+
+    if (err.response?.data != null) {
+      print('Response data: ${err.response?.data}');
+    }
+    if (err.response?.headers != null) {
+      print('Response headers: ${err.response?.headers}');
+    }
+
+    if (err.response?.statusCode == 401) {
+      print('🔒 Erreur 401 - Token d\'authentification invalide ou manquant');
+      // Note: Token is NOT automatically cleared here to avoid clearing valid tokens
+      // The app should handle token refresh or re-login at the business logic level
+    } else if (err.response?.statusCode == 403) {
+      print('🚫 Erreur 403 - Accès interdit');
+    }
   }
 
   @override
@@ -35,6 +69,8 @@ class NetworkInterceptor extends Interceptor {
     ResponseInterceptorHandler handler,
   ) {
     super.onResponse(response, handler);
-    //intercept api responses
+
+    // Log des réponses pour le debug
+    print('✅ API Response: ${response.statusCode} ${response.statusMessage}');
   }
 }

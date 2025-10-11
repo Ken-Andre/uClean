@@ -49,12 +49,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     var getAuthT = PrefUtils().getAuthToken();
     print('here is the getAuthT $getAuthT');
-    await _repository.getAuthMe(
-      headers: {
-        'Content-type': 'application/json',
-        'Authorization': 'Bearer ${getAuthT}',
-      },
-    ).then((value) async {
+    await _repository.getAuthMe().then((value) async {
       getGetAuthMeResp = value;
       _onGetAuthMeSuccess(value, emit);
     }).onError((error, stackTrace) {
@@ -80,7 +75,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   void _onGetAuthMeError() {
-    //implement error method body...
+    // Gérer l'erreur d'authentification
+    Fluttertoast.showToast(
+      msg: "Erreur d'authentification. Veuillez vous reconnecter.",
+      backgroundColor: Colors.red,
+    );
+
+    // Rediriger vers la page de connexion après un délai
+    Future.delayed(Duration(seconds: 2), () {
+      // Naviguer vers la page de connexion
+      NavigatorService.pushNamed(AppRoutes.loginScreen);
+    });
   }
 
   /// Displays a toast message using the Fluttertoast library.

@@ -43,9 +43,15 @@ class ProgressDialogUtils {
   ///
   /// After hiding the dialog, the isProgressVisible flag is set to false.
   static void hideProgressDialog() {
-    if (isProgressVisible) {
-      Navigator.pop(
-          NavigatorService.navigatorKey.currentState!.overlay!.context);
+    if (isProgressVisible && 
+        NavigatorService.navigatorKey.currentState?.overlay?.context != null) {
+      try {
+        Navigator.pop(
+            NavigatorService.navigatorKey.currentState!.overlay!.context);
+      } catch (e) {
+        // Ignorer les erreurs si le contexte n'est plus valide
+        print('Erreur lors de la fermeture du dialogue de progression: $e');
+      }
     }
     isProgressVisible = false;
   }

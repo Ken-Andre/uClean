@@ -7,6 +7,7 @@ import 'services/notification_service.dart';
 import 'services/step_counter_service.dart';
 import 'services/wifi_tracking_service.dart';
 import 'services/tracking_controller.dart'; // Contient maintenant TrackingBloc
+import 'services/gamification_service.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
@@ -20,6 +21,16 @@ void main() async {
   // Initialisation des services singletons
   await PrefUtils().init();
   await NotificationService.instance.initialize();
+
+  // Initialisation de la synchronisation gamification
+  final gamificationService = GamificationService();
+  try {
+    print('🔍 Démarrage synchronisation gamification...');
+    await gamificationService.initializeSync();
+    print('✅ Synchronisation gamification terminée');
+  } catch (e, stackTrace) {
+    print('⚠️ Erreur lors de l\'initialisation de la synchronisation gamification: $e');
+  }
 
   runApp(MyApp());
 }

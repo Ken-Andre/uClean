@@ -4,7 +4,8 @@ import 'package:ucleankim/data/models/getAuthMe/get_get_auth_me_resp.dart';
 import 'package:ucleankim/data/models/getTripsFromX8kiLetlTwmt/get_get_trips_from_x8ki_letl_twmt_resp.dart';
 import 'package:ucleankim/data/models/logoutPost/post_logout_post_resp.dart';
 import 'package:ucleankim/data/models/signupPost/post_signup_post_resp.dart';
-
+import 'package:ucleankim/data/models/getGamificationPoints/get_gamification_points_resp.dart';
+import 'package:ucleankim/data/models/postGamificationPoint/post_gamification_point_resp.dart';
 import '../apiClient/api_client.dart';
 
 /// Repository class for managing API requests.
@@ -65,6 +66,25 @@ class Repository {
       {Map<String, String> headers = const {}}) async {
     return await _apiClient.getAuthMe(
       headers: headers,
+    );
+  }
+
+  Future<List<GetGamificationPointsResp>> getGamificationPoints(
+      {Map<String, String> headers = const {}}) async {
+    return await _apiClient.getGamificationPoints(
+      headers: headers,
+    );
+  }
+
+  Future<PostGamificationPointResp> postGamificationPoint({
+    Map<String, String> headers = const {},
+    required int points,
+    required DateTime awardedAt,
+  }) async {
+    return await _apiClient.postGamificationPoint(
+      headers: headers,
+      points: points,
+      awardedAt: awardedAt,
     );
   }
 }

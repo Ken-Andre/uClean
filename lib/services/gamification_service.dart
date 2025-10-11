@@ -1,14 +1,21 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../services/gamification_config_service.dart';
+import 'api_gamification_service.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import '../core/utils/logger.dart';
 
-/// Service de gestion de la gamification avec configuration dynamique
+/// Service de gestion de la gamification avec configuration dynamique et synchronisation API
 class GamificationService {
   static const String _storageKey = 'gamification_data';
   static const String _totalPointsKey = 'total_points';
   static const String _readingPointsKey = 'reading_points';
   static const String _trackingPointsKey = 'tracking_points';
   static const String _achievementsKey = 'achievements';
+  static const String _lastSyncKey = 'last_sync_timestamp';
+  static const String _pendingSyncKey = 'pending_points_to_sync';
+
+  final ApiGamificationService _apiService = ApiGamificationService();
 
   /// Événements de gamification
   static const String eventArticleRead = 'article_read';
@@ -53,7 +60,9 @@ class GamificationService {
 
     // Calculer les points selon la configuration
     final basePoints = config.pointsPerEvent[event] ?? 0;
-    final multiplier = metadata?['multiplier'] as double? ?? config.activityMultipliers[event] ?? 1.0;
+    final multiplier = metadata?['multiplier'] as double? ??
+        config.activityMultipliers[event] ??
+        1.0;
     final pointsToAdd = (basePoints * multiplier).round();
 
     if (pointsToAdd > 0) {
@@ -177,7 +186,8 @@ class GamificationService {
   /// Vérifie et ajoute les achievements avec configuration dynamique
   Future<List<String>> checkAndAddAchievements() async {
     final data = await getGamificationData();
-    final achievements = (data[_achievementsKey] as List<dynamic>?)?.cast<String>() ?? [];
+    final achievements =
+        (data[_achievementsKey] as List<dynamic>?)?.cast<String>() ?? [];
     final totalPoints = data[_totalPointsKey] as int? ?? 0;
     final currentStreak = data['current_streak'] as int? ?? 0;
     final readingPoints = data[_readingPointsKey] as int? ?? 0;
@@ -195,31 +205,38 @@ class GamificationService {
     }
 
     // Achievements basés sur la lecture
-    if (readingPoints >= config.achievementThresholds['reader']! && !achievements.contains('reader')) {
+    if (readingPoints >= config.achievementThresholds['reader']! &&
+        !achievements.contains('reader')) {
       achievements.add('reader');
     }
-    if (readingPoints >= config.achievementThresholds['bookworm']! && !achievements.contains('bookworm')) {
+    if (readingPoints >= config.achievementThresholds['bookworm']! &&
+        !achievements.contains('bookworm')) {
       achievements.add('bookworm');
     }
 
     // Achievements basés sur le tracking
-    if (trackingPoints >= config.achievementThresholds['tracker']! && !achievements.contains('tracker')) {
+    if (trackingPoints >= config.achievementThresholds['tracker']! &&
+        !achievements.contains('tracker')) {
       achievements.add('tracker');
     }
-    if (trackingPoints >= config.achievementThresholds['explorer']! && !achievements.contains('explorer')) {
+    if (trackingPoints >= config.achievementThresholds['explorer']! &&
+        !achievements.contains('explorer')) {
       achievements.add('explorer');
     }
 
     // Achievements basés sur les streaks
-    if (currentStreak >= config.achievementThresholds['week_warrior']! && !achievements.contains('week_warrior')) {
+    if (currentStreak >= config.achievementThresholds['week_warrior']! &&
+        !achievements.contains('week_warrior')) {
       achievements.add('week_warrior');
     }
-    if (currentStreak >= config.achievementThresholds['month_master']! && !achievements.contains('month_master')) {
+    if (currentStreak >= config.achievementThresholds['month_master']! &&
+        !achievements.contains('month_master')) {
       achievements.add('month_master');
     }
 
     // Sauvegarder les nouveaux achievements
-    final currentAchievementsCount = (data[_achievementsKey] as List<dynamic>?)?.length ?? 0;
+    final currentAchievementsCount =
+        (data[_achievementsKey] as List<dynamic>?)?.length ?? 0;
     if (achievements.length > currentAchievementsCount) {
       data[_achievementsKey] = achievements;
       await _saveGamificationData(data);
@@ -241,9 +258,15 @@ class GamificationService {
       'longest_streak': data['longest_streak'] as int? ?? 0,
       'weekly_streak': data['weekly_streak'] as int? ?? 0,
       'monthly_consistency': data['monthly_consistency'] as int? ?? 0,
-      'achievements_count': (data[_achievementsKey] as List<dynamic>?)?.length ?? 0,
-      'level': ((data[_totalPointsKey] as int? ?? 0) / config.levelConfig.pointsPerLevel).floor() + 1,
-      'points_to_next_level': config.levelConfig.pointsPerLevel - ((data[_totalPointsKey] as int? ?? 0) % config.levelConfig.pointsPerLevel),
+      'achievements_count':
+          (data[_achievementsKey] as List<dynamic>?)?.length ?? 0,
+      'level': ((data[_totalPointsKey] as int? ?? 0) /
+                  config.levelConfig.pointsPerLevel)
+              .floor() +
+          1,
+      'points_to_next_level': config.levelConfig.pointsPerLevel -
+          ((data[_totalPointsKey] as int? ?? 0) %
+              config.levelConfig.pointsPerLevel),
     };
   }
 
@@ -254,7 +277,8 @@ class GamificationService {
     final config = GamificationConfigService.currentConfig;
 
     // Appliquer la rétention
-    final retentionDate = DateTime.now().subtract(Duration(days: config.retentionConfig.historyRetentionDays));
+    final retentionDate = DateTime.now()
+        .subtract(Duration(days: config.retentionConfig.historyRetentionDays));
 
     final filteredHistory = history.where((event) {
       final eventDate = DateTime.parse(event['timestamp'] as String);
@@ -262,7 +286,9 @@ class GamificationService {
     }).toList();
 
     if (limit != null && filteredHistory.length > limit) {
-      return filteredHistory.sublist(filteredHistory.length - limit).cast<Map<String, dynamic>>();
+      return filteredHistory
+          .sublist(filteredHistory.length - limit)
+          .cast<Map<String, dynamic>>();
     }
 
     return filteredHistory.cast<Map<String, dynamic>>();
@@ -277,12 +303,252 @@ class GamificationService {
   /// Calcule les points nécessaires pour le prochain niveau
   int pointsToNextLevel(int totalPoints) {
     final config = GamificationConfigService.currentConfig;
-    return config.levelConfig.pointsPerLevel - (totalPoints % config.levelConfig.pointsPerLevel);
+    return config.levelConfig.pointsPerLevel -
+        (totalPoints % config.levelConfig.pointsPerLevel);
   }
 
   /// Reset les données (pour tests ou nouvelle session)
   Future<void> reset() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_storageKey);
+  }
+
+  /// Synchronise les données de gamification depuis l'API avec fallback sur le cache local
+  Future<void> syncDataFromAPI() async {
+    Logger.log('🟠 Vérification connectivité pour sync API...');
+    try {
+      // Vérifier la connectivité
+      final connectivityResult = await Connectivity().checkConnectivity();
+      final isOnline = connectivityResult != ConnectivityResult.none;
+
+      Logger.log(
+          '🔗 État connectivité: ${isOnline ? 'EN LIGNE' : 'HORS LIGNE'}');
+
+      if (isOnline) {
+        Logger.log('📡 Tentative récupération données depuis API...');
+        try {
+          // Récupérer les données depuis l'API
+          final apiPoints = await _apiService.getGamificationPoints();
+          Logger.log(
+              '📋 Points récupérés depuis API: ${apiPoints.length} points');
+
+          if (apiPoints.isNotEmpty) {
+            final currentLocalPoints = await getTotalPoints();
+            Logger.log('🏠 Points locaux actuels: $currentLocalPoints');
+
+            final data = await getGamificationData();
+
+            // Calculer le total des points depuis l'API
+            final apiTotalPoints =
+                apiPoints.fold<int>(0, (sum, point) => sum + point.points);
+            Logger.log('☁️ Total points API: $apiTotalPoints');
+
+            // Utiliser les données API si elles sont plus récentes ou plus complètes
+            data[_totalPointsKey] = apiTotalPoints;
+
+            // Tenter de distribuer les points par catégories (basé sur l'historique disponible)
+            // Cette logique peut être affinée selon les besoins métier
+            data['api_synced'] = true;
+            data[_lastSyncKey] = DateTime.now().toIso8601String();
+
+            await _saveGamificationData(data);
+            Logger.log('💾 Données mises à jour avec les données API');
+          } else {
+            Logger.log('⚠️ Aucun point récupéré depuis l\'API');
+          }
+        } catch (apiError) {
+          Logger.log(
+              '❌ Erreur lors de la synchronisation depuis l\'API: $apiError');
+
+          // Check if it's an authentication error
+          if (apiError.toString().contains('401')) {
+            Logger.log(
+                '🔒 Erreur 401 détectée - Token invalide, utilisation du cache local');
+          } else if (apiError.toString().contains('403')) {
+            Logger.log(
+                '🚫 Erreur 403 détectée - Accès interdit, utilisation du cache local');
+          }
+
+          // Continuer avec les données locales (fallback déjà implémenté dans getGamificationData)
+        }
+      } else {
+        Logger.log('📴 Hors ligne - utilisation du cache local');
+      }
+      // Si hors ligne, utiliser le cache local (déjà géré)
+    } catch (error) {
+      Logger.log('❌ Erreur générale lors de la synchronisation: $error');
+      // Ignorer l'erreur et utiliser le cache local
+    }
+  }
+
+  /// Envoie des points gagnés à l'API avec gestion des erreurs hors ligne
+  Future<bool> sendPointsToAPI({
+    required int points,
+    required String event,
+    required DateTime awardedAt,
+  }) async {
+    print(
+        '🚀 Tentative d\'envoi de $points points à l\'API pour l\'événement: $event');
+    try {
+      final connectivityResult = await Connectivity().checkConnectivity();
+      final isOnline = connectivityResult != ConnectivityResult.none;
+      print('🔗 État connectivité: ${isOnline ? 'EN LIGNE' : 'HORS LIGNE'}');
+
+      if (isOnline) {
+        try {
+          print('📡 Envoi des points à l\'API...');
+          final result = await _apiService.addGamificationPoint(
+              points: points, awardedAt: awardedAt);
+          if (result != null) {
+            print(
+                '✅ Points envoyés avec succès à l\'API: ${result.points} points');
+            return true; // Succès
+          } else {
+            // API a retourné null (erreur 401 ou autre)
+            print('⚠️ API a retourné null - stockage pour sync ultérieur');
+            await _storePendingPoints(points, event, awardedAt);
+            return false;
+          }
+        } catch (apiError) {
+          print('❌ Erreur lors de l\'envoi à l\'API: $apiError');
+          print('📦 Stockage des points pour sync ultérieur');
+
+          // Stocker les points pour synchronisation ultérieure
+          await _storePendingPoints(points, event, awardedAt);
+          return false; // Échec mais stocké pour retry
+        }
+      } else {
+        // Hors ligne - stocker pour sync ultérieure
+        print('📴 Hors ligne - stockage des points pour sync ultérieure');
+        await _storePendingPoints(points, event, awardedAt);
+        return false;
+      }
+    } catch (error) {
+      print('❌ Erreur générale lors de l\'envoi des points à l\'API: $error');
+      await _storePendingPoints(points, event, awardedAt);
+      return false;
+    }
+  }
+
+  /// Stocke les points en attente de synchronisation
+  Future<void> _storePendingPoints(
+      int points, String event, DateTime awardedAt) async {
+    final prefs = await SharedPreferences.getInstance();
+    final pendingList = prefs.getStringList(_pendingSyncKey) ?? [];
+
+    final pendingPoint = {
+      'points': points,
+      'event': event,
+      'awarded_at': awardedAt.toIso8601String(),
+      'timestamp': DateTime.now().toIso8601String(),
+    };
+
+    pendingList.add(json.encode(pendingPoint));
+
+    // Garder seulement les 50 derniers éléments pour éviter la surcharge
+    if (pendingList.length > 50) {
+      pendingList.removeRange(0, pendingList.length - 50);
+    }
+
+    await prefs.setStringList(_pendingSyncKey, pendingList);
+  }
+
+  /// Synchronise les points en attente vers l'API
+  Future<int> syncPendingPointsToAPI() async {
+    final prefs = await SharedPreferences.getInstance();
+    final pendingList = prefs.getStringList(_pendingSyncKey) ?? [];
+
+    if (pendingList.isEmpty) return 0;
+
+    final connectivityResult = await Connectivity().checkConnectivity();
+    final isOnline = connectivityResult != ConnectivityResult.none;
+
+    if (!isOnline) return 0;
+
+    int syncedCount = 0;
+    final remainingPending = <String>[];
+
+    for (final pendingJson in pendingList) {
+      try {
+        final pendingPoint = json.decode(pendingJson) as Map<String, dynamic>;
+        final points = pendingPoint['points'] as int;
+        final awardedAt = DateTime.parse(pendingPoint['awarded_at'] as String);
+
+        final result = await _apiService.addGamificationPoint(
+            points: points, awardedAt: awardedAt);
+        if (result != null) {
+          syncedCount++;
+        } else {
+          // Échec de la sync, garder pour prochaine tentative
+          remainingPending.add(pendingJson);
+        }
+      } catch (error) {
+        Logger.log('Erreur lors de la sync d\'un point en attente: $error');
+        // Garder en attente pour prochaine tentative
+        remainingPending.add(pendingJson);
+      }
+    }
+
+    // Mettre à jour la liste des points en attente
+    await prefs.setStringList(_pendingSyncKey, remainingPending);
+
+    return syncedCount;
+  }
+
+  /// Méthode principale pour ajouter des points avec synchronisation API
+  Future<int> addPointsWithAPISync(String event,
+      {Map<String, dynamic>? metadata}) async {
+    print('🎯 addPoints appelé pour l\'événement: $event');
+    // Ajouter les points localement
+    final pointsAdded = await addPoints(event, metadata: metadata);
+    print('🏠 Points ajoutés localement: $pointsAdded');
+
+    if (pointsAdded > 0) {
+      print('🔄 Tentative de synchronisation avec l\'API...');
+      // Tenter d'envoyer à l'API de manière asynchrone
+      final awardedAt = DateTime.now();
+      sendPointsToAPI(points: pointsAdded, event: event, awardedAt: awardedAt)
+          .then((success) {
+        if (success) {
+          print('✅ Points synchronisés avec succès vers l\'API');
+        } else {
+          print(
+              '⚠️ Échec de la synchronisation, points stockés pour plus tard');
+        }
+      }).catchError((error) {
+        print('❌ Erreur lors de la synchronisation des points: $error');
+      });
+    } else {
+      print('⚠️ Aucun point ajouté, pas de synchronisation nécessaire');
+    }
+
+    return pointsAdded;
+  }
+
+  /// Vérifie s'il y a des points en attente de synchronisation
+  Future<int> getPendingPointsCount() async {
+    final prefs = await SharedPreferences.getInstance();
+    final pendingList = prefs.getStringList(_pendingSyncKey) ?? [];
+    return pendingList.length;
+  }
+
+  /// Initialise la synchronisation au démarrage de l'app
+  Future<void> initializeSync() async {
+    Logger.log('🟡 Initialisation sync gamification...');
+    try {
+      await syncDataFromAPI(); // Sync données depuis API
+      Logger.log('✅ Sync données depuis API terminée');
+    } catch (e) {
+      Logger.log('❌ Erreur sync données depuis API: $e');
+    }
+
+    try {
+      final syncedCount =
+          await syncPendingPointsToAPI(); // Sync points en attente
+      Logger.log(
+          '✅ Sync points en attente terminée: $syncedCount points synchronisés');
+    } catch (e) {
+      Logger.log('❌ Erreur sync points en attente: $e');
+    }
   }
 }

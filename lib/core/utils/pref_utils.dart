@@ -60,8 +60,29 @@ class PrefUtils {
     }
   }
 
+  /// Force le logout local même si l'API échoue
+  Future<void> forceLogout() async {
+    await setAuthToken('');
+    // Réinitialiser d'autres données utilisateur si nécessaire
+  }
+
   bool isLoggedIn() {
     return getAuthToken().isNotEmpty;
+  }
+
+  /// Vérifie si l'utilisateur semble être connecté avec un token potentiellement valide
+  bool hasValidAuthToken() {
+    final token = getAuthToken();
+    if (token.isEmpty) return false;
+
+    // Vérifier si le token a une longueur raisonnable (les JWE sont généralement longs)
+    if (token.length < 50) return false;
+
+    // Vérifier si le token contient des caractères valides pour un JWE ou JWT
+    // Supporte JWE (5 parties: header.encrypted_key.init_vector.ciphertext.auth_tag)
+    // et JWT (3 parties: header.payload.signature)
+    final tokenRegex = RegExp(r'^[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]{0,2}$|^[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]{0,2}$');
+    return tokenRegex.hasMatch(token);
   }
 
   // User preference settings - Tracking

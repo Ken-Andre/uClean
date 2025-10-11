@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '/core/app_export.dart';
 import 'package:ucleankim/presentation/settingspage_page/models/settingspage_model.dart';
 import 'package:ucleankim/data/models/logoutPost/post_logout_post_resp.dart';
@@ -39,10 +40,6 @@ class SettingspageBloc extends Bloc<SettingspageEvent, SettingspageState> {
     final logToken = PrefUtils().getAuthToken();
     debugPrint('here is the logToken $logToken');
     await _repository.logoutPost(
-      headers: {
-        'Content-type': 'application/json',
-        'Authorization': 'Bearer $logToken',
-      },
       requestData: postLogoutPostReq.toJson(),
     ).then((value) async {
       postLogoutPostResp = value;
@@ -58,8 +55,34 @@ class SettingspageBloc extends Bloc<SettingspageEvent, SettingspageState> {
   void _onLogoutPostSuccess(
     PostLogoutPostResp resp,
     Emitter<SettingspageState> emit,
-  ) {}
+  ) {
+    // Nettoyer le token local
+    PrefUtils().setAuthToken('');
+
+    // Afficher un message de succès
+    Fluttertoast.showToast(
+      msg: "Déconnexion réussie !",
+      backgroundColor: Colors.green,
+    );
+
+    // Rediriger vers la page de connexion après un délai
+    Future.delayed(Duration(seconds: 2), () {
+      NavigatorService.pushNamed(AppRoutes.loginScreen);
+    });
+  }
   void _onLogoutPostError() {
-    //implement error method body...
+    // Nettoyer le token local même si l'API échoue
+    PrefUtils().setAuthToken('');
+
+    // Afficher un message à l'utilisateur
+    Fluttertoast.showToast(
+      msg: "Déconnexion locale effectuée. Vous pouvez vous reconnecter.",
+      backgroundColor: Colors.orange,
+    );
+
+    // Rediriger vers la page de connexion après un délai
+    Future.delayed(Duration(seconds: 2), () {
+      NavigatorService.pushNamed(AppRoutes.loginScreen);
+    });
   }
 }

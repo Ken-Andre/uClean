@@ -5,20 +5,20 @@ import 'package:ucleankim/core/errors/exceptions.dart';
 /// Central error handler for mapping Dio errors to user-friendly exceptions
 class ErrorHandler {
   /// Maps DioError to appropriate custom exceptions
-  static Exception handle(DioError error) {
+  static Exception handle(DioException error) {
     switch (error.type) {
-      case DioErrorType.connectionTimeout:
-      case DioErrorType.sendTimeout:
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.connectionTimeout:
+      case DioExceptionType.sendTimeout:
+      case DioExceptionType.receiveTimeout:
         return TimeoutException();
 
-      case DioErrorType.connectionError:
+      case DioExceptionType.connectionError:
         return NoInternetException('No internet connection. Please check your network.');
 
-      case DioErrorType.cancel:
+      case DioExceptionType.cancel:
         return Exception('Request was cancelled');
 
-      case DioErrorType.badResponse:
+      case DioExceptionType.badResponse:
         return _handleResponseError(error.response);
 
       default:
@@ -32,8 +32,8 @@ class ErrorHandler {
       return Exception('Server did not respond');
     }
 
-    final statusCode = response.statusCode ?? 0;
-    final data = response.data;
+    var statusCode = response.statusCode ?? 0;
+    var data = response.data;
 
     // Auth/Login related errors
     if (response.requestOptions.path.contains('/auth/login')) {
@@ -54,7 +54,7 @@ class ErrorHandler {
     switch (statusCode) {
       case 401:
         // Try to extract meaningful message from response
-        String message = _extractAuthErrorMessage(data);
+        final String message = _extractAuthErrorMessage(data);
         return InvalidCredentialsException(message);
 
       case 403:

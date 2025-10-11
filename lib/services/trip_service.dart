@@ -25,7 +25,9 @@ class TripService {
   /// Récupère les déplacements non classifiés (pour swipe)
   Future<List<Trip>> getUnclassifiedTrips() async {
     final allTrips = await getAllTrips();
-    return allTrips.where((trip) => trip.status == TripStatus.recorded).toList();
+    return allTrips
+        .where((trip) => trip.status == TripStatus.recorded)
+        .toList();
   }
 
   /// Ajoute un nouveau déplacement
@@ -56,7 +58,8 @@ class TripService {
     await _saveTrips(trips);
 
     // Ajouter aux points de gamification
-    await GamificationService().addPoints(GamificationService.eventTripRecorded);
+    await GamificationService()
+        .addPointsWithAPISync(GamificationService.eventTripRecorded);
 
     return trip;
   }
@@ -76,7 +79,8 @@ class TripService {
       await _saveTrips(trips);
 
       // Ajouter aux points de gamification
-      await GamificationService().addPoints(GamificationService.eventTripClassified);
+      await GamificationService()
+          .addPointsWithAPISync(GamificationService.eventTripClassified);
 
       return updatedTrip;
     }
@@ -94,24 +98,33 @@ class TripService {
   /// Récupère les statistiques des déplacements
   Future<Map<String, dynamic>> getTripStats() async {
     final trips = await getAllTrips();
-    final classifiedTrips = trips.where((trip) => trip.status == TripStatus.classified);
+    final classifiedTrips =
+        trips.where((trip) => trip.status == TripStatus.classified);
 
-    final personalTrips = classifiedTrips.where((trip) => trip.type == TripType.personal);
-    final professionalTrips = classifiedTrips.where((trip) => trip.type == TripType.professional);
+    final personalTrips =
+        classifiedTrips.where((trip) => trip.type == TripType.personal);
+    final professionalTrips =
+        classifiedTrips.where((trip) => trip.type == TripType.professional);
 
-    final totalDistance = classifiedTrips.fold(0.0, (sum, trip) => sum + (trip.distance ?? 0));
-    final totalDuration = classifiedTrips.fold(0, (sum, trip) => sum + trip.durationMinutes);
+    final totalDistance =
+        classifiedTrips.fold(0.0, (sum, trip) => sum + (trip.distance ?? 0));
+    final totalDuration =
+        classifiedTrips.fold(0, (sum, trip) => sum + trip.durationMinutes);
 
     return {
       'total_trips': trips.length,
       'classified_trips': classifiedTrips.length,
-      'unclassified_trips': trips.where((trip) => trip.status == TripStatus.recorded).length,
+      'unclassified_trips':
+          trips.where((trip) => trip.status == TripStatus.recorded).length,
       'personal_trips': personalTrips.length,
       'professional_trips': professionalTrips.length,
       'total_distance_km': totalDistance / 1000.0,
       'total_duration_minutes': totalDuration,
-      'average_distance_km': classifiedTrips.isEmpty ? 0.0 : (totalDistance / 1000.0) / classifiedTrips.length,
-      'average_duration_minutes': classifiedTrips.isEmpty ? 0 : totalDuration ~/ classifiedTrips.length,
+      'average_distance_km': classifiedTrips.isEmpty
+          ? 0.0
+          : (totalDistance / 1000.0) / classifiedTrips.length,
+      'average_duration_minutes':
+          classifiedTrips.isEmpty ? 0 : totalDuration ~/ classifiedTrips.length,
     };
   }
 
@@ -180,7 +193,8 @@ class TripService {
       final durationMinutes = random.nextInt(120) + 15; // Entre 15min et 2h15
       final endTime = startTime.add(Duration(minutes: durationMinutes));
 
-      final distance = (random.nextDouble() * 5000 + 500).toDouble(); // Entre 0.5km et 5.5km
+      final distance =
+          (random.nextDouble() * 5000 + 500).toDouble(); // Entre 0.5km et 5.5km
 
       await addTrip(
         startTime: startTime,
@@ -198,7 +212,8 @@ class TripService {
     final trips = await getAllTrips();
     final sixMonthsAgo = DateTime.now().subtract(const Duration(days: 180));
 
-    final recentTrips = trips.where((trip) => trip.createdAt.isAfter(sixMonthsAgo)).toList();
+    final recentTrips =
+        trips.where((trip) => trip.createdAt.isAfter(sixMonthsAgo)).toList();
     await _saveTrips(recentTrips);
   }
 }

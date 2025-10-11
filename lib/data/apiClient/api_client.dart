@@ -5,8 +5,10 @@ import 'package:ucleankim/core/utils/progress_dialog_utils.dart';
 import 'package:ucleankim/data/models/authLoginPost/post_auth_login_post_resp.dart';
 import 'package:ucleankim/data/models/createTrip/post_create_trip_resp.dart';
 import 'package:ucleankim/data/models/getAuthMe/get_get_auth_me_resp.dart';
+import 'package:ucleankim/data/models/getGamificationPoints/get_gamification_points_resp.dart';
 import 'package:ucleankim/data/models/getTripsFromX8kiLetlTwmt/get_get_trips_from_x8ki_letl_twmt_resp.dart';
 import 'package:ucleankim/data/models/logoutPost/post_logout_post_resp.dart';
+import 'package:ucleankim/data/models/postGamificationPoint/post_gamification_point_resp.dart';
 import 'package:ucleankim/data/models/signupPost/post_signup_post_resp.dart';
 
 import 'network_interceptor.dart';
@@ -29,7 +31,6 @@ class ApiClient {
     "Accept": "application/json",
     // "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYTNmOTI0NTNjODViYzEyNjU4ZjNiZSIsInVzZXJuYW1lIjoiSnVkZ2VfQ3JvbmluIiwiaWF0IjoxNjcxNjk3MTcxfQ.hbZLKSsS6Mdj1ndhAf4rm_5we4iWYvKY1VPSo51sQRM",
     // "Authorization": token?"Bearer ${token}":"",
-    "Content-Type": "multipart/form-data"
   }))
         ..interceptors.add(NetworkInterceptor());
 
@@ -66,10 +67,15 @@ class ApiClient {
     ProgressDialogUtils.showProgressDialog();
     try {
       await isNetworkConnected();
+      // Override headers to ensure JSON content type for authentication
+      final authHeaders = {
+        ...headers,
+        "Content-Type": "application/json",
+      };
       var response = await _dio.post(
         '$url/api:v0yDfnCj/auth/login',
         data: requestData,
-        options: Options(headers: headers),
+        options: Options(headers: authHeaders),
       );
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
@@ -107,10 +113,15 @@ class ApiClient {
     ProgressDialogUtils.showProgressDialog();
     try {
       await isNetworkConnected();
+      // Override headers to ensure JSON content type for authentication
+      final authHeaders = {
+        ...headers,
+        "Content-Type": "application/json",
+      };
       var response = await _dio.post(
         '$url/api:v0yDfnCj/auth/signup',
         data: requestData,
-        options: Options(headers: headers),
+        options: Options(headers: authHeaders),
       );
       ProgressDialogUtils.hideProgressDialog();
 
@@ -278,6 +289,119 @@ class ApiClient {
       ProgressDialogUtils.hideProgressDialog();
       Logger.log(
         error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  /// Performs API call for https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/gamification_point
+  ///
+  /// Sends a GET request to the server's 'https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/gamification_point' endpoint
+  /// to retrieve all gamification points
+  /// Returns a [List<GetGamificationPointsResp>] representing the gamification points records.
+  /// Throws an error if the request fails or an exception occurs.
+  Future<List<GetGamificationPointsResp>> getGamificationPoints(
+      {Map<String, String> headers = const {}}) async {
+    // Note: Pas de ProgressDialog pour ne pas bloquer l'UI
+    try {
+      await isNetworkConnected();
+      Response response = await _dio.get(
+        '$url/api:v0yDfnCj/gamification_point',
+        options: Options(headers: headers),
+      );
+
+      if (_isSuccessCall(response)) {
+        print('📊 Gamification API raw response: ${response.data} (type: ${response.data.runtimeType})');
+
+        // Handle case where API returns total count as integer
+        if (response.data is int) {
+          final totalPoints = response.data as int;
+          print('📊 API returned total count: $totalPoints points');
+
+          // Return a single point record representing the total
+          final totalRecord = GetGamificationPointsResp(
+            id: 0, // Synthetic ID for total
+            createdAt: DateTime.now().millisecondsSinceEpoch / 1000,
+            user: 0, // Current user ID - you might want to get this from prefs
+            points: totalPoints,
+            awardedAt: DateTime.now().toIso8601String().split('T')[0],
+          );
+
+          print('📊 Created synthetic total record: $totalRecord');
+          return [totalRecord];
+        }
+
+        // Handle case where API returns list of points
+        if (response.data is List) {
+          final list = (response.data as List)
+              .map((e) => GetGamificationPointsResp.fromJson(e))
+              .toList();
+          print('📊 Parsed ${list.length} gamification point(s)');
+          return list;
+        }
+
+        // Handle unexpected response type
+        print('⚠️ Gamification API response is not a List or int: ${response.data.runtimeType}');
+        return [];
+      } else {
+        throw response.data != null
+            ? response.data.toString()
+            : 'Erreur API - Code ${response.statusCode}';
+      }
+    } catch (error, stackTrace) {
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  /// Performs API call for https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/gamification_point
+  ///
+  /// Sends a POST request to the server's 'https://x8ki-letl-twmt.n7.xano.io/api:v0yDfnCj/gamification_point' endpoint
+  /// to add a new gamification point record
+  /// Returns a [PostGamificationPointResp] representing the created record.
+  /// Throws an error if the request fails or an exception occurs.
+  Future<PostGamificationPointResp> postGamificationPoint({
+    Map<String, String> headers = const {},
+    required int points,
+    required DateTime awardedAt,
+  }) async {
+    // Note: Pas de ProgressDialog pour ne pas bloquer l'UI
+    try {
+      await isNetworkConnected();
+
+      final requestData = {
+        'points': points,
+        'awarded_at': awardedAt.toIso8601String().split('T')[0], // Format YYYY-MM-DD
+      };
+
+      Logger.log('Envoi de points à l\'API: $points points le ${awardedAt.toIso8601String().split('T')[0]}');
+
+      Response response = await _dio.post(
+        '$url/api:v0yDfnCj/gamification_point',
+        data: requestData,
+        options: Options(headers: headers),
+      );
+
+      if (_isSuccessCall(response)) {
+        print('✅ Points envoyés avec succès à l\'API - Status: ${response.statusCode}');
+        print('📤 Request data: $requestData');
+        print('📥 Response data: ${response.data}');
+        return PostGamificationPointResp.fromJson(response.data);
+      } else {
+        print('❌ Erreur API lors de l\'envoi des points: ${response.statusCode}');
+        print('📤 Request data: $requestData');
+        print('📥 Response data: ${response.data}');
+        throw response.data != null
+            ? response.data.toString()
+            : 'Erreur API - Code ${response.statusCode}';
+      }
+    } catch (error, stackTrace) {
+      Logger.log(
+        'Erreur lors de l\'envoi des points: $error',
         stackTrace: stackTrace,
       );
       rethrow;

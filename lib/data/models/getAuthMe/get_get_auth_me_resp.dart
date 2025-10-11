@@ -1,16 +1,23 @@
 class GetGetAuthMeResp {
   int? id;
-  int? createdAt;
+  String? createdAt;
   String? name;
   String? email;
 
   GetGetAuthMeResp({this.id, this.createdAt, this.name, this.email});
 
   GetGetAuthMeResp.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    createdAt = json['created_at'];
-    name = json['name'];
-    email = json['email'];
+    // Handle id field - can be int or String
+    if (json['id'] is int) {
+      id = json['id'];
+    } else if (json['id'] is String) {
+      id = int.tryParse(json['id']);
+    } else {
+      id = null;
+    }
+    createdAt = json['created_at']?.toString();
+    name = json['name']?.toString();
+    email = json['email']?.toString();
   }
 
   @override
