@@ -46,6 +46,8 @@ jobs:
     name: Build Android APK & Bundle
     runs-on: ubuntu-latest
     needs: analyze-test
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -100,7 +102,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.RTOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: auto-${{ github.run_number }}
           release_name: Auto Release ${{ github.run_number }}
