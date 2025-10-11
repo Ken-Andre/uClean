@@ -234,7 +234,7 @@ class _HomePageState extends State<HomePage>
                 height: 60,
                 width: 60,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor.withOpacity(0.1),
+                  color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -384,7 +384,7 @@ class _HomePageState extends State<HomePage>
                   onChanged: (value) {
                     _toggleTracking();
                   },
-                  activeColor: Colors.green,
+                  activeThumbColor: Colors.green,
                 ),
               ],
             ),

@@ -92,17 +92,17 @@ class Trip {
   /// Crée depuis JSON
   factory Trip.fromJson(Map<String, dynamic> json) {
     return Trip(
-      id: json['id'] as String,
-      startTime: DateTime.parse(json['start_time'] as String),
-      endTime: DateTime.parse(json['end_time'] as String),
-      startLocation: json['start_location'] as String,
-      endLocation: json['end_location'] as String,
-      type: TripType.values.firstWhere(
+      id: json['id'] as String? ?? Trip.generateId(),
+      startTime: json['start_time'] != null ? DateTime.parse(json['start_time'] as String) : DateTime.now(),
+      endTime: json['end_time'] != null ? DateTime.parse(json['end_time'] as String) : DateTime.now(),
+      startLocation: json['start_location'] as String?,
+      endLocation: json['end_location'] as String?,
+      type: json['type'] != null ? TripType.values.firstWhere(
         (e) => e.name == json['type'] as String,
-      ),
-      status: TripStatus.values.firstWhere(
+      ) : TripType.personal,
+      status: json['status'] != null ? TripStatus.values.firstWhere(
         (e) => e.name == json['status'] as String,
-      ),
+      ) : TripStatus.recorded,
       steps: json['steps'] as int?,
       distance: (json['distance'] as num?)?.toDouble(),
       metadata: json['metadata'] as Map<String, dynamic>?,

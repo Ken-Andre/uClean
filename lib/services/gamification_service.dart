@@ -68,10 +68,24 @@ class GamificationService {
     final pointsToAdd = (basePoints * multiplier).round();
 
     if (pointsToAdd > 0) {
-      // Mettre à jour les points
-      final int currentTotal = data[_totalPointsKey] as int? ?? 0;
-      final int newTotal = currentTotal + pointsToAdd;
-      data[_totalPointsKey] = newTotal;
+      // Vérifier si nous avons des données API synchronisées
+      final bool apiSynced = data['api_synced'] as bool? ?? false;
+      final int currentApiTotal = data[_totalPointsKey] as int? ?? 0;
+
+      // Si nous avons des données API, ajouter aux points API existants
+      // Sinon, utiliser le système local traditionnel
+      if (apiSynced && currentApiTotal > 0) {
+        // Mode API-synced: ajouter aux points API existants
+        final int newTotal = currentApiTotal + pointsToAdd;
+        data[_totalPointsKey] = newTotal;
+        print('🔄 Mode API-sync: $currentApiTotal + $pointsToAdd = $newTotal points');
+      } else {
+        // Mode local traditionnel
+        final int currentTotal = data[_totalPointsKey] as int? ?? 0;
+        final int newTotal = currentTotal + pointsToAdd;
+        data[_totalPointsKey] = newTotal;
+        print('🏠 Mode local: $currentTotal + $pointsToAdd = $newTotal points');
+      }
 
       // Mettre à jour les catégories de points
       if (event == eventArticleRead) {

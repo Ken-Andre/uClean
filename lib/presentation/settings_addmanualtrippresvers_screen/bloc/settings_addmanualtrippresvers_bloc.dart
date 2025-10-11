@@ -9,6 +9,7 @@ import '/core/app_export.dart';
 import '../models/settingsaddmanualtrippresvers_item_model.dart';
 import 'package:ucleankim/data/repository/repository.dart';
 import 'package:ucleankim/core/constants/trips.dart';
+import 'package:ucleankim/services/trip_service.dart';
 
 part 'settings_addmanualtrippresvers_event.dart';
 part 'settings_addmanualtrippresvers_state.dart';
@@ -114,7 +115,50 @@ class SettingsAddmanualtrippresversBloc extends Bloc<
   void _onCreateTripSuccess(
     PostCreateTripResp resp,
     Emitter<SettingsAddmanualtrippresversState> emit,
-  ) {}
+  ) async {
+    try {
+      // Award points for trip recording via TripService
+      // Parse date more robustly - handle DD/MM/YYYY format
+      final dateStr = state.wedJanuary31Controller?.text ?? '';
+      final timeStr = state.oneThousandTwentyEightController?.text ?? '00:00';
+      DateTime startDateTime;
+
+      try {
+        if (dateStr.contains('/')) {
+          // Handle DD/MM/YYYY format
+          final parts = dateStr.split('/');
+          if (parts.length == 3) {
+            final day = int.parse(parts[0]);
+            final month = int.parse(parts[1]);
+            final year = int.parse(parts[2]);
+            startDateTime = DateTime(year, month, day);
+          } else {
+            startDateTime = DateTime.now(); // Fallback
+          }
+        } else {
+          // Handle other formats
+          startDateTime = DateTime.parse('$dateStr $timeStr');
+        }
+      } catch (e) {
+        print('⚠️ Date parsing failed, using current time: $e');
+        startDateTime = DateTime.now();
+      }
+
+      final distance = double.tryParse(state.kmController?.text ?? '0') ?? 0.0;
+
+      await tripService.addTrip(
+        startTime: startDateTime,
+        endTime: startDateTime.add(const Duration(hours: 1)), // Default 1 hour duration
+        distance: distance,
+        steps: 0, // No step data for manual trips
+      );
+
+      print('✅ Points awarded for manual trip creation (resume screen)');
+    } catch (e) {
+      print('⚠️ Error awarding points for manual trip: $e');
+      // Continue even if point awarding fails
+    }
+  }
   void _onCreateTripError(
     Object? error,
     Emitter<SettingsAddmanualtrippresversState> emit,

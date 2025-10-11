@@ -41,10 +41,52 @@ class PointsConfig {
 
   /// Crée une configuration depuis JSON
   factory PointsConfig.fromJson(Map<String, dynamic> json) {
+    // Handle nested article_points structure
+    Map<String, int> articlePoints = {};
+    final articlePointsData = json['article_points'];
+    if (articlePointsData is Map<String, dynamic>) {
+      // Extract default value
+      if (articlePointsData['default'] is int) {
+        articlePoints['default'] = articlePointsData['default'];
+      }
+
+      // Extract category-specific values
+      final byCategory = articlePointsData['by_category'];
+      if (byCategory is Map<String, dynamic>) {
+        byCategory.forEach((key, value) {
+          if (value is int) {
+            articlePoints[key] = value;
+          }
+        });
+      }
+    }
+
+    // Handle gamification_events
+    Map<String, int> gamificationEvents = {};
+    final gamificationEventsData = json['gamification_events'];
+    if (gamificationEventsData is Map<String, dynamic>) {
+      gamificationEventsData.forEach((key, value) {
+        if (value is int) {
+          gamificationEvents[key] = value;
+        }
+      });
+    }
+
+    // Handle point_multipliers
+    Map<String, double> pointMultipliers = {};
+    final pointMultipliersData = json['point_multipliers'];
+    if (pointMultipliersData is Map<String, dynamic>) {
+      pointMultipliersData.forEach((key, value) {
+        if (value is num) {
+          pointMultipliers[key] = value.toDouble();
+        }
+      });
+    }
+
     return PointsConfig(
-      articlePoints: Map<String, int>.from(json['article_points'] ?? {}),
-      gamificationEvents: Map<String, int>.from(json['gamification_events'] ?? {}),
-      pointMultipliers: Map<String, double>.from(json['point_multipliers'] ?? {}),
+      articlePoints: articlePoints,
+      gamificationEvents: gamificationEvents,
+      pointMultipliers: pointMultipliers,
     );
   }
 
