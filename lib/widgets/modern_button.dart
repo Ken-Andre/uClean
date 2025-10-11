@@ -11,7 +11,7 @@ class ModernButton extends StatelessWidget {
   final Widget? icon;
   final bool isLoading;
   final bool isFullWidth;
-  
+
   const ModernButton({
     Key? key,
     required this.text,
@@ -22,7 +22,7 @@ class ModernButton extends StatelessWidget {
     this.isLoading = false,
     this.isFullWidth = false,
   }) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -81,7 +81,7 @@ class ModernButton extends StatelessWidget {
       ),
     );
   }
-  
+
   double _getHeight() {
     switch (size) {
       case ModernButtonSize.small:
@@ -92,7 +92,7 @@ class ModernButton extends StatelessWidget {
         return 56.v;
     }
   }
-  
+
   double _getHorizontalPadding() {
     switch (size) {
       case ModernButtonSize.small:
@@ -103,7 +103,7 @@ class ModernButton extends StatelessWidget {
         return ModernTheme.spaceXl;
     }
   }
-  
+
   double _getVerticalPadding() {
     switch (size) {
       case ModernButtonSize.small:
@@ -114,14 +114,14 @@ class ModernButton extends StatelessWidget {
         return ModernTheme.spaceMd;
     }
   }
-  
+
   Gradient? _getGradient() {
     if (variant == ModernButtonVariant.gradient) {
       return ModernTheme.primaryGradient;
     }
     return null;
   }
-  
+
   Color? _getBackgroundColor() {
     switch (variant) {
       case ModernButtonVariant.primary:
@@ -136,7 +136,7 @@ class ModernButton extends StatelessWidget {
         return null;
     }
   }
-  
+
   Border? _getBorder() {
     if (variant == ModernButtonVariant.outline) {
       return Border.all(
@@ -146,7 +146,7 @@ class ModernButton extends StatelessWidget {
     }
     return null;
   }
-  
+
   Color _getTextColor() {
     switch (variant) {
       case ModernButtonVariant.primary:
@@ -158,14 +158,14 @@ class ModernButton extends StatelessWidget {
         return ModernTheme.primaryBlue;
     }
   }
-  
+
   TextStyle _getTextStyle() {
     final baseStyle = size == ModernButtonSize.small
         ? ModernTypography.labelMedium
         : size == ModernButtonSize.medium
             ? ModernTypography.labelLarge
             : ModernTypography.titleMedium;
-    
+
     return baseStyle.copyWith(
       color: _getTextColor(),
       fontWeight: FontWeight.w600,

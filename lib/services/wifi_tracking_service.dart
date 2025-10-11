@@ -203,7 +203,8 @@ class WifiTrackingService {
           }
         }
       } else {
-        print('⚠️ Permission de localisation refusée - impossible d\'accéder au WiFi');
+        print(
+            '⚠️ Permission de localisation refusée - impossible d\'accéder au WiFi');
       }
 
       return null;
@@ -244,10 +245,10 @@ class WifiTrackingService {
   String _sanitizeSsid(String ssid) {
     // Retirer les guillemets souvent ajoutés par Android
     String cleaned = ssid.replaceAll('"', '').trim();
-    
+
     // Retirer les caractères de contrôle et autres caractères problématiques
     cleaned = cleaned.replaceAll(RegExp(r'[\x00-\x1F\x7F]'), '');
-    
+
     return cleaned;
   }
 

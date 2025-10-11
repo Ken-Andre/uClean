@@ -78,7 +78,8 @@ class GamificationService {
         // Mode API-synced: ajouter aux points API existants
         final int newTotal = currentApiTotal + pointsToAdd;
         data[_totalPointsKey] = newTotal;
-        print('🔄 Mode API-sync: $currentApiTotal + $pointsToAdd = $newTotal points');
+        print(
+            '🔄 Mode API-sync: $currentApiTotal + $pointsToAdd = $newTotal points');
       } else {
         // Mode local traditionnel
         final int currentTotal = data[_totalPointsKey] as int? ?? 0;
@@ -337,16 +338,14 @@ class GamificationService {
       final connectivityResult = await Connectivity().checkConnectivity();
       final isOnline = connectivityResult != ConnectivityResult.none;
 
-      print(
-          '🔗 État connectivité: ${isOnline ? 'EN LIGNE' : 'HORS LIGNE'}');
+      print('🔗 État connectivité: ${isOnline ? 'EN LIGNE' : 'HORS LIGNE'}');
 
       if (isOnline) {
         print('📡 Tentative récupération données depuis API...');
         try {
           // Récupérer les données depuis l'API
           final apiPoints = await _apiService.getGamificationPoints();
-          print(
-              '📋 Points récupérés depuis API: ${apiPoints.length} points');
+          print('📋 Points récupérés depuis API: ${apiPoints.length} points');
 
           if (apiPoints.isNotEmpty) {
             final currentLocalPoints = await getTotalPoints();
@@ -373,8 +372,7 @@ class GamificationService {
             print('⚠️ Aucun point récupéré depuis l\'API');
           }
         } catch (apiError) {
-          print(
-              '❌ Erreur lors de la synchronisation depuis l\'API: $apiError');
+          print('❌ Erreur lors de la synchronisation depuis l\'API: $apiError');
 
           // Check if it's an authentication error
           if (apiError.toString().contains('401')) {

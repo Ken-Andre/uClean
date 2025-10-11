@@ -31,7 +31,8 @@ class GamificationPoint {
   Map<String, dynamic> toJson() {
     return {
       'points': points,
-      'awarded_at': awardedAt.toIso8601String().split('T')[0], // Format YYYY-MM-DD
+      'awarded_at':
+          awardedAt.toIso8601String().split('T')[0], // Format YYYY-MM-DD
     };
   }
 

@@ -13,7 +13,7 @@ class ModernAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showBackButton;
   final VoidCallback? onBackPressed;
   final double? elevation;
-  
+
   const ModernAppBar({
     Key? key,
     this.title,
@@ -26,30 +26,31 @@ class ModernAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onBackPressed,
     this.elevation,
   }) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: backgroundColor ?? ModernTheme.neutralWhite,
       elevation: elevation ?? 0,
       centerTitle: centerTitle,
-      leading: leading ?? (showBackButton && Navigator.canPop(context)
-          ? IconButton(
-              icon: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: ModernTheme.neutral100,
-                  borderRadius: BorderRadius.circular(ModernTheme.radiusSm),
-                ),
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 16,
-                  color: ModernTheme.neutralBlack,
-                ),
-              ),
-              onPressed: onBackPressed ?? () => Navigator.pop(context),
-            )
-          : null),
+      leading: leading ??
+          (showBackButton && Navigator.canPop(context)
+              ? IconButton(
+                  icon: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: ModernTheme.neutral100,
+                      borderRadius: BorderRadius.circular(ModernTheme.radiusSm),
+                    ),
+                    child: Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 16,
+                      color: ModernTheme.neutralBlack,
+                    ),
+                  ),
+                  onPressed: onBackPressed ?? () => Navigator.pop(context),
+                )
+              : null),
       title: titleWidget ??
           (title != null
               ? Text(
@@ -60,7 +61,7 @@ class ModernAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
     );
   }
-  
+
   @override
   Size get preferredSize => Size.fromHeight(56.v);
 }

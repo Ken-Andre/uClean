@@ -33,7 +33,8 @@ void main() async {
     await gamificationService.initializeSync();
     print('✅ Synchronisation gamification terminée');
   } catch (e, stackTrace) {
-    print('⚠️ Erreur lors de l\'initialisation de la synchronisation gamification: $e');
+    print(
+        '⚠️ Erreur lors de l\'initialisation de la synchronisation gamification: $e');
   }
 
   runApp(MyApp());

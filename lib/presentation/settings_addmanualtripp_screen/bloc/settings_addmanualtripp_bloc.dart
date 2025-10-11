@@ -139,7 +139,8 @@ class SettingsAddmanualtrippBloc
 
       await tripService.addTrip(
         startTime: startDateTime,
-        endTime: startDateTime.add(const Duration(hours: 1)), // Default 1 hour duration
+        endTime: startDateTime
+            .add(const Duration(hours: 1)), // Default 1 hour duration
         distance: distance,
         startLocation: state.startLocationController?.text,
         endLocation: state.stopLocationController?.text,
@@ -152,6 +153,7 @@ class SettingsAddmanualtrippBloc
       // Continue even if point awarding fails
     }
   }
+
   void _onCreateTripError() {
     //implement error method body...
   }

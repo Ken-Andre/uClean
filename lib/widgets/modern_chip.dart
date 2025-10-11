@@ -10,7 +10,7 @@ class ModernChip extends StatelessWidget {
   final VoidCallback? onTap;
   final bool isSelected;
   final ModernChipSize size;
-  
+
   const ModernChip({
     Key? key,
     required this.label,
@@ -21,7 +21,7 @@ class ModernChip extends StatelessWidget {
     this.isSelected = false,
     this.size = ModernChipSize.medium,
   }) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -58,7 +58,7 @@ class ModernChip extends StatelessWidget {
       ),
     );
   }
-  
+
   double _getHorizontalPadding() {
     switch (size) {
       case ModernChipSize.small:
@@ -69,7 +69,7 @@ class ModernChip extends StatelessWidget {
         return ModernTheme.spaceLg;
     }
   }
-  
+
   double _getVerticalPadding() {
     switch (size) {
       case ModernChipSize.small:
@@ -80,22 +80,23 @@ class ModernChip extends StatelessWidget {
         return ModernTheme.spaceSm;
     }
   }
-  
+
   Color _getBackgroundColor() {
     if (backgroundColor != null) return backgroundColor!;
     if (isSelected) return ModernTheme.primaryBlue.withValues(alpha: 0.1);
     return ModernTheme.neutral100;
   }
-  
+
   TextStyle _getTextStyle() {
     final baseStyle = size == ModernChipSize.small
         ? ModernTypography.labelSmall
         : size == ModernChipSize.medium
             ? ModernTypography.labelMedium
             : ModernTypography.labelLarge;
-    
+
     return baseStyle.copyWith(
-      color: textColor ?? (isSelected ? ModernTheme.primaryBlue : ModernTheme.neutral700),
+      color: textColor ??
+          (isSelected ? ModernTheme.primaryBlue : ModernTheme.neutral700),
       fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
     );
   }

@@ -312,7 +312,8 @@ class ApiClient {
       );
 
       if (_isSuccessCall(response)) {
-        print('📊 Gamification API raw response: ${response.data} (type: ${response.data.runtimeType})');
+        print(
+            '📊 Gamification API raw response: ${response.data} (type: ${response.data.runtimeType})');
 
         // Handle case where API returns total count as integer
         if (response.data is int) {
@@ -342,7 +343,8 @@ class ApiClient {
         }
 
         // Handle unexpected response type
-        print('⚠️ Gamification API response is not a List or int: ${response.data.runtimeType}');
+        print(
+            '⚠️ Gamification API response is not a List or int: ${response.data.runtimeType}');
         return [];
       } else {
         throw response.data != null
@@ -375,10 +377,12 @@ class ApiClient {
 
       final requestData = {
         'points': points,
-        'awarded_at': awardedAt.toIso8601String().split('T')[0], // Format YYYY-MM-DD
+        'awarded_at':
+            awardedAt.toIso8601String().split('T')[0], // Format YYYY-MM-DD
       };
 
-      Logger.log('Envoi de points à l\'API: $points points le ${awardedAt.toIso8601String().split('T')[0]}');
+      Logger.log(
+          'Envoi de points à l\'API: $points points le ${awardedAt.toIso8601String().split('T')[0]}');
 
       Response response = await _dio.post(
         '$url/api:v0yDfnCj/gamification_point',
@@ -387,12 +391,14 @@ class ApiClient {
       );
 
       if (_isSuccessCall(response)) {
-        print('✅ Points envoyés avec succès à l\'API - Status: ${response.statusCode}');
+        print(
+            '✅ Points envoyés avec succès à l\'API - Status: ${response.statusCode}');
         print('📤 Request data: $requestData');
         print('📥 Response data: ${response.data}');
         return PostGamificationPointResp.fromJson(response.data);
       } else {
-        print('❌ Erreur API lors de l\'envoi des points: ${response.statusCode}');
+        print(
+            '❌ Erreur API lors de l\'envoi des points: ${response.statusCode}');
         print('📤 Request data: $requestData');
         print('📥 Response data: ${response.data}');
         throw response.data != null

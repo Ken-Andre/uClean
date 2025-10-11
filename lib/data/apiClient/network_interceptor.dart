@@ -21,15 +21,16 @@ class NetworkInterceptor extends Interceptor {
 
     // Ajouter automatiquement le token d'authentification si disponible
     final token = PrefUtils().getAuthToken();
-    
+
     // Log des requêtes pour le debug
     print('🚀 API Request: ${options.method} ${options.uri}');
-    
+
     if (token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';
       print('🔐 Auth token présent dans les headers');
       print('🔍 Token length: ${token.length} chars');
-      print('🔍 Token start: ${token.substring(0, token.length > 30 ? 30 : token.length)}...');
+      print(
+          '🔍 Token start: ${token.substring(0, token.length > 30 ? 30 : token.length)}...');
     } else {
       print('! Aucun token d\'authentification trouvé');
     }
@@ -43,7 +44,8 @@ class NetworkInterceptor extends Interceptor {
     super.onError(err, handler);
 
     // Log des erreurs pour le debug
-    print('❌ API Error: ${err.response?.statusCode} ${err.response?.statusMessage}');
+    print(
+        '❌ API Error: ${err.response?.statusCode} ${err.response?.statusMessage}');
     print('URL: ${err.requestOptions.uri}');
     print('Method: ${err.requestOptions.method}');
 

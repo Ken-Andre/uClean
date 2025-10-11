@@ -214,7 +214,8 @@ class ArticleService {
         final prefs = await SharedPreferences.getInstance();
         final existingProgress = await _getLocalProgress();
         existingProgress.addAll(newProgress);
-        await prefs.setString(_localProgressFile, json.encode(existingProgress));
+        await prefs.setString(
+            _localProgressFile, json.encode(existingProgress));
       } catch (e, stackTrace) {
         developer.log(
           'Erreur lors de la sauvegarde de la progression locale (web)',

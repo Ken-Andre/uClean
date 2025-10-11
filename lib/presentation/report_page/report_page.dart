@@ -25,19 +25,19 @@ class ReportPage extends StatelessWidget {
                 width: double.maxFinite,
                 padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 24.v),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                  SizedBox(height: 30.v),
-                  Text("lbl_all_trips".tr,
-                      style: theme.textTheme.headlineSmall?.copyWith(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                      )),
-                  SizedBox(height: 8.v),
-                  _buildFilterChips(context),
-                  SizedBox(height: 24.v),
-                  _buildReport(context)
-                ]))));
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 30.v),
+                      Text("lbl_all_trips".tr,
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600,
+                          )),
+                      SizedBox(height: 8.v),
+                      _buildFilterChips(context),
+                      SizedBox(height: 24.v),
+                      _buildReport(context)
+                    ]))));
   }
 
   /// Filter Chips Section

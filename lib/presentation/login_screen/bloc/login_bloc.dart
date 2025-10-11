@@ -72,7 +72,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       postAuthLoginPostResp = response;
       _onAuthLoginPostSuccess(response, emit);
       event.onCreateLoginEventSuccess?.call();
-
     } catch (error, stackTrace) {
       // Handle error using the ErrorHandler
       final userFriendlyMessage = _getUserFriendlyErrorMessage(error);
@@ -98,7 +97,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     ));
   }
 
-  void _onAuthLoginPostError(dynamic error, String userMessage, Emitter<LoginState> emit) {
+  void _onAuthLoginPostError(
+      dynamic error, String userMessage, Emitter<LoginState> emit) {
     emit(state.copyWith(
       isLoading: false,
       errorMessage: userMessage,

@@ -13,24 +13,26 @@ class SettingsAutoTrackScreen extends StatefulWidget {
   static Widget builder(BuildContext context) {
     return BlocProvider<SettingsAutoTrackBloc>(
       create: (context) => SettingsAutoTrackBloc(
-        SettingsAutoTrackState(settingsAutoTrackModelObj: SettingsAutoTrackModel()),
+        SettingsAutoTrackState(
+            settingsAutoTrackModelObj: SettingsAutoTrackModel()),
       )..add(SettingsAutoTrackInitialEvent()),
       child: const SettingsAutoTrackScreen(),
     );
   }
 
   @override
-  State<SettingsAutoTrackScreen> createState() => _SettingsAutoTrackScreenState();
+  State<SettingsAutoTrackScreen> createState() =>
+      _SettingsAutoTrackScreenState();
 }
 
 class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
   final StepCounterService _stepCounter = StepCounterService.instance;
   final WifiTrackingService _wifiTracking = WifiTrackingService.instance;
-  
+
   bool _stepTrackingEnabled = false;
   bool _wifiTrackingEnabled = false;
   bool _onlyTrackWithinHours = false;
-  
+
   TimeOfDay _startTime = const TimeOfDay(hour: 8, minute: 0);
   TimeOfDay _endTime = const TimeOfDay(hour: 18, minute: 0);
 
@@ -93,12 +95,14 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
     if (value) {
       await _stepCounter.startTracking();
       if (mounted) {
-        _showSnackBar('Comptage de pas activé', Icons.check_circle, Colors.green);
+        _showSnackBar(
+            'Comptage de pas activé', Icons.check_circle, Colors.green);
       }
     } else {
       await _stepCounter.stopTracking();
       if (mounted) {
-        _showSnackBar('Comptage de pas désactivé', Icons.pause_circle, Colors.orange);
+        _showSnackBar(
+            'Comptage de pas désactivé', Icons.pause_circle, Colors.orange);
       }
     }
   }
@@ -120,7 +124,8 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
     } else {
       await _wifiTracking.stopTracking();
       if (mounted) {
-        _showSnackBar('Suivi WiFi désactivé', Icons.pause_circle, Colors.orange);
+        _showSnackBar(
+            'Suivi WiFi désactivé', Icons.pause_circle, Colors.orange);
       }
     }
   }
@@ -270,7 +275,7 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: iconColor.withValues(alpha:0.1),
+              color: iconColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(icon, color: iconColor, size: 28),
@@ -317,7 +322,7 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha:0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -327,7 +332,8 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.schedule, color: Theme.of(context).primaryColor, size: 24),
+              Icon(Icons.schedule,
+                  color: Theme.of(context).primaryColor, size: 24),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -451,7 +457,7 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha:0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -461,7 +467,8 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.analytics, color: Theme.of(context).primaryColor, size: 24),
+              Icon(Icons.analytics,
+                  color: Theme.of(context).primaryColor, size: 24),
               const SizedBox(width: 12),
               const Text(
                 'Statistiques du suivi',
@@ -509,7 +516,7 @@ class _SettingsAutoTrackScreenState extends State<SettingsAutoTrackScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withValues(alpha:0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(

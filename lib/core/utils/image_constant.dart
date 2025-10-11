@@ -10,13 +10,13 @@ class ImageConstant {
   static String imgYellowGrandient = '$imagePath/img_yellow_grandient.png';
 
   static String imgLogo = '$imagePath/img_logo.svg';
-  
+
   // Onboarding images
   static String imgReading = '$imagePath/img_reading.png';
-  
+
   static String imgBoy = '$imagePath/img_boy.png';
-  
-  static String imgMan = '$imagePath/img_man.png'; 
+
+  static String imgMan = '$imagePath/img_man.png';
 
   // NotifsPanel images
   static String imgMaterialSymbol = '$imagePath/img_material_symbol.svg';

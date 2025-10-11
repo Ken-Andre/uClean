@@ -6,12 +6,13 @@ import '../core/utils/size_utils.dart';
 class ModernTheme {
   // ==================== COLOR PALETTE ====================
   // Based on splash screen gradient colors
-  
+
   // Primary Brand Colors (from gradients)
-  static const Color primaryBlue = Color(0xFF1D858A);      // Cyan-blue from splash
-  static const Color primaryPink = Color(0xFFFF7968);      // Coral-pink from splash
-  static const Color primaryYellow = Color(0xFFFBE468);    // Warm yellow from splash
-  
+  static const Color primaryBlue = Color(0xFF1D858A); // Cyan-blue from splash
+  static const Color primaryPink = Color(0xFFFF7968); // Coral-pink from splash
+  static const Color primaryYellow =
+      Color(0xFFFBE468); // Warm yellow from splash
+
   // Gradient Colors (extracted from splash assets)
   static const Color gradientBlueStart = Color(0xFF003366);
   static const Color gradientBlueEnd = Color(0xFF63ACD4);
@@ -19,7 +20,7 @@ class ModernTheme {
   static const Color gradientPinkEnd = Color(0xFFFF7968);
   static const Color gradientYellowStart = Color(0xFFFFBE7E);
   static const Color gradientYellowEnd = Color(0xFFFBE468);
-  
+
   // Neutral Colors
   static const Color neutralBlack = Color(0xFF1C1B1F);
   static const Color neutral900 = Color(0xFF2D2D2D);
@@ -28,33 +29,33 @@ class ModernTheme {
   static const Color neutral300 = Color(0xFFD1D1D1);
   static const Color neutral100 = Color(0xFFF5F5F5);
   static const Color neutralWhite = Color(0xFFFFFFFF);
-  
+
   // Semantic Colors
   static const Color success = Color(0xFF38FF93);
   static const Color warning = Color(0xFFFF860B);
   static const Color error = Color(0xFFFF7968);
   static const Color info = Color(0xFF63ACD4);
-  
+
   // ==================== GRADIENTS ====================
-  
+
   static const LinearGradient primaryGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [gradientBlueStart, gradientBlueEnd],
   );
-  
+
   static const LinearGradient accentGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [gradientPinkStart, gradientPinkEnd],
   );
-  
+
   static const LinearGradient warmGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [gradientYellowStart, gradientYellowEnd],
   );
-  
+
   // Splash screen multi-gradient overlay effect
   static Widget splashGradientOverlay({required Widget child}) {
     return Stack(
@@ -114,9 +115,9 @@ class ModernTheme {
       ],
     );
   }
-  
+
   // ==================== SPACING SYSTEM ====================
-  
+
   static const double space2xs = 4.0;
   static const double spaceXs = 8.0;
   static const double spaceSm = 12.0;
@@ -125,52 +126,52 @@ class ModernTheme {
   static const double spaceXl = 32.0;
   static const double space2xl = 48.0;
   static const double space3xl = 64.0;
-  
+
   // ==================== BORDER RADIUS ====================
-  
+
   static const double radiusXs = 4.0;
   static const double radiusSm = 8.0;
   static const double radiusMd = 12.0;
   static const double radiusLg = 16.0;
   static const double radiusXl = 24.0;
   static const double radiusFull = 999.0;
-  
+
   // ==================== SHADOWS ====================
-  
+
   static List<BoxShadow> get shadowSm => [
-    BoxShadow(
-      color: neutralBlack.withValues(alpha: 0.08),
-      blurRadius: 4,
-      offset: const Offset(0, 2),
-    ),
-  ];
-  
+        BoxShadow(
+          color: neutralBlack.withValues(alpha: 0.08),
+          blurRadius: 4,
+          offset: const Offset(0, 2),
+        ),
+      ];
+
   static List<BoxShadow> get shadowMd => [
-    BoxShadow(
-      color: neutralBlack.withValues(alpha: 0.12),
-      blurRadius: 8,
-      offset: const Offset(0, 4),
-    ),
-  ];
-  
+        BoxShadow(
+          color: neutralBlack.withValues(alpha: 0.12),
+          blurRadius: 8,
+          offset: const Offset(0, 4),
+        ),
+      ];
+
   static List<BoxShadow> get shadowLg => [
-    BoxShadow(
-      color: neutralBlack.withValues(alpha: 0.16),
-      blurRadius: 16,
-      offset: const Offset(0, 8),
-    ),
-  ];
-  
+        BoxShadow(
+          color: neutralBlack.withValues(alpha: 0.16),
+          blurRadius: 16,
+          offset: const Offset(0, 8),
+        ),
+      ];
+
   static List<BoxShadow> get shadowXl => [
-    BoxShadow(
-      color: neutralBlack.withValues(alpha: 0.20),
-      blurRadius: 24,
-      offset: const Offset(0, 12),
-    ),
-  ];
-  
+        BoxShadow(
+          color: neutralBlack.withValues(alpha: 0.20),
+          blurRadius: 24,
+          offset: const Offset(0, 12),
+        ),
+      ];
+
   // ==================== THEME DATA ====================
-  
+
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
@@ -187,7 +188,7 @@ class ModernTheme {
       ),
       scaffoldBackgroundColor: neutralWhite,
       fontFamily: 'Poppins',
-      
+
       // App Bar Theme
       appBarTheme: AppBarTheme(
         backgroundColor: neutralWhite,
@@ -201,7 +202,7 @@ class ModernTheme {
           color: neutralBlack,
         ),
       ),
-      
+
       // Card Theme
       cardTheme: CardThemeData(
         color: neutralWhite,
@@ -211,7 +212,7 @@ class ModernTheme {
         ),
         shadowColor: neutralBlack.withValues(alpha: 0.08),
       ),
-      
+
       // Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -229,7 +230,7 @@ class ModernTheme {
           ),
         ),
       ),
-      
+
       // Text Button Theme
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
@@ -241,7 +242,7 @@ class ModernTheme {
           ),
         ),
       ),
-      
+
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -262,7 +263,8 @@ class ModernTheme {
           borderRadius: BorderRadius.circular(radiusMd),
           borderSide: const BorderSide(color: error, width: 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         hintStyle: TextStyle(
           fontFamily: 'Poppins',
           fontSize: 14,
@@ -270,7 +272,7 @@ class ModernTheme {
           color: neutral500,
         ),
       ),
-      
+
       // Divider Theme
       dividerTheme: DividerThemeData(
         color: neutral300,
@@ -285,126 +287,126 @@ class ModernTheme {
 class ModernTypography {
   // Display Styles
   static TextStyle get displayLarge => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 32.fSize,
-    fontWeight: FontWeight.w700,
-    color: ModernTheme.neutralBlack,
-    height: 1.2,
-  );
-  
+        fontFamily: 'Poppins',
+        fontSize: 32.fSize,
+        fontWeight: FontWeight.w700,
+        color: ModernTheme.neutralBlack,
+        height: 1.2,
+      );
+
   static TextStyle get displayMedium => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 28.fSize,
-    fontWeight: FontWeight.w700,
-    color: ModernTheme.neutralBlack,
-    height: 1.2,
-  );
-  
+        fontFamily: 'Poppins',
+        fontSize: 28.fSize,
+        fontWeight: FontWeight.w700,
+        color: ModernTheme.neutralBlack,
+        height: 1.2,
+      );
+
   static TextStyle get displaySmall => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 24.fSize,
-    fontWeight: FontWeight.w600,
-    color: ModernTheme.neutralBlack,
-    height: 1.3,
-  );
-  
+        fontFamily: 'Poppins',
+        fontSize: 24.fSize,
+        fontWeight: FontWeight.w600,
+        color: ModernTheme.neutralBlack,
+        height: 1.3,
+      );
+
   // Headline Styles
   static TextStyle get headlineLarge => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 22.fSize,
-    fontWeight: FontWeight.w600,
-    color: ModernTheme.neutralBlack,
-    height: 1.3,
-  );
-  
+        fontFamily: 'Poppins',
+        fontSize: 22.fSize,
+        fontWeight: FontWeight.w600,
+        color: ModernTheme.neutralBlack,
+        height: 1.3,
+      );
+
   static TextStyle get headlineMedium => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 20.fSize,
-    fontWeight: FontWeight.w600,
-    color: ModernTheme.neutralBlack,
-    height: 1.4,
-  );
-  
+        fontFamily: 'Poppins',
+        fontSize: 20.fSize,
+        fontWeight: FontWeight.w600,
+        color: ModernTheme.neutralBlack,
+        height: 1.4,
+      );
+
   static TextStyle get headlineSmall => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 18.fSize,
-    fontWeight: FontWeight.w600,
-    color: ModernTheme.neutralBlack,
-    height: 1.4,
-  );
-  
+        fontFamily: 'Poppins',
+        fontSize: 18.fSize,
+        fontWeight: FontWeight.w600,
+        color: ModernTheme.neutralBlack,
+        height: 1.4,
+      );
+
   // Title Styles
   static TextStyle get titleLarge => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 16.fSize,
-    fontWeight: FontWeight.w600,
-    color: ModernTheme.neutralBlack,
-    height: 1.5,
-  );
-  
+        fontFamily: 'Poppins',
+        fontSize: 16.fSize,
+        fontWeight: FontWeight.w600,
+        color: ModernTheme.neutralBlack,
+        height: 1.5,
+      );
+
   static TextStyle get titleMedium => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 14.fSize,
-    fontWeight: FontWeight.w600,
-    color: ModernTheme.neutralBlack,
-    height: 1.5,
-  );
-  
+        fontFamily: 'Poppins',
+        fontSize: 14.fSize,
+        fontWeight: FontWeight.w600,
+        color: ModernTheme.neutralBlack,
+        height: 1.5,
+      );
+
   static TextStyle get titleSmall => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 12.fSize,
-    fontWeight: FontWeight.w600,
-    color: ModernTheme.neutralBlack,
-    height: 1.5,
-  );
-  
+        fontFamily: 'Poppins',
+        fontSize: 12.fSize,
+        fontWeight: FontWeight.w600,
+        color: ModernTheme.neutralBlack,
+        height: 1.5,
+      );
+
   // Body Styles
   static TextStyle get bodyLarge => TextStyle(
-    fontFamily: 'Inter',
-    fontSize: 16.fSize,
-    fontWeight: FontWeight.w400,
-    color: ModernTheme.neutral700,
-    height: 1.6,
-  );
-  
+        fontFamily: 'Inter',
+        fontSize: 16.fSize,
+        fontWeight: FontWeight.w400,
+        color: ModernTheme.neutral700,
+        height: 1.6,
+      );
+
   static TextStyle get bodyMedium => TextStyle(
-    fontFamily: 'Inter',
-    fontSize: 14.fSize,
-    fontWeight: FontWeight.w400,
-    color: ModernTheme.neutral700,
-    height: 1.6,
-  );
-  
+        fontFamily: 'Inter',
+        fontSize: 14.fSize,
+        fontWeight: FontWeight.w400,
+        color: ModernTheme.neutral700,
+        height: 1.6,
+      );
+
   static TextStyle get bodySmall => TextStyle(
-    fontFamily: 'Inter',
-    fontSize: 12.fSize,
-    fontWeight: FontWeight.w400,
-    color: ModernTheme.neutral500,
-    height: 1.6,
-  );
-  
+        fontFamily: 'Inter',
+        fontSize: 12.fSize,
+        fontWeight: FontWeight.w400,
+        color: ModernTheme.neutral500,
+        height: 1.6,
+      );
+
   // Label Styles
   static TextStyle get labelLarge => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 14.fSize,
-    fontWeight: FontWeight.w500,
-    color: ModernTheme.neutral700,
-    height: 1.4,
-  );
-  
+        fontFamily: 'Poppins',
+        fontSize: 14.fSize,
+        fontWeight: FontWeight.w500,
+        color: ModernTheme.neutral700,
+        height: 1.4,
+      );
+
   static TextStyle get labelMedium => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 12.fSize,
-    fontWeight: FontWeight.w500,
-    color: ModernTheme.neutral700,
-    height: 1.4,
-  );
-  
+        fontFamily: 'Poppins',
+        fontSize: 12.fSize,
+        fontWeight: FontWeight.w500,
+        color: ModernTheme.neutral700,
+        height: 1.4,
+      );
+
   static TextStyle get labelSmall => TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 10.fSize,
-    fontWeight: FontWeight.w500,
-    color: ModernTheme.neutral500,
-    height: 1.4,
-  );
+        fontFamily: 'Poppins',
+        fontSize: 10.fSize,
+        fontWeight: FontWeight.w500,
+        color: ModernTheme.neutral500,
+        height: 1.4,
+      );
 }

@@ -33,7 +33,8 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
     setState(() => _isLoading = true);
 
     try {
-      final content = await _articleService.getArticleContent(widget.article.contentPath);
+      final content =
+          await _articleService.getArticleContent(widget.article.contentPath);
 
       if (mounted) {
         setState(() {
@@ -69,13 +70,12 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
 
       // Attribuer les points via le service de gamification
       final pointsEarned = await _gamificationService.addPointsWithAPISync(
-        GamificationService.eventArticleRead,
-        metadata: {
-          'article_id': widget.article.id,
-          'article_title': widget.article.title,
-          'points_value': widget.article.getEffectivePoints(),
-        }
-      );
+          GamificationService.eventArticleRead,
+          metadata: {
+            'article_id': widget.article.id,
+            'article_title': widget.article.title,
+            'points_value': widget.article.getEffectivePoints(),
+          });
 
       setState(() {
         _hasMarkedAsRead = true;
@@ -90,7 +90,8 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
       print('Erreur lors du marquage: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Erreur lors du marquage de l\'article comme lu')),
+          const SnackBar(
+              content: Text('Erreur lors du marquage de l\'article comme lu')),
         );
       }
     }
@@ -110,22 +111,26 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
         title: Text(
           widget.article.category,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
         ),
         actions: [
           Container(
             margin: const EdgeInsets.only(right: 16),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: widget.article.isRead ? Colors.green.shade100 : Colors.blue.shade100,
+              color: widget.article.isRead
+                  ? Colors.green.shade100
+                  : Colors.blue.shade100,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
               '${widget.article.getEffectivePoints()} pts',
               style: TextStyle(
-                color: widget.article.isRead ? Colors.green.shade700 : Colors.blue.shade700,
+                color: widget.article.isRead
+                    ? Colors.green.shade700
+                    : Colors.blue.shade700,
                 fontWeight: FontWeight.w600,
                 fontSize: 12,
               ),
@@ -140,7 +145,8 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.error_outline, size: 64, color: Colors.grey),
+                      const Icon(Icons.error_outline,
+                          size: 64, color: Colors.grey),
                       const SizedBox(height: 16),
                       Text(
                         'Erreur lors du chargement',
@@ -165,10 +171,13 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
                           Expanded(
                             child: Text(
                               widget.article.title,
-                              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                height: 1.3,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineSmall
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    height: 1.3,
+                                  ),
                             ),
                           ),
                         ],
@@ -176,7 +185,8 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          Icon(Icons.access_time, size: 16, color: Colors.grey.shade600),
+                          Icon(Icons.access_time,
+                              size: 16, color: Colors.grey.shade600),
                           const SizedBox(width: 4),
                           Text(
                             widget.article.readingTime,
@@ -186,7 +196,8 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
                             ),
                           ),
                           const SizedBox(width: 16),
-                          Icon(Icons.calendar_today, size: 16, color: Colors.grey.shade600),
+                          Icon(Icons.calendar_today,
+                              size: 16, color: Colors.grey.shade600),
                           const SizedBox(width: 4),
                           Text(
                             '${widget.article.date.day}/${widget.article.date.month}/${widget.article.date.year}',
@@ -203,26 +214,31 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
                       MarkdownBody(
                         data: _markdownContent!,
                         styleSheet: MarkdownStyleSheet(
-                          h1: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
+                          h1: Theme.of(context)
+                              .textTheme
+                              .headlineMedium
+                              ?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
                           h2: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
                           p: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.black87,
-                            height: 1.6,
-                          ),
-                          strong: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),
-                          blockquote: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.grey.shade700,
-                            fontStyle: FontStyle.italic,
-                          ),
+                                color: Colors.black87,
+                                height: 1.6,
+                              ),
+                          strong:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                          blockquote:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.grey.shade700,
+                                    fontStyle: FontStyle.italic,
+                                  ),
                           code: TextStyle(
                             backgroundColor: Colors.grey.shade100,
                             color: Colors.black,
@@ -239,7 +255,8 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
                           child: ElevatedButton.icon(
                             onPressed: _markAsRead,
                             icon: const Icon(Icons.check_circle_outline),
-                            label: Text('Marquer comme lu (+${widget.article.getEffectivePoints()} pts)'),
+                            label: Text(
+                                'Marquer comme lu (+${widget.article.getEffectivePoints()} pts)'),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Theme.of(context).primaryColor,
                               foregroundColor: Colors.white,
@@ -268,7 +285,8 @@ class _ArticleViewerScreenState extends State<ArticleViewerScreen> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(Icons.check_circle, color: Colors.green),
+                                const Icon(Icons.check_circle,
+                                    color: Colors.green),
                                 const SizedBox(width: 8),
                                 Text(
                                   'Lu (+${widget.article.getEffectivePoints()} pts)',

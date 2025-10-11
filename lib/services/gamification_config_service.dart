@@ -80,8 +80,10 @@ class GamificationConfig {
   factory GamificationConfig.fromJson(Map<String, dynamic> json) {
     return GamificationConfig(
       pointsPerEvent: Map<String, int>.from(json['points_per_event'] ?? {}),
-      achievementThresholds: Map<String, int>.from(json['achievement_thresholds'] ?? {}),
-      activityMultipliers: Map<String, double>.from(json['activity_multipliers'] ?? {}),
+      achievementThresholds:
+          Map<String, int>.from(json['achievement_thresholds'] ?? {}),
+      activityMultipliers:
+          Map<String, double>.from(json['activity_multipliers'] ?? {}),
       streakConfig: StreakConfig.fromJson(json['streak_config'] ?? {}),
       levelConfig: LevelConfig.fromJson(json['level_config'] ?? {}),
       retentionConfig: RetentionConfig.fromJson(json['retention_config'] ?? {}),
@@ -118,7 +120,8 @@ class GamificationConfig {
   }) {
     return GamificationConfig(
       pointsPerEvent: pointsPerEvent ?? this.pointsPerEvent,
-      achievementThresholds: achievementThresholds ?? this.achievementThresholds,
+      achievementThresholds:
+          achievementThresholds ?? this.achievementThresholds,
       activityMultipliers: activityMultipliers ?? this.activityMultipliers,
       streakConfig: streakConfig ?? this.streakConfig,
       levelConfig: levelConfig ?? this.levelConfig,
@@ -142,7 +145,8 @@ class StreakConfig {
   factory StreakConfig.fromJson(Map<String, dynamic> json) {
     return StreakConfig(
       maxStreakDays: json['max_streak_days'] ?? 365,
-      streakBonusMultiplier: (json['streak_bonus_multiplier'] ?? 1.5).toDouble(),
+      streakBonusMultiplier:
+          (json['streak_bonus_multiplier'] ?? 1.5).toDouble(),
       streakResetThreshold: json['streak_reset_threshold'] ?? 2,
     );
   }
@@ -271,16 +275,21 @@ class GamificationConfigService {
   }
 
   /// Met à jour seulement les seuils d'achievements
-  static Future<void> updateAchievementThresholds(Map<String, int> newThresholds) async {
+  static Future<void> updateAchievementThresholds(
+      Map<String, int> newThresholds) async {
     final current = currentConfig;
     final updatedConfig = current.copyWith(
-      achievementThresholds: {...current.achievementThresholds, ...newThresholds},
+      achievementThresholds: {
+        ...current.achievementThresholds,
+        ...newThresholds
+      },
     );
     await setConfig(updatedConfig);
   }
 
   /// Met à jour les multiplicateurs d'activité
-  static Future<void> updateActivityMultipliers(Map<String, double> newMultipliers) async {
+  static Future<void> updateActivityMultipliers(
+      Map<String, double> newMultipliers) async {
     final current = currentConfig;
     final updatedConfig = current.copyWith(
       activityMultipliers: {...current.activityMultipliers, ...newMultipliers},
@@ -333,7 +342,6 @@ class GamificationConfigService {
           analyticsRetentionDays: 120,
         ),
       ),
-
       'aggressive': GamificationConfig(
         pointsPerEvent: {
           'article_read': 8,
@@ -376,7 +384,6 @@ class GamificationConfigService {
           analyticsRetentionDays: 240,
         ),
       ),
-
       'enterprise': GamificationConfig(
         pointsPerEvent: {
           'article_read': 5,

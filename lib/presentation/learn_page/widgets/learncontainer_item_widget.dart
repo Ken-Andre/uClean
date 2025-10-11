@@ -68,8 +68,7 @@ class LearncontainerItemWidget extends StatelessWidget {
                   Row(
                     children: [
                       Icon(Icons.arrow_forward,
-                          size: 16,
-                          color: appTheme.cyan800),
+                          size: 16, color: appTheme.cyan800),
                       SizedBox(width: 4.h),
                       Text(
                         "Read more",

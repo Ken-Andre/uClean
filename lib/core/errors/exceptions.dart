@@ -20,21 +20,26 @@ class AuthException implements Exception {
 
 /// Login specific exceptions
 class InvalidCredentialsException extends AuthException {
-  InvalidCredentialsException([String message = 'Invalid email or password']) : super(message, 401);
+  InvalidCredentialsException([String message = 'Invalid email or password'])
+      : super(message, 401);
 }
 
 class AccountLockedException extends AuthException {
-  AccountLockedException([String message = 'Account is temporarily locked']) : super(message, 423);
+  AccountLockedException([String message = 'Account is temporarily locked'])
+      : super(message, 423);
 }
 
 class EmailNotVerifiedException extends AuthException {
-  EmailNotVerifiedException([String message = 'Please verify your email address']) : super(message, 403);
+  EmailNotVerifiedException(
+      [String message = 'Please verify your email address'])
+      : super(message, 403);
 }
 
 /// Network and Server Exceptions
 class TimeoutException extends NetworkException {
   @override
-  String toString() => 'Request timeout. Please check your connection and try again.';
+  String toString() =>
+      'Request timeout. Please check your connection and try again.';
 }
 
 class ServerErrorException extends ServerException {

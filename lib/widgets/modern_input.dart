@@ -15,7 +15,7 @@ class ModernInput extends StatelessWidget {
   final int? maxLines;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
-  
+
   const ModernInput({
     Key? key,
     this.controller,
@@ -30,7 +30,7 @@ class ModernInput extends StatelessWidget {
     this.onChanged,
     this.validator,
   }) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(

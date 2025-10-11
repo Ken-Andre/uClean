@@ -18,10 +18,10 @@ class OnboardingState extends Equatable {
 
   @override
   List<Object?> get props => [
-    pageController,
-    onboardingModelObj,
-    activePage,
-  ];
+        pageController,
+        onboardingModelObj,
+        activePage,
+      ];
 
   OnboardingState copyWith({
     PageController? pageController,

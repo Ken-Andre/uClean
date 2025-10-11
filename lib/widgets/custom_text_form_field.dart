@@ -116,8 +116,7 @@ class CustomTextFormField extends StatelessWidget {
             //   top: 10.v,
             //   bottom: 10.v,
             // )
-            EdgeInsets.all(12.h)
-    ,
+            EdgeInsets.all(12.h),
         fillColor: fillColor ?? theme.colorScheme.onPrimaryContainer,
         filled: filled,
         border: borderDecoration ??

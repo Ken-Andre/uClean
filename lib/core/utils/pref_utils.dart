@@ -81,7 +81,8 @@ class PrefUtils {
     // Vérifier si le token contient des caractères valides pour un JWE ou JWT
     // Supporte JWE (5 parties: header.encrypted_key.init_vector.ciphertext.auth_tag)
     // et JWT (3 parties: header.payload.signature)
-    final tokenRegex = RegExp(r'^[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]{0,2}$|^[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]{0,2}$');
+    final tokenRegex = RegExp(
+        r'^[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]{0,2}$|^[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]+\.[A-Za-z0-9+/_-]{0,2}$');
     return tokenRegex.hasMatch(token);
   }
 

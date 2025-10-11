@@ -43,7 +43,8 @@ class _LearnPageContentState extends State<LearnPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
+      backgroundColor:
+          Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
       body: Container(
         width: double.maxFinite,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
@@ -54,9 +55,9 @@ class _LearnPageContentState extends State<LearnPageContent> {
             Text(
               "Articles",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Poppins',
-              ),
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Poppins',
+                  ),
             ),
             const SizedBox(height: 8),
             FutureBuilder<int>(
@@ -64,7 +65,8 @@ class _LearnPageContentState extends State<LearnPageContent> {
               builder: (context, snapshot) {
                 final points = snapshot.data ?? 0;
                 return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: Colors.blue.shade100,
                     borderRadius: BorderRadius.circular(20),
@@ -94,7 +96,8 @@ class _LearnPageContentState extends State<LearnPageContent> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.error_outline, size: 64, color: Colors.grey),
+                          const Icon(Icons.error_outline,
+                              size: 64, color: Colors.grey),
                           const SizedBox(height: 16),
                           Text(
                             'Erreur lors du chargement',
@@ -121,7 +124,8 @@ class _LearnPageContentState extends State<LearnPageContent> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.article_outlined, size: 64, color: Colors.grey),
+                          const Icon(Icons.article_outlined,
+                              size: 64, color: Colors.grey),
                           const SizedBox(height: 16),
                           Text(
                             'Aucun article disponible',
@@ -135,7 +139,8 @@ class _LearnPageContentState extends State<LearnPageContent> {
                   return ListView.separated(
                     physics: const BouncingScrollPhysics(),
                     shrinkWrap: true,
-                    separatorBuilder: (context, index) => const SizedBox(height: 16),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 16),
                     itemCount: articles.length,
                     itemBuilder: (context, index) {
                       final article = articles[index];
@@ -223,7 +228,8 @@ class ArticleCard extends StatelessWidget {
                   top: 12,
                   right: 12,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: article.isRead ? Colors.green : Colors.white70,
                       borderRadius: BorderRadius.circular(12),
@@ -253,17 +259,18 @@ class ArticleCard extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      height: 1.3,
-                      fontFamily: 'Poppins',
-                    ),
+                          fontWeight: FontWeight.w600,
+                          height: 1.3,
+                          fontFamily: 'Poppins',
+                        ),
                   ),
                   const SizedBox(height: 8),
 
                   // Métadonnées
                   Row(
                     children: [
-                      Icon(Icons.category, size: 16, color: Colors.grey.shade600),
+                      Icon(Icons.category,
+                          size: 16, color: Colors.grey.shade600),
                       const SizedBox(width: 4),
                       Text(
                         article.category,
@@ -274,7 +281,8 @@ class ArticleCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 16),
-                      Icon(Icons.access_time, size: 16, color: Colors.grey.shade600),
+                      Icon(Icons.access_time,
+                          size: 16, color: Colors.grey.shade600),
                       const SizedBox(width: 4),
                       Text(
                         article.readingTime,
@@ -285,7 +293,8 @@ class ArticleCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 16),
-                      Icon(Icons.calendar_today, size: 16, color: Colors.grey.shade600),
+                      Icon(Icons.calendar_today,
+                          size: 16, color: Colors.grey.shade600),
                       const SizedBox(width: 4),
                       Text(
                         '${article.date.day}/${article.date.month}/${article.date.year}',

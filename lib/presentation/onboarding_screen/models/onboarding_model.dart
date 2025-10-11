@@ -7,12 +7,12 @@ import 'package:equatable/equatable.dart';
 class OnboardingModel extends Equatable {
   OnboardingModel({
     this.page = 0,
-}) {}
+  }) {}
   int? page;
 
   OnboardingModel copyWith({
     int? page,
-}) {
+  }) {
     return OnboardingModel(
       page: page ?? this.page,
     );

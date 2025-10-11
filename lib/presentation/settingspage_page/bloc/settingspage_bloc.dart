@@ -39,9 +39,11 @@ class SettingspageBloc extends Bloc<SettingspageEvent, SettingspageState> {
     final postLogoutPostReq = PostLogoutPostReq();
     final logToken = PrefUtils().getAuthToken();
     debugPrint('here is the logToken $logToken');
-    await _repository.logoutPost(
+    await _repository
+        .logoutPost(
       requestData: postLogoutPostReq.toJson(),
-    ).then((value) async {
+    )
+        .then((value) async {
       postLogoutPostResp = value;
       _onLogoutPostSuccess(value, emit);
       event.onCreateLogoutEventSuccess?.call();
@@ -70,6 +72,7 @@ class SettingspageBloc extends Bloc<SettingspageEvent, SettingspageState> {
       NavigatorService.pushNamed(AppRoutes.loginScreen);
     });
   }
+
   void _onLogoutPostError() {
     // Nettoyer le token local même si l'API échoue
     PrefUtils().setAuthToken('');

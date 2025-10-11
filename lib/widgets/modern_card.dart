@@ -9,7 +9,7 @@ class ModernCard extends StatelessWidget {
   final VoidCallback? onTap;
   final ModernCardVariant variant;
   final bool hasShadow;
-  
+
   const ModernCard({
     Key? key,
     required this.child,
@@ -19,7 +19,7 @@ class ModernCard extends StatelessWidget {
     this.variant = ModernCardVariant.elevated,
     this.hasShadow = true,
   }) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,7 +47,7 @@ class ModernCard extends StatelessWidget {
       ),
     );
   }
-  
+
   Color _getBackgroundColor() {
     switch (variant) {
       case ModernCardVariant.elevated:
@@ -58,7 +58,7 @@ class ModernCard extends StatelessWidget {
         return ModernTheme.neutralWhite;
     }
   }
-  
+
   Border? _getBorder() {
     if (variant == ModernCardVariant.outlined) {
       return Border.all(

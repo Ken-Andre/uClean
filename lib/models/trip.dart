@@ -93,16 +93,24 @@ class Trip {
   factory Trip.fromJson(Map<String, dynamic> json) {
     return Trip(
       id: json['id'] as String? ?? Trip.generateId(),
-      startTime: json['start_time'] != null ? DateTime.parse(json['start_time'] as String) : DateTime.now(),
-      endTime: json['end_time'] != null ? DateTime.parse(json['end_time'] as String) : DateTime.now(),
+      startTime: json['start_time'] != null
+          ? DateTime.parse(json['start_time'] as String)
+          : DateTime.now(),
+      endTime: json['end_time'] != null
+          ? DateTime.parse(json['end_time'] as String)
+          : DateTime.now(),
       startLocation: json['start_location'] as String?,
       endLocation: json['end_location'] as String?,
-      type: json['type'] != null ? TripType.values.firstWhere(
-        (e) => e.name == json['type'] as String,
-      ) : TripType.personal,
-      status: json['status'] != null ? TripStatus.values.firstWhere(
-        (e) => e.name == json['status'] as String,
-      ) : TripStatus.recorded,
+      type: json['type'] != null
+          ? TripType.values.firstWhere(
+              (e) => e.name == json['type'] as String,
+            )
+          : TripType.personal,
+      status: json['status'] != null
+          ? TripStatus.values.firstWhere(
+              (e) => e.name == json['status'] as String,
+            )
+          : TripStatus.recorded,
       steps: json['steps'] as int?,
       distance: (json['distance'] as num?)?.toDouble(),
       metadata: json['metadata'] as Map<String, dynamic>?,
@@ -135,8 +143,8 @@ enum TripType {
 
 /// Statuts d'un déplacement
 enum TripStatus {
-  recorded,     // Enregistré mais pas classifié
-  classified,   // Classifié
-  synced,       // Synchronisé avec le serveur
-  failed,       // Échec de synchronisation
+  recorded, // Enregistré mais pas classifié
+  classified, // Classifié
+  synced, // Synchronisé avec le serveur
+  failed, // Échec de synchronisation
 }

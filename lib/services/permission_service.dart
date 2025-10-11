@@ -6,7 +6,7 @@ class PermissionService {
   static const List<Permission> _requiredPermissions = [
     Permission.location,
     Permission.activityRecognition, // Pour le comptage de pas
-    Permission.notification,        // Pour les notifications de tracking
+    Permission.notification, // Pour les notifications de tracking
   ];
 
   /// Vérifie si une permission spécifique est accordée
@@ -97,7 +97,7 @@ class PermissionService {
     // Vérifier les permissions essentielles pour le tracking
     const trackingPermissions = [
       Permission.activityRecognition, // Comptage de pas
-      Permission.location,           // Géolocalisation approximative
+      Permission.location, // Géolocalisation approximative
     ];
 
     for (final permission in trackingPermissions) {

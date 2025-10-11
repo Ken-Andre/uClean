@@ -30,50 +30,52 @@ class OnboardingScreen extends StatelessWidget {
                     alignment: Alignment.topCenter,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(top:8.h),
-                        child: BlocSelector<OnboardingBloc, OnboardingState, PageController?>(
+                        padding: EdgeInsets.only(top: 8.h),
+                        child: BlocSelector<OnboardingBloc, OnboardingState,
+                                PageController?>(
                             selector: (state) => state.pageController,
                             builder: (context, pageController) {
-                          return PageView(
-                            onPageChanged: (index) {
-                              state.onboardingModelObj?.page = index;
-                              print("The index $index and ${state.onboardingModelObj?.page}");
-                              BlocProvider.of<OnboardingBloc>(context).add(UpdatePageViewEvent(page: index));
-                            },
-                            controller: pageController,
-                            children: [
-                              _page(
-                                  1,
-                                  context,
-                                  "msg_welcome_to_uclean".tr,
-                                  "msg_your_sustainable".tr,
-                                  "lbl_next".tr,
-                                  ImageConstant.imgReading,
-                                  state.pageController),
-                              _page(
-                                  2,
-                                  context,
-                                  "msg_track_your_journey".tr,
-                                  "msg_log_your_trips".tr,
-                                  "lbl_next".tr,
-                                  ImageConstant.imgBoy,
-                                  state.pageController),
-                              _page(
-                                  3,
-                                  context,
-                                  "msg_monitor_your_impact".tr,
-                                  "msg_keeps_tabs_on".tr,
-                                  "lbl_start".tr,
-                                  ImageConstant.imgMan,
-                                  state.pageController),
-                            ],
-                          );
-                        }),
+                              return PageView(
+                                onPageChanged: (index) {
+                                  state.onboardingModelObj?.page = index;
+                                  print(
+                                      "The index $index and ${state.onboardingModelObj?.page}");
+                                  BlocProvider.of<OnboardingBloc>(context)
+                                      .add(UpdatePageViewEvent(page: index));
+                                },
+                                controller: pageController,
+                                children: [
+                                  _page(
+                                      1,
+                                      context,
+                                      "msg_welcome_to_uclean".tr,
+                                      "msg_your_sustainable".tr,
+                                      "lbl_next".tr,
+                                      ImageConstant.imgReading,
+                                      state.pageController),
+                                  _page(
+                                      2,
+                                      context,
+                                      "msg_track_your_journey".tr,
+                                      "msg_log_your_trips".tr,
+                                      "lbl_next".tr,
+                                      ImageConstant.imgBoy,
+                                      state.pageController),
+                                  _page(
+                                      3,
+                                      context,
+                                      "msg_monitor_your_impact".tr,
+                                      "msg_keeps_tabs_on".tr,
+                                      "lbl_start".tr,
+                                      ImageConstant.imgMan,
+                                      state.pageController),
+                                ],
+                              );
+                            }),
                       ),
                       SizedBox(height: 5.h),
                       BlocSelector<OnboardingBloc, OnboardingState, int?>(
-                          selector: (state) =>
-                          state.onboardingModelObj?.page,
+                          selector: (state) => state.onboardingModelObj?.page,
                           builder: (context, page) {
                             return DotsIndicator(
                                 position: page ?? 0,
@@ -84,27 +86,26 @@ class OnboardingScreen extends StatelessWidget {
                                   size: const Size.square(8.0),
                                   activeSize: const Size(10.0, 8.0),
                                   activeShape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadiusStyle.roundedBorder5
-                                  ),
-                                )
-                            );
+                                      borderRadius:
+                                          BorderRadiusStyle.roundedBorder5),
+                                ));
                           }),
                     ],
-                  )
-              )));
+                  ))));
     });
   }
 
-  Widget _page(int index, BuildContext context, String title, String subtitle, String buttonName, String imagePath, [PageController? pageControllerp])  {
+  Widget _page(int index, BuildContext context, String title, String subtitle,
+      String buttonName, String imagePath,
+      [PageController? pageControllerp]) {
     return Column(children: [
       CustomImageView(
-          imagePath: imagePath, 
+          imagePath: imagePath,
           //ImageConstant.imgThePhotoHighl113x353,
           height: 363.adaptSize,
           width: 363.adaptSize),
       SizedBox(height: 9.v),
-      Text(title,
-          style: theme.textTheme.titleLarge),
+      Text(title, style: theme.textTheme.titleLarge),
       SizedBox(height: 11.v),
       Container(
           width: 347.h,
@@ -113,15 +114,13 @@ class OnboardingScreen extends StatelessWidget {
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
-              style:
-              CustomTextStyles.bodyLargePoppinsBlack900_2)),
+              style: CustomTextStyles.bodyLargePoppinsBlack900_2)),
       SizedBox(height: 97.v),
       CustomElevatedButton(
           height: 50.v,
           width: 325.h,
           text: buttonName,
-          buttonStyle:
-          CustomButtonStyles.fillOnSecondaryContainer,
+          buttonStyle: CustomButtonStyles.fillOnSecondaryContainer,
           onPressed: () {
             navigatetoLogin(context, index, pageControllerp);
           }),
@@ -130,12 +129,11 @@ class OnboardingScreen extends StatelessWidget {
   }
 
   /// Navigates to the loginScreen when the action is triggered.
-  navigatetoLogin(BuildContext context, int index, PageController? pageControllerf) async {
-    if(index<3){
-       pageControllerf?.animateToPage(
-          index,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeIn);
+  navigatetoLogin(
+      BuildContext context, int index, PageController? pageControllerf) async {
+    if (index < 3) {
+      pageControllerf?.animateToPage(index,
+          duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
     } else {
       // Marquer l'onboarding comme complété avant de naviguer
       final prefUtils = PrefUtils();

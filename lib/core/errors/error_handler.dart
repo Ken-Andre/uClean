@@ -13,7 +13,8 @@ class ErrorHandler {
         return TimeoutException();
 
       case DioExceptionType.connectionError:
-        return NoInternetException('No internet connection. Please check your network.');
+        return NoInternetException(
+            'No internet connection. Please check your network.');
 
       case DioExceptionType.cancel:
         return Exception('Request was cancelled');
