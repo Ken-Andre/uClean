@@ -127,7 +127,6 @@ jobs:
       - name: Download Android builds artifact
         uses: actions/download-artifact@v4
         with:
-          name: android-builds
           path: android-builds
 
       - name: List downloaded artifacts (debug)
@@ -136,16 +135,15 @@ jobs:
       - name: Verify artifacts exist before publishing
         run: |
           echo "Checking for APK file..."
-          ls -la android-builds/build/app/outputs/flutter-apk/app-release.apk || echo "APK file not found at expected location"
+          ls -la android-builds/flutter-apk/app-release.apk || echo "APK file not found at expected location"
           echo "Checking for AAB file..."
-          ls -la android-builds/build/app/outputs/bundle/release/app-release.aab || echo "AAB file not found at expected location"
+          ls -la android-builds/bundle/release/app-release.aab || echo "AAB file not found at expected location"
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
           tag: v1.0.${{ github.run_number }}
-          name: Release auto ${{ github.run_number }}
           draft: false
           prerelease: false
-          artifacts: "android-builds/build/app/outputs/flutter-apk/app-release.apk,android-builds/build/app/outputs/bundle/release/app-release.aab"
+          artifacts: "android-builds/flutter-apk/app-release.apk,android-builds/bundle/release/app-release.aab"
           token: ${{ secrets.GITHUB_TOKEN }}
