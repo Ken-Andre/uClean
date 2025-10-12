@@ -118,10 +118,8 @@ jobs:
 
   # Job de publication (attend les deux autres)
   publish-release:
-    name: Publish APK and AAB to GitHub Release
     runs-on: ubuntu-22.04  # Plus rapide
     needs: [analyze-test, build-android]  # Attend les deux jobs
-#    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     steps:
       - name: Download Android builds artifact
@@ -135,15 +133,13 @@ jobs:
       - name: Verify artifacts exist before publishing
         run: |
           echo "Checking for APK file..."
-          ls -la android-builds/flutter-apk/app-release.apk || echo "APK file not found at expected location"
+          ls -la android-builds/android-builds/flutter-apk/app-release.apk || echo "APK file not found at expected location"
           echo "Checking for AAB file..."
-          ls -la android-builds/bundle/release/app-release.aab || echo "AAB file not found at expected location"
+          ls -la android-builds/android-builds/bundle/release/app-release.aab || echo "AAB file not found at expected location"
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
           tag: v1.0.${{ github.run_number }}
-          draft: false
-          prerelease: false
-          artifacts: "android-builds/flutter-apk/app-release.apk,android-builds/bundle/release/app-release.aab"
+          artifacts: "android-builds/android-builds/flutter-apk/app-release.apk,android-builds/android-builds/bundle/release/app-release.aab"
           token: ${{ secrets.GITHUB_TOKEN }}
