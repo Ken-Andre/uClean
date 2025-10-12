@@ -104,12 +104,15 @@ jobs:
       - name: Build App Bundle
         run: flutter build appbundle --release
 
+      - name: List build outputs (debug)
+        run: find build/app/outputs -type f -name "*.apk" -o -name "*.aab" | head -10
+
       - name: Upload APK & AAB
         uses: actions/upload-artifact@v4
         with:
           name: android-builds
           path: |
-            build/app/outputs/apk/release/app-release.apk
+            build/app/outputs/flutter-apk/app-release.apk
             build/app/outputs/bundle/release/app-release.aab
           retention-days: 7  # Réduit de 30 à 7 jours pour économiser de l'espace
 
@@ -127,12 +130,22 @@ jobs:
           name: android-builds
           path: android-builds
 
+      - name: List downloaded artifacts (debug)
+        run: find android-builds -type f -name "*.apk" -o -name "*.aab" 2>/dev/null || echo "No APK/AAB files found"
+
+      - name: Verify artifacts exist before publishing
+        run: |
+          echo "Checking for APK file..."
+          ls -la android-builds/build/app/outputs/flutter-apk/app-release.apk || echo "APK file not found at expected location"
+          echo "Checking for AAB file..."
+          ls -la android-builds/build/app/outputs/bundle/release/app-release.aab || echo "AAB file not found at expected location"
+
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
-          tag: auto-${{ github.run_number }}
-          name: Auto Release ${{ github.run_number }}
+          tag: v1.0.${{ github.run_number }}
+          name: Release auto ${{ github.run_number }}
           draft: false
           prerelease: false
-          artifacts: "android-builds/build/app/outputs/apk/release/app-release.apk,android-builds/build/app/outputs/bundle/release/app-release.aab"
+          artifacts: "android-builds/build/app/outputs/flutter-apk/app-release.apk,android-builds/build/app/outputs/bundle/release/app-release.aab"
           token: ${{ secrets.GITHUB_TOKEN }}
