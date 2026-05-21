@@ -284,12 +284,11 @@ class SettingspagePage extends StatelessWidget {
     );
   }
 
-  /// Opens the privacy policy URL in the device's default web browser.
-  onTapPrivacyPolicy(BuildContext context) async {
-    var url = 'https://ken-andre.github.io/uClean/privacy-en.html';
-    if (!await launchUrlString(url)) {
-      throw 'Could not launch $url';
-    }
+  /// Navigates to the local privacy policy screen.
+  onTapPrivacyPolicy(BuildContext context) {
+    NavigatorService.pushNamed(
+      AppRoutes.privacyPolicyScreen,
+    );
   }
 
   /// Section Widget

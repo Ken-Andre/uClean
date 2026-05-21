@@ -17,6 +17,7 @@ import '../presentation/createaccounttwo_screen/createaccounttwo_screen.dart';
 import '../presentation/createaccountthree_screen/createaccountthree_screen.dart';
 import '../presentation/onboarding_screen/onboarding_screen.dart';
 import '../presentation/app_navigation_screen/app_navigation_screen.dart';
+import '../presentation/privacy_policy_screen/privacy_policy_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = '/splash_screen';
@@ -65,6 +66,8 @@ class AppRoutes {
 
   static const String appNavigationScreen = '/app_navigation_screen';
 
+  static const String privacyPolicyScreen = '/privacy_policy_screen';
+
   static const String initialRoute = '/initialRoute';
 
   static Map<String, WidgetBuilder> get routes => {
@@ -87,6 +90,7 @@ class AppRoutes {
         createaccountthreeScreen: CreateaccountthreeScreen.builder,
         onboardingScreen: OnboardingScreen.builder,
         appNavigationScreen: AppNavigationScreen.builder,
+        privacyPolicyScreen: PrivacyPolicyScreen.builder,
         initialRoute: SplashScreen.builder
       };
 }
