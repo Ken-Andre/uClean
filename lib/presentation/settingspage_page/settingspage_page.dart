@@ -82,6 +82,14 @@ class SettingspagePage extends StatelessWidget {
                   SizedBox(height: 12.v),
                   _buildRankOurApp(context),
                   SizedBox(height: 24.v),
+                  Text("lbl_legal".tr,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      )),
+                  SizedBox(height: 12.v),
+                  _buildPrivacyPolicy(context),
+                  SizedBox(height: 24.v),
                   Center(child: _buildLogOut(context)),
                   SizedBox(height: 24.v),
                   Center(
@@ -273,6 +281,24 @@ class SettingspagePage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  /// Opens the privacy policy URL in the device's default web browser.
+  onTapPrivacyPolicy(BuildContext context) async {
+    var url = 'https://ken-andre.github.io/uClean/privacy-en.html';
+    if (!await launchUrlString(url)) {
+      throw 'Could not launch $url';
+    }
+  }
+
+  /// Section Widget
+  Widget _buildPrivacyPolicy(BuildContext context) {
+    return _buildSettingsCard(
+      context,
+      icon: ImageConstant.imgLock,
+      text: "lbl_privacy_policy".tr,
+      onTap: () => onTapPrivacyPolicy(context),
     );
   }
 

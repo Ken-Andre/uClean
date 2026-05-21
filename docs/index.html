@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uClean - Privacy Policy / Politique de Confidentialite</title>
+    <style>
+        :root {
+            --primary: #2E7D32;
+            --primary-light: #4CAF50;
+            --bg: #f5f5f5;
+            --card: #ffffff;
+            --text: #212121;
+            --text-secondary: #616161;
+            --border: #e0e0e0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 48px 24px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+        .container { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+        .lang-selector {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            background: var(--card);
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .lang-btn {
+            flex: 1;
+            padding: 16px 24px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--card);
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-align: center;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .lang-btn:hover {
+            border-color: var(--primary);
+            background: #E8F5E9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(46,125,50,0.15);
+        }
+        .lang-btn .sub {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .card h2 { color: var(--primary); margin-bottom: 12px; font-size: 1.3rem; }
+        .card ul { padding-left: 20px; }
+        .card li { margin-bottom: 8px; color: var(--text-secondary); }
+        .footer-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        .footer-card a { color: var(--primary); text-decoration: none; }
+        .footer-card a:hover { text-decoration: underline; }
+        .badge {
+            display: inline-block;
+            background: #E8F5E9;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        @media (max-width: 600px) {
+            header { padding: 32px 16px; }
+            header h1 { font-size: 1.6rem; }
+            .lang-selector { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>uClean Privacy Center</h1>
+        <p>Mobilite Durable Universitaire / Sustainable University Mobility</p>
+    </header>
+
+    <div class="container">
+        <div class="lang-selector">
+            <a href="privacy-en.html" class="lang-btn">
+                English
+                <span class="sub">Privacy Policy</span>
+            </a>
+            <a href="privacy-fr.html" class="lang-btn">
+                Francais
+                <span class="sub">Politique de Confidentialite</span>
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Quick Links / Liens Rapides</h2>
+            <ul>
+                <li><a href="privacy-en.html">Privacy Policy (English)</a> — <span class="badge">Updated May 2026</span></li>
+                <li><a href="privacy-fr.html">Politique de Confidentialite (Francais)</a> — <span class="badge">Mis a jour mai 2026</span></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>About uClean / A propos d'uClean</h2>
+            <p>uClean is a mobile application that helps the university community measure and reduce its carbon footprint through daily mobility tracking. Designed for UCAC - ICAM students and faculty in Cameroon.</p>
+            <p style="margin-top:12px">uClean est une application mobile qui aide la communaute universitaire a mesurer et reduire son empreinte carbone grace au suivi de la mobilite quotidienne. Concue pour les etudiants et le personnel de l'UCAC - ICAM au Cameroun.</p>
+        </div>
+
+        <div class="card">
+            <h2>Contact</h2>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:support-it@icam.fr">support-it@icam.fr</a></li>
+                <li><strong>DPO:</strong> Pere Maximilien Bossou Constant</li>
+                <li><strong>Institution:</strong> ICAM, Cameroon</li>
+            </ul>
+        </div>
+
+        <div class="footer-card">
+            <p>&copy; 2024-2026 uClean Kim Team. Licensed under <a href="https://github.com/Ken-Andre/uclean/blob/main/LICENSE">MIT License</a>.</p>
+        </div>
+    </div>
+</body>
+</html>

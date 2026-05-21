@@ -51,6 +51,8 @@ final Map<String, String> enUs = {
   "lbl_log_out": "Log out",
   "lbl_our_app": "Our App",
   "lbl_rank_our_app": "Rank our App",
+  "lbl_legal": "Legal",
+  "lbl_privacy_policy": "Privacy Policy",
   "lbl_reporting": "Reporting",
   "lbl_settings": "Settings",
   "lbl_support": "Support",
