@@ -20,7 +20,7 @@ uClean is a mobile application developed by the **uClean Kim Team** for the UCAC
 
 **Publisher:** uClean Kim Team  
 **Institution:** ICAM  
-**Contact email:** support-it@icam.fr  
+**Contact email:** support-it@ucac-icam.com  
 **DPO:** Pere Maximilien Bossou Constant  
 
 ## Our Commitment
@@ -121,16 +121,16 @@ We are committed to protecting your privacy while contributing to a healthier en
 |---|---|
 | Right of access | Via app > Profile |
 | Right to rectification | Via app > Profile |
-| Right to erasure | Via app > Delete account OR email support-it@icam.fr |
+| Right to erasure | Via app > Delete account OR email support-it@ucac-icam.com |
 | Right to object | Via app > Settings |
-| Right to portability | Email support-it@icam.fr |
+| Right to portability | Email support-it@ucac-icam.com |
 | Withdrawal of consent | Via app > Settings |
 
 Response within 30 days. Lodge complaints with CNIL at www.cnil.fr.
 
 ## Account Deletion
 1. **From the app:** Settings > Your Account > Delete Account
-2. **By email:** support-it@icam.fr (subject: "uClean Account Deletion")
+2. **By email:** support-it@ucac-icam.com (subject: "uClean Account Deletion")
 
 Deletion is permanent and irreversible. Confirmation within 30 days.
 
@@ -158,7 +158,7 @@ Not intended for children under 16.
 We notify users of material changes via in-app notification and email.
 
 ## Contact
-- **Email:** support-it@icam.fr
+- **Email:** support-it@ucac-icam.com
 - **DPO:** Pere Maximilien Bossou Constant
 - **Website:** https://ken-andre.github.io/uClean
 

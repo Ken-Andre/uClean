@@ -12,7 +12,7 @@ uClean est une application mobile developpee par l'equipe **uClean Kim Team** po
 
 **Editeur :** uClean Kim Team
 **Etablissement :** ICAM
-**Email de contact :** support-it@icam.fr
+**Email de contact :** support-it@ucac-icam.com
 **Delegue a la Protection des Donnees (DPO) :** Pere Maximilien Bossou Constant
 
 ---
@@ -169,12 +169,12 @@ Conformement au Reglement General sur la Protection des Donnees (RGPD) et a la l
 |---|---|---|
 | **Droit d'acces** | Consulter toutes vos donnees | Via l'application > Profil |
 | **Droit de rectification** | Corriger les donnees inexactes | Via l'application > Profil |
-| **Droit a l'effacement** | Supprimer toutes vos donnees | Via l'application > Supprimer le compte OU email a support-it@icam.fr |
+| **Droit a l'effacement** | Supprimer toutes vos donnees | Via l'application > Supprimer le compte OU email a support-it@ucac-icam.com |
 | **Droit d'opposition** | Arreter tout traitement de vos donnees | Via l'application > Parametres |
-| **Droit a la portabilite** | Exporter vos donnees (JSON/CSV) | Sur demande a support-it@icam.fr |
+| **Droit a la portabilite** | Exporter vos donnees (JSON/CSV) | Sur demande a support-it@ucac-icam.com |
 | **Retrait du consentement** | Retirer votre consentement a tout moment | Via l'application > Parametres |
 
-Pour exercer vos droits, contactez-nous a **support-it@icam.fr**. Nous repondrons dans un delai maximal de **30 jours**.
+Pour exercer vos droits, contactez-nous a **support-it@ucac-icam.com**. Nous repondrons dans un delai maximal de **30 jours**.
 
 Si vous estimez que vos droits ne sont pas respectes, vous pouvez introduire une reclamation aupres de la **CNIL** (www.cnil.fr) ou de l'autorite de protection des donnees de votre pays.
 
@@ -185,7 +185,7 @@ Si vous estimez que vos droits ne sont pas respectes, vous pouvez introduire une
 Conformement aux exigences de Google Play, vous pouvez supprimer votre compte et toutes les donnees associees :
 
 1. **Depuis l'application :** Accedez a Parametres > Votre compte > Supprimer le compte
-2. **Par email :** Envoyez une demande a support-it@icam.fr avec l'objet "Suppression de compte uClean"
+2. **Par email :** Envoyez une demande a support-it@ucac-icam.com avec l'objet "Suppression de compte uClean"
 3. **En ligne :** Rendez-vous sur https://ken-andre.github.io/uClean/data-deletion
 
 La suppression est definitive et irreversible. Aucune conservation temporaire ou "gel" du compte n'est pratique. Nous confirmons la suppression dans un delai de 30 jours.
@@ -244,7 +244,7 @@ Nous vous encourageons a consulter regulierement cette politique. L'utilisation 
 
 Pour toute question concernant cette politique de confidentialite ou vos donnees :
 
-- **Email :** support-it@icam.fr
+- **Email :** support-it@ucac-icam.com
 - **DPO :** Pere Maximilien Bossou Constant
 - **Adresse postale :** ICAM, Cameroon
 - **Site web :** https://ken-andre.github.io/uClean

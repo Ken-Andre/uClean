@@ -267,7 +267,7 @@ Les contributions sont les bienvenues ! Consultez [CONTRIBUTING.md](CONTRIBUTING
 
 ## 📞 Contact & Support
 
-- **Email technique** : support-it@icam.fr
+- **Email technique** : support-it@ucac-icam.com
 - **Discord communauté** : [Rejoindre](https://discord.gg/ccHnFFCYur)
 - **Issues GitHub** : [Signaler un bug](https://github.com/Ken-Andre/uClean/issues)
 - **Discussions** : [Forum du projet](https://github.com/Ken-Andre/uClean/discussions)

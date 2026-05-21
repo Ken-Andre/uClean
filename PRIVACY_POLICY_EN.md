@@ -12,7 +12,7 @@ uClean is a mobile application developed by the **uClean Kim Team** for the UCAC
 
 **Publisher:** uClean Kim Team
 **Institution:** ICAM
-**Contact email:** support-it@icam.fr
+**Contact email:** support-it@ucac-icam.com
 **Data Protection Officer (DPO):** Pere Maximilien Bossou Constant
 
 ---
@@ -169,12 +169,12 @@ In accordance with the General Data Protection Regulation (GDPR) and Cameroonian
 |---|---|---|
 | **Right of access** | View all your data | Via app > Profile |
 | **Right to rectification** | Correct inaccurate data | Via app > Profile |
-| **Right to erasure** | Delete all your data | Via app > Delete account OR email support-it@icam.fr |
+| **Right to erasure** | Delete all your data | Via app > Delete account OR email support-it@ucac-icam.com |
 | **Right to object** | Stop all data processing | Via app > Settings |
-| **Right to portability** | Export your data (JSON/CSV) | On request at support-it@icam.fr |
+| **Right to portability** | Export your data (JSON/CSV) | On request at support-it@ucac-icam.com |
 | **Withdrawal of consent** | Withdraw consent at any time | Via app > Settings |
 
-To exercise your rights, contact us at **support-it@icam.fr**. We will respond within a maximum of **30 days**.
+To exercise your rights, contact us at **support-it@ucac-icam.com**. We will respond within a maximum of **30 days**.
 
 If you believe your rights are not being respected, you may lodge a complaint with the **CNIL** (www.cnil.fr) or your country's data protection authority.
 
@@ -185,7 +185,7 @@ If you believe your rights are not being respected, you may lodge a complaint wi
 In compliance with Google Play requirements, you can delete your account and all associated data:
 
 1. **From the app:** Go to Settings > Your Account > Delete Account
-2. **By email:** Send a request to support-it@icam.fr with the subject "uClean Account Deletion"
+2. **By email:** Send a request to support-it@ucac-icam.com with the subject "uClean Account Deletion"
 3. **Online:** Visit https://ken-andre.github.io/uClean/data-deletion
 
 Deletion is permanent and irreversible. We do not practice temporary retention or account "freezing." We confirm deletion within 30 days.
@@ -244,7 +244,7 @@ We encourage you to review this policy regularly. Continued use of the applicati
 
 For any questions regarding this privacy policy or your data:
 
-- **Email:** support-it@icam.fr
+- **Email:** support-it@ucac-icam.com
 - **DPO:** Pere Maximilien Bossou Constant
 - **Postal address:** ICAM, Cameroon
 - **Website:** https://ken-andre.github.io/uClean
